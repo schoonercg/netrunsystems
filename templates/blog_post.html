@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ post.title }} - Netrun Systems Blog{% endblock %}
+
+{% block content %}
+<!-- Blog Post Header -->
+<section class="blog-post-header">
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <div class="post-meta">
+            <span class="post-author">By {{ post.author }}</span>
+            <span class="post-date">{{ post.formatted_date }}</span>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Post Content -->
+<section class="blog-post-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <article class="post-body">
+                    {% if post.image %}
+                        <div class="post-featured-image">
+                            <img src="{{ url_for('static', filename='images/' + post.image) }}" alt="{{ post.title }}">
+                        </div>
+                    {% endif %}
+                    
+                    <div class="post-content">
+                        {{ post.content|safe }}
+                    </div>
+                    
+                    <div class="post-footer">
+                        <div class="post-tags">
+                            {% if post.tags %}
+                                {% for tag in post.tags %}
+                                    <span class="post-tag">{{ tag }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        
+                        <div class="post-share">
+                            <span>Share:</span>
+                            <a href="https://twitter.com/intent/tweet?text={{ post.title }}&url={{ request.url }}" target="_blank" class="share-link twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.url }}&title={{ post.title }}" target="_blank" class="share-link linkedin">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:?subject={{ post.title }}&body={{ request.url }}" class="share-link email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <div class="post-navigation">
+                    <a href="{{ url_for('blog') }}" class="back-to-blog">
+                        <i class="fas fa-arrow-left"></i> Back to Blog
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="blog-sidebar">
+                    <div class="sidebar-section">
+                        <h3>About Netrun Systems</h3>
+                        <p>Netrun Systems provides innovative cross-tenant governance solutions for Azure consultants and MSPs, enabling secure and efficient management of multiple client environments.</p>
+                        <a href="{{ url_for('index') }}" class="btn btn-sm">Learn More</a>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Products</h3>
+                        <ul class="sidebar-links">
+                            <li><a href="{{ url_for('product_nexus_core') }}">Nexus Core Platform</a></li>
+                            <li><a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a></li>
+                            <li><a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a></li>
+                            <li><a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Early Access Program</h3>
+                        <p>Join our Early Access Program to be among the first to experience Netrun Systems solutions.</p>
+                        <a href="{{ url_for('early_access') }}" class="btn btn-sm">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Posts -->
+<section class="related-posts">
+    <div class="container">
+        <h2>Related Posts</h2>
+        <div class="row">
+            <!-- This would be populated with actual related posts in a production environment -->
+            <div class="col-md-4">
+                <div class="related-post-card">
+                    <h3>Check back soon for related content</h3>
+                    <p>We're constantly adding new insights and updates to our blog.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Transform Your Azure Consulting Practice?</h2>
+        <p>Join our Early Access Program and be among the first to experience the power of Netrun Systems.</p>
+        <a href="{{ url_for('early_access') }}" class="btn btn-lg">Apply for Early Access</a>
+    </div>
+</section>
+{% endblock %}
