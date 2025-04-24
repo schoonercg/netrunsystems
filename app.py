@@ -1,27 +1,15 @@
 import os
-import markdown
-import datetime
-from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory
 import re
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import datetime
+import markdown
+from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory
 
-# Create Flask application instance
-# This variable name 'app' is critical for Azure App Service deployment
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
 
-# Blog configuration
-BLOG_POST_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'blog_posts')
-if not os.path.exists(BLOG_POST_DIR):
-    os.makedirs(BLOG_POST_DIR)
-
-# Ensure static directories exist
-for dir_path in ['static/images', 'static/css', 'static/js']:
-    full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), dir_path)
-    if not os.path.exists(full_path):
-        os.makedirs(full_path)
+# Create blog post directory if it doesn't exist
+BLOG_POST_DIR = os.path.join(app.root_path, 'blog_posts')
+os.makedirs(BLOG_POST_DIR, exist_ok=True)
 
 @app.route('/')
 def index():
@@ -53,60 +41,17 @@ def early_access():
     now = datetime.datetime.now()
     if request.method == 'POST':
         name = request.form.get('name')
-        email = request.form.get('email')
         company = request.form.get('company')
-        role = request.form.get('role')
-        tenants = request.form.get('tenants')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
         message = request.form.get('message')
         
-        # Send email to NSXearlyaccess@netrunsystems.com
-        try:
-            send_early_access_email(name, email, company, role, tenants, message)
-            flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
-        except Exception as e:
-            flash(f'There was an error submitting your application. Please try again later.', 'error')
-            print(f"Email error: {str(e)}")
-            
+        # In a production environment, this would send an email to NSXearlyaccess@netrunsystems.com
+        # For now, just show a success message
+        flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
         return redirect(url_for('early_access'))
         
     return render_template('early_access.html', now=now)
-
-def send_early_access_email(name, email, company, role, tenants, message):
-    # In a production environment, this would use SMTP to send an actual email
-    # For now, we'll just print the email content to the console
-    print(f"Early Access Application from {name} ({email})")
-    print(f"Company: {company}")
-    print(f"Role: {role}")
-    print(f"Number of Azure Tenants: {tenants}")
-    print(f"Message: {message}")
-    
-    # In production, uncomment and configure this code:
-    """
-    msg = MIMEMultipart()
-    msg['From'] = 'website@netrunsystems.com'
-    msg['To'] = 'NSXearlyaccess@netrunsystems.com'
-    msg['Subject'] = f'Early Access Application: {company}'
-    
-    body = f'''
-    Name: {name}
-    Email: {email}
-    Company: {company}
-    Role: {role}
-    Number of Azure Tenants: {tenants}
-    
-    Message:
-    {message}
-    '''
-    
-    msg.attach(MIMEText(body, 'plain'))
-    
-    server = smtplib.SMTP('smtp.yourserver.com', 587)
-    server.starttls()
-    server.login('your_email@example.com', 'your_password')
-    text = msg.as_string()
-    server.sendmail('website@netrunsystems.com', 'NSXearlyaccess@netrunsystems.com', text)
-    server.quit()
-    """
 
 @app.route('/blog')
 def blog():
@@ -124,119 +69,136 @@ def blog_post(slug):
 
 def get_blog_posts():
     posts = []
-    if os.path.exists(BLOG_POST_DIR):
-        for filename in os.listdir(BLOG_POST_DIR):
-            if filename.endswith('.md'):
-                post = parse_blog_post(filename)
-                if post:
-                    posts.append(post)
+    try:
+        if os.path.exists(BLOG_POST_DIR):
+            for filename in os.listdir(BLOG_POST_DIR):
+                if filename.endswith('.md'):
+                    post = parse_blog_post(filename)
+                    if post:
+                        posts.append(post)
+    except Exception as e:
+        app.logger.error(f"Error getting blog posts: {str(e)}")
+        return []
     
     # Sort posts by date (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
     return posts
 
 def get_blog_post(slug):
-    if os.path.exists(BLOG_POST_DIR):
-        for filename in os.listdir(BLOG_POST_DIR):
-            if filename.endswith('.md'):
-                post = parse_blog_post(filename)
-                if post and post['slug'] == slug:
-                    return post
+    try:
+        if os.path.exists(BLOG_POST_DIR):
+            for filename in os.listdir(BLOG_POST_DIR):
+                if filename.endswith('.md'):
+                    post = parse_blog_post(filename)
+                    if post and post['slug'] == slug:
+                        return post
+    except Exception as e:
+        app.logger.error(f"Error getting blog post {slug}: {str(e)}")
     return None
 
 def parse_blog_post(filename):
-    filepath = os.path.join(BLOG_POST_DIR, filename)
-    with open(filepath, 'r') as file:
-        content = file.read()
-    
-    # Parse front matter
-    front_matter_match = re.match(r'^---\s+(.*?)\s+---\s+(.*)', content, re.DOTALL)
-    if not front_matter_match:
-        return None
-    
-    front_matter = front_matter_match.group(1)
-    markdown_content = front_matter_match.group(2)
-    
-    # Parse metadata
-    metadata = {}
-    for line in front_matter.split('\n'):
-        if ':' in line:
-            key, value = line.split(':', 1)
-            metadata[key.strip()] = value.strip()
-    
-    # Convert markdown to HTML
-    html_content = markdown.markdown(markdown_content, extensions=['extra'])
-    
-    # Create slug from title if not provided
-    if 'slug' not in metadata and 'title' in metadata:
-        metadata['slug'] = metadata['title'].lower().replace(' ', '-')
-    
-    # Parse date
-    if 'date' in metadata:
-        try:
-            date_obj = datetime.datetime.strptime(metadata['date'], '%Y-%m-%d')
-            metadata['date'] = date_obj
-        except ValueError:
+    try:
+        filepath = os.path.join(BLOG_POST_DIR, filename)
+        with open(filepath, 'r') as file:
+            content = file.read()
+        
+        # Parse front matter
+        front_matter_match = re.match(r'^---\s+(.*?)\s+---\s+(.*)', content, re.DOTALL)
+        if not front_matter_match:
+            return None
+        
+        front_matter = front_matter_match.group(1)
+        markdown_content = front_matter_match.group(2)
+        
+        # Parse metadata
+        metadata = {}
+        for line in front_matter.split('\n'):
+            if ':' in line:
+                key, value = line.split(':', 1)
+                metadata[key.strip()] = value.strip()
+        
+        # Convert markdown to HTML
+        html_content = markdown.markdown(markdown_content)
+        
+        # Create slug from title if not provided
+        if 'slug' not in metadata and 'title' in metadata:
+            metadata['slug'] = metadata['title'].lower().replace(' ', '-')
+        
+        # Parse date
+        if 'date' in metadata:
+            try:
+                date_obj = datetime.datetime.strptime(metadata['date'], '%Y-%m-%d')
+                metadata['date'] = date_obj
+            except ValueError:
+                metadata['date'] = datetime.datetime.now()
+        else:
             metadata['date'] = datetime.datetime.now()
-    else:
-        metadata['date'] = datetime.datetime.now()
-    
-    # Format date for display
-    metadata['formatted_date'] = metadata['date'].strftime('%B %d, %Y')
-    
-    return {
-        'title': metadata.get('title', 'Untitled'),
-        'author': metadata.get('author', 'Netrun Systems'),
-        'date': metadata['date'],
-        'formatted_date': metadata['formatted_date'],
-        'slug': metadata.get('slug', ''),
-        'excerpt': metadata.get('excerpt', ''),
-        'image': metadata.get('image', ''),
-        'content': html_content
-    }
+        
+        # Format date for display
+        metadata['formatted_date'] = metadata['date'].strftime('%B %d, %Y')
+        
+        return {
+            'title': metadata.get('title', 'Untitled'),
+            'author': metadata.get('author', 'Netrun Systems'),
+            'date': metadata['date'],
+            'formatted_date': metadata['formatted_date'],
+            'slug': metadata.get('slug', ''),
+            'excerpt': metadata.get('excerpt', ''),
+            'image': metadata.get('image', ''),
+            'content': html_content
+        }
+    except Exception as e:
+        app.logger.error(f"Error parsing blog post {filename}: {str(e)}")
+        return None
 
 @app.route('/admin/blog', methods=['GET', 'POST'])
 def admin_blog():
     now = datetime.datetime.now()
     if request.method == 'POST':
-        title = request.form.get('title')
-        author = request.form.get('author')
-        date_str = request.form.get('date')
-        excerpt = request.form.get('excerpt')
-        content = request.form.get('content')
-        
-        # Create slug from title
-        slug = title.lower().replace(' ', '-')
-        # Remove special characters
-        slug = re.sub(r'[^a-z0-9-]', '', slug)
-        
-        # Parse date
         try:
-            date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
-            date = date_obj.strftime('%Y-%m-%d')
-        except ValueError:
-            date = datetime.datetime.now().strftime('%Y-%m-%d')
-        
-        # Create markdown file
-        markdown_content = f"""---
+            title = request.form.get('title')
+            author = request.form.get('author')
+            date_str = request.form.get('date')
+            excerpt = request.form.get('excerpt')
+            content = request.form.get('content')
+            
+            # Create slug from title
+            slug = title.lower().replace(' ', '-')
+            # Remove special characters
+            slug = re.sub(r'[^a-z0-9-]', '', slug)
+            
+            # Parse date
+            try:
+                date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+                date = date_obj.strftime('%Y-%m-%d')
+            except ValueError:
+                date = datetime.datetime.now().strftime('%Y-%m-%d')
+            
+            # Create markdown file
+            markdown_content = f"""---
 title: {title}
 author: {author}
 date: {date}
 slug: {slug}
 excerpt: {excerpt}
 ---
-
 {content}
 """
-        
-        filename = f"{slug}.md"
-        filepath = os.path.join(BLOG_POST_DIR, filename)
-        
-        with open(filepath, 'w') as file:
-            file.write(markdown_content)
-        
-        flash('Blog post created successfully!', 'success')
-        return redirect(url_for('blog'))
+            
+            # Ensure blog post directory exists
+            os.makedirs(BLOG_POST_DIR, exist_ok=True)
+            
+            filename = f"{slug}.md"
+            filepath = os.path.join(BLOG_POST_DIR, filename)
+            
+            with open(filepath, 'w') as file:
+                file.write(markdown_content)
+            
+            flash('Blog post created successfully!', 'success')
+            return redirect(url_for('blog'))
+        except Exception as e:
+            app.logger.error(f"Error creating blog post: {str(e)}")
+            flash(f'Error creating blog post: {str(e)}', 'error')
     
     return render_template('admin_blog.html', now=now)
 
@@ -260,6 +222,46 @@ def contact():
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+# Create a sample blog post if none exist
+@app.before_first_request
+def create_sample_content():
+    try:
+        # Ensure blog post directory exists
+        os.makedirs(BLOG_POST_DIR, exist_ok=True)
+        
+        # Check if any blog posts exist
+        if not os.listdir(BLOG_POST_DIR):
+            # Create a sample blog post
+            sample_post = """---
+title: Welcome to Netrun Systems
+author: Netrun Systems
+date: 2025-04-24
+slug: welcome-to-netrun-systems
+excerpt: Welcome to the Netrun Systems blog where we'll share insights on Azure cross-tenant governance and cloud management.
+---
+# Welcome to Netrun Systems
+
+Thank you for visiting the Netrun Systems blog. Here we'll share insights, best practices, and updates about our cross-tenant governance solutions for Azure.
+
+## Our Mission
+
+At Netrun Systems, we're dedicated to helping Azure consultants and MSPs manage multiple client environments securely and efficiently. Our flagship product, Netrun Systems Nexus, leverages Azure Lighthouse technology to provide secure cross-tenant access management without sharing credentials or adding guest accounts.
+
+## Stay Tuned
+
+Check back regularly for:
+- Technical deep dives
+- Best practices for Azure governance
+- Product updates and new features
+- Case studies and success stories
+
+We're excited to have you join us on this journey!
+"""
+            with open(os.path.join(BLOG_POST_DIR, 'welcome-to-netrun-systems.md'), 'w') as f:
+                f.write(sample_post)
+    except Exception as e:
+        app.logger.error(f"Error creating sample content: {str(e)}")
 
 # This is required for Azure App Service to find the application
 application = app
