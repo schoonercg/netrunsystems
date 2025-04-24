@@ -7,6 +7,8 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+# Create Flask application instance
+# This variable name 'app' is critical for Azure App Service deployment
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -23,26 +25,32 @@ for dir_path in ['static/images', 'static/css', 'static/js']:
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    now = datetime.datetime.now()
+    return render_template('index.html', now=now)
 
 @app.route('/product/nexus-core')
 def product_nexus_core():
-    return render_template('product_nexus_core.html')
+    now = datetime.datetime.now()
+    return render_template('product_nexus_core.html', now=now)
 
 @app.route('/product/cost-optimizer')
 def product_cost_optimizer():
-    return render_template('product_cost_optimizer.html')
+    now = datetime.datetime.now()
+    return render_template('product_cost_optimizer.html', now=now)
 
 @app.route('/product/compliance-reporter')
 def product_compliance_reporter():
-    return render_template('product_compliance_reporter.html')
+    now = datetime.datetime.now()
+    return render_template('product_compliance_reporter.html', now=now)
 
 @app.route('/product/governance-dashboard')
 def product_governance_dashboard():
-    return render_template('product_governance_dashboard.html')
+    now = datetime.datetime.now()
+    return render_template('product_governance_dashboard.html', now=now)
 
 @app.route('/early-access', methods=['GET', 'POST'])
 def early_access():
+    now = datetime.datetime.now()
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -61,7 +69,7 @@ def early_access():
             
         return redirect(url_for('early_access'))
         
-    return render_template('early_access.html')
+    return render_template('early_access.html', now=now)
 
 def send_early_access_email(name, email, company, role, tenants, message):
     # In a production environment, this would use SMTP to send an actual email
@@ -102,34 +110,38 @@ def send_early_access_email(name, email, company, role, tenants, message):
 
 @app.route('/blog')
 def blog():
+    now = datetime.datetime.now()
     posts = get_blog_posts()
-    return render_template('blog.html', posts=posts)
+    return render_template('blog.html', posts=posts, now=now)
 
 @app.route('/blog/<slug>')
 def blog_post(slug):
+    now = datetime.datetime.now()
     post = get_blog_post(slug)
     if post:
-        return render_template('blog_post.html', post=post)
+        return render_template('blog_post.html', post=post, now=now)
     abort(404)
 
 def get_blog_posts():
     posts = []
-    for filename in os.listdir(BLOG_POST_DIR):
-        if filename.endswith('.md'):
-            post = parse_blog_post(filename)
-            if post:
-                posts.append(post)
+    if os.path.exists(BLOG_POST_DIR):
+        for filename in os.listdir(BLOG_POST_DIR):
+            if filename.endswith('.md'):
+                post = parse_blog_post(filename)
+                if post:
+                    posts.append(post)
     
     # Sort posts by date (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
     return posts
 
 def get_blog_post(slug):
-    for filename in os.listdir(BLOG_POST_DIR):
-        if filename.endswith('.md'):
-            post = parse_blog_post(filename)
-            if post and post['slug'] == slug:
-                return post
+    if os.path.exists(BLOG_POST_DIR):
+        for filename in os.listdir(BLOG_POST_DIR):
+            if filename.endswith('.md'):
+                post = parse_blog_post(filename)
+                if post and post['slug'] == slug:
+                    return post
     return None
 
 def parse_blog_post(filename):
@@ -153,7 +165,7 @@ def parse_blog_post(filename):
             metadata[key.strip()] = value.strip()
     
     # Convert markdown to HTML
-    html_content = markdown.markdown(markdown_content, extensions=['extra', 'codehilite'])
+    html_content = markdown.markdown(markdown_content, extensions=['extra'])
     
     # Create slug from title if not provided
     if 'slug' not in metadata and 'title' in metadata:
@@ -185,6 +197,7 @@ def parse_blog_post(filename):
 
 @app.route('/admin/blog', methods=['GET', 'POST'])
 def admin_blog():
+    now = datetime.datetime.now()
     if request.method == 'POST':
         title = request.form.get('title')
         author = request.form.get('author')
@@ -225,10 +238,11 @@ excerpt: {excerpt}
         flash('Blog post created successfully!', 'success')
         return redirect(url_for('blog'))
     
-    return render_template('admin_blog.html')
+    return render_template('admin_blog.html', now=now)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    now = datetime.datetime.now()
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -240,12 +254,15 @@ def contact():
         flash('Thank you for your message! We will get back to you shortly.', 'success')
         return redirect(url_for('contact'))
         
-    return render_template('contact.html')
+    return render_template('contact.html', now=now)
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+# This is required for Azure App Service to find the application
+application = app
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=False)
