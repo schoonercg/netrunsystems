@@ -1,17 +1,23 @@
-# Netrun Systems Website Deployment
+# Netrun Systems Website
 
 This is a Flask-based website for Netrun Systems, showcasing the company's cross-tenant Azure governance solutions.
 
-## Requirements
+## Repository Structure
 
-- Python 3.12
-- Flask
+- `app.py` - Flask application entry point
+- `/static` - Static assets
+  - `/css` - Stylesheets
+  - `/images` - Images and logos
+  - `/js` - JavaScript files
+- `/templates` - HTML templates
+- `requirements.txt` - Python dependencies
+- `.github/workflows` - GitHub Actions workflow for Azure deployment
 
-## Installation
+## Local Development
 
 1. Install the required packages:
 ```
-pip install flask
+pip install -r requirements.txt
 ```
 
 2. Run the application:
@@ -19,33 +25,29 @@ pip install flask
 python app.py
 ```
 
+3. Access the website at http://localhost:8000
+
 ## Deployment to Azure
 
-This website is configured for deployment to Azure App Service with Python 3.12 runtime.
+This repository is configured for automatic deployment to Azure Web App using GitHub Actions.
 
-### Deployment Options
+### Setup Instructions
 
-1. **Zip Deploy** (Recommended)
-   - Upload the zip package to Azure App Service
-   - Azure will automatically detect the Python application and deploy it
+1. Fork or clone this repository to your GitHub account
+2. In the Azure Portal, navigate to your App Service
+3. Go to Deployment Center > GitHub Actions
+4. Connect your GitHub repository
+5. Create a new secret in your GitHub repository:
+   - Name: `AZURE_WEBAPP_PUBLISH_PROFILE`
+   - Value: The contents of your PublishSettings file
 
-2. **FTP Deploy**
-   - Upload the files via FTP to the Azure App Service
-   - FTP credentials are in the PublishSettings file
+Once configured, any push to the main branch will trigger automatic deployment to Azure.
 
-3. **GitHub Integration**
-   - Connect your GitHub repository to Azure App Service
-   - Set up continuous deployment
+## Azure Configuration
 
-## File Structure
-
-- `/src` - Main application directory
-  - `app.py` - Flask application entry point
-  - `/static` - Static assets
-    - `/css` - Stylesheets
-    - `/images` - Images and logos
-    - `/js` - JavaScript files
-  - `/templates` - HTML templates
+- Runtime: Python 3.12
+- Web App Name: Netrunsystems
+- Custom Domain: www.netrunsystems.com
 
 ## Contact
 
