@@ -106,6 +106,7 @@
                     <p>Complete the form below to apply for our Early Access Program. Our team will review your application and contact you with next steps.</p>
                     
                     <form method="POST" action="{{ url_for('early_access') }}">
+                        {{ csrf_token() }}
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>

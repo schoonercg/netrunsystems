@@ -3,9 +3,13 @@ import re
 import datetime
 import markdown
 from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory
+from flask_wtf import CSRFProtect
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
+
+# Enable CSRF protection
+csrf = CSRFProtect(app)
 
 # Create blog post directory if it doesn't exist
 BLOG_POST_DIR = os.path.join(app.root_path, 'blog_posts')
@@ -262,6 +266,14 @@ We're excited to have you join us on this journey!
                 f.write(sample_post)
     except Exception as e:
         app.logger.error(f"Error creating sample content: {str(e)}")
+
+@app.route('/privacy-policy')
+def privacy_policy():
+    return render_template('privacy_policy.html')
+
+@app.route('/terms-of-service')
+def terms_of_service():
+    return render_template('terms_of_service.html')
 
 # This is required for Azure App Service to find the application
 application = app
