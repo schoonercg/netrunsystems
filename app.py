@@ -275,6 +275,41 @@ def privacy_policy():
 def terms_of_service():
     return render_template('terms_of_service.html')
 
+@app.route('/consulting')
+def consulting_services():
+    now = datetime.datetime.now()
+    return render_template('consulting_services.html', now=now)
+
+@app.route('/product/small-business-optimization-suite')
+def product_small_business_optimization_suite():
+    now = datetime.datetime.now()
+    return render_template('product_small_business_optimization_suite.html', now=now)
+
+@app.route('/research-projects')
+def research_projects():
+    now = datetime.datetime.now()
+    return render_template('research_projects.html', now=now)
+
+@app.route('/research/sunflower')
+def research_sunflower():
+    now = datetime.datetime.now()
+    return render_template('research_sunflower.html', now=now)
+
+@app.route('/research/podcast-cohost')
+def research_podcast_cohost():
+    now = datetime.datetime.now()
+    return render_template('research_podcast_cohost.html', now=now)
+
+@app.route('/research/scrum-master')
+def research_scrum_master():
+    now = datetime.datetime.now()
+    return render_template('research_scrum_master.html', now=now)
+
+@app.route('/research/connection-manager')
+def research_connection_manager():
+    now = datetime.datetime.now()
+    return render_template('research_connection_manager.html', now=now)
+
 # This is required for Azure App Service to find the application
 application = app
 
