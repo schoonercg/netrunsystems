@@ -2,11 +2,20 @@ import os
 import re
 import datetime
 import markdown
-from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
 from flask_wtf import CSRFProtect
+from flask_session import Session
+from functools import wraps
+
+# Development mode flag
+DEV_MODE = True  # Force development mode for local testing
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
+
+# Session config
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
 
 # Enable CSRF protection
 csrf = CSRFProtect(app)
@@ -14,6 +23,15 @@ csrf = CSRFProtect(app)
 # Create blog post directory if it doesn't exist
 BLOG_POST_DIR = os.path.join(app.root_path, 'blog_posts')
 os.makedirs(BLOG_POST_DIR, exist_ok=True)
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get('user'):
+            session['state'] = request.url
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated
 
 @app.route('/')
 def index():
@@ -227,8 +245,6 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-# Create a sample blog post if none exist
-@app.before_first_request
 def create_sample_content():
     try:
         # Ensure blog post directory exists
@@ -267,6 +283,9 @@ We're excited to have you join us on this journey!
     except Exception as e:
         app.logger.error(f"Error creating sample content: {str(e)}")
 
+# Call create_sample_content when the app starts
+create_sample_content()
+
 @app.route('/privacy-policy')
 def privacy_policy():
     return render_template('privacy_policy.html')
@@ -274,6 +293,82 @@ def privacy_policy():
 @app.route('/terms-of-service')
 def terms_of_service():
     return render_template('terms_of_service.html')
+
+@app.route('/consulting')
+def consulting_services():
+    now = datetime.datetime.now()
+    return render_template('consulting_services.html', now=now)
+
+@app.route('/product/small-business-optimization-suite')
+def product_small_business_optimization_suite():
+    now = datetime.datetime.now()
+    return render_template('product_small_business_optimization_suite.html', now=now)
+
+@app.route('/research-projects')
+def research_projects():
+    now = datetime.datetime.now()
+    return render_template('research_projects.html', now=now)
+
+@app.route('/research/sunflower')
+def research_sunflower():
+    now = datetime.datetime.now()
+    return render_template('research_sunflower.html', now=now)
+
+@app.route('/research/podcast-cohost')
+def research_podcast_cohost():
+    now = datetime.datetime.now()
+    return render_template('research_podcast_cohost.html', now=now)
+
+@app.route('/research/scrum-master')
+def research_scrum_master():
+    now = datetime.datetime.now()
+    return render_template('research_scrum_master.html', now=now)
+
+@app.route('/research/connection-manager')
+def research_connection_manager():
+    now = datetime.datetime.now()
+    return render_template('research_connection_manager.html', now=now)
+
+@app.route('/login')
+def login():
+    # In development mode, automatically log in
+    session['user'] = {
+        'name': 'Development User',
+        'email': 'dev@netrunsystems.com',
+        'id': 'dev-user-id'
+    }
+    return redirect(url_for('customer_portal'))
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+@app.route('/portal')
+@requires_auth
+def customer_portal():
+    user = session.get('user')
+    return render_template('customer_portal.html',
+                         user=user,
+                         version="2.0.0")  # Hardcoded version for development
+
+@app.route('/portal/profile')
+@requires_auth
+def customer_profile():
+    user = session.get('user')
+    return render_template('customer_profile.html', user=user)
+
+@app.route('/portal/resources')
+@requires_auth
+def customer_resources():
+    user = session.get('user')
+    return render_template('customer_resources.html', user=user)
+
+@app.route('/portal/support')
+@requires_auth
+def customer_support():
+    user = session.get('user')
+    return render_template('customer_support.html', user=user)
 
 # This is required for Azure App Service to find the application
 application = app

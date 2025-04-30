@@ -1,348 +1,259 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netrun Systems - Secure Cross-Tenant Azure Governance</title>
-    <meta name="description" content="Netrun Systems Nexus is a comprehensive Azure Marketplace solution that enables secure, efficient management across multiple client environments.">
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='images/NETRUN_SYSTEMS_LOGO_2024.png') }}" alt="Netrun Systems Logo">
-            </div>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#solutions">Solutions</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#early-access" class="btn">Early Access</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h2>Revolutionizing Cross-Tenant Azure Governance</h2>
-                <p>Secure, efficient management across multiple client environments with enhanced security, unified dashboard, and AI-driven optimization.</p>
-                <div class="hero-buttons">
-                    <a href="#solutions" class="btn">Explore Solutions</a>
-                    <a href="#early-access" class="btn btn-outline">Join Early Access</a>
-                </div>
+{% extends "layout.html" %}
+{% block title %}Netrun Systems - Secure Cross-Tenant Azure Governance{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h2>Revolutionizing Cross-Tenant Azure Governance</h2>
+            <p>Secure, efficient management across multiple client environments with enhanced security, unified dashboard, and AI-driven optimization.</p>
+            <div class="hero-buttons">
+                <a href="#solutions" class="btn">Explore Solutions</a>
+                <a href="#early-access" class="btn btn-outline">Join Early Access</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Netrun Systems</h2>
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>About Netrun Systems</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text animate-on-scroll">
+                <h3>Built by Consultants, for Consultants</h3>
+                <p>Founded by Daniel Garza, a former Microsoft Senior Technology Consultant and digital systems architect at Rackspace Technology, Netrun Systems is revolutionizing cross-tenant governance in Microsoft Azure environments.</p>
+                <p>Our flagship product, Netrun Systems Nexus, is a comprehensive Azure Marketplace solution that enables secure, efficient management across multiple client environments. Built on Azure Lighthouse but enhanced with proprietary security controls and management capabilities, Nexus provides a unified dashboard, enhanced security, and specialized add-ons for cost optimization and compliance.</p>
+                <p>We've experienced the challenges of multi-tenant management firsthand and built the solution we always wished existed.</p>
             </div>
-            <div class="about-content">
-                <div class="about-text animate-on-scroll">
-                    <h3>Built by Consultants, for Consultants</h3>
-                    <p>Founded by Daniel Garza, a former Microsoft Senior Technology Consultant and digital systems architect at Rackspace Technology, Netrun Systems is revolutionizing cross-tenant governance in Microsoft Azure environments.</p>
-                    <p>Our flagship product, Netrun Systems Nexus, is a comprehensive Azure Marketplace solution that enables secure, efficient management across multiple client environments. Built on Azure Lighthouse but enhanced with proprietary security controls and management capabilities, Nexus provides a unified dashboard, enhanced security, and specialized add-ons for cost optimization and compliance.</p>
-                    <p>We've experienced the challenges of multi-tenant management firsthand and built the solution we always wished existed.</p>
+            <div class="about-image animate-on-scroll">
+                {# <img src="{{ url_for('static', filename='images/NETRUN_SYSTEMS_LOGO_2024 (2).png') }}" alt="Netrun Systems"> #}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solutions Section -->
+<section id="solutions" class="solutions">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Solutions</h2>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-card animate-on-scroll">
+                <div class="solution-content">
+                    <h3>Nexus Core Platform</h3>
+                    <p>Our flagship cross-tenant governance platform with five distinct permission models, enhanced security controls, and a unified management dashboard.</p>
+                    <a href="#" class="btn">Learn More</a>
                 </div>
-                <div class="about-image animate-on-scroll">
-                    <img src="{{ url_for('static', filename='images/NETRUN_SYSTEMS_LOGO_2024 (2).png') }}" alt="Netrun Systems">
+            </div>
+            <div class="solution-card animate-on-scroll">
+                <div class="solution-content">
+                    <h3>Cost Optimizer</h3>
+                    <p>AI-driven cost management across all client tenants, identifying savings opportunities averaging 21% of cloud spend.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="solution-card animate-on-scroll">
+                <div class="solution-content">
+                    <h3>Compliance Reporter</h3>
+                    <p>Automated compliance assessments across 40+ frameworks with real-time scoring, gap analysis, and audit-ready reporting.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="solution-card animate-on-scroll">
+                <div class="solution-content">
+                    <h3>Governance Dashboard</h3>
+                    <p>Comprehensive controls and visibility with policy enforcement across multiple tenants and customizable governance reporting.</p>
+                    <a href="#" class="btn">Learn More</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="solutions">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Solutions</h2>
+<!-- Features Section -->
+<section id="features" class="features">
+    <div class="container">
+        <div class="section-title">
+            <h2>Key Features</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Enhanced Security</h3>
+                <p>Role-based access with just-in-time privileges, approval workflows, and comprehensive audit logging.</p>
             </div>
-            <div class="solutions-grid">
-                <div class="solution-card animate-on-scroll">
-                    <div class="solution-content">
-                        <h3>Nexus Core Platform</h3>
-                        <p>Our flagship cross-tenant governance platform with five distinct permission models, enhanced security controls, and a unified management dashboard.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
                 </div>
-                <div class="solution-card animate-on-scroll">
-                    <div class="solution-content">
-                        <h3>Cost Optimizer</h3>
-                        <p>AI-driven cost management across all client tenants, identifying savings opportunities averaging 21% of cloud spend.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+                <h3>Unified Dashboard</h3>
+                <p>Single pane of glass for all your client environments with customizable views and reporting.</p>
+            </div>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-user-lock"></i>
                 </div>
-                <div class="solution-card animate-on-scroll">
-                    <div class="solution-content">
-                        <h3>Compliance Reporter</h3>
-                        <p>Automated compliance assessments across 40+ frameworks with real-time scoring, gap analysis, and audit-ready reporting.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+                <h3>Flexible Permissions</h3>
+                <p>Five distinct permission plans tailored to different consulting scenarios, from read-only to privileged access.</p>
+            </div>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                <div class="solution-card animate-on-scroll">
-                    <div class="solution-content">
-                        <h3>Governance Dashboard</h3>
-                        <p>Comprehensive controls and visibility with policy enforcement across multiple tenants and customizable governance reporting.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+                <h3>Cost Optimization</h3>
+                <p>AI-driven recommendations to reduce cloud spend across all managed tenants.</p>
+            </div>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-check"></i>
                 </div>
+                <h3>Compliance Automation</h3>
+                <p>Streamlined compliance reporting across multiple regulatory frameworks with automated evidence collection.</p>
+            </div>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Azure Integration</h3>
+                <p>Seamless integration with Azure Lighthouse, Azure AD, Azure Monitor, and Azure Policy.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Key Features</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Enhanced Security</h3>
-                    <p>Role-based access with just-in-time privileges, approval workflows, and comprehensive audit logging.</p>
-                </div>
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <h3>Unified Dashboard</h3>
-                    <p>Single pane of glass for all your client environments with customizable views and reporting.</p>
-                </div>
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-lock"></i>
-                    </div>
-                    <h3>Flexible Permissions</h3>
-                    <p>Five distinct permission plans tailored to different consulting scenarios, from read-only to privileged access.</p>
-                </div>
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Cost Optimization</h3>
-                    <p>AI-driven recommendations to reduce cloud spend across all managed tenants.</p>
-                </div>
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h3>Compliance Automation</h3>
-                    <p>Streamlined compliance reporting across multiple regulatory frameworks with automated evidence collection.</p>
-                </div>
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3>Azure Integration</h3>
-                    <p>Seamless integration with Azure Lighthouse, Azure AD, Azure Monitor, and Azure Policy.</p>
-                </div>
-            </div>
+<!-- Pricing Section -->
+<section id="pricing" class="pricing">
+    <div class="container">
+        <div class="section-title">
+            <h2>Pricing Plans</h2>
         </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Pricing Plans</h2>
-            </div>
-            <div class="pricing-toggle-container">
-                <span>Monthly</span>
-                <label class="pricing-toggle-switch">
-                    <input type="checkbox" class="pricing-toggle">
-                    <span class="slider"></span>
-                </label>
-                <span>Yearly <small>(Save 20%)</small></span>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card animate-on-scroll">
-                    <div class="pricing-header">
-                        <h3>Basic</h3>
-                        <div class="price price-monthly">$199<span>/month</span></div>
-                        <div class="price price-yearly" style="display: none;">$1,910<span>/year</span></div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>Consultant tenant license</li>
-                            <li>Up to 5 customer tenants</li>
-                            <li>Basic cross-tenant management</li>
-                            <li>10% commission on subscriptions</li>
-                            <li>Basic support (email, 24-hour response)</li>
-                        </ul>
-                        <a href="#early-access" class="btn">Get Started</a>
-                    </div>
-                </div>
-                <div class="pricing-card animate-on-scroll">
-                    <div class="pricing-header">
-                        <h3>Professional</h3>
-                        <div class="price price-monthly">$499<span>/month</span></div>
-                        <div class="price price-yearly" style="display: none;">$4,790<span>/year</span></div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>Consultant tenant license</li>
-                            <li>Up to 15 customer tenants</li>
-                            <li>Advanced cross-tenant management</li>
-                            <li>15% commission on subscriptions</li>
-                            <li>White-labeled reporting</li>
-                            <li>Priority support (8-hour response)</li>
-                        </ul>
-                        <a href="#early-access" class="btn">Get Started</a>
-                    </div>
-                </div>
-                <div class="pricing-card animate-on-scroll">
-                    <div class="pricing-header">
-                        <h3>Enterprise</h3>
-                        <div class="price price-monthly">$999<span>/month</span></div>
-                        <div class="price price-yearly" style="display: none;">$9,590<span>/year</span></div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>Consultant tenant license</li>
-                            <li>Unlimited customer tenants</li>
-                            <li>Full cross-tenant management</li>
-                            <li>20% commission on subscriptions</li>
-                            <li>White-labeled portal and branding</li>
-                            <li>Dedicated account manager (4-hour response)</li>
-                            <li>Quarterly business review</li>
-                        </ul>
-                        <a href="#early-access" class="btn">Get Started</a>
-                    </div>
-                </div>
-            </div>
+        <div class="pricing-toggle-container">
+            <span>Monthly</span>
+            <label class="pricing-toggle-switch">
+                <input type="checkbox" class="pricing-toggle">
+                <span class="slider"></span>
+            </label>
+            <span>Yearly <small>(Save 20%)</small></span>
         </div>
-    </section>
-
-    <!-- Early Access Section -->
-    <section id="early-access" class="early-access">
-        <div class="container">
-            <h2>Join Our Early Access Program</h2>
-            <p>We're selecting just 20 partners for our exclusive Early Access Program. Get priority access to the Nexus platform, dedicated implementation support, input into our roadmap, and special founding partner pricing.</p>
-            <a href="#contact" class="btn">Apply Now</a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info animate-on-scroll">
-                    <h3>Get In Touch</h3>
-                    <p>Have questions about Netrun Systems Nexus or our Early Access Program? Reach out to us directly.</p>
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>daniel@netrunsystems.com</span>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone"></i>
-                        <span>(805) 707-4828</span>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Seattle, WA</span>
-                    </div>
+        <div class="pricing-grid">
+            <div class="pricing-card animate-on-scroll">
+                <div class="pricing-header">
+                    <h3>Basic</h3>
+                    <div class="price price-monthly">$199<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$1,910<span>/year</span></div>
                 </div>
-                <div class="contact-form animate-on-scroll">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Your Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Subject">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <img src="{{ url_for('static', filename='images/NETRUN_SYSTEMS_LOGO_2024 (3).png') }}" alt="Netrun Systems Logo" style="height: 60px; margin-bottom: 1rem;">
-                    <p>Revolutionizing cross-tenant governance in Microsoft Azure environments with secure, controlled access across tenant boundaries.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Solutions</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Nexus Core Platform</a></li>
-                        <li><a href="#">Cost Optimizer</a></li>
-                        <li><a href="#">Compliance Reporter</a></li>
-                        <li><a href="#">Governance Dashboard</a></li>
-                        <li><a href="#">Azure Arc Integration</a></li>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Consultant tenant license</li>
+                        <li>Up to 5 customer tenants</li>
+                        <li>Basic cross-tenant management</li>
+                        <li>10% commission on subscriptions</li>
+                        <li>Basic support (email, 24-hour response)</li>
                     </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Partners</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Connect</h3>
-                    <ul class="social-links">
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-github"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
+                    <a href="#early-access" class="btn">Get Started</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Netrun Systems. All rights reserved.</p>
+            <div class="pricing-card animate-on-scroll">
+                <div class="pricing-header">
+                    <h3>Professional</h3>
+                    <div class="price price-monthly">$499<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$4,790<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Consultant tenant license</li>
+                        <li>Up to 15 customer tenants</li>
+                        <li>Advanced cross-tenant management</li>
+                        <li>15% commission on subscriptions</li>
+                        <li>White-labeled reporting</li>
+                        <li>Priority support (8-hour response)</li>
+                    </ul>
+                    <a href="#early-access" class="btn">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card animate-on-scroll">
+                <div class="pricing-header">
+                    <h3>Enterprise</h3>
+                    <div class="price price-monthly">$999<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$9,590<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Consultant tenant license</li>
+                        <li>Unlimited customer tenants</li>
+                        <li>Full cross-tenant management</li>
+                        <li>20% commission on subscriptions</li>
+                        <li>White-labeled portal and branding</li>
+                        <li>Dedicated account manager (4-hour response)</li>
+                        <li>Quarterly business review</li>
+                    </ul>
+                    <a href="#early-access" class="btn">Get Started</a>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- Custom JS -->
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
-</html>
+<!-- Early Access Section -->
+<section id="early-access" class="early-access">
+    <div class="container">
+        <h2>Join Our Early Access Program</h2>
+        <p>We're selecting just 20 partners for our exclusive Early Access Program. Get priority access to the Nexus platform, dedicated implementation support, input into our roadmap, and special founding partner pricing.</p>
+        <a href="#contact" class="btn">Apply Now</a>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info animate-on-scroll">
+                <h3>Get In Touch</h3>
+                <p>Have questions about Netrun Systems Nexus or our Early Access Program? Reach out to us directly.</p>
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>daniel@netrunsystems.com</span>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(805) 707-4828</span>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ojai, CA</span>
+                </div>
+            </div>
+            <div class="contact-form animate-on-scroll">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

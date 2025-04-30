@@ -1,10 +1,197 @@
 {% extends "layout.html" %}
 {% block title %}Privacy Policy - Netrun Systems{% endblock %}
+
 {% block content %}
-<section class="policy-section">
+<section class="privacy-policy">
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p>This is a placeholder for the Netrun Systems Privacy Policy. Please check back soon for our full privacy practices and compliance details.</p>
+        <p class="last-updated">Last Updated: April 30, 2025</p>
+
+        <div class="policy-section">
+            <h2>1. Introduction</h2>
+            <p>Netrun Systems ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services, including our cross-tenant governance solutions and website.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>2. Information We Collect</h2>
+            <h3>2.1 Information You Provide</h3>
+            <ul>
+                <li>Account information (name, email, company details)</li>
+                <li>Azure tenant and subscription information</li>
+                <li>Contact information for support and communications</li>
+                <li>Payment information for service subscriptions</li>
+            </ul>
+
+            <h3>2.2 Automatically Collected Information</h3>
+            <ul>
+                <li>Usage data and analytics</li>
+                <li>Log files and performance metrics</li>
+                <li>Device and browser information</li>
+                <li>IP addresses and location data</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>3. How We Use Your Information</h2>
+            <ul>
+                <li>Providing and maintaining our services</li>
+                <li>Processing your transactions</li>
+                <li>Sending service notifications and updates</li>
+                <li>Improving our products and user experience</li>
+                <li>Complying with legal obligations</li>
+                <li>Detecting and preventing fraud</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>4. Data Security</h2>
+            <p>We implement industry-standard security measures to protect your information:</p>
+            <ul>
+                <li>Encryption of data in transit and at rest</li>
+                <li>Regular security audits and assessments</li>
+                <li>Access controls and authentication</li>
+                <li>Secure data centers and infrastructure</li>
+                <li>Employee training on data protection</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>5. Data Sharing and Disclosure</h2>
+            <p>We may share your information with:</p>
+            <ul>
+                <li>Service providers and partners</li>
+                <li>Legal authorities when required by law</li>
+                <li>Third parties with your explicit consent</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>6. Your Rights and Choices</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal information</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of marketing communications</li>
+                <li>Export your data</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>7. International Data Transfers</h2>
+            <p>We may transfer your information to servers located outside your country. We ensure appropriate safeguards are in place for international data transfers.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>8. Children's Privacy</h2>
+            <p>Our services are not intended for children under 13. We do not knowingly collect information from children under 13.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>9. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy periodically. We will notify you of any material changes through our website or email.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>10. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy, please contact us at:</p>
+            <ul class="contact-info">
+                <li>Email: privacy@netrunsystems.com</li>
+                <li>Phone: (805) 707-4828</li>
+                <li>Address: Ojai, CA</li>
+            </ul>
+        </div>
     </div>
 </section>
+
+<style>
+.privacy-policy {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.privacy-policy .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.privacy-policy h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.last-updated {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.policy-section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.policy-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.policy-section h3 {
+    color: #444;
+    margin: 20px 0 15px;
+    font-size: 20px;
+}
+
+.policy-section p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.policy-section ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.policy-section ul li {
+    color: #666;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.policy-section ul li:before {
+    content: "•";
+    color: #0078d4;
+    position: absolute;
+    left: -20px;
+}
+
+.contact-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .privacy-policy {
+        padding: 40px 0;
+    }
+
+    .policy-section {
+        padding: 20px;
+    }
+}
+</style>
 {% endblock %} 

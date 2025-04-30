@@ -1,0 +1,281 @@
+{% extends "layout.html" %}
+{% block title %}Profile - Customer Portal{% endblock %}
+
+{% block content %}
+<div class="portal-container">
+    <!-- Portal Navigation -->
+    <nav class="portal-nav">
+        <div class="portal-nav-header">
+            <h3>Customer Portal</h3>
+            <span class="user-info">
+                <i class="fas fa-user-circle"></i>
+                {{ user.name }}
+            </span>
+        </div>
+        <ul class="portal-nav-menu">
+            <li>
+                <a href="{{ url_for('customer_portal') }}">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li class="active">
+                <a href="{{ url_for('customer_profile') }}">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('customer_resources') }}">
+                    <i class="fas fa-cube"></i> Resources
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('customer_support') }}">
+                    <i class="fas fa-life-ring"></i> Support
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Profile Content -->
+    <main class="portal-content">
+        <div class="portal-header">
+            <h2>Profile Settings</h2>
+            <p>Manage your account information and preferences</p>
+        </div>
+
+        <div class="profile-container">
+            <!-- Profile Information -->
+            <section class="profile-section">
+                <h3>Personal Information</h3>
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-details">
+                        <div class="info-group">
+                            <label>Name</label>
+                            <p>{{ user.name }}</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Email</label>
+                            <p>{{ user.email }}</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Account ID</label>
+                            <p>{{ user.id }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Subscription Information -->
+            <section class="profile-section">
+                <h3>Subscription Details</h3>
+                <div class="subscription-info">
+                    <div class="info-group">
+                        <label>Plan</label>
+                        <p>Enterprise</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Status</label>
+                        <span class="status-badge active">Active</span>
+                    </div>
+                    <div class="info-group">
+                        <label>Next Billing Date</label>
+                        <p>December 1, 2024</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Settings -->
+            <section class="profile-section">
+                <h3>Security Settings</h3>
+                <div class="security-settings">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Two-Factor Authentication</h4>
+                            <p>Add an extra layer of security to your account</p>
+                        </div>
+                        <div class="setting-action">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Login Notifications</h4>
+                            <p>Receive alerts for new sign-ins</p>
+                        </div>
+                        <div class="setting-action">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<style>
+/* Reuse portal-container, portal-nav, portal-content styles from customer_portal.html */
+
+.profile-container {
+    max-width: 800px;
+}
+
+.profile-section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-section h3 {
+    margin: 0 0 20px;
+    color: #333;
+}
+
+.profile-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background: #f0f7ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar i {
+    font-size: 48px;
+    color: #0078d4;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.info-group {
+    margin-bottom: 15px;
+}
+
+.info-group label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.info-group p {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.status-badge.active {
+    background: #e6f4ea;
+    color: #1e7e34;
+}
+
+.security-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.setting-info h4 {
+    margin: 0;
+    color: #333;
+}
+
+.setting-info p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Switch Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #0078d4;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+</style>
+{% endblock %} 

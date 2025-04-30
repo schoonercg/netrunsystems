@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block title %}Login - Netrun Systems Customer Portal{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <div class="container">
+        <div class="login-container">
+            <h2>Customer Portal Login</h2>
+            <p class="login-description">Access your Netrun Systems resources and manage your services.</p>
+            
+            <div class="login-options">
+                <a href="{{ auth_url }}" class="btn btn-primary btn-azure">
+                    <i class="fab fa-microsoft"></i> Sign in with Microsoft Account
+                </a>
+                
+                <div class="login-info">
+                    <p>By logging in, you agree to our <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> and <a href="{{ url_for('terms_of_service') }}">Terms of Service</a>.</p>
+                </div>
+            </div>
+            
+            <div class="login-help">
+                <h3>Need Help?</h3>
+                <p>If you're having trouble accessing your account, please contact our support team:</p>
+                <ul>
+                    <li>Email: <a href="mailto:support@netrunsystems.com">support@netrunsystems.com</a></li>
+                    <li>Phone: (805) 707-4828</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.login-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.login-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.login-options {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn-azure {
+    background-color: #0078d4;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-azure:hover {
+    background-color: #006abc;
+    color: white;
+    text-decoration: none;
+}
+
+.login-info {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-help {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.login-help h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.login-help ul {
+    list-style: none;
+    padding: 0;
+}
+
+.login-help ul li {
+    margin-bottom: 10px;
+}
+
+.login-help a {
+    color: #0078d4;
+}
+</style>
+{% endblock %} 

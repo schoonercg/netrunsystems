@@ -81,7 +81,7 @@ a:hover {
 }
 
 /* Header Styles */
-.site-header {
+/* .site-header {
     background-color: var(--secondary-color);
     padding: 1rem 0;
     position: sticky;
@@ -111,6 +111,7 @@ a:hover {
     color: white;
     letter-spacing: 1px;
 }
+*/
 
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.8);
