@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Consulting Services & Tools | Netrun Systems{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Consulting Services & Tools</h1>
+  <p class="lead">Unlock the full potential of your cloud investments with Netrun Systems' expert consulting and custom tool development.</p>
+  <hr>
+  <h2>Azure Cross-Tenant Consulting</h2>
+  <ul>
+    <li>Azure Lighthouse onboarding & cross-tenant access management</li>
+    <li>Custom RBAC, policy, and governance solutions</li>
+    <li>Secure resource sharing and delegated operations</li>
+    <li>Cloud cost optimization and compliance</li>
+  </ul>
+  <h2>Custom Tools & Automation</h2>
+  <ul>
+    <li>Automated reporting and dashboarding</li>
+    <li>Integration with third-party SaaS and on-prem systems</li>
+    <li>Custom workflow automation and API development</li>
+    <li>Security and monitoring toolkits</li>
+  </ul>
+  <div class="alert alert-primary mt-4">
+    <strong>Ready to get started?</strong> <a href="{{ url_for('contact') }}" class="btn btn-primary ml-2">Contact Us</a>
+  </div>
+</div>
+{% endblock %} 

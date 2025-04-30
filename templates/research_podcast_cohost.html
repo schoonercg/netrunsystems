@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Podcast Co-Host Project | Netrun Systems{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Podcast Co-Host (AI)</h1>
+  <p class="lead">An AI-powered assistant for podcast planning, guest research, live transcription, and content summarization.</p>
+  <hr>
+  <h2>Overview</h2>
+  <p>The Podcast Co-Host leverages advanced language models to assist podcast creators with show planning, guest research, real-time transcription, and post-production content summarization. It integrates with popular podcast platforms and provides actionable insights for hosts and producers.</p>
+  <h2>Key Features</h2>
+  <ul>
+    <li>Automated show planning and topic suggestion</li>
+    <li>Guest research and background briefings</li>
+    <li>Live transcription and timestamped notes</li>
+    <li>Content summarization and highlight extraction</li>
+    <li>Integration with podcast publishing platforms</li>
+    <li>Speaker identification and analytics</li>
+  </ul>
+  <h2>Architecture</h2>
+  <ul>
+    <li>Speech-to-text engine (Whisper, Azure Speech)</li>
+    <li>LLM-powered content analysis and summarization</li>
+    <li>Web dashboard for hosts and producers</li>
+    <li>APIs for platform integration</li>
+  </ul>
+  <h2>Use Cases</h2>
+  <ul>
+    <li>Podcast creators and producers</li>
+    <li>Media companies and content studios</li>
+    <li>Live event coverage and transcription</li>
+    <li>Accessible podcasting for hearing-impaired audiences</li>
+  </ul>
+  <div class="alert alert-primary mt-4">
+    <strong>Interested in Podcast Co-Host?</strong> <a href="{{ url_for('contact') }}" class="btn btn-primary ml-2">Contact Us</a>
+  </div>
+</div>
+{% endblock %} 
