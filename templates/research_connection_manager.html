@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Connection Manager Project | Netrun Systems{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Connection Manager</h1>
+  <p class="lead">A decentralized, privacy-first contact management solution leveraging blockchain, decentralized identity (DID), and secure local storage.</p>
+  <hr>
+  <h2>Overview</h2>
+  <p>Connection Manager empowers users to own, export, and manage their social graph across platforms. It uses blockchain and decentralized identity to ensure data sovereignty, privacy, and portability, even if source platforms become unavailable.</p>
+  <h2>Key Features</h2>
+  <ul>
+    <li>Decentralized identity (DID) and verifiable credentials</li>
+    <li>Blockchain-based contact pointers and audit trails</li>
+    <li>Encrypted local storage and user-controlled keys</li>
+    <li>Import/export to CSV, vCard, and other formats</li>
+    <li>Visual social graph and relationship mapping</li>
+    <li>Zero-knowledge proof support for privacy-preserving queries</li>
+  </ul>
+  <h2>Architecture</h2>
+  <ul>
+    <li>Smart contracts on Ethereum/Polygon</li>
+    <li>IPFS/Solid pod decentralized storage</li>
+    <li>Web and mobile UI for contact management</li>
+    <li>Integration with major social and messaging platforms</li>
+  </ul>
+  <h2>Use Cases</h2>
+  <ul>
+    <li>Personal and professional contact management</li>
+    <li>Data portability between social networks</li>
+    <li>Privacy-first networking for activists, journalists, and professionals</li>
+    <li>Decentralized identity and credential management</li>
+  </ul>
+  <div class="alert alert-primary mt-4">
+    <strong>Interested in Connection Manager?</strong> <a href="{{ url_for('contact') }}" class="btn btn-primary ml-2">Contact Us</a>
+  </div>
+</div>
+{% endblock %} 

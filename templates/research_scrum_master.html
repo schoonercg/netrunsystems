@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Scrum Master Assistant Project | Netrun Systems{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Scrum Master Assistant</h1>
+  <p class="lead">An intelligent assistant for agile teams, automating backlog grooming, sprint planning, and daily standups.</p>
+  <hr>
+  <h2>Overview</h2>
+  <p>The Scrum Master Assistant leverages AI to streamline agile ceremonies, automate reporting, and provide actionable insights for teams. It integrates with Jira, Azure DevOps, and other project management tools to enhance productivity and transparency.</p>
+  <h2>Key Features</h2>
+  <ul>
+    <li>Automated backlog grooming and prioritization</li>
+    <li>Sprint planning and capacity forecasting</li>
+    <li>Daily standup summaries and action item tracking</li>
+    <li>Integration with Jira, Azure DevOps, and Slack</li>
+    <li>Automated reporting and burndown charts</li>
+    <li>AI-driven risk and dependency analysis</li>
+  </ul>
+  <h2>Architecture</h2>
+  <ul>
+    <li>APIs for Jira, Azure DevOps, and Slack integration</li>
+    <li>LLM-powered natural language processing for meeting summaries</li>
+    <li>Web dashboard for team insights and reporting</li>
+    <li>Secure authentication and role-based access</li>
+  </ul>
+  <h2>Use Cases</h2>
+  <ul>
+    <li>Agile software development teams</li>
+    <li>Scrum masters and project managers</li>
+    <li>Remote and distributed teams</li>
+    <li>Continuous improvement and agile coaching</li>
+  </ul>
+  <div class="alert alert-primary mt-4">
+    <strong>Interested in Scrum Master Assistant?</strong> <a href="{{ url_for('contact') }}" class="btn btn-primary ml-2">Contact Us</a>
+  </div>
+</div>
+{% endblock %} 
