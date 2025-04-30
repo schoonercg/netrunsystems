@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %}Small-Business Optimization Suite | Netrun Systems{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">360° Small-Business Optimization Suite</h1>
+  <p class="lead">Transform scattered data and workflows into a streamlined, profit-driving operating system in just four weeks.</p>
+  <hr>
+  <h2>What We Deliver</h2>
+  <ul>
+    <li>Data Harvest & Clean: Secure POS, e-commerce, banking, HR feeds; normalized dataset</li>
+    <li>Insight Analytics: Margin, channel-mix, labor-efficiency, rent-coverage, cash-flow modeling</li>
+    <li>Process Mapping: Intake → fulfillment → payout → marketing flows</li>
+    <li>Blueprint Design: Six-month improvement plan, KPI targets, Team Points incentive schema</li>
+    <li>Enablement Assets: SOP manuals, quick-start guides, marketing calendar, live KPI dashboard</li>
+  </ul>
+  <h2>Complete Deliverables</h2>
+  <ul>
+    <li>Custom Operations Manual (30–50 pp)</li>
+    <li>Six-Month Improvement Plan (milestones & owners)</li>
+    <li>Team Points Program Guide + signup form template</li>
+    <li>Live KPI Dashboard (Google Sheets + App Script)</li>
+    <li>90-Day Marketing & Content Calendar</li>
+    <li>POS / Workflow Quick-Start Guides</li>
+    <li>Executive One-Pager for investors/partners</li>
+    <li>Optional API Roadmap & sample code snippets</li>
+  </ul>
+  <h2>Timeline at a Glance</h2>
+  <table class="table table-bordered">
+    <thead><tr><th>Week</th><th>Milestone</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Kick-off, Data connections secured, NDA signed</td></tr>
+      <tr><td>2</td><td>Analytics deep-dive, Staff & owner interviews</td></tr>
+      <tr><td>3</td><td>Draft manuals + dashboard (client review)</td></tr>
+      <tr><td>4</td><td>Final documents, 2-hour virtual training</td></tr>
+      <tr><td>5–6</td><td>(Premium) KPI monitoring & strategy call</td></tr>
+    </tbody>
+  </table>
+  <h2>Packages & Pricing</h2>
+  <table class="table table-striped">
+    <thead><tr><th>Package</th><th>Engagement Fee*</th><th>Included API Integrations</th><th>Subscription (optional)</th><th>Ideal For</th></tr></thead>
+    <tbody>
+      <tr><td>Core</td><td>$4,900</td><td>–</td><td>–</td><td>Solo-location shops needing a one-off optimization sprint</td></tr>
+      <tr><td>Plus</td><td>$4,900 + $1,500/API (min 1)</td><td>Selected endpoints (e.g., POS sale → SMS)</td><td>$299/mo (KPI monitoring & 1 coaching call)</td><td>SMBs ready to automate</td></tr>
+      <tr><td>Premium</td><td>$4,900 + $4,500 (up to 3 APIs)</td><td>Up to 3 endpoints scoped</td><td>$499/mo (KPI monitoring & 2 coaching calls)</td><td>Growth brands wanting ongoing guidance</td></tr>
+    </tbody>
+  </table>
+  <h2>Expected Outcomes</h2>
+  <ul>
+    <li>15–25% profit-lift potential via margin fixes and channel tuning</li>
+    <li>2× faster onboarding thanks to unified SOPs and cheat sheets</li>
+    <li>Real-time visibility from an auto-refresh KPI dashboard</li>
+    <li>Higher team engagement powered by the gamified Team Points system</li>
+  </ul>
+  <h2>Tech Ecosystem Supported</h2>
+  <p>Square, Clover, Shopify, Toast, CashPro, major banks, QuickBooks, Connecteam, Gusto, Slack, Microsoft 365, Google Workspace, Reolink, Zapier/Make, and any platform with REST, GraphQL, or Webhook capabilities.</p>
+  <div class="alert alert-primary mt-4">
+    <strong>Ready to optimize your business?</strong> <a href="{{ url_for('contact') }}" class="btn btn-primary ml-2">Book a Discovery Call</a>
+  </div>
+</div>
+{% endblock %} 

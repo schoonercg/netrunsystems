@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Sunflower Project | Netrun Systems{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Sunflower: Garden & Landscape Management Device</h1>
+  <p class="lead">A solar-powered IoT device for real-time environmental monitoring in gardens, farms, and greenhouses.</p>
+  <hr>
+  <h2>Overview</h2>
+  <p>Sunflower is a modular, solar-powered device based on the ESP32 microcontroller. It collects temperature, humidity, soil moisture, and sunlight data, transmitting it to the cloud or a master node for analytics and visualization.</p>
+  <h2>Key Features</h2>
+  <ul>
+    <li>ESP32-based with Wi-Fi and Bluetooth</li>
+    <li>Solar-powered with battery backup</li>
+    <li>Environmental sensors: DHT-11, soil moisture, photoresistors</li>
+    <li>Peer-to-peer mesh networking (ESP-NOW)</li>
+    <li>Azure IoT Hub integration for cloud analytics</li>
+    <li>Weather-resistant, modular enclosure</li>
+    <li>Low-power operation and OTA updates</li>
+  </ul>
+  <h2>Architecture</h2>
+  <ul>
+    <li>Data collection via sensors</li>
+    <li>Local processing and power management</li>
+    <li>Wi-Fi/ESP-NOW for data transmission</li>
+    <li>Cloud storage and dashboarding (Azure SQL/Cosmos DB, Power BI)</li>
+  </ul>
+  <h2>Use Cases</h2>
+  <ul>
+    <li>Smart gardens and greenhouses</li>
+    <li>Precision agriculture and farm monitoring</li>
+    <li>Environmental research and education</li>
+    <li>Automated irrigation and climate control</li>
+  </ul>
+  <div class="alert alert-primary mt-4">
+    <strong>Interested in Sunflower?</strong> <a href="{{ url_for('contact') }}" class="btn btn-primary ml-2">Contact Us</a>
+  </div>
+</div>
+{% endblock %} 
