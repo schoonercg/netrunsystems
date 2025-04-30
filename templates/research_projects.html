@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Research Projects | Netrun Systems{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Research & Innovation Projects</h1>
+  <p class="lead">Netrun Systems is committed to advancing cloud, AI, and decentralized solutions. Explore our current research and innovation projects below.</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <h2>Sunflower: Garden & Landscape Management Device</h2>
+      <p>A solar-powered IoT device for real-time environmental monitoring in gardens, farms, and greenhouses. Features ESP32, Azure IoT integration, peer-to-peer mesh, and advanced power management.</p>
+      <a href="{{ url_for('research_sunflower') }}" class="btn btn-outline-primary">Learn more</a>
+    </div>
+    <div class="col-md-6 mb-4">
+      <h2>Podcast Co-Host (AI)</h2>
+      <p>An AI-powered podcast assistant that helps with show planning, guest research, live transcription, and content summarization. Integrates with popular podcast platforms and leverages LLMs for real-time insights.</p>
+      <a href="{{ url_for('research_podcast_cohost') }}" class="btn btn-outline-primary">Learn more</a>
+    </div>
+    <div class="col-md-6 mb-4">
+      <h2>Scrum Master Assistant</h2>
+      <p>An intelligent assistant for agile teams, automating backlog grooming, sprint planning, and daily standups. Integrates with Jira and Azure DevOps, providing actionable insights and automated reporting.</p>
+      <a href="{{ url_for('research_scrum_master') }}" class="btn btn-outline-primary">Learn more</a>
+    </div>
+    <div class="col-md-6 mb-4">
+      <h2>Connection Manager</h2>
+      <p>A decentralized, privacy-first contact management solution leveraging blockchain, decentralized identity (DID), and secure local storage. Enables users to own, export, and manage their social graph across platforms.</p>
+      <a href="{{ url_for('research_connection_manager') }}" class="btn btn-outline-primary">Learn more</a>
+    </div>
+  </div>
+</div>
+{% endblock %} 
