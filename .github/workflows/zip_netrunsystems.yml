@@ -1,5 +1,4 @@
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
@@ -67,8 +66,6 @@ jobs:
         run: unzip release.zip
 
 =======
-=======
->>>>>>> Stashed changes
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
@@ -135,9 +132,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
       
       - name: Login to Azure
@@ -147,7 +141,6 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A3C24ABAF0CC43C797373611CCDF0763 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_465ABABF5A814CF4B7DDD0793008FD40 }}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -156,8 +149,6 @@ jobs:
           app-name: 'Netrunsystems'
           slot-name: 'Production'
 =======
-=======
->>>>>>> Stashed changes
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -165,8 +156,5 @@ jobs:
         with:
           app-name: 'Netrunsystems'
           slot-name: 'Production'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
           
