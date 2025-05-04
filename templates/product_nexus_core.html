@@ -1,0 +1,352 @@
+{% extends "layout.html" %}
+
+{% block title %}Nexus Core Platform - Netrun Systems{% endblock %}
+
+{% block content %}
+<!-- Product Hero Section -->
+<section class="product-hero">
+    <div class="container">
+        <div class="product-hero-content">
+            <h1>Nexus Core Platform</h1>
+            <p class="lead">Our flagship cross-tenant governance platform with enhanced security controls and a unified management dashboard.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Product Overview -->
+<section class="product-overview">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Transform How You Manage Client Azure Environments</h2>
+                <p>Netrun Systems Nexus enhances Azure Lighthouse with proprietary security controls and management capabilities, providing a comprehensive solution for cross-tenant governance.</p>
+                <p>Built by consultants for consultants, Nexus addresses the daily challenges of managing multiple Azure environments with a secure, scalable platform that increases efficiency while maintaining strict security boundaries.</p>
+                <div class="product-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">80%</span>
+                        <span class="stat-text">Reduction in tenant switching time</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">65%</span>
+                        <span class="stat-text">Reduction in security incidents</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">40+</span>
+                        <span class="stat-text">Hours saved per compliance audit</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-image">
+                    <img src="{{ url_for('static', filename='images/nexus-dashboard.png') }}" alt="Nexus Core Platform Dashboard">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features -->
+<section class="key-features">
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3>Unified Dashboard</h3>
+                <p>A single pane of glass for all your client environments with customizable views and reporting.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Enhanced Security</h3>
+                <p>Role-based access with just-in-time privileges, approval workflows, and comprehensive audit logging.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-lock"></i>
+                </div>
+                <h3>Flexible Permissions</h3>
+                <p>Five distinct permission plans tailored to different consulting scenarios, from read-only to privileged access.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Cross-Tenant Visibility</h3>
+                <p>Comprehensive visibility across all managed tenants with customizable dashboards and reports.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>Audit & Compliance</h3>
+                <p>Detailed audit trails and compliance reporting across all managed environments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Azure Integration</h3>
+                <p>Seamless integration with Azure Lighthouse, Azure AD, Azure Monitor, and Azure Policy.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Permission Models -->
+<section class="permission-models">
+    <div class="container">
+        <h2 class="section-title">Permission Models</h2>
+        <p class="section-description">Nexus offers five distinct permission models tailored to different consulting scenarios:</p>
+        
+        <div class="models-container">
+            <div class="model-card">
+                <h3>Read-Only Plan</h3>
+                <p>Designed for assessment, monitoring, and reporting, with view-only access to resources, configurations, and metrics.</p>
+                <ul class="model-features">
+                    <li>View resources and configurations</li>
+                    <li>Access monitoring and metrics</li>
+                    <li>Generate reports</li>
+                    <li>No modification capabilities</li>
+                </ul>
+            </div>
+            
+            <div class="model-card">
+                <h3>Standard Management Plan</h3>
+                <p>Supports day-to-day operations with resource creation and modification capabilities.</p>
+                <ul class="model-features">
+                    <li>All Read-Only capabilities</li>
+                    <li>Create and modify resources</li>
+                    <li>Manage configurations</li>
+                    <li>Basic automation</li>
+                </ul>
+            </div>
+            
+            <div class="model-card">
+                <h3>Advanced Management Plan</h3>
+                <p>Enables complex environment management with advanced automation and policy management.</p>
+                <ul class="model-features">
+                    <li>All Standard capabilities</li>
+                    <li>Advanced automation</li>
+                    <li>Policy management</li>
+                    <li>Resource optimization</li>
+                </ul>
+            </div>
+            
+            <div class="model-card">
+                <h3>Security Management Plan</h3>
+                <p>Focuses on security operations with specialized roles and enhanced logging.</p>
+                <ul class="model-features">
+                    <li>Security assessment</li>
+                    <li>Threat detection</li>
+                    <li>Security policy management</li>
+                    <li>Enhanced security logging</li>
+                </ul>
+            </div>
+            
+            <div class="model-card">
+                <h3>Premium Just-in-Time Plan</h3>
+                <p>Provides temporary elevated access with approval workflows for privileged operations.</p>
+                <ul class="model-features">
+                    <li>Temporary privileged access</li>
+                    <li>Approval workflows</li>
+                    <li>Time-limited permissions</li>
+                    <li>Comprehensive audit logging</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Architecture -->
+<section class="technical-architecture">
+    <div class="container">
+        <h2 class="section-title">Technical Architecture</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="architecture-image">
+                    <img src="{{ url_for('static', filename='images/nexus-architecture.png') }}" alt="Nexus Technical Architecture">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="architecture-details">
+                    <h3>Secure, Scalable Architecture</h3>
+                    <p>Nexus is built on a secure, scalable architecture that enhances Azure Lighthouse with proprietary security controls and management capabilities.</p>
+                    <ul class="architecture-components">
+                        <li><strong>Secure Authentication Layer:</strong> Zero-trust security model with multi-factor authentication</li>
+                        <li><strong>Cross-Tenant Management Engine:</strong> Unified operations across multiple tenants</li>
+                        <li><strong>Advanced RBAC Implementation:</strong> Just-in-time access with approval workflows</li>
+                        <li><strong>Audit & Compliance Engine:</strong> Comprehensive logging and reporting</li>
+                        <li><strong>API Gateway:</strong> Integration with third-party tools and services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Study -->
+<section class="case-study">
+    <div class="container">
+        <h2 class="section-title">Case Study: Azure Consulting Practice</h2>
+        <div class="case-study-content">
+            <div class="case-study-quote">
+                <blockquote>
+                    "Nexus transformed how we manage client environments. We've reduced our operational overhead by 80% while improving security and adding new clients without increasing headcount."
+                </blockquote>
+                <cite>- Azure Consulting Practice Lead</cite>
+            </div>
+            <div class="case-study-results">
+                <h3>Results Achieved:</h3>
+                <ul>
+                    <li>85% reduction in time spent switching between tenants</li>
+                    <li>$72,000 annual productivity gain across their team</li>
+                    <li>Identified $45,000 in annual client cost savings</li>
+                    <li>Reduced security incidents by 70%</li>
+                    <li>Added 8 new clients without increasing headcount</li>
+                    <li>Increased monthly recurring revenue by 35%</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing">
+    <div class="container">
+        <h2 class="section-title">Pricing Plans</h2>
+        <p class="pricing-description">Nexus offers flexible pricing for both consultants and their clients:</p>
+        
+        <div class="pricing-toggle-container">
+            <span>Monthly</span>
+            <label class="pricing-toggle-switch">
+                <input type="checkbox" class="pricing-toggle">
+                <span class="slider"></span>
+            </label>
+            <span>Yearly <small>(Save 20%)</small></span>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Basic</h3>
+                    <div class="price price-monthly">$199<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$1,910<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Consultant tenant license</li>
+                        <li>Up to 5 customer tenants</li>
+                        <li>Basic cross-tenant management</li>
+                        <li>10% commission on subscriptions</li>
+                        <li>Basic support (email, 24-hour response)</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Professional</h3>
+                    <div class="price price-monthly">$499<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$4,790<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Consultant tenant license</li>
+                        <li>Up to 15 customer tenants</li>
+                        <li>Advanced cross-tenant management</li>
+                        <li>15% commission on subscriptions</li>
+                        <li>White-labeled reporting</li>
+                        <li>Priority support (8-hour response)</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Enterprise</h3>
+                    <div class="price price-monthly">$999<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$9,590<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Consultant tenant license</li>
+                        <li>Unlimited customer tenants</li>
+                        <li>Full cross-tenant management</li>
+                        <li>20% commission on subscriptions</li>
+                        <li>White-labeled portal and branding</li>
+                        <li>Dedicated account manager (4-hour response)</li>
+                        <li>Quarterly business review</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How is Nexus different from Azure Lighthouse?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Nexus enhances Azure Lighthouse with proprietary security controls, a unified management dashboard, just-in-time privileged access, comprehensive audit logging, and specialized add-ons for cost optimization and compliance. While Lighthouse provides basic cross-tenant delegation, Nexus delivers a complete governance solution.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What's the implementation timeline?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Most consultancies complete implementation within 4-6 weeks, with core platform deployment taking just 1 week. You'll see immediate efficiency gains from day one, with full ROI typically realized within 6 months.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do my clients need to install anything?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>No. Nexus requires no agent installation on managed resources. Implementation uses Azure Lighthouse delegation mechanisms with enhanced security controls, making the onboarding process seamless for your clients.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does the pricing work for my clients?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>You have flexibility in how you present Nexus to your clients. You can resell Nexus tenant subscriptions directly, include them in your managed services pricing, or have clients subscribe directly through the Azure Marketplace while specifying your consultant tenant.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is Nexus secure? How does it protect sensitive client data?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Security is our foundation. Nexus enhances Azure Lighthouse's security with just-in-time access, approval workflows, comprehensive audit logging, and anomaly detection. Our architecture follows zero-trust principles and maintains strict tenant isolation. We never store client credentials or sensitive data.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Transform Your Azure Consulting Practice?</h2>
+        <p>Join our Early Access Program and be among the first to experience the power of Nexus.</p>
+        <a href="{{ url_for('early_access') }}" class="btn btn-lg">Apply for Early Access</a>
+    </div>
+</section>
+{% endblock %}

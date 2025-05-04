@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin - Create Blog Post - Netrun Systems{% endblock %}
+
+{% block content %}
+<!-- Admin Blog Header -->
+<section class="admin-header">
+    <div class="container">
+        <h1>Create New Blog Post</h1>
+        <p class="lead">Use the form below to create a new blog post using Markdown</p>
+    </div>
+</section>
+
+<!-- Admin Blog Form -->
+<section class="admin-blog-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form method="POST" action="{{ url_for('admin_blog') }}">
+                    {{ csrf_token() }}
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control" id="author" name="author" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" value="{{ now.strftime('%Y-%m-%d') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="excerpt">Excerpt</label>
+                        <textarea class="form-control" id="excerpt" name="excerpt" rows="3" required></textarea>
+                        <small class="form-text text-muted">A brief summary of the post that will appear in the blog listing.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content">Content (Markdown)</label>
+                        <textarea class="form-control" id="content" name="content" rows="15" required></textarea>
+                        <small class="form-text text-muted">
+                            Use Markdown syntax for formatting. 
+                            <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown Cheat Sheet</a>
+                        </small>
+                    </div>
+                    
+                    <div class="markdown-preview">
+                        <h3>Markdown Preview</h3>
+                        <div id="preview-content" class="preview-area">
+                            <p>Your formatted content will appear here as you type...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Publish Post</button>
+                        <a href="{{ url_for('blog') }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Markdown Guide -->
+<section class="markdown-guide">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h2>Markdown Quick Reference</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Basic Formatting</h4>
+                        <ul class="markdown-tips">
+                            <li><code># Heading 1</code></li>
+                            <li><code>## Heading 2</code></li>
+                            <li><code>### Heading 3</code></li>
+                            <li><code>**Bold Text**</code></li>
+                            <li><code>*Italic Text*</code></li>
+                            <li><code>[Link Text](https://example.com)</code></li>
+                            <li><code>![Alt Text](image.jpg)</code></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Lists and Blocks</h4>
+                        <ul class="markdown-tips">
+                            <li><code>* Unordered list item</code></li>
+                            <li><code>1. Ordered list item</code></li>
+                            <li><code>> Blockquote text</code></li>
+                            <li><code>```code block```</code></li>
+                            <li><code>---</code> (Horizontal rule)</li>
+                            <li><code>`inline code`</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contentTextarea = document.getElementById('content');
+        const previewArea = document.getElementById('preview-content');
+        
+        function updatePreview() {
+            const markdownContent = contentTextarea.value;
+            const htmlContent = marked.parse(markdownContent);
+            previewArea.innerHTML = htmlContent;
+        }
+        
+        contentTextarea.addEventListener('input', updatePreview);
+    });
+</script>
+{% endblock %}

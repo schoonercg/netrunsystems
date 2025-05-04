@@ -1,167 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Netrun Systems</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="/"><img src="/static/img/logo.png" alt="Netrun Systems Logo"></a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/#about">About</a></li>
-                    <li><a href="/#solutions">Solutions</a></li>
-                    <li><a href="/#features">Features</a></li>
-                    <li><a href="/#pricing">Pricing</a></li>
-                    <li><a href="/#contact">Contact</a></li>
-                    <li><a href="/nist-assistant" class="highlight">NIST Assistant</a></li>
-                    <li><a href="/early-access" class="btn-primary">EARLY ACCESS</a></li>
-                </ul>
-            </nav>
+{% extends "layout.html" %}
+{% block title %}Privacy Policy - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="privacy-policy">
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: April 30, 2025</p>
+
+        <div class="policy-section">
+            <h2>1. Introduction</h2>
+            <p>Netrun Systems ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services, including our cross-tenant governance solutions and website.</p>
         </div>
-    </header>
 
-    <section class="page-header">
-        <div class="container">
-            <h1>Privacy Policy</h1>
+        <div class="policy-section">
+            <h2>2. Information We Collect</h2>
+            <h3>2.1 Information You Provide</h3>
+            <ul>
+                <li>Account information (name, email, company details)</li>
+                <li>Azure tenant and subscription information</li>
+                <li>Contact information for support and communications</li>
+                <li>Payment information for service subscriptions</li>
+            </ul>
+
+            <h3>2.2 Automatically Collected Information</h3>
+            <ul>
+                <li>Usage data and analytics</li>
+                <li>Log files and performance metrics</li>
+                <li>Device and browser information</li>
+                <li>IP addresses and location data</li>
+            </ul>
         </div>
-    </section>
 
-    <section class="privacy-content">
-        <div class="container">
-            <div class="privacy-section">
-                <h2>Introduction</h2>
-                <p>At Netrun Systems, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.</p>
-                <p>This privacy policy applies to all users of our website, our NIST Cybersecurity Framework Assistant, and other services provided by Netrun Systems.</p>
-                <p>Last updated: April 24, 2025</p>
-            </div>
-
-            <div class="privacy-section">
-                <h2>Information We Collect</h2>
-                <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:</p>
-                <ul>
-                    <li><strong>Identity Data</strong> includes first name, last name, username or similar identifier.</li>
-                    <li><strong>Contact Data</strong> includes email address, telephone numbers, and physical address.</li>
-                    <li><strong>Technical Data</strong> includes internet protocol (IP) address, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website.</li>
-                    <li><strong>Usage Data</strong> includes information about how you use our website, products, and services.</li>
-                    <li><strong>Marketing and Communications Data</strong> includes your preferences in receiving marketing from us and our third parties and your communication preferences.</li>
-                </ul>
-            </div>
-
-            <div class="privacy-section">
-                <h2>How We Use Your Information</h2>
-                <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:</p>
-                <ul>
-                    <li>To register you as a new customer or user.</li>
-                    <li>To process and deliver your requested services.</li>
-                    <li>To manage our relationship with you.</li>
-                    <li>To improve our website, products/services, marketing, and customer relationships.</li>
-                    <li>To recommend products or services that may be of interest to you.</li>
-                    <li>To comply with legal obligations.</li>
-                </ul>
-            </div>
-
-            <div class="privacy-section">
-                <h2>NIST Cybersecurity Framework Assistant</h2>
-                <p>Our NIST Cybersecurity Framework Assistant is a custom GPT available on OpenAI's platform. When you interact with this assistant:</p>
-                <ul>
-                    <li>Your conversations are subject to OpenAI's privacy policy in addition to ours.</li>
-                    <li>We do not store the content of your conversations with the assistant.</li>
-                    <li>Usage statistics (without personal identifiers) may be collected to improve the service.</li>
-                    <li>Any documents you upload for analysis are processed temporarily and not permanently stored.</li>
-                </ul>
-            </div>
-
-            <div class="privacy-section">
-                <h2>Data Security</h2>
-                <p>We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way, altered, or disclosed. We limit access to your personal data to those employees, agents, contractors, and other third parties who have a business need to know.</p>
-            </div>
-
-            <div class="privacy-section">
-                <h2>Data Retention</h2>
-                <p>We will only retain your personal data for as long as necessary to fulfill the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
-            </div>
-
-            <div class="privacy-section">
-                <h2>Your Legal Rights</h2>
-                <p>Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to:</p>
-                <ul>
-                    <li>Request access to your personal data.</li>
-                    <li>Request correction of your personal data.</li>
-                    <li>Request erasure of your personal data.</li>
-                    <li>Object to processing of your personal data.</li>
-                    <li>Request restriction of processing your personal data.</li>
-                    <li>Request transfer of your personal data.</li>
-                    <li>Right to withdraw consent.</li>
-                </ul>
-            </div>
-
-            <div class="privacy-section">
-                <h2>Cookies</h2>
-                <p>Our website uses cookies to distinguish you from other users of our website. This helps us to provide you with a good experience when you browse our website and also allows us to improve our site.</p>
-            </div>
-
-            <div class="privacy-section">
-                <h2>Changes to This Privacy Policy</h2>
-                <p>We may update our privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page and updating the "last updated" date.</p>
-            </div>
-
-            <div class="privacy-section">
-                <h2>Contact Us</h2>
-                <p>If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
-                <p>Email: daniel@netrunsystems.com</p>
-                <p>Phone: (805) 707-4828</p>
-                <p>Address: Seattle, WA</p>
-            </div>
+        <div class="policy-section">
+            <h2>3. How We Use Your Information</h2>
+            <ul>
+                <li>Providing and maintaining our services</li>
+                <li>Processing your transactions</li>
+                <li>Sending service notifications and updates</li>
+                <li>Improving our products and user experience</li>
+                <li>Complying with legal obligations</li>
+                <li>Detecting and preventing fraud</li>
+            </ul>
         </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-columns">
-                <div class="footer-column">
-                    <h3>Solutions</h3>
-                    <ul>
-                        <li><a href="/#solutions">Nexus Core Platform</a></li>
-                        <li><a href="/#solutions">Cost Optimizer</a></li>
-                        <li><a href="/#solutions">Compliance Reporter</a></li>
-                        <li><a href="/#solutions">Governance Dashboard</a></li>
-                        <li><a href="/#solutions">Azure Arc Integration</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="/#about">About Us</a></li>
-                        <li><a href="/#contact">Contact</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/careers">Careers</a></li>
-                        <li><a href="/partners">Partners</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Connect</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Netrun Systems. All rights reserved.</p>
-                <p><a href="/privacy-policy">Privacy Policy</a></p>
-            </div>
+        <div class="policy-section">
+            <h2>4. Data Security</h2>
+            <p>We implement industry-standard security measures to protect your information:</p>
+            <ul>
+                <li>Encryption of data in transit and at rest</li>
+                <li>Regular security audits and assessments</li>
+                <li>Access controls and authentication</li>
+                <li>Secure data centers and infrastructure</li>
+                <li>Employee training on data protection</li>
+            </ul>
         </div>
-    </footer>
 
-    <script src="/static/js/main.js"></script>
-</body>
-</html>
+        <div class="policy-section">
+            <h2>5. Data Sharing and Disclosure</h2>
+            <p>We may share your information with:</p>
+            <ul>
+                <li>Service providers and partners</li>
+                <li>Legal authorities when required by law</li>
+                <li>Third parties with your explicit consent</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>6. Your Rights and Choices</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal information</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of marketing communications</li>
+                <li>Export your data</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>7. International Data Transfers</h2>
+            <p>We may transfer your information to servers located outside your country. We ensure appropriate safeguards are in place for international data transfers.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>8. Children's Privacy</h2>
+            <p>Our services are not intended for children under 13. We do not knowingly collect information from children under 13.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>9. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy periodically. We will notify you of any material changes through our website or email.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>10. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy, please contact us at:</p>
+            <ul class="contact-info">
+                <li>Email: privacy@netrunsystems.com</li>
+                <li>Phone: (805) 707-4828</li>
+                <li>Address: Ojai, CA</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<style>
+.privacy-policy {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.privacy-policy .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.privacy-policy h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.last-updated {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.policy-section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.policy-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.policy-section h3 {
+    color: #444;
+    margin: 20px 0 15px;
+    font-size: 20px;
+}
+
+.policy-section p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.policy-section ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.policy-section ul li {
+    color: #666;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.policy-section ul li:before {
+    content: "•";
+    color: #0078d4;
+    position: absolute;
+    left: -20px;
+}
+
+.contact-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .privacy-policy {
+        padding: 40px 0;
+    }
+
+    .policy-section {
+        padding: 20px;
+    }
+}
+</style>
+{% endblock %} 

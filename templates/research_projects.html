@@ -1,31 +1,155 @@
 {% extends "layout.html" %}
-{% block title %}Research Projects | Netrun Systems{% endblock %}
+
+{% block title %}Research Projects - Netrun Systems{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-  <h1 class="mb-4">Research & Innovation Projects</h1>
-  <p class="lead">Netrun Systems is committed to advancing cloud, AI, and decentralized solutions. Explore our current research and innovation projects below.</p>
-  <hr>
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <h2>Sunflower: Garden & Landscape Management Device</h2>
-      <p>A solar-powered IoT device for real-time environmental monitoring in gardens, farms, and greenhouses. Features ESP32, Azure IoT integration, peer-to-peer mesh, and advanced power management.</p>
-      <a href="{{ url_for('research_sunflower') }}" class="btn btn-outline-primary">Learn more</a>
+<section id="research-hero" class="hero-section">
+    <div class="container">
+        <h1>Netrun Systems Research & Innovation</h1>
+        <p>Exploring the future of technology. Below are some of the research projects and innovative initiatives currently underway at Netrun Systems.</p>
     </div>
-    <div class="col-md-6 mb-4">
-      <h2>Podcast Co-Host (AI)</h2>
-      <p>An AI-powered podcast assistant that helps with show planning, guest research, live transcription, and content summarization. Integrates with popular podcast platforms and leverages LLMs for real-time insights.</p>
-      <a href="{{ url_for('research_podcast_cohost') }}" class="btn btn-outline-primary">Learn more</a>
+</section>
+
+<section id="research-projects" class="projects-section" style="padding: 5rem 0;"> {# Added padding style #}
+    <div class="container">
+        <div class="section-title">
+             <h2>Current Projects</h2>
+        </div>
+        <div class="row">
+            <!-- Sunflower -->
+            <div class="col-md-6 col-lg-4 project-item mb-4"> {# Added margin bottom #}
+                <div class="project-card card h-100"> {# Added card and height #}
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="Sunflower Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;"> {# Placeholder Logo, adjusted style #}
+                    <div class="card-body d-flex flex-column"> {# Card body #}
+                        <h3 class="card-title">Sunflower</h3>
+                        <p class="card-text flex-grow-1">IoT system for environmental data (gardens, agriculture). Azure IoT ML analysis. Targets hobbyists and professionals. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #} {# Optional button #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scrummage -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="Scrummage Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">Scrummage</h3>
+                        <p class="card-text flex-grow-1">AI-powered Agile workflow assistant. JIRA integration, real-time task updates, intelligent planning. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- PodPal -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="PodPal Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">PodPal</h3>
+                        <p class="card-text flex-grow-1">AI podcast co-host. Real-time conversation, topic generation, audience engagement. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meshbook -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="Meshbook Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">Meshbook</h3>
+                        <p class="card-text flex-grow-1">Decentralized contact management via Web3. Preserves contacts from dying networks. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sparqbot -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="Sparqbot Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">Sparqbot</h3>
+                        <p class="card-text flex-grow-1">AI-powered tutoring agents. Human-like instruction, personalized learning, GPU-accelerated. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- EchoList M.D. -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="EchoList M.D. Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">EchoList M.D.</h3>
+                        <p class="card-text flex-grow-1">Markdown-based dev utility for task management, JIRA sync, agentic workflows. Internal tool turned external product. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- EchoCore -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="EchoCore Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">EchoCore</h3>
+                        <p class="card-text flex-grow-1">Internal framework for data workflows, agent orchestration, API integration. Foundation for ecosystem. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- EchoCore Boost -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="EchoCore Boost Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">EchoCore Boost</h3>
+                        <p class="card-text flex-grow-1">Enhancement layer for EchoCore. Optimizes HPC, training, deployment. Multi-cloud GPU pipelines. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- BizPilot -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="BizPilot Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">BizPilot</h3>
+                        <p class="card-text flex-grow-1">Automation/analytics for SMBs. POS, banking, file storage, CRM integration. Commercializes internal toolkits. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- RepliCast -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="RepliCast Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">RepliCast</h3>
+                        <p class="card-text flex-grow-1">AI-driven social content generation/scheduling. Invideo.ai, campaign planning, client delivery. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergent Intelligence System -->
+            <div class="col-md-6 col-lg-4 project-item mb-4">
+                <div class="project-card card h-100">
+                    <img src="{{ url_for(\'static\', filename=\'images/placeholder_logo.png\') }}" alt="Emergent Intelligence System Logo Placeholder" class="card-img-top project-logo-placeholder p-3" style="max-height: 150px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">Emergent Intelligence System</h3>
+                        <p class="card-text flex-grow-1">Agentic AI in Unreal Engine 5. NPCs, procedural generation, LLM dialogue, emergent storytelling. [More detailed description needed]</p>
+                        {# <a href="#" class="btn btn-primary mt-auto">Learn More</a> #}
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class="col-md-6 mb-4">
-      <h2>Scrum Master Assistant</h2>
-      <p>An intelligent assistant for agile teams, automating backlog grooming, sprint planning, and daily standups. Integrates with Jira and Azure DevOps, providing actionable insights and automated reporting.</p>
-      <a href="{{ url_for('research_scrum_master') }}" class="btn btn-outline-primary">Learn more</a>
-    </div>
-    <div class="col-md-6 mb-4">
-      <h2>Connection Manager</h2>
-      <p>A decentralized, privacy-first contact management solution leveraging blockchain, decentralized identity (DID), and secure local storage. Enables users to own, export, and manage their social graph across platforms.</p>
-      <a href="{{ url_for('research_connection_manager') }}" class="btn btn-outline-primary">Learn more</a>
-    </div>
-  </div>
-</div>
-{% endblock %} 
+</section>
+{% endblock %}
+

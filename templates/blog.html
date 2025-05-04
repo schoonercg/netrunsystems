@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}Blog - Netrun Systems{% endblock %}
+
+{% block content %}
+<!-- Blog Header Section -->
+<section class="blog-header">
+    <div class="container">
+        <h1>Netrun Systems Blog</h1>
+        <p class="lead">Insights, updates, and best practices for Azure cross-tenant governance</p>
+    </div>
+</section>
+
+<!-- Blog Posts Section -->
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                {% if posts %}
+                    {% for post in posts %}
+                        <div class="blog-post-card">
+                            {% if post.image %}
+                                <div class="post-image">
+                                    <img src="{{ url_for('static', filename='images/' + post.image) }}" alt="{{ post.title }}">
+                                </div>
+                            {% endif %}
+                            <div class="post-content">
+                                <h2><a href="{{ url_for('blog_post', slug=post.slug) }}">{{ post.title }}</a></h2>
+                                <div class="post-meta">
+                                    <span class="post-author">By {{ post.author }}</span>
+                                    <span class="post-date">{{ post.formatted_date }}</span>
+                                </div>
+                                <div class="post-excerpt">
+                                    <p>{{ post.excerpt }}</p>
+                                </div>
+                                <a href="{{ url_for('blog_post', slug=post.slug) }}" class="read-more">Read More</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-posts">
+                        <h3>No blog posts yet</h3>
+                        <p>Check back soon for insights and updates from Netrun Systems.</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="blog-sidebar">
+                    <div class="sidebar-section">
+                        <h3>About Netrun Systems</h3>
+                        <p>Netrun Systems provides innovative cross-tenant governance solutions for Azure consultants and MSPs, enabling secure and efficient management of multiple client environments.</p>
+                        <a href="{{ url_for('index') }}" class="btn btn-sm">Learn More</a>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Products</h3>
+                        <ul class="sidebar-links">
+                            <li><a href="{{ url_for('product_nexus_core') }}">Nexus Core Platform</a></li>
+                            <li><a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a></li>
+                            <li><a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a></li>
+                            <li><a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Early Access Program</h3>
+                        <p>Join our Early Access Program to be among the first to experience Netrun Systems solutions.</p>
+                        <a href="{{ url_for('early_access') }}" class="btn btn-sm">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,269 @@
+{% extends "layout.html" %}
+
+{% block title %}Early Access Program - Netrun Systems{% endblock %}
+
+{% block content %}
+<!-- Early Access Header -->
+<section class="early-access-header">
+    <div class="container">
+        <h1>Early Access Program</h1>
+        <p class="lead">Be among the first to experience Netrun Systems' revolutionary cross-tenant governance solutions</p>
+    </div>
+</section>
+
+<!-- Early Access Content -->
+<section class="early-access-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="early-access-info">
+                    <h2>Join Our Early Access Program</h2>
+                    <p>The Netrun Systems Early Access Program gives select Azure consultants and MSPs exclusive first access to our innovative cross-tenant governance solutions before they're widely available.</p>
+                    
+                    <h3>Program Benefits</h3>
+                    <ul class="benefits-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Priority Access</h4>
+                                <p>Be the first to implement our revolutionary cross-tenant governance solutions</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Exclusive Pricing</h4>
+                                <p>Special early adopter pricing with guaranteed rate lock for 12 months</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Direct Product Input</h4>
+                                <p>Shape the future of our products with direct access to our development team</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Dedicated Support</h4>
+                                <p>Personalized onboarding and priority technical support</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Co-Marketing Opportunities</h4>
+                                <p>Featured case studies and joint marketing initiatives</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <h3>Program Timeline</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">1</div>
+                            <div class="timeline-content">
+                                <h4>Application</h4>
+                                <p>Submit your application using the form on this page</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2</div>
+                            <div class="timeline-content">
+                                <h4>Selection</h4>
+                                <p>Our team will review applications and select participants</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">3</div>
+                            <div class="timeline-content">
+                                <h4>Onboarding</h4>
+                                <p>Personalized onboarding and implementation support</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">4</div>
+                            <div class="timeline-content">
+                                <h4>Feedback</h4>
+                                <p>Regular feedback sessions and product development input</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">5</div>
+                            <div class="timeline-content">
+                                <h4>General Availability</h4>
+                                <p>Transition to GA with exclusive benefits for early adopters</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="early-access-form">
+                    <h2>Apply for Early Access</h2>
+                    <p>Complete the form below to apply for our Early Access Program. Our team will review your application and contact you with next steps.</p>
+                    
+                    <form method="POST" action="{{ url_for('early_access') }}">
+                        {{ csrf_token() }}
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" class="form-control" id="company" name="company" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">Your Role</label>
+                            <input type="text" class="form-control" id="role" name="role" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tenants">Number of Azure Tenants You Manage</label>
+                            <select class="form-control" id="tenants" name="tenants" required>
+                                <option value="">Select...</option>
+                                <option value="1-5">1-5</option>
+                                <option value="6-15">6-15</option>
+                                <option value="16-30">16-30</option>
+                                <option value="31-50">31-50</option>
+                                <option value="50+">50+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Why are you interested in Netrun Systems?</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="privacy" required>
+                            <label class="form-check-label" for="privacy">I agree to the <a href="#">Privacy Policy</a> and consent to being contacted about the Early Access Program.</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+                    </form>
+                    
+                    <div class="form-note">
+                        <p>All applications will be reviewed within 3 business days. For questions about the Early Access Program, please contact <a href="mailto:NSXearlyaccess@netrunsystems.com">NSXearlyaccess@netrunsystems.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+    <div class="container">
+        <h2>What Early Participants Are Saying</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <p>"Netrun Systems has transformed how we manage our client environments. The cross-tenant capabilities have reduced our operational overhead by 80% while improving security."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Azure Consulting Practice Lead</h4>
+                        <p>MSP with 20+ clients</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <p>"The Cost Optimizer identified over $12,000 in monthly savings across our client base within the first 30 days. This has been a game-changer for our value proposition."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Cloud Operations Director</h4>
+                        <p>Technology Consulting Firm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <p>"Implementing Netrun's Compliance Reporter reduced our audit preparation time by 75%. We now have continuous compliance monitoring across all client environments."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Security & Compliance Manager</h4>
+                        <p>Healthcare IT Provider</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How long does the Early Access Program last?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>The Early Access Program is expected to run for 3-4 months before general availability. Early access participants will receive exclusive benefits that continue beyond the program period, including guaranteed pricing, priority support, and ongoing input into our product roadmap.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there a cost to participate in the Early Access Program?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, Early Access participants pay a reduced rate compared to our general availability pricing. This early adopter pricing is locked in for 12 months after the program ends, providing significant long-term savings. The exact pricing will be discussed during the selection process.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What are the technical requirements for participation?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Participants should be actively managing multiple Azure tenants and have experience with Azure Lighthouse or cross-tenant management. Our solutions are designed to enhance existing Azure environments without requiring significant changes to your infrastructure.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How much time commitment is required?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>We recommend allocating 4-6 hours for initial onboarding and implementation, followed by 1-2 hours per month for feedback sessions and product updates. The actual time savings from using our solutions typically far exceeds this investment within the first month.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I invite my clients to participate?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we encourage you to involve select clients in the Early Access Program. This provides valuable feedback from both the consultant and end-customer perspectives. We can work with you to create appropriate messaging and documentation for your clients.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Transform Your Azure Consulting Practice?</h2>
+        <p>Don't miss this opportunity to be at the forefront of cross-tenant governance innovation.</p>
+        <a href="#" class="btn btn-lg" onclick="document.querySelector('.early-access-form').scrollIntoView({behavior: 'smooth'}); return false;">Apply Now</a>
+    </div>
+</section>
+{% endblock %}

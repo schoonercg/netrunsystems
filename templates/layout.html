@@ -35,7 +35,12 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('blog') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('early_access') }}">Early Access</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" href="{{ url_for('customer_portal') }}">Customer Portal</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('research_projects') }}">Research</a></li>
                   </ul>
                 </div>
@@ -119,12 +124,13 @@
             <div class="container">
                 <div class="copyright">
                     &copy; {{ now.year }} <strong>Netrun Systems</strong>. All Rights Reserved.
+                </div                <div class="footer-legal">
+                    <a href="{{ url_for(\'privacy_policy\') }}">Privacy Policy</a>
+                    <a href="{{ url_for(\'terms_of_service\') }}">Terms of Service</a>
                 </div>
-                <div class="footer-legal">
-                    <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
-                    <a href="{{ url_for('terms_of_service') }}">Terms of Service</a>
-                </div>
-            </div>
+                <div class="footer-support">
+                    <p>Proud supporters of Poppies Art and Gifts in support of the arts in Ojai.</p>
+                </div>           </div>
         </div>
     </footer>
 

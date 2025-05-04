@@ -1,0 +1,383 @@
+{% extends "layout.html" %}
+
+{% block title %}Cost Optimizer - Netrun Systems{% endblock %}
+
+{% block content %}
+<!-- Product Hero Section -->
+<section class="product-hero">
+    <div class="container">
+        <div class="product-hero-content">
+            <h1>Cost Optimizer</h1>
+            <p class="lead">AI-driven cost management across all client tenants, identifying savings opportunities averaging 21% of cloud spend.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Product Overview -->
+<section class="product-overview">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Maximize Cloud ROI Across Multiple Tenants</h2>
+                <p>Netrun Systems Cost Optimizer is a powerful add-on to the Nexus platform that provides comprehensive cost management capabilities across all your client Azure environments.</p>
+                <p>Our AI-driven analysis identifies savings opportunities that average 21% of total cloud spend, allowing you to deliver immediate value to your clients while differentiating your managed services.</p>
+                <div class="product-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">21%</span>
+                        <span class="stat-text">Average cloud spend reduction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-text">Optimization recommendations</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-text">Cross-tenant visibility</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-image">
+                    <img src="{{ url_for('static', filename='images/cost-optimizer.png') }}" alt="Cost Optimizer Dashboard">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features -->
+<section class="key-features">
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search-dollar"></i>
+                </div>
+                <h3>Cross-Tenant Cost Analysis</h3>
+                <p>Unified view of costs across all managed tenants with detailed breakdowns by subscription, resource group, and service.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI-Driven Recommendations</h3>
+                <p>Machine learning algorithms identify optimization opportunities based on usage patterns, idle resources, and right-sizing potential.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3>Resource Utilization Insights</h3>
+                <p>Detailed utilization metrics for compute, storage, and networking resources to identify underutilized assets.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h3>Tagging & Allocation</h3>
+                <p>Automated tagging recommendations and cost allocation tools for accurate client billing and departmental chargebacks.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Forecasting & Budgeting</h3>
+                <p>Predictive cost forecasting and budget management tools with automated alerts for potential overruns.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3>White-Labeled Reporting</h3>
+                <p>Customizable, white-labeled cost reports for client presentations and business reviews.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Optimization Categories -->
+<section class="optimization-categories">
+    <div class="container">
+        <h2 class="section-title">Optimization Categories</h2>
+        <p class="section-description">The Cost Optimizer identifies savings opportunities across multiple categories:</p>
+        
+        <div class="categories-container">
+            <div class="category-card">
+                <h3>Right-Sizing</h3>
+                <p>Identifies over-provisioned resources based on actual utilization patterns.</p>
+                <ul class="category-examples">
+                    <li>VM size optimization</li>
+                    <li>Storage tier adjustments</li>
+                    <li>Database performance tier recommendations</li>
+                    <li>App Service plan consolidation</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Reserved Instances</h3>
+                <p>Analyzes usage patterns to recommend reserved instance purchases for predictable workloads.</p>
+                <ul class="category-examples">
+                    <li>VM reservation opportunities</li>
+                    <li>SQL Database reservations</li>
+                    <li>App Service plan reservations</li>
+                    <li>ROI analysis for each recommendation</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Idle Resources</h3>
+                <p>Detects unused or underutilized resources that can be eliminated or suspended.</p>
+                <ul class="category-examples">
+                    <li>Unused VMs and disks</li>
+                    <li>Empty storage accounts</li>
+                    <li>Orphaned resources</li>
+                    <li>Dev/test environments scheduling</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Architecture Optimization</h3>
+                <p>Suggests architectural changes to reduce costs while maintaining performance.</p>
+                <ul class="category-examples">
+                    <li>PaaS migration opportunities</li>
+                    <li>Storage tiering strategies</li>
+                    <li>Traffic management optimization</li>
+                    <li>Serverless conversion opportunities</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>License Optimization</h3>
+                <p>Identifies opportunities to optimize software licensing costs.</p>
+                <ul class="category-examples">
+                    <li>Hybrid benefit opportunities</li>
+                    <li>License consolidation</li>
+                    <li>BYOL scenarios</li>
+                    <li>License mobility options</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Discount Programs</h3>
+                <p>Ensures all applicable discounts and programs are being utilized.</p>
+                <ul class="category-examples">
+                    <li>Enterprise Agreement benefits</li>
+                    <li>Dev/Test subscription opportunities</li>
+                    <li>Spot instance candidates</li>
+                    <li>Marketplace offers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Implementation Process -->
+<section class="implementation-process">
+    <div class="container">
+        <h2 class="section-title">Implementation Process</h2>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Discovery & Assessment</h3>
+                    <p>Initial scan of all managed tenants to establish baseline costs and identify quick-win opportunities.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Data Collection</h3>
+                    <p>Continuous collection of usage and performance metrics to inform optimization recommendations.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Analysis & Recommendations</h3>
+                    <p>AI-driven analysis generates prioritized recommendations with estimated savings and implementation effort.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Implementation</h3>
+                    <p>Guided implementation of recommendations with automated execution options for approved changes.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Verification & Reporting</h3>
+                    <p>Verification of actual savings achieved and detailed reporting for client reviews.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3>Continuous Optimization</h3>
+                    <p>Ongoing monitoring and new recommendations as usage patterns and Azure services evolve.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Study -->
+<section class="case-study">
+    <div class="container">
+        <h2 class="section-title">Case Study: MSP Cost Optimization</h2>
+        <div class="case-study-content">
+            <div class="case-study-quote">
+                <blockquote>
+                    "The Cost Optimizer paid for itself within the first month. We identified over $12,000 in monthly savings across our client base, which we were able to pass on to our clients while increasing our margins."
+                </blockquote>
+                <cite>- MSP Operations Director</cite>
+            </div>
+            <div class="case-study-results">
+                <h3>Results Achieved:</h3>
+                <ul>
+                    <li>$12,000+ in monthly cost savings identified</li>
+                    <li>23% average reduction in client cloud spend</li>
+                    <li>15% increase in managed services margins</li>
+                    <li>3 new clients acquired based on cost optimization success stories</li>
+                    <li>100% client retention during contract renewals</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing">
+    <div class="container">
+        <h2 class="section-title">Pricing</h2>
+        <p class="pricing-description">The Cost Optimizer is available as an add-on to the Nexus Core Platform:</p>
+        
+        <div class="pricing-toggle-container">
+            <span>Monthly</span>
+            <label class="pricing-toggle-switch">
+                <input type="checkbox" class="pricing-toggle">
+                <span class="slider"></span>
+            </label>
+            <span>Yearly <small>(Save 20%)</small></span>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Basic</h3>
+                    <div class="price price-monthly">$99<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$950<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Up to 5 customer tenants</li>
+                        <li>Core optimization recommendations</li>
+                        <li>Basic reporting</li>
+                        <li>Manual implementation guidance</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Professional</h3>
+                    <div class="price price-monthly">$199<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$1,910<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Up to 15 customer tenants</li>
+                        <li>Advanced optimization recommendations</li>
+                        <li>White-labeled reporting</li>
+                        <li>Semi-automated implementation</li>
+                        <li>Scheduled optimization reviews</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Enterprise</h3>
+                    <div class="price price-monthly">$399<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$3,830<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Unlimited customer tenants</li>
+                        <li>Full optimization suite</li>
+                        <li>Custom reporting and dashboards</li>
+                        <li>Fully automated implementation</li>
+                        <li>Dedicated cost optimization specialist</li>
+                        <li>Quarterly business reviews</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does the Cost Optimizer compare to Azure Cost Management?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>While Azure Cost Management provides basic cost visibility within a single tenant, the Netrun Systems Cost Optimizer delivers cross-tenant analysis, AI-driven recommendations, and consultant-specific features like white-labeled reporting and client-specific optimization strategies. Our solution is specifically designed for consultants and MSPs managing multiple client environments.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How quickly will I see results?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Most customers identify significant savings opportunities within the first 24-48 hours of implementation. The initial assessment typically identifies "quick win" opportunities that can be implemented immediately, with more strategic recommendations developing as the system collects more usage data over time.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I white-label the Cost Optimizer for my clients?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, the Professional and Enterprise plans include white-labeling capabilities. You can customize reports and dashboards with your branding, allowing you to present cost optimization as part of your managed service offering.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Does the Cost Optimizer require any agents or on-premises components?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>No, the Cost Optimizer is entirely cloud-based and requires no agents or on-premises components. It leverages Azure's native APIs and the Nexus platform's cross-tenant capabilities to collect and analyze cost data.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does the implementation process work?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Implementation is seamless through the Nexus platform. Once enabled, the Cost Optimizer begins analyzing your managed tenants immediately. The system provides both manual and automated implementation options for recommendations, allowing you to review and approve changes before they're applied.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Reduce Cloud Costs Across All Your Client Environments?</h2>
+        <p>Join our Early Access Program and start delivering immediate cost savings to your clients.</p>
+        <a href="{{ url_for('early_access') }}" class="btn btn-lg">Apply for Early Access</a>
+    </div>
+</section>
+{% endblock %}

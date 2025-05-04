@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}Contact - Netrun Systems{% endblock %}
+
+{% block content %}
+<!-- Contact Header -->
+<section class="contact-header">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p class="lead">Get in touch with the Netrun Systems team</p>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="contact-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="contact-info">
+                    <h2>Netrun Systems</h2>
+                    <p>Innovative cross-tenant governance solutions for Azure consultants and MSPs.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Ojai, CA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p><a href="tel:8057074828">805-707-4828</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:info@netrunsystems.com">info@netrunsystems.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4>Connect With Us</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <p>Have questions about our products or services? Fill out the form below and we'll get back to you as soon as possible.</p>
+                    
+                    <form method="POST" action="{{ url_for('contact') }}">
+                        {{ csrf_token() }}
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Early Access CTA -->
+<section class="cta">
+    <div class="container">
+        <h2>Interested in Our Early Access Program?</h2>
+        <p>Join our Early Access Program and be among the first to experience the power of Netrun Systems.</p>
+        <a href="{{ url_for('early_access') }}" class="btn btn-lg">Apply for Early Access</a>
+    </div>
+</section>
+{% endblock %}

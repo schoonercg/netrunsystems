@@ -1,0 +1,386 @@
+{% extends "layout.html" %}
+
+{% block title %}Governance Dashboard - Netrun Systems{% endblock %}
+
+{% block content %}
+<!-- Product Hero Section -->
+<section class="product-hero">
+    <div class="container">
+        <div class="product-hero-content">
+            <h1>Governance Dashboard</h1>
+            <p class="lead">Enhanced management capabilities with compliance monitoring across multiple client environments.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Product Overview -->
+<section class="product-overview">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Centralized Governance Across Multiple Azure Environments</h2>
+                <p>The Netrun Systems Governance Dashboard provides enhanced management capabilities with comprehensive visibility and control across all your client Azure environments.</p>
+                <p>Our solution enables consistent policy enforcement, resource management, and compliance monitoring across multiple tenants, allowing you to implement standardized governance practices at scale.</p>
+                <div class="product-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-text">Cross-tenant visibility</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">65%</span>
+                        <span class="stat-text">Reduction in governance overhead</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">40+</span>
+                        <span class="stat-text">Governance controls</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-image">
+                    <img src="{{ url_for('static', filename='images/governance-dashboard.png') }}" alt="Governance Dashboard">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features -->
+<section class="key-features">
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3>Unified Governance Dashboard</h3>
+                <p>Centralized view of governance status across all managed tenants with customizable dashboards and reporting.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Policy Management</h3>
+                <p>Create, deploy, and manage policies across multiple tenants with inheritance and exception handling.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3>Resource Organization</h3>
+                <p>Standardized resource organization with consistent naming, tagging, and hierarchical management.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>Compliance Monitoring</h3>
+                <p>Real-time compliance monitoring against organizational policies and industry standards.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Drift Detection</h3>
+                <p>Automated detection of configuration drift with alerting and remediation workflows.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Governance Reporting</h3>
+                <p>Comprehensive reporting on governance status, policy compliance, and remediation activities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Governance Categories -->
+<section class="governance-categories">
+    <div class="container">
+        <h2 class="section-title">Governance Categories</h2>
+        <p class="section-description">The Governance Dashboard provides comprehensive controls across multiple categories:</p>
+        
+        <div class="categories-container">
+            <div class="category-card">
+                <h3>Resource Governance</h3>
+                <p>Standardized resource management across all client environments.</p>
+                <ul class="category-features">
+                    <li>Consistent naming conventions</li>
+                    <li>Standardized tagging policies</li>
+                    <li>Resource organization templates</li>
+                    <li>Lifecycle management</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Security Governance</h3>
+                <p>Unified security controls and monitoring across all tenants.</p>
+                <ul class="category-features">
+                    <li>Security policy enforcement</li>
+                    <li>Vulnerability management</li>
+                    <li>Security posture assessment</li>
+                    <li>Threat protection monitoring</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Cost Governance</h3>
+                <p>Consistent cost management practices across client environments.</p>
+                <ul class="category-features">
+                    <li>Budget policy enforcement</li>
+                    <li>Cost allocation controls</li>
+                    <li>Spending limits and alerts</li>
+                    <li>Chargeback/showback reporting</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Identity Governance</h3>
+                <p>Standardized identity and access management across tenants.</p>
+                <ul class="category-features">
+                    <li>Role-based access control</li>
+                    <li>Privileged access management</li>
+                    <li>Identity security posture</li>
+                    <li>Access certification</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Operational Governance</h3>
+                <p>Consistent operational practices for all managed environments.</p>
+                <ul class="category-features">
+                    <li>Change management controls</li>
+                    <li>Backup and recovery policies</li>
+                    <li>Monitoring and alerting standards</li>
+                    <li>Automation governance</li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h3>Compliance Governance</h3>
+                <p>Unified compliance management across client environments.</p>
+                <ul class="category-features">
+                    <li>Regulatory compliance monitoring</li>
+                    <li>Policy compliance tracking</li>
+                    <li>Compliance reporting</li>
+                    <li>Remediation workflows</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Implementation Process -->
+<section class="implementation-process">
+    <div class="container">
+        <h2 class="section-title">Implementation Process</h2>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Assessment</h3>
+                    <p>Evaluate current governance practices and identify standardization opportunities across client environments.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Policy Development</h3>
+                    <p>Create standardized governance policies aligned with organizational requirements and industry best practices.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Dashboard Configuration</h3>
+                    <p>Configure the Governance Dashboard with relevant metrics, controls, and reporting for your specific needs.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Policy Deployment</h3>
+                    <p>Deploy governance policies across managed tenants with appropriate exceptions and customizations.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Monitoring & Reporting</h3>
+                    <p>Establish ongoing monitoring and reporting processes to track governance compliance and effectiveness.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3>Continuous Improvement</h3>
+                    <p>Regularly review and refine governance practices based on operational feedback and changing requirements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Study -->
+<section class="case-study">
+    <div class="container">
+        <h2 class="section-title">Case Study: Multi-Industry MSP</h2>
+        <div class="case-study-content">
+            <div class="case-study-quote">
+                <blockquote>
+                    "The Governance Dashboard transformed how we manage our diverse client base. We now have consistent governance across all environments, regardless of industry or size, with significantly reduced overhead."
+                </blockquote>
+                <cite>- MSP Operations Director</cite>
+            </div>
+            <div class="case-study-results">
+                <h3>Results Achieved:</h3>
+                <ul>
+                    <li>65% reduction in governance management overhead</li>
+                    <li>Standardized governance across 25+ client environments</li>
+                    <li>90% improvement in policy compliance rates</li>
+                    <li>Reduced security incidents by 70%</li>
+                    <li>Added governance as a premium service offering</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing">
+    <div class="container">
+        <h2 class="section-title">Pricing</h2>
+        <p class="pricing-description">The Governance Dashboard is available as an add-on to the Nexus Core Platform:</p>
+        
+        <div class="pricing-toggle-container">
+            <span>Monthly</span>
+            <label class="pricing-toggle-switch">
+                <input type="checkbox" class="pricing-toggle">
+                <span class="slider"></span>
+            </label>
+            <span>Yearly <small>(Save 20%)</small></span>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Basic</h3>
+                    <div class="price price-monthly">$129<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$1,238<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Up to 5 customer tenants</li>
+                        <li>Core governance controls</li>
+                        <li>Basic policy management</li>
+                        <li>Standard reporting</li>
+                        <li>Manual remediation guidance</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Professional</h3>
+                    <div class="price price-monthly">$249<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$2,390<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Up to 15 customer tenants</li>
+                        <li>Advanced governance controls</li>
+                        <li>Policy inheritance and exceptions</li>
+                        <li>White-labeled reporting</li>
+                        <li>Semi-automated remediation</li>
+                        <li>Governance templates library</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Enterprise</h3>
+                    <div class="price price-monthly">$449<span>/month</span></div>
+                    <div class="price price-yearly" style="display: none;">$4,310<span>/year</span></div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Unlimited customer tenants</li>
+                        <li>Full governance suite</li>
+                        <li>Custom policy development</li>
+                        <li>Executive dashboards</li>
+                        <li>Automated remediation</li>
+                        <li>Governance advisory services</li>
+                        <li>Dedicated governance specialist</li>
+                    </ul>
+                    <a href="{{ url_for('early_access') }}" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does the Governance Dashboard compare to Azure Policy and Management Groups?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>While Azure Policy and Management Groups provide governance capabilities within a single tenant, the Netrun Systems Governance Dashboard delivers cross-tenant governance with unified policy management, standardized controls, and comprehensive reporting across all your client environments. Our solution is specifically designed for consultants and MSPs who need to implement consistent governance practices at scale.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I customize governance policies for different clients?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, the Governance Dashboard supports policy inheritance with exception handling, allowing you to implement standardized baseline policies across all clients while accommodating specific requirements for individual environments. You can create policy hierarchies with inheritance rules and manage exceptions through a centralized interface.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does policy enforcement work?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>The Governance Dashboard provides multiple enforcement options for policies, including audit-only (monitoring without enforcement), soft enforcement (allowing with notification), and hard enforcement (preventing non-compliant actions). You can configure enforcement levels for each policy and client environment based on your governance requirements.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I white-label the Governance Dashboard for my clients?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, the Professional and Enterprise plans include white-labeling capabilities. You can customize dashboards and reports with your branding, allowing you to present governance as part of your managed service offering. The Enterprise plan also supports custom dashboard development for specific client requirements.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does the implementation process work?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Implementation begins with an assessment of your current governance practices and requirements. Our team works with you to develop standardized policies and configure the Governance Dashboard for your specific needs. We provide templates and best practices to accelerate implementation, with most clients fully operational within 2-4 weeks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Implement Consistent Governance Across All Your Client Environments?</h2>
+        <p>Join our Early Access Program and transform your governance capabilities.</p>
+        <a href="{{ url_for('early_access') }}" class="btn btn-lg">Apply for Early Access</a>
+    </div>
+</section>
+{% endblock %}

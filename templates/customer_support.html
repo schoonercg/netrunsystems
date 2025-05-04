@@ -1,0 +1,341 @@
+{% extends "layout.html" %}
+{% block title %}Support - Customer Portal{% endblock %}
+
+{% block content %}
+<div class="portal-container">
+    <!-- Portal Navigation -->
+    <nav class="portal-nav">
+        <div class="portal-nav-header">
+            <h3>Customer Portal</h3>
+            <span class="user-info">
+                <i class="fas fa-user-circle"></i>
+                {{ user.name }}
+            </span>
+        </div>
+        <ul class="portal-nav-menu">
+            <li>
+                <a href="{{ url_for('customer_portal') }}">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('customer_profile') }}">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('customer_resources') }}">
+                    <i class="fas fa-cube"></i> Resources
+                </a>
+            </li>
+            <li class="active">
+                <a href="{{ url_for('customer_support') }}">
+                    <i class="fas fa-life-ring"></i> Support
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Support Content -->
+    <main class="portal-content">
+        <div class="portal-header">
+            <h2>Support Center</h2>
+            <p>Get help and support for your Netrun Systems services</p>
+        </div>
+
+        <div class="support-container">
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-card">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>New Ticket</span>
+                </button>
+                <button class="action-card">
+                    <i class="fas fa-book"></i>
+                    <span>Documentation</span>
+                </button>
+                <button class="action-card">
+                    <i class="fas fa-video"></i>
+                    <span>Video Tutorials</span>
+                </button>
+                <button class="action-card">
+                    <i class="fas fa-comments"></i>
+                    <span>Live Chat</span>
+                </button>
+            </div>
+
+            <!-- Support Tickets -->
+            <section class="support-section">
+                <div class="section-header">
+                    <h3>Your Support Tickets</h3>
+                    <div class="ticket-filters">
+                        <select class="filter-select">
+                            <option value="all">All Tickets</option>
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tickets-list">
+                    <div class="ticket-item">
+                        <div class="ticket-status">
+                            <span class="status-badge open">Open</span>
+                        </div>
+                        <div class="ticket-info">
+                            <h4>Azure Resource Access Issue</h4>
+                            <p>Having trouble accessing specific resources in the Azure portal...</p>
+                            <div class="ticket-meta">
+                                <span><i class="fas fa-clock"></i> Created 2 hours ago</span>
+                                <span><i class="fas fa-tag"></i> Access Management</span>
+                            </div>
+                        </div>
+                        <div class="ticket-actions">
+                            <button class="btn btn-outline">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="ticket-item">
+                        <div class="ticket-status">
+                            <span class="status-badge closed">Closed</span>
+                        </div>
+                        <div class="ticket-info">
+                            <h4>Billing Inquiry</h4>
+                            <p>Question about recent charges on the monthly statement...</p>
+                            <div class="ticket-meta">
+                                <span><i class="fas fa-clock"></i> Resolved 1 day ago</span>
+                                <span><i class="fas fa-tag"></i> Billing</span>
+                            </div>
+                        </div>
+                        <div class="ticket-actions">
+                            <button class="btn btn-outline">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="support-section">
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How do I manage cross-tenant access permissions?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can manage cross-tenant access permissions through the Resources section. Navigate to the specific resource group and use the "Permissions" tab to adjust access levels.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What security measures are in place for tenant isolation?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We implement strict tenant isolation using Azure Lighthouse's security boundaries, role-based access control (RBAC), and just-in-time access protocols.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How can I monitor resource usage across tenants?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Use the Dashboard's monitoring widgets or navigate to the Resources section for detailed usage analytics across all managed tenants.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<style>
+/* Reuse portal-container, portal-nav, portal-content styles from customer_portal.html */
+
+.support-container {
+    max-width: 1000px;
+}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-card i {
+    font-size: 24px;
+    color: #0078d4;
+    margin-bottom: 10px;
+}
+
+.action-card span {
+    color: #333;
+    font-weight: 500;
+}
+
+.support-section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+}
+
+.tickets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ticket-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    gap: 20px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.status-badge.open {
+    background: #e8f0fe;
+    color: #1967d2;
+}
+
+.status-badge.closed {
+    background: #e6e6e6;
+    color: #666;
+}
+
+.ticket-info {
+    flex: 1;
+}
+
+.ticket-info h4 {
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.ticket-info p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.ticket-meta {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.ticket-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+.faq-question h4 {
+    margin: 0;
+    color: #333;
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.faq-item.active .faq-answer {
+    padding: 20px;
+    max-height: 200px;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // FAQ Toggle
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        item.querySelector('.faq-question').addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+});
+</script>
+{% endblock %} 
