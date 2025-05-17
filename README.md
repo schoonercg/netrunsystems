@@ -33,13 +33,14 @@ This repository is configured for automatic deployment to Azure Web App using Gi
 
 ### Setup Instructions
 
-1. Fork or clone this repository to your GitHub account
-2. In the Azure Portal, navigate to your App Service
-3. Go to Deployment Center > GitHub Actions
-4. Connect your GitHub repository
-5. Create a new secret in your GitHub repository:
-   - Name: `AZURE_WEBAPP_PUBLISH_PROFILE`
-   - Value: The contents of your PublishSettings file
+1. Fork or clone this repository to your GitHub account.
+2. In the Azure Portal, navigate to your App Service and connect the repository via **Deployment Center > GitHub Actions**.
+3. Create a service principal with access to the App Service.
+4. Add secrets for the service principal credentials in your GitHub repository. The secret names must match those used in the workflow files:
+   - `AZUREAPPSERVICE_CLIENTID_*`
+   - `AZUREAPPSERVICE_TENANTID_*`
+   - `AZUREAPPSERVICE_SUBSCRIPTIONID_*`
+   These credentials are required for the provided workflows, which authenticate to Azure using OIDC.
 
 Once configured, any push to the main branch will trigger automatic deployment to Azure.
 
