@@ -12,3 +12,4 @@ msal==1.20.0
 requests==2.31.0
 Flask-Session==0.5.0
 Flask-Login==0.6.2
+pytest==8.2.0
