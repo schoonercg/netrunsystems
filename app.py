@@ -13,6 +13,10 @@ DEV_MODE = True  # Force development mode for local testing
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
 
+# Configuration values such as the secret key are read directly from
+# environment variables. The application does not rely on a separate
+# `config.py` module.
+
 # Session config
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
