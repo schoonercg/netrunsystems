@@ -131,3 +131,7 @@ dist
 
 # Flask session data
 flask_session/
+
+# Python bytecode
+__pycache__/
+*.pyc
