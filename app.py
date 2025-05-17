@@ -337,7 +337,13 @@ def login():
         'email': 'dev@netrunsystems.com',
         'id': 'dev-user-id'
     }
-    return redirect(url_for('customer_portal'))
+
+    # Redirect back to originally requested page if present
+    redirect_url = session.pop('state', None)
+    if not redirect_url:
+        redirect_url = url_for('customer_portal')
+
+    return redirect(redirect_url)
 
 @app.route('/logout')
 def logout():
