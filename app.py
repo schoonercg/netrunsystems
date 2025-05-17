@@ -7,9 +7,6 @@ from flask_wtf import CSRFProtect
 from flask_session import Session
 from functools import wraps
 
-# Development mode flag
-DEV_MODE = True  # Force development mode for local testing
-
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
 
@@ -340,7 +337,6 @@ def research_connection_manager():
 
 @app.route('/login')
 def login():
-    # In development mode, automatically log in
     session['user'] = {
         'name': 'Development User',
         'email': 'dev@netrunsystems.com',
