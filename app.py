@@ -65,12 +65,17 @@ def early_access():
         name = request.form.get('name')
         company = request.form.get('company')
         email = request.form.get('email')
-        phone = request.form.get('phone')
+        role = request.form.get('role')
+        tenants = request.form.get('tenants')
         message = request.form.get('message')
         
         # In a production environment, this would send an email to NSXearlyaccess@netrunsystems.com
         # For now, just show a success message
-        flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
+        flash(
+            f'Thank you for your interest in our Early Access Program! '
+            f'Role: {role}, Tenants: {tenants}. We will contact you shortly.',
+            'success'
+        )
         return redirect(url_for('early_access'))
         
     return render_template('early_access.html', now=now)
