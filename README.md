@@ -12,6 +12,8 @@ This is a Flask-based website for Netrun Systems, showcasing the company's cross
 - `/templates` - HTML templates
 - `requirements.txt` - Python dependencies
 - `.github/workflows` - GitHub Actions workflow for Azure deployment
+- The application reads configuration from environment variables directly in
+  `app.py`, so a separate `config.py` file is not required.
 
 ## Local Development
 
