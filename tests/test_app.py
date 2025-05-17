@@ -48,3 +48,38 @@ def test_portal_profile_authenticated_success():
         }
     response = client.get('/portal/profile')
     assert response.status_code == 200
+
+def test_portal_resources_authenticated_success():
+    client = app.test_client()
+    with client.session_transaction() as sess:
+        sess['user'] = {
+            'name': 'Test User',
+            'email': 'test@example.com',
+            'id': 'test-id'
+        }
+    response = client.get('/portal/resources')
+    assert response.status_code == 200
+
+
+def test_portal_support_authenticated_success():
+    client = app.test_client()
+    with client.session_transaction() as sess:
+        sess['user'] = {
+            'name': 'Test User',
+            'email': 'test@example.com',
+            'id': 'test-id'
+        }
+    response = client.get('/portal/support')
+    assert response.status_code == 200
+
+
+def test_privacy_policy_route():
+    client = app.test_client()
+    response = client.get('/privacy-policy')
+    assert response.status_code == 200
+
+
+def test_terms_of_service_route():
+    client = app.test_client()
+    response = client.get('/terms-of-service')
+    assert response.status_code == 200
