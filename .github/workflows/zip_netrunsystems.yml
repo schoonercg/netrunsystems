@@ -80,4 +80,3 @@ jobs:
         with:
           app-name: 'Netrunsystems'
           slot-name: 'Production'
-          
