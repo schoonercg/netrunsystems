@@ -80,4 +80,3 @@ jobs:
         with:
           app-name: 'netrunsystems'
           slot-name: 'dev'
-          
