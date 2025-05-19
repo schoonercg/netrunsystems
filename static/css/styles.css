@@ -1,6 +1,6 @@
-/* Base Styles */
+/* Updated 2024-05-19: Primary color changed to extracted dominant color #0e0c0d from NR_01_SQCARD_D_BCK.jpg. */
 :root {
-    --primary-color: #ff6600;
+    --primary-color: #0e0c0d;
     --secondary-color: #333333;
     --accent-color: #0078d4;
     --light-color: #f8f9fa;
@@ -51,8 +51,8 @@ a:hover {
 }
 
 .btn-primary:hover {
-    background-color: #e55a00;
-    border-color: #e55a00;
+    background-color: #0a090a;
+    border-color: #0a090a;
 }
 
 .btn-secondary {
@@ -137,7 +137,7 @@ a:hover {
 }
 
 .dropdown-item:hover {
-    background-color: rgba(255, 102, 0, 0.1);
+    background-color: rgba(14, 12, 13, 0.1);
     color: var(--primary-color);
 }
 
@@ -487,7 +487,7 @@ input:checked + .slider:before {
 }
 
 .footer-newsletter button:hover {
-    background-color: #e55a00;
+    background-color: #0a090a;
 }
 
 .social-links {
@@ -736,7 +736,7 @@ input:checked + .slider:before {
 }
 
 .post-tag {
-    background-color: rgba(255, 102, 0, 0.1);
+    background-color: rgba(14, 12, 13, 0.1);
     color: var(--primary-color);
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -753,6 +753,24 @@ input:checked + .slider:before {
 .post-share span {
     margin-right: 1rem;
     font-weight: 600;
+}
+
+.post-share span:hover {
+    color: white;
+}
+
+.post-share {
+    display: flex;
+    align-items: center;
+}
+
+.post-share span {
+    margin-right: 1rem;
+    font-weight: 600;
+}
+
+.post-share span:hover {
+    color: white;
 }
 
 .share-link {
