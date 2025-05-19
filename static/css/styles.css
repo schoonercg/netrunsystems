@@ -1287,3 +1287,41 @@ body, h1, h2, h3, h4, h5, h6, .btn, .navbar, .footer, .section-title, .feature-c
     font-family: var(--font-primary) !important;
     font-weight: 700 !important;
 }
+
+/* Utility classes and expanded use of #91B9AB for a more colorful, branded site */
+.bg-brand {
+    background-color: #91B9AB !important;
+    color: #fff !important;
+}
+.text-brand {
+    color: #91B9AB !important;
+}
+.border-brand {
+    border-color: #91B9AB !important;
+}
+.btn-brand {
+    background-color: #91B9AB;
+    border-color: #91B9AB;
+    color: #fff;
+}
+.btn-brand:hover, .btn-brand:focus {
+    background-color: #7fa393;
+    border-color: #7fa393;
+    color: #fff;
+}
+.section-title:after {
+    background: #91B9AB;
+}
+.feature-icon, .footer-contact i, .benefits-list li i, .timeline-marker, .step-icon {
+    color: #91B9AB;
+}
+.feature-card, .pricing-card, .sidebar-section, .post-tag, .related-post-card, .category-card, .model-card, .framework-category {
+    border: 1.5px solid #91B9AB;
+    background: rgba(145, 185, 171, 0.07);
+}
+.hero, .cta, .early-access-header, .contact-header, .product-hero, .blog-header, .admin-header {
+    background: linear-gradient(rgba(145, 185, 171, 0.85), rgba(145, 185, 171, 0.85)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
