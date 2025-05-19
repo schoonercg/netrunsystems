@@ -16,17 +16,12 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <div class="dropdown">
-                    <a class="navbar-brand d-flex align-items-center text-brand dropdown-toggle" href="#" id="logoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="gap: 16px;">
+                <div class="navbar-brand d-flex flex-column align-items-start" style="gap: 0;">
+                    <div class="d-flex align-items-center" style="gap: 16px;">
                         <img src="{{ url_for('static', filename='images/IMG_1418.png') }}" alt="Netrun Systems Logo" style="height:60px; width:auto;">
-                        <span class="logo-text" style="display: flex; flex-direction: column; line-height: 1.1; font-size: 1.5rem; font-weight: 700;">
-                            <span>Netrun</span>
-                            <span>Systems</span>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="logoDropdown">
-                        <a class="dropdown-item" href="{{ url_for('customer_portal') }}">Customer Portal Login</a>
+                        <span class="logo-text" style="font-size: 1.5rem; font-weight: 700; letter-spacing: 0.05em; color: #fff; text-transform: uppercase;">NETRUN SYSTEMS</span>
                     </div>
+                    <span class="logo-subheading" style="font-size: 0.85rem; font-weight: 700; color: #91B9AB; text-transform: uppercase; letter-spacing: 0.08em; margin-left: 76px;">Technology Solutions For People By People</span>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
