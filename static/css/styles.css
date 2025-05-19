@@ -1353,3 +1353,13 @@ body, .container, .row, .col-lg-4, .col-lg-2, .col-lg-12, .col-lg-6, .col-lg-8, 
     color: #222 !important;
     box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
+
+/* Ensure black or near-black font color on white/soft gray backgrounds for accessibility */
+body, .feature-card, .pricing-card, .sidebar-section, .post-tag, .related-post-card, .category-card, .model-card, .framework-category, .footer-newsletter, .admin-blog-form, .early-access-form, .contact-form, .product-content, .post-body, .resource-section, .portal-section, .footer-newsletter.bg-brand {
+    color: #111 !important;
+}
+
+/* Keep white text only on dark backgrounds */
+.navbar, .navbar-dark.bg-dark, header, .site-header {
+    color: #fff !important;
+}
