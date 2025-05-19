@@ -1363,3 +1363,19 @@ body, .feature-card, .pricing-card, .sidebar-section, .post-tag, .related-post-c
 .navbar, .navbar-dark.bg-dark, header, .site-header {
     color: #fff !important;
 }
+
+/* Netrun Design System Utilities */
+.netrun-blue { color: #91B9AB !important; }
+.header-black, .navbar, .navbar-dark.bg-dark, header, .site-header { background: #000 !important; color: #fff !important; }
+.vertical-bar { border-left: 6px solid #91B9AB; padding-left: 1em; }
+.gray-text { color: #888 !important; }
+.all-caps { text-transform: uppercase !important; letter-spacing: 0.1em !important; }
+.link-arrow::after { content: ' \2192'; color: #91B9AB; font-weight: bold; }
+.netrun-link { color: #91B9AB !important; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; position: relative; padding-left: 1.5em; display: inline-block; }
+.netrun-link:hover, .netrun-link:focus { color: #5e7e74 !important; }
+.netrun-link::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #91B9AB; border-radius: 3px; }
+
+/* Spacing utilities */
+.section-title { margin-bottom: 2em !important; }
+.section-title + p, .section-title + div, .section-title + h3 { margin-top: 2em !important; }
+p { margin-bottom: 1em; }
