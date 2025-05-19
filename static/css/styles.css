@@ -1382,3 +1382,8 @@ body, .feature-card, .pricing-card, .sidebar-section, .post-tag, .related-post-c
 .section-title { margin-bottom: 2em !important; }
 .section-title + p, .section-title + div, .section-title + h3 { margin-top: 2em !important; }
 p { margin-bottom: 1em; }
+
+.navbar .container, .navbar .container-fluid {
+    background: #000 !important;
+    color: #fff !important;
+}
