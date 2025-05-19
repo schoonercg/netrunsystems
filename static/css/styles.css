@@ -1283,9 +1283,19 @@ input:checked + .slider:before {
     font-style: normal;
 }
 
-body, h1, h2, h3, h4, h5, h6, .btn, .navbar, .footer, .section-title, .feature-card, .pricing-card, .blog-post-card, .sidebar-section, .post-content, .post-tag, .footer-newsletter, .site-footer {
+body, h1, h2, h3, h4, h5, h6, .btn, .navbar, .footer, .section-title, .feature-card, .pricing-card, .blog-post-card, .sidebar-section, .post-content, .post-tag, .footer-newsletter, .site-footer, .logo-text, .container, .row, .col-lg-4, .col-lg-2, .col-lg-12, .col-lg-6, .col-lg-8, .col-lg-10 {
     font-family: var(--font-primary) !important;
     font-weight: 700 !important;
+    text-align: left !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+/* Remove or override any center alignment for section-title and hero */
+.section-title, .hero, .cta, .footer-bottom .container, .footer-legal, .footer-info, .footer-newsletter, .footer-links, .footer-contact, .footer-bottom, .footer {
+    text-align: left !important;
 }
 
 /* Utility classes and expanded use of #91B9AB for a more colorful, branded site */
