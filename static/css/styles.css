@@ -1387,3 +1387,86 @@ p { margin-bottom: 1em; }
     background: #000 !important;
     color: #fff !important;
 }
+
+/* Responsive Enhancements for Mobile-Friendliness */
+img, .img-fluid {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container, .container-fluid {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbar-brand, .navbar .container, .navbar .container-fluid {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+    .navbar-brand, .navbar .container, .navbar .container-fluid {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+    }
+    .navbar-brand img, .navbar-brand .logo-text, .navbar-brand .logo-subheading, .navbar-brand .logo-people {
+        height: auto !important;
+        max-width: 100% !important;
+    }
+    .navbar-brand .d-flex.flex-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    .navbar-brand .d-flex.flex-column {
+        align-items: flex-start !important;
+    }
+    .navbar-toggler {
+        margin-top: 1rem !important;
+        align-self: flex-start !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero, .about, .features, .pricing, .contact, .early-access, .solutions {
+        padding: 2rem 0 !important;
+    }
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+    .logo-text, .logo-subheading, .logo-people {
+        font-size: 1rem !important;
+    }
+    .navbar-brand img {
+        height: 48px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .container, .container-fluid {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .navbar-brand img {
+        height: 36px !important;
+    }
+    .logo-text, .logo-subheading, .logo-people {
+        font-size: 0.9rem !important;
+    }
+    .coming-soon {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Ensure all columns stack vertically on mobile */
+.row, .features-grid, .solutions-grid, .pricing-grid, .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+@media (max-width: 991px) {
+    .row > *, .features-grid > *, .solutions-grid > *, .pricing-grid > *, .contact-grid > * {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
