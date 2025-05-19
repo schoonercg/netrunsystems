@@ -9,8 +9,8 @@
     --success-color: #28a745;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
-    --font-primary: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-secondary: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-primary: 'Futura', Arial, Helvetica, sans-serif;
+    --font-secondary: 'Futura', Arial, Helvetica, sans-serif;
     --transition: all 0.3s ease;
 }
 
@@ -1273,4 +1273,17 @@ input:checked + .slider:before {
         width: 100%;
         padding: 0.75rem;
     }
+}
+
+/* Font update: Use Futura Bold for all text, fallback to Arial, Helvetica, sans-serif. */
+@font-face {
+    font-family: 'Futura';
+    src: local('Futura Bold'), local('Futura-Bold'), url('https://fonts.cdnfonts.com/s/15310/Futura-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body, h1, h2, h3, h4, h5, h6, .btn, .navbar, .footer, .section-title, .feature-card, .pricing-card, .blog-post-card, .sidebar-section, .post-content, .post-tag, .footer-newsletter, .site-footer {
+    font-family: var(--font-primary) !important;
+    font-weight: 700 !important;
 }
