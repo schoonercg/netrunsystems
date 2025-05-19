@@ -23,10 +23,10 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:#000 !important;">
             <div class="container" style="background:#000;">
-                <div class="navbar-brand d-flex flex-row align-items-start" style="background:#000; gap: 16px; width:100%;">
-                    <img src="{{ url_for('static', filename='images/psd_layers/layer_3_Inserted Image.png') }}" alt="Netrun Blue Bar" style="height:84px; width:auto; align-self: flex-start; margin-right: 8px;">
+                <div class="navbar-brand d-flex flex-row align-items-start" style="background:#000; gap: 0; width:100%;">
+                    <img src="{{ url_for('static', filename='images/psd_layers/layer_3_Inserted Image.png') }}" alt="Netrun Blue Bar" style="height:84px; width:auto; align-self: flex-start;">
                     <img src="{{ url_for('static', filename='images/psd_layers/layer_2_Inserted Image.png') }}" alt="Netrun Systems Logo" style="height:84px; width:auto; align-self: flex-start;">
-                    <div class="d-flex flex-column align-items-start justify-content-between" style="height:84px;">
+                    <div class="d-flex flex-column align-items-start justify-content-between" style="height:84px; margin-left:0;">
                         <span class="logo-text" style="font-size: 1.5rem; font-weight: 700; letter-spacing: 0.05em; color: #fff; text-transform: uppercase; line-height:1.1;">NETRUN SYSTEMS</span>
                         <span class="logo-subheading" style="font-size: 1.1rem; font-weight: 700; color: #91B9AB; text-transform: uppercase; letter-spacing: 0.08em;">Technology Solutions</span>
                         <span class="logo-people" style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
@@ -45,10 +45,12 @@
                         Products
                       </a>
                       <div class="dropdown-menu" aria-labelledby="productsDropdown">
-                        <a class="dropdown-item" href="{{ url_for('product_nexus_core') }}">Nexus Core Platform</a>
-                        <a class="dropdown-item" href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a>
-                        <a class="dropdown-item" href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a>
-                        <a class="dropdown-item" href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a>
+                        <a class="dropdown-item" href="/product/nexus-core">Nexus Core Platform</a>
+                        <a class="dropdown-item" href="/product/cost-optimizer">Cost Optimizer</a>
+                        <a class="dropdown-item" href="/product/compliance-reporter">Compliance Reporter</a>
+                        <a class="dropdown-item" href="/product/governance-dashboard">Governance Dashboard</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/early-access">Early Access Signup</a>
                       </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('blog') }}">Blog</a></li>
