@@ -27,6 +27,12 @@
                     <div class="d-flex align-items-center" style="gap: 16px;">
                         <img src="{{ url_for('static', filename='images/IMG_1418.png') }}" alt="Netrun Systems Logo" style="height:60px; width:auto;">
                         <span class="logo-text" style="font-size: 1.5rem; font-weight: 700; letter-spacing: 0.05em; color: #fff; text-transform: uppercase;">NETRUN SYSTEMS</span>
+                        <div class="dropdown ml-3">
+                            <a class="dropdown-toggle netrun-link" href="#" id="portalDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#91B9AB;">Client Portal</a>
+                            <div class="dropdown-menu" aria-labelledby="portalDropdown">
+                                <a class="dropdown-item" href="{{ url_for('customer_portal') }}">Customer Portal Login</a>
+                            </div>
+                        </div>
                     </div>
                     <span class="logo-subheading" style="font-size: 0.85rem; font-weight: 700; color: #91B9AB; text-transform: uppercase; letter-spacing: 0.08em; margin-left: 76px;">Technology Solutions For People, By People</span>
                     <span class="logo-people" style="font-size: 0.85rem; font-weight: 700; color: #91B9AB; text-transform: uppercase; letter-spacing: 0.08em; margin-left: 76px;">For People By People</span>
