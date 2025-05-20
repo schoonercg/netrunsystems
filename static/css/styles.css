@@ -419,7 +419,7 @@ input:checked + .slider:before {
 /* Footer */
 .site-footer {
     background-color: #000;
-    color: white;
+    color: black;
     padding: 5rem 0 0;
 }
 
