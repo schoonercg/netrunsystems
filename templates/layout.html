@@ -53,12 +53,13 @@
             text-decoration: none;
             position: relative;
         }
-        a.blue-arrow:after, .dropdown-menu .dropdown-item:after {
-            content: '\2192';
+        .futura-bold {
+            font-family: 'Futura PT', 'Futura', Arial, sans-serif;
+            font-weight: bold;
             color: #1A4CA0;
-            margin-left: 0.3em;
-            font-size: 1em;
-            vertical-align: middle;
+            font-size: 1.1em;
+            margin-left: 0.25em;
+            letter-spacing: 0.01em;
         }
         .footer-contact a, .footer-links a {
             color: #000 !important;
@@ -114,19 +115,19 @@
                         Products
                       </a>
                       <div class="dropdown-menu" aria-labelledby="productsDropdown">
-                        <a class="dropdown-item blue-arrow" href="/product/nexus-core">I<strong>N</strong>TIRKON Core Platform</a>
-                        <a class="dropdown-item blue-arrow" href="/product/cost-optimizer">Cost Optimizer</a>
-                        <a class="dropdown-item blue-arrow" href="/product/compliance-reporter">Compliance Reporter</a>
-                        <a class="dropdown-item blue-arrow" href="/product/governance-dashboard">Governance Dashboard</a>
+                        <a class="dropdown-item" href="/product/nexus-core">I<strong>N</strong>TIRKON Core Platform</a><span class="futura-bold">&gt;</span>
+                        <a class="dropdown-item" href="/product/cost-optimizer">Cost Optimizer</a><span class="futura-bold">&gt;</span>
+                        <a class="dropdown-item" href="/product/compliance-reporter">Compliance Reporter</a><span class="futura-bold">&gt;</span>
+                        <a class="dropdown-item" href="/product/governance-dashboard">Governance Dashboard</a><span class="futura-bold">&gt;</span>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item blue-arrow" href="/early-access">Early Access Signup</a>
+                        <a class="dropdown-item" href="/early-access">Early Access Signup</a><span class="futura-bold">&gt;</span>
                       </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link blue-arrow" href="{{ url_for('blog') }}">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('blog') }}">Blog</a></li>
                     <li class="nav-item">
-                        <a class="nav-link blue-arrow" href="{{ url_for('contact') }}">Contact</a>
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link blue-arrow" href="{{ url_for('research_projects') }}">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('research_projects') }}">Research</a></li>
                   </ul>
                 </div>
             </div>
