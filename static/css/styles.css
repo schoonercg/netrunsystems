@@ -1470,3 +1470,7 @@ img, .img-fluid {
         max-width: 100%;
     }
 }
+
+.site-footer, .footer-info, .footer-links, .footer-newsletter, .footer-contact, .footer-bottom, .footer-bottom .container {
+    background-color: #000 !important;
+}
