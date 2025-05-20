@@ -12,23 +12,98 @@
     <link href="https://fonts.cdnfonts.com/css/futura-pt" rel="stylesheet">
     <style>
         .navbar-brand {
-            background: #000 !important;
-            padding: 0.5em 1em;
-            border-radius: 6px;
+            background: none !important;
+            padding: 0;
+            border-radius: 0;
+        }
+        .responsive-banner {
+            width: 60vw;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        @media (max-width: 991px) {
+            .responsive-banner {
+                width: 90vw;
+            }
+        }
+        .nt-blue {
+            color: #1A4CA0 !important;
+        }
+        .section-title, h1, h2, h3, h4, h5, h6 {
+            color: #1A4CA0 !important;
+            letter-spacing: 0.01em;
+            word-spacing: 0.1em;
+        }
+        .navbar-nav .nav-link, .dropdown-menu .dropdown-item {
+            letter-spacing: 0.01em;
+            word-spacing: 0.1em;
+        }
+        .footer-info, .footer-links, .footer-newsletter {
+            background: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        .footer-newsletter {
+            padding: 0;
+        }
+        a, .dropdown-menu .dropdown-item {
+            color: #000 !important;
+            text-decoration: none;
+            position: relative;
+        }
+        a.blue-arrow:after, .dropdown-menu .dropdown-item:after {
+            content: '\2192';
+            color: #1A4CA0;
+            margin-left: 0.3em;
+            font-size: 1em;
+            vertical-align: middle;
+        }
+        .footer-contact a, .footer-links a {
+            color: #000 !important;
+        }
+        .footer-contact a:after, .footer-links a:after {
+            content: '\2192';
+            color: #1A4CA0;
+            margin-left: 0.3em;
+            font-size: 1em;
+            vertical-align: middle;
+        }
+        .footer-info, .footer-links, .footer-newsletter {
+            background: none !important;
+            box-shadow: none !important;
+        }
+        .footer-newsletter form {
+            background: none !important;
+        }
+        .footer-newsletter input, .footer-newsletter button {
+            background: #fff;
+        }
+        .footer-bottom {
+            background: none !important;
+        }
+        .navbar {
+            border-bottom: none !important;
+        }
+        .dropdown-menu {
+            margin-top: 0;
+        }
+        .tight-header {
+            letter-spacing: 0.01em;
+            word-spacing: 0.1em;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:#000 !important;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border:none; background:transparent; outline:none;">
-                <img src="{{ url_for('static', filename='images/psd_layers/layer_5_- - -.png') }}" alt="Menu" style="width:32px; height:32px;">
-            </button>
-            <div class="container" style="background:#000;">
-                <div class="navbar-brand d-flex flex-row align-items-start justify-content-between" style="background:#000; gap: 0; width:100%; position:relative;">
-                    <img src="{{ url_for('static', filename='images/NS_BANNER_01_FLAT_2nd.png') }}" alt="Netrun Systems Banner" style="height:84px; width:auto; max-width:100%; object-fit:contain;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:#000 !important; border-bottom:none;">
+            <div class="container" style="background:none;">
+                <div class="navbar-brand d-flex flex-row align-items-start justify-content-between" style="background:none; gap: 0; width:100%; position:relative;">
+                    <img src="{{ url_for('static', filename='images/NS_BANNER_01_FLAT_2nd.png') }}" alt="Netrun Systems Banner" class="responsive-banner">
                 </div>
+                <!-- Dropdown menu extending from logo -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
@@ -37,23 +112,24 @@
                         Products
                       </a>
                       <div class="dropdown-menu" aria-labelledby="productsDropdown">
-                        <a class="dropdown-item" href="/product/nexus-core">I<strong>N</strong>TIRKON Core Platform</a>
-                        <a class="dropdown-item" href="/product/cost-optimizer">Cost Optimizer</a>
-                        <a class="dropdown-item" href="/product/compliance-reporter">Compliance Reporter</a>
-                        <a class="dropdown-item" href="/product/governance-dashboard">Governance Dashboard</a>
+                        <a class="dropdown-item blue-arrow" href="/product/nexus-core">I<strong>N</strong>TIRKON Core Platform</a>
+                        <a class="dropdown-item blue-arrow" href="/product/cost-optimizer">Cost Optimizer</a>
+                        <a class="dropdown-item blue-arrow" href="/product/compliance-reporter">Compliance Reporter</a>
+                        <a class="dropdown-item blue-arrow" href="/product/governance-dashboard">Governance Dashboard</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/early-access">Early Access Signup</a>
+                        <a class="dropdown-item blue-arrow" href="/early-access">Early Access Signup</a>
                       </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('blog') }}">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link blue-arrow" href="{{ url_for('blog') }}">Blog</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                        <a class="nav-link blue-arrow" href="{{ url_for('contact') }}">Contact</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('research_projects') }}">Research</a></li>
+                    <li class="nav-item"><a class="nav-link blue-arrow" href="{{ url_for('research_projects') }}">Research</a></li>
                   </ul>
                 </div>
             </div>
         </nav>
+        <!-- If dropdown cannot extend from logo, add a separate nav bar here -->
     </header>
 
     <!-- Main Content -->
@@ -80,7 +156,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="footer-info">
-                        <h3>Netrun Systems</h3>
+                        <h3 class="nt-blue">Netrun Systems</h3>
                         <p>Innovative cross-tenant governance solutions for Azure consultants and MSPs.</p>
                         <div class="footer-contact">
                             <p><i class="fas fa-map-marker-alt"></i> Ojai, CA</p>
@@ -91,38 +167,38 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="footer-links">
-                        <h4>Products</h4>
+                        <h4 class="nt-blue">Products</h4>
                         <ul>
-                            <li><a href="{{ url_for('product_nexus_core') }}">I<strong>N</strong>TIRKON Core</a></li>
-                            <li><a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a></li>
-                            <li><a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a></li>
-                            <li><a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('product_nexus_core') }}">I<strong>N</strong>TIRKON Core</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="footer-links">
-                        <h4>Company</h4>
+                        <h4 class="nt-blue">Company</h4>
                         <ul>
-                            <li><a href="{{ url_for('index') }}">Home</a></li>
-                            <li><a href="{{ url_for('blog') }}">Blog</a></li>
-                            <li><a href="{{ url_for('early_access') }}">Early Access</a></li>
-                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('index') }}">Home</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('blog') }}">Blog</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('early_access') }}">Early Access</a></li>
+                            <li><a class="blue-arrow" href="{{ url_for('contact') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="footer-newsletter bg-brand">
-                        <h4>Stay Updated</h4>
+                    <div class="footer-newsletter">
+                        <h4 class="nt-blue">Stay Updated</h4>
                         <p>Subscribe to our newsletter for the latest updates and insights.</p>
                         <form action="#" method="post">
                             <input type="email" name="email" placeholder="Your Email">
                             <button type="submit" class="btn btn-brand">Subscribe</button>
                         </form>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a class="blue-arrow" href="#"><i class="fab fa-linkedin"></i></a>
+                            <a class="blue-arrow" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="blue-arrow" href="#"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
@@ -134,8 +210,8 @@
                     &copy; {{ now.year }} <strong>Netrun Systems</strong>. All Rights Reserved.
                 </div>
                 <div class="footer-legal">
-                    <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
-                    <a href="{{ url_for('terms_of_service') }}">Terms of Service</a>
+                    <a class="blue-arrow" href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
+                    <a class="blue-arrow" href="{{ url_for('terms_of_service') }}">Terms of Service</a>
                 </div>
             </div>
         </div>
