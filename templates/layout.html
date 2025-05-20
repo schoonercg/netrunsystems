@@ -22,9 +22,12 @@
     <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:#000 !important;">
-            <div class="container" style="background:#000; margin-left:25px;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border:none; background:transparent; outline:none;">
+                <img src="{{ url_for('static', filename='images/psd_layers/layer_5_- - -.png') }}" alt="Menu" style="width:32px; height:32px;">
+            </button>
+            <div class="container" style="background:#000;">
                 <div class="navbar-brand d-flex flex-row align-items-start justify-content-between" style="background:#000; gap: 0; width:100%; position:relative;">
-                    <img src="{{ url_for('static', filename='images/NS_BANNER_01_FLAT.png') }}" alt="Netrun Systems Banner" style="height:84px; width:auto; max-width:100%; object-fit:contain;">
+                    <img src="{{ url_for('static', filename='images/NS_BANNER_01_FLAT_2nd.png') }}" alt="Netrun Systems Banner" style="height:84px; width:auto; max-width:100%; object-fit:contain;">
                 </div>
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav ml-auto">
@@ -43,7 +46,6 @@
                       </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('blog') }}">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('early_access') }}">Early Access</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
                     </li>
