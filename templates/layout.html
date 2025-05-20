@@ -28,17 +28,17 @@
                 width: 90vw;
             }
         }
-        .nt-blue {
+        .nt-blue, .section-title, h1, h2, h3, h4, h5, h6 {
             color: #1A4CA0 !important;
-        }
-        .section-title, h1, h2, h3, h4, h5, h6 {
-            color: #1A4CA0 !important;
-            letter-spacing: 0.01em;
-            word-spacing: 0.1em;
         }
         .navbar-nav .nav-link, .dropdown-menu .dropdown-item {
+            color: #1A4CA0 !important;
+            font-weight: bold;
             letter-spacing: 0.01em;
             word-spacing: 0.1em;
+        }
+        .navbar-nav .nav-link.blue-arrow:after, .dropdown-menu .dropdown-item.blue-arrow:after {
+            color: #1A4CA0;
         }
         .footer-info, .footer-links, .footer-newsletter {
             background: none !important;
@@ -82,6 +82,8 @@
         }
         .footer-bottom {
             background: none !important;
+            box-shadow: none !important;
+            border: none !important;
         }
         .navbar {
             border-bottom: none !important;
