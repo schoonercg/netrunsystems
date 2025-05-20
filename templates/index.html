@@ -46,40 +46,30 @@
     </div>
 </section>
 
-<!-- Solutions Section -->
-<section id="solutions" class="solutions">
+<!-- Add a summary products section below the hero section -->
+<section id="products-summary" class="products-summary">
     <div class="container">
-        <div class="section-title">
-            <h2>Our Solutions</h2>
-        </div>
-        <div class="solutions-grid">
-            <div class="solution-card animate-on-scroll">
-                <div class="solution-content">
-                    <h3>I<strong>N</strong>TIRKON Core Platform</h3>
-                    <p>Our flagship cross-tenant governance platform with five distinct permission models, enhanced security controls, and a unified management dashboard.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
+        <div class="section-title nt-blue"><h2>Our Products</h2></div>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <h4 class="nt-blue">I<strong>N</strong>TIRKON Core Platform</h4>
+                <p>Unified cross-tenant Azure governance for consultants and MSPs.</p>
+                <a class="blue-arrow" href="{{ url_for('product_nexus_core') }}">Learn more</a>
             </div>
-            <div class="solution-card animate-on-scroll">
-                <div class="solution-content">
-                    <h3>Cost Optimizer</h3>
-                    <p>AI-driven cost management across all client tenants, identifying savings opportunities averaging 21% of cloud spend.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <h4 class="nt-blue">Cost Optimizer</h4>
+                <p>AI-driven cost management and optimization across all client tenants.</p>
+                <a class="blue-arrow" href="{{ url_for('product_cost_optimizer') }}">Learn more</a>
             </div>
-            <div class="solution-card animate-on-scroll">
-                <div class="solution-content">
-                    <h3>Compliance Reporter</h3>
-                    <p>Automated compliance assessments across 40+ frameworks with real-time scoring, gap analysis, and audit-ready reporting.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <h4 class="nt-blue">Compliance Reporter</h4>
+                <p>Automated compliance assessments and reporting for regulatory standards.</p>
+                <a class="blue-arrow" href="{{ url_for('product_compliance_reporter') }}">Learn more</a>
             </div>
-            <div class="solution-card animate-on-scroll">
-                <div class="solution-content">
-                    <h3>Governance Dashboard</h3>
-                    <p>Comprehensive controls and visibility with policy enforcement across multiple tenants and customizable governance reporting.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <h4 class="nt-blue">Governance Dashboard</h4>
+                <p>Comprehensive controls and visibility with policy enforcement and reporting.</p>
+                <a class="blue-arrow" href="{{ url_for('product_governance_dashboard') }}">Learn more</a>
             </div>
         </div>
     </div>
