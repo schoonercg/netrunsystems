@@ -39,9 +39,10 @@ def index():
     now = datetime.datetime.now()
     return render_template('index.html', now=now)
 
-@app.route('/product/nexus-core')
+@app.route('/product/nexus-core')  # INTITKON (I**N**TITKON) Core Platform
 def product_nexus_core():
     now = datetime.datetime.now()
+    # Render INTITKON (I**N**TITKON) Core Platform page
     return render_template('product_nexus_core.html', now=now)
 
 @app.route('/product/cost-optimizer')
