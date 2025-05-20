@@ -1471,6 +1471,6 @@ img, .img-fluid {
     }
 }
 
-.site-footer, .footer-info, .footer-links, .footer-newsletter, .footer-contact, .footer-bottom, .footer-bottom .container {
+.site-footer, .footer-info, .footer-links, .footer-newsletter, .footer-contact, .footer-bottom, .footer-bottom .container, .row {
     background-color: #000 !important;
 }
