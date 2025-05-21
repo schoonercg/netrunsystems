@@ -14,7 +14,7 @@
         <nav>
             <div class="logo">
                 <a href="{{ url_for('index') }}">
-                    <img src="{{ url_for('static', filename='images/netrun_logo_banner.png') }}" alt="Netrun Systems - Technology Solutions for People by People" style="max-height: 60px; width: auto;">
+                    <img src="{{ url_for('static', filename='images/netrun_logo_banner.png') }}" alt="Netrun Systems - Technology Solutions for People by People" style="max-height: 60px; width: auto;" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/netrun_logo_banner.svg') }}'">
                 </a>
             </div>
             <ul class="nav-links">
