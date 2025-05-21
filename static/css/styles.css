@@ -883,8 +883,9 @@ footer {
 .contact-info p,
 .contact-info h2,
 .contact-info h3,
-.contact-method .details p {
-  color: #000;
+.contact-method .details p,
+.contact-method .details h3 {
+  color: var(--text-color);
 }
 
 .contact-info p {
