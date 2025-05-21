@@ -880,6 +880,13 @@ footer {
   color: var(--primary-color);
 }
 
+.contact-info p,
+.contact-info h2,
+.contact-info h3,
+.contact-method .details p {
+  color: #000;
+}
+
 .contact-info p {
   margin-bottom: 2rem;
 }
