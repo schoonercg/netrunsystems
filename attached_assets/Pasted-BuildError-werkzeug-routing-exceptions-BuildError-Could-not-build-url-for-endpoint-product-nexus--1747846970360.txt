@@ -1,0 +1,59 @@
+BuildError
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'product_nexus_core'. Did you mean 'product_intirkon' instead?
+
+Traceback (most recent call last)
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 2213, in __call__
+return self.wsgi_app(environ, start_response)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 2193, in wsgi_app
+response = self.handle_exception(e)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+response = self.full_dispatch_request()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+rv = self.handle_user_exception(e)
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+rv = self.dispatch_request()
+     ^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/app.py", line 40, in index
+return render_template('index.html', now=now)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/templating.py", line 151, in render_template
+return _render(app, template, context)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/templating.py", line 132, in _render
+rv = template.render(context)
+     ^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
+self.environment.handle_exception()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
+raise rewrite_traceback_stack(source=source)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/templates/index.html", line 2, in top-level template code
+{% extends "base.html" %}
+File "/home/runner/workspace/templates/base.html", line 72, in top-level template code
+<a href="{{ url_for('product_nexus_core') }}">Nexus Core</a>
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 1697, in url_for
+return self.handle_url_build_error(error, endpoint, values)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/flask/app.py", line 1686, in url_for
+rv = url_adapter.build(  # type: ignore[union-attr]
+     
+File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/werkzeug/routing/map.py", line 950, in build
+raise BuildError(endpoint, values, method, self)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'product_nexus_core'. Did you mean 'product_intirkon' instead?
+The debugger caught an exception in your WSGI application. You can now look at the traceback which led to the error.
+To switch between the interactive traceback and the plaintext one, you can click on the "Traceback" headline. From the text traceback you can also create a paste of it. For code execution mouse-over the frame you want to debug and click on the console icon on the right side.
+
+You can execute arbitrary Python code in the stack frames and there are some extra helpers available for introspection:
+
+dump() shows all variables in the frame
+dump(obj) dumps all that's known about the object
+Brought to you by DON'T PANIC, your friendly Werkzeug powered traceback interpreter.
