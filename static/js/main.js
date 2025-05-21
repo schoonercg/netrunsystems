@@ -2,14 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile navigation menu toggle
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
-    const overlay = document.querySelector('.overlay');
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
     const mobileClose = document.querySelector('.mobile-close');
 
-    if (hamburger && mobileMenu && overlay) {
-        hamburger.addEventListener('click', function() {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
         function closeMenu() {
@@ -20,6 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         mobileClose.addEventListener('click', closeMenu);
         overlay.addEventListener('click', closeMenu);
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                closeMenu();
+            }
+        });
     }
 
     // Auto-hide flash messages after 5 seconds
