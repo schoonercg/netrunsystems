@@ -8,10 +8,19 @@ channel = "stable-24_05"
 run = ["sh", "-c", "Run"]
 
 [workflows]
-runButton = "Run"
+runButton = "Start Website"
 
 [[workflows.workflow]]
 name = "Run"
+author = 42963897
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python app.py"
+
+[[workflows.workflow]]
+name = "Start Website"
 author = 42963897
 mode = "sequential"
 
