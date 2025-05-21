@@ -1,0 +1,111 @@
+
+{% extends "base.html" %}
+
+{% block title %}Consulting Services - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Consulting Services</h1>
+        <p>Expert guidance in AI, automation, and cloud solutions</p>
+    </div>
+</section>
+
+<section class="services-overview">
+    <div class="container">
+        <div class="services-grid">
+            <div class="service-category">
+                <h2>AI & Machine Learning</h2>
+                <div class="service-list">
+                    <div class="service-item">
+                        <h3>AI Readiness Assessment</h3>
+                        <p>Comprehensive evaluation of your organization's data, workflows, and culture for AI adoption.</p>
+                        <div class="service-details">
+                            <span class="timeline">4 weeks</span>
+                            <span class="price">From $8,000</span>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <h3>GPT-Powered Agents</h3>
+                        <p>Custom LLM agents designed for your specific business tasks and workflows.</p>
+                        <div class="service-details">
+                            <span class="timeline">8 weeks</span>
+                            <span class="price">From $15,000</span>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <h3>RAG/Knowledge-Base Systems</h3>
+                        <p>Implementation of retrieval-augmented pipelines for enhanced information access.</p>
+                        <div class="service-details">
+                            <span class="timeline">6 weeks</span>
+                            <span class="price">From $12,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h2>Cloud & Infrastructure</h2>
+                <div class="service-list">
+                    <div class="service-item">
+                        <h3>Azure Solution Accelerators</h3>
+                        <p>Turn-key Azure templates and solutions for rapid deployment.</p>
+                        <div class="service-details">
+                            <span class="timeline">5 weeks</span>
+                            <span class="price">From $9,000</span>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <h3>CI/CD & MLOps Pipelines</h3>
+                        <p>Automated model lifecycle management and deployment pipelines.</p>
+                        <div class="service-details">
+                            <span class="timeline">6 weeks</span>
+                            <span class="price">From $11,000</span>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <h3>Edge-AI Deployment</h3>
+                        <p>On-premises deployment of inference models for edge computing.</p>
+                        <div class="service-details">
+                            <span class="timeline">5 weeks</span>
+                            <span class="price">From $12,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h2>Security & Compliance</h2>
+                <div class="service-list">
+                    <div class="service-item">
+                        <h3>AI-Enhanced Threat Hunting</h3>
+                        <p>Advanced anomaly detection in SIEM logs with AI-powered analysis.</p>
+                        <div class="service-details">
+                            <span class="timeline">5 weeks</span>
+                            <span class="price">From $13,000</span>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <h3>Secure AI Maturity Reviews</h3>
+                        <p>Comprehensive audits of ML lifecycles and security practices.</p>
+                        <div class="service-details">
+                            <span class="timeline">4 weeks</span>
+                            <span class="price">From $8,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Get in touch to discuss your specific needs and how we can help.</p>
+            <a href="{{ url_for('contact') }}" class="btn primary">Contact Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
