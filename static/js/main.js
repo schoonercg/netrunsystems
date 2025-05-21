@@ -1,28 +1,27 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile navigation menu toggle
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
     const overlay = document.querySelector('.overlay');
     const mobileClose = document.querySelector('.mobile-close');
-    
+
     if (hamburger && mobileMenu && overlay) {
         hamburger.addEventListener('click', function() {
             mobileMenu.classList.add('active');
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
-        
+
         function closeMenu() {
             mobileMenu.classList.remove('active');
             overlay.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
         mobileClose.addEventListener('click', closeMenu);
         overlay.addEventListener('click', closeMenu);
     }
-    
+
     // Auto-hide flash messages after 5 seconds
     const flashMessages = document.querySelectorAll('.flash');
     if (flashMessages.length > 0) {
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 5000);
     }
-    
+
     // Dropdown functionality for mobile
     const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
     mobileLinks.forEach(link => {

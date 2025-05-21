@@ -101,7 +101,7 @@ nav {
 
 .header-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -118,11 +118,14 @@ nav {
 .nav-links {
   display: flex;
   align-items: center;
+  text-align: left;
 }
 
 .left-menu {
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .hamburger {
@@ -130,7 +133,8 @@ nav {
 }
 
 .nav-links li {
-  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-left: 0;
 }
 
 .nav-links a {

@@ -13,40 +13,40 @@
     <header>
         <nav>
             <div class="header-top">
+                <div class="logo">
+                    <a href="{{ url_for('index') }}">
+                        <img src="{{ url_for('static', filename='images/netrun_logo_banner.png') }}" alt="Netrun Systems - Technology Solutions for People by People" style="max-height: 60px; width: auto;" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/netrun_logo_banner.svg') }}'">
+                    </a>
+                </div>
+                <div class="top-buttons">
+                    <a href="{{ url_for('early_access') }}" class="btn-early-access">Create Account</a>
+                </div>
+            </div>
+            <div class="header-bottom">
                 <div class="left-menu">
                     <div class="hamburger">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
-                    <div class="logo">
-                        <a href="{{ url_for('index') }}">
-                            <img src="{{ url_for('static', filename='images/netrun_logo_banner.png') }}" alt="Netrun Systems - Technology Solutions for People by People" style="max-height: 60px; width: auto;" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/netrun_logo_banner.svg') }}'">
-                        </a>
-                    </div>
+                    <ul class="nav-links">
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Products</a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('product_nexus_core') }}">Nexus Core</a>
+                                <a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a>
+                                <a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a>
+                                <a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a>
+                                <a href="{{ url_for('product_small_business_optimization_suite') }}">Small Business Suite</a>
+                            </div>
+                        </li>
+                        <li><a href="{{ url_for('consulting_services') }}">Consulting</a></li>
+                        <li><a href="{{ url_for('research_projects') }}">Research</a></li>
+                        <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
                 </div>
-                <div class="top-buttons">
-                    <a href="{{ url_for('early_access') }}" class="btn-early-access">Create Account For Free</a>
-                </div>
-            </div>
-            <div class="header-bottom">
-                <ul class="nav-links">
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#">Products</a>
-                        <div class="dropdown-content">
-                            <a href="{{ url_for('product_nexus_core') }}">Nexus Core</a>
-                            <a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a>
-                            <a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a>
-                            <a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a>
-                            <a href="{{ url_for('product_small_business_optimization_suite') }}">Small Business Suite</a>
-                        </div>
-                    </li>
-                    <li><a href="{{ url_for('consulting_services') }}">Consulting</a></li>
-                    <li><a href="{{ url_for('research_projects') }}">Research</a></li>
-                    <li><a href="{{ url_for('blog') }}">Blog</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                </ul>
             </div>
         </nav>
     </header>
