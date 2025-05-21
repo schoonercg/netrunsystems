@@ -116,6 +116,22 @@ nav {
   background-color: #000; /* Ensure proper background for the logo */
 }
 
+.logo img:not([src]), .logo img[src=""], .logo img[src$="undefined"] {
+  visibility: hidden;
+}
+
+.logo a:after {
+  content: "NETRUN SYSTEMS";
+  color: #4CD0B0;
+  font-weight: bold;
+  font-size: 24px;
+  display: none;
+}
+
+.logo img:not([src]) + a:after, .logo img[src=""] + a:after, .logo img[src$="undefined"] + a:after {
+  display: inline-block;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
