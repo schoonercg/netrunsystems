@@ -12,69 +12,36 @@
 <body>
     <header>
         <nav>
-            <div class="header-top">
-                <div class="logo">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/netrun_logo_banner.png') }}" alt="Netrun Systems - Technology Solutions for People by People" style="max-height: 60px; width: auto;" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/netrun_logo_banner.svg') }}'">
-                    </a>
-                </div>
-                <div class="top-buttons">
-                    <a href="{{ url_for('early_access') }}" class="btn-early-access">Create Account</a>
-                </div>
+            <div class="logo">
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='images/netrun_logo_banner.png') }}" alt="Netrun Systems - Technology Solutions for People by People" style="max-height: 60px; width: auto;">
+                </a>
             </div>
-            <div class="header-bottom">
-                <div class="left-menu">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Products</a>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('product_nexus_core') }}">Nexus Core</a>
+                        <a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a>
+                        <a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a>
+                        <a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a>
+                        <a href="{{ url_for('product_small_business_optimization_suite') }}">Small Business Suite</a>
                     </div>
-                    <ul class="nav-links">
-                        <li><a href="{{ url_for('index') }}">Home</a></li>
-                        <li class="dropdown">
-                            <a href="#">Products</a>
-                            <div class="dropdown-content">
-                                <a href="{{ url_for('product_nexus_core') }}">Nexus Core</a>
-                                <a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a>
-                                <a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a>
-                                <a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a>
-                                <a href="{{ url_for('product_small_business_optimization_suite') }}">Small Business Suite</a>
-                            </div>
-                        </li>
-                        <li><a href="{{ url_for('consulting_services') }}">Consulting</a></li>
-                        <li><a href="{{ url_for('research_projects') }}">Research</a></li>
-                        <li><a href="{{ url_for('blog') }}">Blog</a></li>
-                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                    </ul>
-                </div>
+                </li>
+                <li><a href="{{ url_for('consulting_services') }}">Consulting</a></li>
+                <li><a href="{{ url_for('research_projects') }}">Research</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('early_access') }}" class="btn-early-access">Early Access</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-header">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Netrun Systems Logo" style="height: 40px; width: auto;">
-            </div>
-            <div class="mobile-close">×</div>
-        </div>
-        <div class="mobile-nav-links">
-            <a href="{{ url_for('early_access') }}">Create Account For Free</a>
-            <a href="#">Customer Login</a>
-            <a href="#">Explore Our Solutions</a>
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('product_nexus_core') }}">Nexus Core</a>
-            <a href="{{ url_for('product_cost_optimizer') }}">Cost Optimizer</a>
-            <a href="{{ url_for('product_compliance_reporter') }}">Compliance Reporter</a>
-            <a href="{{ url_for('product_governance_dashboard') }}">Governance Dashboard</a>
-            <a href="{{ url_for('consulting_services') }}">Consulting</a>
-            <a href="{{ url_for('research_projects') }}">Research</a>
-            <a href="{{ url_for('blog') }}">Blog</a>
-            <a href="{{ url_for('contact') }}">Contact</a>
-        </div>
-    </div>
-    <div class="overlay"></div>
 
     <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -123,25 +90,6 @@
                     <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
                     <a href="{{ url_for('terms_of_service') }}">Terms of Service</a>
                 </div>
-            </div>
-            <div class="footer-contact-form">
-                <h3>Quick Contact</h3>
-                <form method="POST" action="{{ url_for('contact') }}">
-                    {{ csrf_token }}
-                    <div class="footer-form-group">
-                        <input type="text" id="footer-name" name="name" placeholder="Name" required>
-                    </div>
-                    <div class="footer-form-group">
-                        <input type="email" id="footer-email" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="footer-form-group">
-                        <input type="text" id="footer-subject" name="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="footer-form-group">
-                        <textarea id="footer-message" name="message" placeholder="Message" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn primary footer-btn">Send</button>
-                </form>
             </div>
         </div>
     </footer>
