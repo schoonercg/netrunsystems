@@ -59,7 +59,7 @@ def product_intirfix():
     now = datetime.datetime.now()
     return render_template('product_intirfix.html', now=now)
 
-@app.route('/product/replikast')
+@app.route('/product/intirkast')
 def product_intirkast():
     now = datetime.datetime.now()
     return render_template('product_intirkast.html', now=now)
@@ -309,11 +309,6 @@ def consulting_services():
 def product_small_business_optimization_suite():
     now = datetime.datetime.now()
     return render_template('product_small_business_optimization_suite.html', now=now)
-
-@app.route('/product/intirkon')
-def product_intirkon():
-    now = datetime.datetime.now()
-    return render_template('product_intirkon.html', now=now)
 
 @app.route('/product/intirfix')
 def product_intirfix():
