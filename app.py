@@ -39,10 +39,10 @@ def index():
     now = datetime.datetime.now()
     return render_template('index.html', now=now)
 
-@app.route('/product/nexus-core')
-def product_nexus_core():
+@app.route('/product/intirkon')
+def product_intirkon():
     now = datetime.datetime.now()
-    return render_template('product_nexus_core.html', now=now)
+    return render_template('product_intirkon.html', now=now)
 
 @app.route('/product/cost-optimizer')
 def product_cost_optimizer():
@@ -54,10 +54,15 @@ def product_compliance_reporter():
     now = datetime.datetime.now()
     return render_template('product_compliance_reporter.html', now=now)
 
-@app.route('/product/governance-dashboard')
-def product_governance_dashboard():
+@app.route('/product/intirfix')
+def product_intirfix():
     now = datetime.datetime.now()
-    return render_template('product_governance_dashboard.html', now=now)
+    return render_template('product_intirfix.html', now=now)
+
+@app.route('/product/replikast')
+def product_intirkast():
+    now = datetime.datetime.now()
+    return render_template('product_intirkast.html', now=now)
 
 @app.route('/early-access', methods=['GET', 'POST'])
 def early_access():
