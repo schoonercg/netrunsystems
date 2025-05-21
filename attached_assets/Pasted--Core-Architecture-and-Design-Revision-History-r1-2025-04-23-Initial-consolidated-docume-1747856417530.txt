@@ -1,0 +1,250 @@
+ Core Architecture and Design
+
+## Revision History
+- r1 (2025-04-23): Initial consolidated document
+  - Merged from: architecture.md - Original architecture overview
+  - Merged from: updated_architecture_design.md - Updated design details
+
+## Architecture Overview
+
+The Netrun Systems Nexus platform leverages Azure Lighthouse to provide secure cross-tenant access management for Azure resources. The architecture is designed to enable consultants and service providers to access client resources without credential sharing or guest account creation, while maintaining strict security controls and visibility.
+
+### Core Components
+
+1. **Azure Lighthouse Integration Layer**
+   - Utilizes Azure Resource Manager (ARM) templates for delegation
+   - Implements role-based access control (RBAC) through Azure built-in roles
+   - Supports both subscription-level and resource group-level delegation
+   - Enables eligible authorizations for just-in-time privileged access
+
+2. **Permission Management System**
+   - Five distinct permission plans with different access levels
+   - Role definition packages for each plan
+   - Custom role assignments for specific scenarios
+   - Permission validation and verification mechanisms
+
+3. **Security and Compliance Framework**
+   - Multi-factor authentication enforcement
+   - Conditional access policy integration
+   - Comprehensive audit logging
+   - Compliance monitoring and reporting
+
+4. **Management Portal**
+   - Cross-tenant resource visibility
+   - Delegation management interface
+   - User and role assignment dashboard
+   - Activity monitoring and reporting
+
+5. **Add-on Integration Framework**
+   - Standardized APIs for add-on connectivity
+   - Shared authentication and authorization
+   - Cross-tenant data access controls
+   - Extensible plugin architecture
+
+## Detailed Design
+
+### Azure Lighthouse Integration
+
+The Azure Lighthouse integration is implemented through ARM templates that define:
+
+1. **Service Provider Offers**
+   - Managed Service Provider (MSP) identification
+   - Available authorization scopes
+   - Role definitions and assignments
+   - Delegation parameters
+
+2. **Customer Acceptance Process**
+   - Streamlined onboarding workflow
+   - Clear permission visibility
+   - Granular access control options
+   - Delegation approval mechanisms
+
+3. **Cross-Tenant Access Model**
+   - Service provider tenant authentication
+   - Customer tenant resource authorization
+   - Secure cross-tenant communication
+   - Isolated tenant boundaries
+
+4. **Eligible Authorization Framework**
+   - Time-limited privileged access
+   - Just-in-time activation
+   - Approval workflows
+   - Automatic expiration
+
+### Permission Plans
+
+Each permission plan is implemented as a set of ARM templates and role definitions:
+
+1. **Read-Only Access Plan**
+   - Reader role assignments
+   - Monitoring permissions
+   - Limited scope access
+   - Audit logging capabilities
+
+2. **Standard Management Plan**
+   - Contributor role for specific resource types
+   - Management permissions for day-to-day operations
+   - Resource configuration capabilities
+   - Operational monitoring and alerting
+
+3. **Advanced Management Plan**
+   - Contributor role across multiple resource types
+   - Advanced management capabilities
+   - Resource deployment permissions
+   - Performance optimization tools
+
+4. **Security Management Plan**
+   - Security Admin role assignments
+   - Vulnerability assessment permissions
+   - Security policy management
+   - Threat detection and response capabilities
+
+5. **Premium Just-in-Time Access Plan**
+   - Owner role eligible authorizations
+   - Time-limited privileged access
+   - Multi-level approval workflow
+   - Enhanced audit logging
+
+### Security Implementation
+
+The security framework includes:
+
+1. **Authentication Controls**
+   - Multi-factor authentication enforcement
+   - Conditional access policy integration
+   - Identity protection features
+   - Session management and timeouts
+
+2. **Authorization Mechanisms**
+   - Role-based access control
+   - Just-in-time privileged access
+   - Least privilege principle enforcement
+   - Separation of duties
+
+3. **Audit and Monitoring**
+   - Comprehensive activity logging
+   - Real-time alert generation
+   - Suspicious activity detection
+   - Compliance reporting
+
+4. **Data Protection**
+   - Data isolation between tenants
+   - Encryption for data in transit and at rest
+   - Access controls for sensitive information
+   - Data retention and purging policies
+
+### Management Portal Architecture
+
+The management portal is built on a modern web architecture:
+
+1. **Frontend Layer**
+   - React-based single-page application
+   - Responsive design for multiple devices
+   - Accessibility compliance
+   - Intuitive user interface
+
+2. **API Layer**
+   - RESTful API design
+   - Azure API Management integration
+   - Authentication and authorization middleware
+   - Rate limiting and throttling
+
+3. **Backend Services**
+   - Azure Functions for serverless operations
+   - Azure App Service for web applications
+   - Azure Logic Apps for workflows
+   - Azure Service Bus for messaging
+
+4. **Data Storage**
+   - Azure Cosmos DB for operational data
+   - Azure SQL Database for relational data
+   - Azure Storage for logs and artifacts
+   - Azure Cache for Redis for performance
+
+### Add-on Integration Framework
+
+The add-on integration framework provides:
+
+1. **API Gateway**
+   - Centralized access point for add-ons
+   - Authentication and authorization
+   - Request routing and load balancing
+   - API versioning and lifecycle management
+
+2. **Event System**
+   - Event publication and subscription
+   - Real-time notifications
+   - Asynchronous processing
+   - Event archiving and replay
+
+3. **Data Access Layer**
+   - Cross-tenant data access controls
+   - Data aggregation and transformation
+   - Query optimization
+   - Caching mechanisms
+
+4. **Extension Points**
+   - UI extension framework
+   - Workflow integration hooks
+   - Custom report generators
+   - Policy extension mechanisms
+
+## Azure Arc Integration
+
+The architecture has been extended to support Azure Arc-enabled resources:
+
+1. **Arc Resource Management**
+   - Arc-enabled server integration
+   - VMware environment support
+   - Kubernetes cluster management
+   - SQL Server instance monitoring
+
+2. **Hybrid Visibility**
+   - Unified resource view across environments
+   - Consistent tagging and organization
+   - Cross-environment search capabilities
+   - Hybrid resource grouping
+
+3. **Policy Enforcement**
+   - Consistent policy application
+   - Configuration drift detection
+   - Compliance assessment
+   - Remediation automation
+
+4. **Monitoring and Reporting**
+   - Unified monitoring across environments
+   - Consolidated alerting
+   - Cross-environment reporting
+   - Hybrid environment dashboards
+
+## Deployment Architecture
+
+The deployment architecture follows Azure best practices:
+
+1. **Infrastructure as Code**
+   - ARM templates for all resources
+   - Azure DevOps CI/CD pipelines
+   - Automated testing and validation
+   - Environment promotion workflow
+
+2. **Multi-Environment Support**
+   - Development environment
+   - Testing environment
+   - Staging environment
+   - Production environment
+
+3. **Scalability Design**
+   - Horizontal scaling for web tiers
+   - Vertical scaling for database tiers
+   - Auto-scaling based on load
+   - Geographic distribution
+
+4. **Disaster Recovery**
+   - Multi-region deployment
+   - Automated backups
+   - Failover mechanisms
+   - Recovery testing procedures
+
+## Conclusion
+
+The Netrun Systems Nexus architecture provides a secure, scalable, and extensible platform for cross-tenant Azure resource management. By leveraging Azure Lighthouse and implementing a comprehensive security framework, the platform enables service providers to efficiently manage customer resources while maintaining strict security controls and visibility. The modular design with add-on support allows for continuous expansion of capabilities to meet evolving customer needs.
