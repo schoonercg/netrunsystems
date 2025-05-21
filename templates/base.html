@@ -73,10 +73,8 @@
 
     <footer>
         <div class="footer-container">
-            <div class="footer-copyright">
-                <p>&copy; {{ now.year }} Netrun Systems. Based in Ojai, California. All rights reserved.</p>
-            </div>
-            <div class="footer-links">
+            <div class="footer-main">
+                <div class="footer-links">
                 <div class="footer-column">
                     <h3>Products</h3>
                     <a href="{{ url_for('product_intirkon') }}">Intirkon</a>
@@ -103,6 +101,9 @@
                     <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
                     <a href="{{ url_for('terms_of_service') }}">Terms of Service</a>
                 </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; {{ now.year }} Netrun Systems. Based in Ojai, California. All rights reserved.</p>
             </div>
         </div>
     </footer>

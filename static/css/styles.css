@@ -585,8 +585,22 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
+}
+
+.footer-main {
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-copyright {
+  text-align: center;
+  color: var(--medium-gray);
+  padding-top: 1rem;
 }
 
 .footer-logo {
