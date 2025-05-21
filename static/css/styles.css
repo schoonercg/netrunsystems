@@ -1318,17 +1318,17 @@ footer {
     gap: 2rem;
 }
 
-.service-item {
-    background: var(--dark-gray);
-    padding: 1.5rem;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
+.service-details {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary-color);
+    font-size: 0.9rem;
 }
 
-.service-item h3 {
-    color: var(--white);
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
+.product-card .service-details {
+    border-top: 1px solid rgba(144, 185, 171, 0.2);
+    margin-top: 1rem;
 }
 
 .service-item p {
