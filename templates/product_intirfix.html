@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Intirfix{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Intirfix</h1>
+        <p>Self-healing infrastructure for Azure deployments</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-intirfix.jpg') }}" alt="Intirfix">
+            </div>
+            <div class="product-description">
+                <h2>Self-Healing Infrastructure for Azure</h2>
+                <p>Intirfix continuously monitors your Azure infrastructure across multiple tenants, automatically detecting and resolving issues before they impact your business. Reduce downtime, minimize manual interventions, and ensure resilient cloud operations.</p>
+                <ul class="feature-list">
+                    <li>Automated anomaly detection and remediation</li>
+                    <li>Predictive maintenance with ML algorithms</li>
+                    <li>Cross-tenant monitoring and healing</li>
+                    <li>Customizable remediation playbooks</li>
+                    <li>Zero-downtime healing operations</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-intirfix.svg') }}" alt="Self-healing Icon">
+                </div>
+                <h3>Automated Remediation</h3>
+                <p>Automatically fix common Azure issues with our library of intelligent remediation actions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Visibility Icon">
+                </div>
+                <h3>Predictive Maintenance</h3>
+                <p>Identify potential issues before they occur using machine learning and historical patterns.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Efficiency Icon">
+                </div>
+                <h3>Customizable Playbooks</h3>
+                <p>Create and customize remediation playbooks for your specific environment requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="Security Icon">
+                </div>
+                <h3>Secure Multi-Tenant Operation</h3>
+                <p>Apply consistent self-healing across multiple client environments without compromising security.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready for a more resilient Azure environment?</h2>
+        <p>Join our Early Access Program to start experiencing self-healing infrastructure.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}

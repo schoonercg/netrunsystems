@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Intirkon{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Intirkon</h1>
+        <p>Advanced automation platform for Azure environments</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-intirkon.jpg') }}" alt="Intirkon">
+            </div>
+            <div class="product-description">
+                <h2>Revolutionize Your Azure Automation</h2>
+                <p>Intirkon is a next-generation automation platform designed specifically for complex Azure environments. It enables IT teams to create sophisticated automation workflows across multiple tenants with a simple drag-and-drop interface.</p>
+                <ul class="feature-list">
+                    <li>Visual workflow builder with Azure-specific actions</li>
+                    <li>Cross-tenant automation capabilities</li>
+                    <li>Intelligent error handling and recovery</li>
+                    <li>AI-powered suggestions for workflow optimization</li>
+                    <li>Comprehensive audit trail and compliance reporting</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-intirkon.svg') }}" alt="Automation Icon">
+                </div>
+                <h3>Visual Workflow Builder</h3>
+                <p>Create complex automation workflows without code using our intuitive visual builder.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="Security Icon">
+                </div>
+                <h3>Cross-Tenant Security</h3>
+                <p>Execute automation securely across multiple tenants with comprehensive permissions control.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Efficiency Icon">
+                </div>
+                <h3>AI-Powered Optimization</h3>
+                <p>Get intelligent suggestions to optimize your workflows for better performance and cost efficiency.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-compliance.svg') }}" alt="Compliance Icon">
+                </div>
+                <h3>Comprehensive Audit Trail</h3>
+                <p>Maintain detailed logs of all automation activities for compliance and troubleshooting.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to automate your Azure environment?</h2>
+        <p>Join our Early Access Program to be among the first to experience Intirkon.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}
