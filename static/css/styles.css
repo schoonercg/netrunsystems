@@ -1,7 +1,7 @@
 /* Global Styles */
 :root {
   --primary-color: #90b9ab;
-  --secondary-color: #002D62;
+  --secondary-color: #000000;
   --accent-color: #00AEEF;
   --text-color: #fff;
   --light-gray: #f4f4f4;
@@ -176,7 +176,7 @@ nav {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 45, 98, 0.8), rgba(0, 45, 98, 0.8)), url('../images/hero-bg.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   padding: 6rem 2rem;
@@ -422,7 +422,7 @@ nav {
 
 /* CTA Section */
 .cta {
-  background: linear-gradient(rgba(0, 102, 204, 0.9), rgba(0, 102, 204, 0.9)), url('../images/cta-bg.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/cta-bg.jpg');
   background-size: cover;
   background-position: center;
   padding: 4rem 2rem;
@@ -448,7 +448,7 @@ nav {
 
 /* Footer */
 footer {
-  background-color: var(--secondary-color);
+  background-color: #000;
   color: var(--white);
   padding: 4rem 2rem 2rem;
 }
@@ -580,7 +580,7 @@ footer {
 
 /* Page Headers */
 .page-header {
-  background: linear-gradient(rgba(0, 45, 98, 0.8), rgba(0, 45, 98, 0.8)), url('../images/page-header-bg.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/page-header-bg.jpg');
   background-size: cover;
   background-position: center;
   padding: 4rem 2rem;
@@ -888,7 +888,7 @@ footer {
 
 /* Customer Portal */
 .portal-header {
-  background: linear-gradient(rgba(0, 45, 98, 0.9), rgba(0, 45, 98, 0.9));
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
   padding: 2rem;
   color: var(--white);
 }
