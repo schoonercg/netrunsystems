@@ -1,0 +1,269 @@
+Netrun Systems � 360� SmallBusiness Optimization Suite
+Product Sheet�|�May�2025�(v?1.2)
+
+1?What We Deliver
+A fourweek sprint that converts scattered data, inconsistent workflows, and gutfeel decisions into a streamlined, profitdriving operating system.
+Phase
+Key Activities
+Tangible Outputs
+Data Harvest & Clean
+Secure POS, ecommerce, banking, scheduling, and HR feeds; normalize to a single dataset.
+Master CSV + SQL backup.
+Insight Analytics
+Margin, channelmix, laborefficiency, rentcoverage, and cashflow modeling.
+�QuickWins� deck + annotated notebooks.
+Process Mapping
+Diagram intake ? fulfillment ? payout ? marketing flows with stakeholder input.
+Swimlane map (PDF).
+Blueprint Design
+Sixmonth Improvement Plan, KPI targets, Team�Points incentive schema tuned to existing tools.
+25page Roadmap PDF + KPI goal sheet.
+Enablement Assets
+SOP manuals, quickstart guides, marketing calendar, live KPI dashboard.
+Whitelabeled PDFs + Google Sheet dashboard.
+Proven Framework � Fieldtested at Poppies?Art?&?Gifts (Ojai, CA) and abstracted for caf�s, salons, clinics�any staffbased SMB.
+
+2?Complete Deliverables
+* Custom Operations Manual (30�50�pp)
+* SixMonth Improvement Plan (milestones & owners)
+* Team�Points Program Guide + signup form template
+* Live KPI Dashboard (Google Sheets + App�Script)
+* 90Day Marketing & Content Calendar (Google�Cal import)
+* POS / Workflow QuickStart Guides (adapted to client stack)
+* Executive OnePager for investors/partners
+* Optional API Roadmap & sample code snippets
+All files delivered in PDF and editable formats, branded with your logo and palette.
+
+3?Timeline at a Glance
+Week
+Milestone
+1
+Kickoff��? Data connections secured��? NDA signed
+2
+Analytics deepdive��? Staff & owner interviews
+3
+Draft manuals + dashboard (client review)
+4
+Final documents��? 2hour virtual training
+56
+(Premium) KPI monitoring & strategy call
+
+4?Investment Options
+Package
+Engagement Fee*
+Included API Integrations
+Subscription (optional)
+Perfect For
+Core
+$4,900
+�
+�
+Sololocation shops needing a oneoff optimization sprint
+Plus
+$4,900 + $1,500/API (min?1)
+Selected endpoints (e.g., POS ? SMS alert)
+$299/mo � KPI monitoring + 1 coaching call
+SMBs ready to automate
+Premium
+$4,900 + $4,500 (up�to�3�APIs)
+Up to 3 scoped endpoints
+$499/mo � KPI monitoring + 2 coaching calls
+Multilocation or growth brands
+Engagement fee covers the fourweek sprint & deliverables. Subscription billed monthly; cancel anytime after 6?months. 10?% discount for nonprofits or multisite clients.
+
+5?Referral Program���Everyone Wins
+Action
+Referrer Gets
+New Client Gets
+Send us a qualified intro and they sign any package by Sept?30?2025
+$500 credit or 5?% cash of their engagement fee
+5?% off their engagement fee
+Credits may be stacked and applied toward subscriptions, future API work, or training sessions.
+
+6?Expected Outcomes
+* 15�25?% profitlift potential via margin fixes and channel tuning.
+* 2� faster onboarding thanks to unified SOPs and cheat sheets.
+* Realtime visibility from an autorefresh KPI dashboard.
+* Higher team engagement powered by the gamified Team�Points system.
+
+7?Tech Ecosystem We Support
+Square���Clover���Shopify���Toast���CashPro & major banks���QuickBooks���Connecteam���Gusto���Slack���Microsoft�365���Google Workspace���Reolink���Zapier / Make �� and any platform with REST, GraphQL, or Webhook capabilities.
+
+Ready to optimize?
+Daniel�Garza � Principal Consultant
+??�daniel@netrunsystems.com
+Book a discovery call ? netrunsystems.com/consult
+
+
+Unlock Your Data. Unleash Your Growth.
+The 360� SmallBusiness Optimization Suite by Netrun Systems
+
+Slide�1�?�Open Strong
+�Imagine adding 15�25?% profit without raising prices.�
+That�s what our fourweek sprint delivered for our pilot client�a community retail shop drowning in spreadsheets.
+Visual to create:
+Fullbleed hero image: happy staff in vibrant boutique + bold headline overlay.
+
+Slide�2�?�Your Pain, Our Remedy
+Common headaches
+1. Sales up, cash down�where�s the leak?
+2. Staff onboarding takes weeks.
+3. Data lives in ten portals and none talk.
+Our fix
+?? Unified KPI dashboard
+?? Profitdraining gaps exposed in days
+?? SOP guides that cut training time in half
+Visual to create:
+Sidebyside before/after graphic of chaotic browser tabs ? single clean dashboard.
+
+Slide�3�?�What We Deliver in 4�Weeks
+Week
+Milestone
+Key Takeaway
+1
+Data Harvest
+All systems connected (POS, bank, HR)
+2
+Insight Analytics
+Quickwins report�dollars on the table
+3
+Draft Playbook
+Ops manual + KPI live sheet
+4
+Launch & Train
+Team ready, dashboard live
+Visual to create:
+Process timeline infographic (4 icons across).
+
+Slide�4�?�Tangible Assets
+* Custom Operations Manual (50�pp PDF)
+* SixMonth Improvement Plan
+* Live GoogleSheets Dashboard
+* �Team Points� Incentive Program
+* 90Day Marketing Calendar
+* QuickStart POS & Workflow Guides
+Visual to create:
+Flatlay mockup of printed manuals + iPad with dashboard.
+
+Slide�5�?�Proof in the Numbers
+Pilot Case (Retail Collective)
+* Net profit margin ? 4.6?pp in 3�months
+* Rent coverage 83?% ? 96?%
+* Staff onboarding time cut 55?%
+Visual to create:
+Bar chart showing before/after metrics.
+
+Slide�6�?�ROI Calculator
+Investment $7.9k (Core)
+Typical annual profit lift $12�18k ? 1.5�2.3� ROI in year�one.
+Visual to create:
+Simple ROI dial/gauge.
+
+Slide�7�?�Packages & Pricing
+Package
+Price
+Perfect for
+Core
+$7,900
+Singlelocation shops
+Plus
+$9,900
+Techforward businesses needing API integration
+Premium
+$12,900
+Owners wanting ongoing KPI coaching
+Visual to create:
+Tiered pricing cards with icons.
+
+Slide�8�?�Why Netrun Systems?
+* 20�yrs dataautomation pedigree
+* Proven playbook�from boutique retail to specialty caf�s
+* Zero disruption: we integrate with your existing tools
+Visual to create:
+Client logos / industry icons row.
+
+Slide�9�?�Call�to�Action
+Ready to turn data into dollars?
+Book a free 20minute discovery call.
+?? daniel@netrunsystems.com
+?? netrunsystems.com/consult
+?? (805)�7980033
+Visual to create:
+Clean contact slide with QR code linking to booking page.
+
+Presenter Notes (hidden)
+* Emphasize speed�4week sprint, not a 6month consultancy.
+* Drop the �Poppies pilot� stat at least twice.
+* Offer live dashboard demo if time permits.
+
+��2025�Netrun�Systems�LLC � All rights reserved.
+
+Slide�7�?�Revised Packages�&�Pricing
+(Supersedes previous pricing slide)
+Package
+Engagement Fee*
+Included API Integrations
+Subscription (optional)
+Ideal For
+Core
+$4,900
+�
+�
+Sololocation shops needing oneoff optimization
+Plus
+$4,900 + $1,500 per API (min.�1)
+Selected endpoints (e.g., POS sale ? SMS)
+$299/mo (KPI monitoring & 1 coaching call)
+SMBs ready to automate
+Premium
+$4,900 + $4,500 (up to 3 APIs)
+All endpoints agreed in scope
+$499/mo (KPI monitoring & 2 coaching calls)
+Growth brands wanting ongoing guidance
+Engagement fee covers the 4week sprint and deliverables. Subscription billed monthly; cancel anytime after 6�months.
+Visual to create:
+Updated tier cards with new prices and �+ subscription� ribbon.
+
+Slide�8�?�Referral�Program
+Share the love ? Earn the rewards
+1. Refer a business (they must list you on signup form).
+2. They sign any package by Sept�30?�25.
+3. You receive a $500 credit or 5?% cash of their engagement fee.
+4. They receive 5?% off their package price.
+Visual to create:
+Handshake illustration + discount badges.
+
+��2025�Netrun�Systems�LLC � All rights reserved.
+
+Revised Investment Options (supersedes �4)
+Package
+Engagement Fee*
+Included API Integrations
+Subscription (optional)
+Ideal For
+Core
+$4,900
+�
+�
+Sololocation shops needing a oneoff optimization sprint
+Plus
+$4,900 + $1,500 per API (min.�1)
+Selected endpoints (e.g., POS sale ? SMS)
+$299/mo (KPI monitoring & 1 coaching call)
+SMBs ready to automate
+Premium
+$4,900 + $4,500 (up to 3 APIs)
+Up to 3 endpoints scoped
+$499/mo (KPI monitoring & 2 coaching calls)
+Growth brands wanting ongoing guidance
+Engagement fee covers the 4week sprint and deliverables. Subscription billed monthly; cancel anytime after 6�months.
+
+Referral Program
+Share the love ? Earn the rewards
+1. Refer a business (they must list you on the signup form).
+2. They sign any package by September�30?2025.
+3. You receive a $500 credit or 5?% cash of their engagement fee.
+4. They receive 5?% off their engagement fee.
+Everyone wins�and our smallbusiness community grows stronger.
+
+
