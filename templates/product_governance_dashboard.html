@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Governance Dashboard{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Governance Dashboard</h1>
+        <p>Central policy management and controls</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-governance.jpg') }}" alt="Governance Dashboard">
+            </div>
+            <div class="product-description">
+                <h2>Centralized Governance Across All Tenants</h2>
+                <p>The Netrun Systems Governance Dashboard provides a central control plane for managing policies, access controls, and security settings across all your managed Azure environments. Implement consistent governance practices and respond quickly to policy violations.</p>
+                <ul class="feature-list">
+                    <li>Cross-tenant policy management</li>
+                    <li>Centralized RBAC administration</li>
+                    <li>Policy compliance monitoring</li>
+                    <li>Customizable governance frameworks</li>
+                    <li>Automated remediation workflows</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-governance.svg') }}" alt="Governance Icon">
+                </div>
+                <h3>Policy Management</h3>
+                <p>Create, deploy, and manage policies across multiple tenant environments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="Security Icon">
+                </div>
+                <h3>Access Control</h3>
+                <p>Centrally manage RBAC assignments across all managed tenants.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Visibility Icon">
+                </div>
+                <h3>Policy Compliance</h3>
+                <p>Monitor compliance with your governance policies in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Efficiency Icon">
+                </div>
+                <h3>Automated Remediation</h3>
+                <p>Automatically remediate policy violations with customizable workflows.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to implement consistent governance?</h2>
+        <p>Join our Early Access Program today.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}

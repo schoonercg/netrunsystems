@@ -279,6 +279,94 @@ nav {
   margin-bottom: 1rem;
 }
 
+/* Product Detail Pages */
+.page-header {
+  background-image: url('../images/page-header-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.page-header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.product-detail {
+  padding: 5rem 0;
+}
+
+.product-overview {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.product-image {
+  flex: 1;
+}
+
+.product-description {
+  flex: 1;
+}
+
+.product-description h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.product-description p {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.feature-list {
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.feature-list li {
+  margin-bottom: 0.75rem;
+}
+
+.product-features {
+  background-color: #f8f9fa;
+  padding: 5rem 0;
+}
+
+.product-features h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .product-overview {
+    flex-direction: column;
+  }
+  
+  .product-image, .product-description {
+    width: 100%;
+  }
+}
+
 .products h2 {
   margin-bottom: 3rem;
   font-size: 2rem;

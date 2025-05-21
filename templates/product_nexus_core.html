@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Nexus Core{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Nexus Core</h1>
+        <p>Secure cross-tenant platform with Azure Lighthouse</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-nexus.jpg') }}" alt="Nexus Core">
+            </div>
+            <div class="product-description">
+                <h2>The Foundation of Multi-Tenant Governance</h2>
+                <p>Netrun Systems Nexus Core provides a secure foundation for managing multiple Azure tenants without credential sharing or guest accounts. Built on Azure Lighthouse technology, Nexus Core enables MSPs and consultants to seamlessly work across client environments.</p>
+                <ul class="feature-list">
+                    <li>Secure delegation through Azure Lighthouse</li>
+                    <li>Central role-based access control</li>
+                    <li>Cross-tenant activity logging</li>
+                    <li>Unified dashboard for all managed tenants</li>
+                    <li>JIT access with approval workflows</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="Security Icon">
+                </div>
+                <h3>Secure Delegation</h3>
+                <p>Connect to client tenants without credential sharing using Azure Lighthouse secure delegation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Efficiency Icon">
+                </div>
+                <h3>Multi-tenant Management</h3>
+                <p>Manage resources across multiple client environments from a single pane of glass.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Visibility Icon">
+                </div>
+                <h3>Unified Dashboard</h3>
+                <p>See all your clients' environments in one place with customizable views and filters.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-compliance.svg') }}" alt="Compliance Icon">
+                </div>
+                <h3>Audit & Governance</h3>
+                <p>Maintain comprehensive audit trails of all cross-tenant activities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to simplify multi-tenant Azure management?</h2>
+        <p>Join our Early Access Program today.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}

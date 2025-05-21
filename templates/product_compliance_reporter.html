@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Compliance Reporter{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Compliance Reporter</h1>
+        <p>Automated assessments for regulated industries</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-compliance.jpg') }}" alt="Compliance Reporter">
+            </div>
+            <div class="product-description">
+                <h2>Streamlined Compliance for Regulated Industries</h2>
+                <p>Netrun Systems Compliance Reporter automates compliance assessments across all managed tenants, making it easier to maintain standards for regulated industries. Our solution provides continuous monitoring, automated reporting, and remediation guidance for a wide range of compliance frameworks.</p>
+                <ul class="feature-list">
+                    <li>Support for multiple compliance frameworks (PCI-DSS, HIPAA, NIST, ISO 27001, etc.)</li>
+                    <li>Cross-tenant compliance dashboard</li>
+                    <li>Automated assessment scheduling</li>
+                    <li>Remediation recommendations</li>
+                    <li>Exportable compliance documentation</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-compliance-report.svg') }}" alt="Compliance Report Icon">
+                </div>
+                <h3>Automated Assessments</h3>
+                <p>Schedule automated compliance checks across all managed environments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Efficiency Icon">
+                </div>
+                <h3>Multi-framework Support</h3>
+                <p>Assess against multiple compliance frameworks simultaneously.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Visibility Icon">
+                </div>
+                <h3>Compliance Dashboard</h3>
+                <p>Visualize compliance status across all tenants in a unified dashboard.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="Security Icon">
+                </div>
+                <h3>Remediation Guidance</h3>
+                <p>Get actionable recommendations to address compliance issues.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to simplify compliance management?</h2>
+        <p>Join our Early Access Program today.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}

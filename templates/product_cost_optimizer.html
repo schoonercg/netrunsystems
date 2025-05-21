@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Cost Optimizer{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Cost Optimizer</h1>
+        <p>Identify savings across all managed tenants</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-cost.jpg') }}" alt="Cost Optimizer">
+            </div>
+            <div class="product-description">
+                <h2>Maximize Cloud ROI Across Tenants</h2>
+                <p>Netrun Systems Cost Optimizer automatically analyzes all your managed Azure environments to identify cost-saving opportunities. With cross-tenant visibility, you can implement consistent cost optimization practices across your entire client base.</p>
+                <ul class="feature-list">
+                    <li>Resource right-sizing recommendations</li>
+                    <li>Reserved instance analyzer</li>
+                    <li>Idle resource identification</li>
+                    <li>Budget alerts and forecasting</li>
+                    <li>Cost allocation and chargeback reporting</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-cost.svg') }}" alt="Cost Icon">
+                </div>
+                <h3>Cross-tenant Analysis</h3>
+                <p>Identify savings opportunities across all client environments at once.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Efficiency Icon">
+                </div>
+                <h3>Automation Recommendations</h3>
+                <p>Get actionable recommendations for automated scaling and shutdown schedules.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Visibility Icon">
+                </div>
+                <h3>Cost Forecasting</h3>
+                <p>Predict future costs based on current usage patterns and growth trends.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-compliance.svg') }}" alt="Compliance Icon">
+                </div>
+                <h3>Budget Controls</h3>
+                <p>Implement budget controls and alerts across all managed environments.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to optimize costs across all your clients?</h2>
+        <p>Join our Early Access Program today.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}

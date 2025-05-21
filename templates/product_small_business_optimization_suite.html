@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Small Business Optimization Suite{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Small Business Optimization Suite</h1>
+        <p>Affordable cloud management for small MSPs</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-nexus.jpg') }}" alt="Small Business Optimization Suite">
+            </div>
+            <div class="product-description">
+                <h2>Enterprise-Grade Cloud Management for Small MSPs</h2>
+                <p>The Netrun Systems Small Business Optimization Suite brings enterprise-grade cloud management capabilities to small and medium-sized MSPs at an affordable price point. Get the essential tools you need to efficiently manage multiple client Azure environments without breaking the bank.</p>
+                <ul class="feature-list">
+                    <li>Streamlined multi-tenant management</li>
+                    <li>Basic cost optimization</li>
+                    <li>Security posture assessment</li>
+                    <li>Simplified compliance reporting</li>
+                    <li>Affordable subscription model</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-nexus.svg') }}" alt="Nexus Icon">
+                </div>
+                <h3>Essential Management</h3>
+                <p>Get the core features of Nexus at a price point designed for small businesses.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-cost.svg') }}" alt="Cost Icon">
+                </div>
+                <h3>Cost Control</h3>
+                <p>Basic cost monitoring and optimization tailored for smaller environments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="Security Icon">
+                </div>
+                <h3>Security Essentials</h3>
+                <p>Fundamental security checks and recommendations for your clients.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-compliance-report.svg') }}" alt="Compliance Report Icon">
+                </div>
+                <h3>Basic Compliance</h3>
+                <p>Simplified compliance reporting for common requirements.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready for affordable multi-tenant management?</h2>
+        <p>Join our Early Access Program today.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}
