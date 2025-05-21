@@ -310,11 +310,6 @@ def product_small_business_optimization_suite():
     now = datetime.datetime.now()
     return render_template('product_small_business_optimization_suite.html', now=now)
 
-@app.route('/product/intirkast')
-def product_intirkast():
-    now = datetime.datetime.now()
-    return render_template('product_intirkast.html', now=now)
-
 @app.route('/research-projects')
 def research_projects():
     now = datetime.datetime.now()
