@@ -8,7 +8,7 @@ channel = "stable-24_05"
 run = ["sh", "-c", "Run"]
 
 [workflows]
-runButton = "Debug Website"
+runButton = "Run"
 
 [[workflows.workflow]]
 name = "Run"
