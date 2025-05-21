@@ -262,6 +262,23 @@ nav {
   text-align: center;
 }
 
+.product-icon {
+  margin-bottom: 1rem;
+}
+
+.solution-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
 .products h2 {
   margin-bottom: 3rem;
   font-size: 2rem;

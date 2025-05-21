@@ -53,25 +53,37 @@
     <h2>Our Solutions</h2>
     <div class="product-grid">
         <div class="product-card">
-            <img src="{{ url_for('static', filename='images/product-nexus.jpg') }}" alt="Nexus Core">
+            <div class="product-icon">
+                <img src="{{ url_for('static', filename='images/icon-nexus.svg') }}" alt="Nexus Core Icon" class="solution-icon">
+            </div>
+            <img src="{{ url_for('static', filename='images/product-nexus.jpg') }}" alt="Nexus Core" class="product-image">
             <h3>Nexus Core</h3>
             <p>Secure cross-tenant platform with Azure Lighthouse</p>
             <a href="{{ url_for('product_nexus_core') }}" class="btn-learn-more">Learn More</a>
         </div>
         <div class="product-card">
-            <img src="{{ url_for('static', filename='images/product-cost.jpg') }}" alt="Cost Optimizer">
+            <div class="product-icon">
+                <img src="{{ url_for('static', filename='images/icon-cost.svg') }}" alt="Cost Optimizer Icon" class="solution-icon">
+            </div>
+            <img src="{{ url_for('static', filename='images/product-cost.jpg') }}" alt="Cost Optimizer" class="product-image">
             <h3>Cost Optimizer</h3>
             <p>Identify savings across all managed tenants</p>
             <a href="{{ url_for('product_cost_optimizer') }}" class="btn-learn-more">Learn More</a>
         </div>
         <div class="product-card">
-            <img src="{{ url_for('static', filename='images/product-compliance.jpg') }}" alt="Compliance Reporter">
+            <div class="product-icon">
+                <img src="{{ url_for('static', filename='images/icon-compliance-report.svg') }}" alt="Compliance Reporter Icon" class="solution-icon">
+            </div>
+            <img src="{{ url_for('static', filename='images/product-compliance.jpg') }}" alt="Compliance Reporter" class="product-image">
             <h3>Compliance Reporter</h3>
             <p>Automated assessments for regulated industries</p>
             <a href="{{ url_for('product_compliance_reporter') }}" class="btn-learn-more">Learn More</a>
         </div>
         <div class="product-card">
-            <img src="{{ url_for('static', filename='images/product-governance.jpg') }}" alt="Governance Dashboard">
+            <div class="product-icon">
+                <img src="{{ url_for('static', filename='images/icon-governance.svg') }}" alt="Governance Dashboard Icon" class="solution-icon">
+            </div>
+            <img src="{{ url_for('static', filename='images/product-governance.jpg') }}" alt="Governance Dashboard" class="product-image">
             <h3>Governance Dashboard</h3>
             <p>Central policy management and controls</p>
             <a href="{{ url_for('product_governance_dashboard') }}" class="btn-learn-more">Learn More</a>
