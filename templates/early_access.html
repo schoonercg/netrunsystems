@@ -1,0 +1,53 @@
+
+{% extends "base.html" %}
+
+{% block title %}Early Access Program - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Join Our Early Access Program</h1>
+    <p>Be among the first to experience the future of cross-tenant Azure governance.</p>
+</section>
+
+<section class="early-access">
+    <div class="early-access-container">
+        <div class="early-access-info">
+            <h2>Early Access Benefits</h2>
+            <ul>
+                <li>Free trial period of all Netrun Systems products</li>
+                <li>Direct access to our development team</li>
+                <li>Opportunity to influence product features</li>
+                <li>Priority support during implementation</li>
+                <li>Exclusive pricing for early adopters</li>
+            </ul>
+            <p>The Early Access Program is ideal for MSPs, Azure consultants, and organizations managing multiple Azure tenants who want to simplify their governance approach.</p>
+        </div>
+        <div class="form">
+            <form method="POST" action="{{ url_for('early_access') }}">
+                {{ csrf_token }}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell us about your current Azure management challenges</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn primary">Submit Application</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
