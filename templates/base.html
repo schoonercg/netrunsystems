@@ -91,6 +91,25 @@
                     <a href="{{ url_for('terms_of_service') }}">Terms of Service</a>
                 </div>
             </div>
+            <div class="footer-contact-form">
+                <h3>Quick Contact</h3>
+                <form method="POST" action="{{ url_for('contact') }}">
+                    {{ csrf_token }}
+                    <div class="footer-form-group">
+                        <input type="text" id="footer-name" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="footer-form-group">
+                        <input type="email" id="footer-email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="footer-form-group">
+                        <input type="text" id="footer-subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="footer-form-group">
+                        <textarea id="footer-message" name="message" placeholder="Message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary footer-btn">Send</button>
+                </form>
+            </div>
         </div>
     </footer>
 
