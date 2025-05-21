@@ -597,12 +597,30 @@ footer {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icons a {
+  color: var(--medium-gray);
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+}
+
 .footer-copyright {
   text-align: center;
   color: var(--medium-gray);
-  padding: 2rem 0 1rem;
+  padding: 1rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 2rem;
   width: 100%;
 }
 
