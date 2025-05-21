@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+
+{% block title %}Research Projects - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Research Projects</h1>
+        <p>Exploring innovative solutions in AI and automation</p>
+    </div>
+</section>
+
+<section class="research-projects">
+    <div class="container">
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Sunflower Icon">
+                </div>
+                <h3>Sunflower</h3>
+                <p>AI-driven task automation and workflow optimization</p>
+                <a href="{{ url_for('research_sunflower') }}" class="btn secondary">Learn More</a>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Podcast Co-host Icon">
+                </div>
+                <h3>Podcast Co-host</h3>
+                <p>Natural language processing for podcast production</p>
+                <a href="{{ url_for('research_podcast_cohost') }}" class="btn secondary">Learn More</a>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Scrum Master Icon">
+                </div>
+                <h3>Scrum Master</h3>
+                <p>AI-assisted agile project management tools</p>
+                <a href="{{ url_for('research_scrum_master') }}" class="btn secondary">Learn More</a>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="Connection Manager Icon">
+                </div>
+                <h3>Connection Manager</h3>
+                <p>Secure cross-platform connection management</p>
+                <a href="{{ url_for('research_connection_manager') }}" class="btn secondary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
