@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Intirkast{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Intirkast</h1>
+        <p>Multi-tenant cost forecasting and optimization</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-intirkast.jpg') }}" alt="Intirkast">
+            </div>
+            <div class="product-description">
+                <h2>Predictive Cost Management Across Tenants</h2>
+                <p>Intirkast leverages advanced AI models to forecast Azure costs across multiple tenants, providing actionable recommendations to optimize spending. Perfect for MSPs and enterprises managing multiple environments, Intirkast helps you maximize cloud ROI while maintaining performance.</p>
+                <ul class="feature-list">
+                    <li>AI-powered cost forecasting with 95%+ accuracy</li>
+                    <li>Cross-tenant spending analysis and benchmarking</li>
+                    <li>Automated cost optimization recommendations</li>
+                    <li>Scheduled reports and budget alerts</li>
+                    <li>What-if analysis for planned architectural changes</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-intirkast.svg') }}" alt="Cost Forecasting Icon">
+                </div>
+                <h3>Predictive Forecasting</h3>
+                <p>Predict future Azure spending with high accuracy using our advanced machine learning models.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-cost.svg') }}" alt="Cost Icon">
+                </div>
+                <h3>Cross-tenant Benchmarking</h3>
+                <p>Compare spending patterns across tenants to identify outliers and optimization opportunities.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-efficiency.svg') }}" alt="Efficiency Icon">
+                </div>
+                <h3>Automated Recommendations</h3>
+                <p>Get actionable suggestions to optimize costs without sacrificing performance or reliability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Visibility Icon">
+                </div>
+                <h3>What-if Analysis</h3>
+                <p>Model the cost impact of architectural changes before implementing them in production.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to optimize your Azure spending?</h2>
+        <p>Join our Early Access Program to start forecasting and optimizing costs across tenants.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}
