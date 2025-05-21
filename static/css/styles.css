@@ -875,7 +875,7 @@ footer {
 
 /* Contact Form */
 .contact-form {
-  padding: 4rem 2rem;
+  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -883,7 +883,7 @@ footer {
 .contact-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .contact-info {
@@ -891,30 +891,22 @@ footer {
 }
 
 .contact-info h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: var(--primary-color);
 }
 
-.contact-info p,
-.contact-info h2,
-.contact-info h3,
-.contact-method .details p,
-.contact-method .details h3 {
-  color: var(--text-color);
-}
-
 .contact-info p {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .contact-methods {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .contact-method {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .contact-method .icon {
