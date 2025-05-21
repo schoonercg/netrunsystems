@@ -887,7 +887,7 @@ footer {
 }
 
 .contact-info {
-  flex: 1 1 350px;
+  flex: 1 1 500px;
 }
 
 .contact-info h2 {
@@ -939,7 +939,7 @@ footer {
 }
 
 .form {
-  flex: 1 1 500px;
+  flex: 0 1 400px;
   background-color: var(--white);
   padding: 2rem;
   border-radius: 8px;
