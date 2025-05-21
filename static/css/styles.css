@@ -600,7 +600,10 @@ footer {
 .footer-copyright {
   text-align: center;
   color: var(--medium-gray);
-  padding-top: 1rem;
+  padding: 2rem 0 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+  width: 100%;
 }
 
 .footer-logo {
