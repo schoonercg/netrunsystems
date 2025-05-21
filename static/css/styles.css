@@ -73,6 +73,14 @@ ul {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 15px;
+  }
 }
 
 /* Header & Navigation */
@@ -1179,9 +1187,34 @@ footer {
     top: 80px;
     left: 0;
     right: 0;
-    background-color: var(--white);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #111;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     padding: 1rem 0;
+    z-index: 100;
+  }
+
+  .product-overview {
+    padding: 2rem 0;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
   .nav-links.active {
