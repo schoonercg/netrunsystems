@@ -376,8 +376,24 @@ def customer_support():
     user = session.get('user')
     return render_template('customer_support.html', user=user)
 
+# Error handlers
+@app.errorhandler(404)
+def page_not_found(e):
+    now = datetime.datetime.now()
+    return render_template('404.html', now=now), 404
+
+@app.errorhandler(500)
+def internal_error(e):
+    now = datetime.datetime.now()
+    return render_template('500.html', now=now), 500
+
 # This is required for Azure App Service to find the application
 application = app
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=True)
+
+@app.route('/product/governance-dashboard')
+def product_governance_dashboard():
+    now = datetime.datetime.now()
+    return render_template('product_governance_dashboard.html', now=now)
