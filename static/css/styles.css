@@ -113,7 +113,7 @@ nav {
   max-width: 100%;
   max-height: 60px;
   display: block;
-  background-color: #000; /* Ensure proper background for the logo */
+  background-color: transparent; /* Allow logo transparency */
 }
 
 .logo img:not([src]), .logo img[src=""], .logo img[src$="undefined"] {
