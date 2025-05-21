@@ -387,7 +387,14 @@ nav {
 /* Products Section */
 .products {
   padding: 4rem 2rem;
-  text-align: center;
+  text-align: left;
+}
+
+.products h2 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: var(--primary-color);
+  text-align: left;
 }
 
 .product-icon {
@@ -409,12 +416,12 @@ nav {
 
 /* Product Detail Pages */
 .page-header {
-  background-image: url('../images/page-header-bg.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/page-header-bg.jpg');
   background-size: cover;
   background-position: center;
-  color: white;
-  padding: 5rem 0;
-  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--white);
+  text-align: left;
 }
 
 .page-header-content {
@@ -498,12 +505,6 @@ nav {
   }
 }
 
-.products h2 {
-  margin-bottom: 3rem;
-  font-size: 2rem;
-  color: var(--primary-color);
-}
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -554,7 +555,7 @@ nav {
   background-position: center;
   padding: 4rem 2rem;
   color: var(--white);
-  text-align: center;
+  text-align: left;
 }
 
 .cta-content {
@@ -713,7 +714,7 @@ footer {
   background-position: center;
   padding: 4rem 2rem;
   color: var(--white);
-  text-align: center;
+  text-align: left;
 }
 
 .page-header h1 {
