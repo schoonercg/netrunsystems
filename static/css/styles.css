@@ -1311,7 +1311,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Consulting Services Styles */
 .services-overview {
     padding: 4rem 0;
-    background-color: var(--dark-gray);
+    background-color: var(--white);
 }
 
 .services-grid {
@@ -1323,8 +1323,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .service-category {
     padding: 2rem;
-    background: var(--background);
+    background: var(--white);
     border-radius: 8px;
+}
+
+.service-category h2 {
+    color: var(--primary-color);
+    text-transform: uppercase;
 }
 
 .service-category h2 {
@@ -1342,7 +1347,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.5rem 1.5rem;
     display: flex;
     justify-content: space-between;
-    color: var(--primary-color);
+    color: var(--white);
     font-size: 0.9rem;
 }
 
