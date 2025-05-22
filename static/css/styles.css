@@ -199,8 +199,28 @@ nav {
 
 .hamburger-icon {
   width: 30px;
-  height: 30px;
-  object-fit: contain;
+  height: 3px;
+  background-color: var(--white);
+  position: relative;
+  display: block;
+}
+
+.hamburger-icon:before,
+.hamburger-icon:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: var(--white);
+  left: 0;
+}
+
+.hamburger-icon:before {
+  top: -8px;
+}
+
+.hamburger-icon:after {
+  bottom: -8px;
 }
 
 .mobile-menu {
