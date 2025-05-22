@@ -473,7 +473,8 @@ nav {
 
 .page-header-content {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
+  padding-left: 2rem;
 }
 
 .page-header h1 {
