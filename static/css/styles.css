@@ -130,11 +130,11 @@ ul {
   text-align: left;
   padding: 10px 20px;
   font-family: 'Futura Medium', 'Futura', sans-serif;
-  font-weight: normal;
+  font-weight: 500;
   line-height: 1.4;
 }
 
-.header-announcement strong {
+.header-announcement .bold-n {
   font-family: 'Futura Bold', 'Futura', sans-serif;
   font-weight: bold;
 }
