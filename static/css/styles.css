@@ -136,17 +136,22 @@ ul {
 
 .header-flex-container {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 1rem;
   padding: 10px 0;
+  min-height: 120px;
 }
 
 .header-logo-container {
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 .header-text-container {
   flex: 1;
+  display: flex;
+  align-items: center;
   text-align: left;
 }
 
@@ -155,21 +160,6 @@ ul {
   max-height: 80px;
   width: auto;
   object-fit: contain;
-}
-
-.header-flex-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 10px 0;
-  min-height: 90px;
-}
-
-.header-logo-container {
-  flex: 0 0 auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
 }
 
 .header-text {
@@ -372,27 +362,23 @@ nav {
 }
 
 .mobile-nav-links a {
-  display: block;
-  padding: 0.8rem 0;
   color: var(--white);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: color 0.3s ease;
+  font-weight: 500;
 }
 
 .mobile-nav-links a:hover {
-  color: var(--primary-color);
+  color: #4CD0B0; /* Teal color from the logo */
 }
 
-.mobile-nav-links .btn-early-access,
-.mobile-nav-links .btn-create-account {
-  display: block;
-  padding: 0.8rem 1.2rem;
-  margin: 1rem 0;
-  text-align: center;
-  border-radius: 4px;
+.btn-early-access {
   background-color: var(--primary-color);
-  color: var(--white);
-  transition: background-color 0.3s ease;
+  color: var(--white) !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.btn-early-access:hover {
+  background-color: var(--secondary-color);
 }
 
 .mobile-menu.active {
