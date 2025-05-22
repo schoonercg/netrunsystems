@@ -348,7 +348,7 @@ nav {
 /* Features Section */
 .features {
   padding: 4rem 2rem;
-  background-color: var(--light-gray);
+  background-color: #ffffff;
   text-align: center;
 }
 
@@ -367,13 +367,13 @@ nav {
 }
 
 .feature-card {
-  background-color: #ffffff;
+  background-color: #000000;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #000000;
+  border: 1px solid rgba(144, 185, 171, 0.2);
+  color: #ffffff;
 }
 
 .feature-card:hover {
@@ -389,7 +389,7 @@ nav {
 
 .feature-card p {
   padding: 0 1.5rem 1.5rem;
-  color: #000000;
+  color: #ffffff;
 }
 
 /* Products Section */
