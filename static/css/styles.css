@@ -826,7 +826,7 @@ footer {
 .page-header h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #00AEEF;
+  color: var(--primary-color);
 }
 
 /* Blog Styles */
@@ -933,7 +933,7 @@ footer {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 1.5rem 0 1rem;
-  color: #00AEEF;
+  color: #84baaa;
   text-transform: uppercase;
 }
 
