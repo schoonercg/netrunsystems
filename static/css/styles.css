@@ -680,8 +680,41 @@ nav {
   font-size: 1.1rem;
 }
 
+/* Legal Pages */
+.content-section {
+    padding: 60px 0;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-wrapper h2 {
+    color: var(--primary-color);
+    margin: 30px 0 15px;
+    font-size: 24px;
+}
+
+.content-wrapper p, 
+.content-wrapper ul {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.content-wrapper ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.content-wrapper .last-updated {
+    color: #666;
+    font-style: italic;
+}
+
 /* Footer */
-footer {
+.footer {
   background-color: #000;
   color: var(--white);
   padding: 4rem 2rem 2rem;
@@ -1136,7 +1169,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000;
 }
 
-.form-group label {
+.form-grouplabel {
   color: #000;
 }
 
