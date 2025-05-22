@@ -753,13 +753,13 @@ nav {
 }
 
 .social-icons a {
-  color: var(--medium-gray);
+  color: #84baaa;
   font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: var(--primary-color);
+  color: #6a9587;
 }
 
 .research-projects {
