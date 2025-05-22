@@ -117,11 +117,14 @@ nav {
 }
 
 .logo img {
-  height: auto;
-  max-width: 100%;
-  max-height: 60px;
-  display: block;
-  background-color: transparent; /* Allow logo transparency */
+  height: 45px;
+  width: auto;
+  mix-blend-mode: screen;
+}
+
+.header-logo {
+    max-width: 300px;
+    height: auto;
 }
 
 .logo img:not([src]), .logo img[src=""], .logo img[src$="undefined"] {
