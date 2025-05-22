@@ -396,6 +396,7 @@ nav {
 .products {
   padding: 4rem 2rem;
   text-align: left;
+  background-color: #ffffff;
 }
 
 .products h2 {
@@ -558,11 +559,9 @@ nav {
 
 /* CTA Section */
 .cta {
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/cta-bg.jpg');
-  background-size: cover;
-  background-position: center;
+  background-color: #ffffff;
   padding: 4rem 2rem;
-  color: var(--white);
+  color: var(--secondary-color);
   text-align: left;
 }
 
