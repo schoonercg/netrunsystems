@@ -420,13 +420,16 @@ nav {
 }
 
 .product-icon {
+  display: flex;
+  align-items: center;
   margin-bottom: 1rem;
+  padding: 1.5rem 1.5rem 0;
 }
 
 .solution-icon {
   width: 60px;
   height: 60px;
-  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .product-image {
@@ -536,27 +539,29 @@ nav {
 }
 
 .product-card {
-  background-color: #111;
+  background-color: #000000;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(144, 185, 171, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
   border: 1px solid rgba(144, 185, 171, 0.2);
+  color: #ffffff;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(144, 185, 171, 0.5);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
 .product-card h3 {
   font-family: 'Futura Bold', 'Futura', sans-serif;
-  padding: 1.5rem 1.5rem 0.5rem;
   color: var(--primary-color);
+  margin: 0;
 }
 
 .product-card p {
   padding: 0 1.5rem 1.5rem;
+  color: #ffffff;
 }
 
 .btn-learn-more {
@@ -1168,7 +1173,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--white);
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0, 0, 0.1);
 }
 
 .dashboard-card h3 {
@@ -1412,3 +1417,4 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   margin-top: 1rem;
 }
+/*The style has been updated to match the feature cards*/
