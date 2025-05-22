@@ -182,7 +182,11 @@ ul {
   font-family: 'Futura Medium', 'Futura', sans-serif;
 }
 
-.header-announcement .container span.accent {
+.header-announcement .accent {
+  color: #84baaa;
+}
+
+.header-announcement .tech-solutions {
   color: #84baaa;
 }
 
