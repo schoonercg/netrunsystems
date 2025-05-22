@@ -645,6 +645,7 @@ footer {
 
 .research-projects {
     padding: 4rem 0;
+    background-color: var(--white);
 }
 
 .project-grid {
