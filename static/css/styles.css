@@ -129,9 +129,14 @@ ul {
   background-color: #000;
   text-align: left;
   padding: 10px 20px;
+  font-family: 'Futura', sans-serif;
+  font-weight: medium;
+  line-height: 1.4;
+}
+
+.header-announcement strong {
   font-family: 'Futura Bold', 'Futura', sans-serif;
   font-weight: bold;
-  line-height: 1.4;
 }
 
 .header-announcement .container span {
