@@ -559,7 +559,7 @@ nav {
 
 .product-card h3 {
   font-family: 'Futura Bold', 'Futura', sans-serif;
-  color: var(--primary-color);
+  color: #84baaa;
   margin: 0;
 }
 
@@ -720,7 +720,7 @@ footer {
   font-family: 'Futura Bold', 'Futura', sans-serif;
   margin-bottom: 1rem;
   font-size: 1.1rem;
-  color: var(--primary-color);
+  color: #84baaa;
 }
 
 .footer-column a {
@@ -1328,12 +1328,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-category h2 {
-    color: var(--primary-color);
+    color: #84baaa;
     text-transform: uppercase;
 }
 
 .service-category h2 {
-    color: var(--primary);
+    color: #84baaa;
     margin-bottom: 2rem;
     font-size: 1.8rem;
 }
