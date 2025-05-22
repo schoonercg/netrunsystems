@@ -129,8 +129,8 @@ ul {
   background-color: #000;
   text-align: left;
   padding: 10px 20px;
-  font-family: 'Futura', sans-serif;
-  font-weight: medium;
+  font-family: 'Futura Medium', 'Futura', sans-serif;
+  font-weight: normal;
   line-height: 1.4;
 }
 
@@ -141,6 +141,10 @@ ul {
 
 .header-announcement .container span {
   color: #fff;
+}
+
+.header-announcement .company-name {
+  font-family: 'Futura Medium', 'Futura', sans-serif;
 }
 
 .header-announcement .container span.accent {
