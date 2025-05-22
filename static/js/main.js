@@ -47,18 +47,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Dropdown functionality for mobile
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-links .dropdown > a');
     mobileLinks.forEach(link => {
-        if (link.nextElementSibling && link.nextElementSibling.classList.contains('dropdown-content')) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === 'block') {
-                    dropdownContent.style.display = 'none';
-                } else {
-                    dropdownContent.style.display = 'block';
-                }
-            });
-        }
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === 'block') {
+                dropdownContent.style.display = 'none';
+            } else {
+                dropdownContent.style.display = 'block';
+            }
+        });
     });
 });
