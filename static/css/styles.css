@@ -657,15 +657,17 @@ footer {
 }
 
 .project-card {
-    background: var(--white);
+    background: #000000;
     padding: 2rem;
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s ease;
+    border: 1px solid rgba(144, 185, 171, 0.2);
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
 .project-icon {
@@ -679,12 +681,12 @@ footer {
 
 .project-card h3 {
     margin-bottom: 1rem;
-    color: var(--primary);
+    color: #84baaa;
 }
 
 .project-card p {
     margin-bottom: 1.5rem;
-    color: var(--medium-gray);
+    color: #ffffff;
 }
 
 .footer-copyright {
