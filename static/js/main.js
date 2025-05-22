@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile navigation menu toggle
     const hamburger = document.querySelector('.hamburger');
-    const hamburgerIcon = document.querySelector('.hamburger-icon');
     const mobileMenu = document.querySelector('.mobile-menu');
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
@@ -9,16 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileClose = document.querySelector('.mobile-close');
 
     if (hamburger && mobileMenu) {
-        hamburger.style.cursor = 'pointer';
-        
-        // Make both hamburger container and icon clickable
-        [hamburger, hamburgerIcon].forEach(element => {
-            element.addEventListener('click', function(e) {
+        hamburger.addEventListener('click', function(e) {
             e.stopPropagation();
             mobileMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        });
         });
 
         function closeMenu() {
