@@ -969,6 +969,9 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  background-color: #000000;
+  padding: 2rem;
+  border-radius: 8px;
 }
 
 .contact-info {
