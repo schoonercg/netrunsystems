@@ -157,34 +157,25 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  min-height: 120px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-nav {
-  flex-direction: column;
-  padding: 1rem 2rem;
-  width: 100%;
-}
-
-.header-top {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
-  min-height: 60px;
+  justify-content: center;
+  text-align: center;
 }
 
-.header-bottom {
+.header-announcement {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 0.75rem;
+}
+
+.header-announcement .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo img {
@@ -291,17 +282,26 @@ nav {
 
 .mobile-menu {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 80%;
-  max-width: 300px;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 90%;
+  max-width: 400px;
+  height: auto;
   background-color: #000;
   z-index: 200;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
   padding: 2rem;
-  overflow-y: auto;
+  border-radius: 8px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
 }
 
 .btn-login {
