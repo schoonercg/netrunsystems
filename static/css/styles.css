@@ -95,6 +95,35 @@ ul {
   }
 }
 
+/* Privacy Policy */
+.content-section {
+    padding: 60px 0;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-wrapper h2 {
+    margin-bottom: 20px;
+}
+
+.content-wrapper h3 {
+    margin: 30px 0 15px;
+}
+
+.content-wrapper ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.content-wrapper p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
 /* Header & Navigation */
 .header-announcement {
   background-color: #000;
