@@ -134,22 +134,6 @@ ul {
   line-height: 1.4;
 }
 
-.header-text-top {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.header-text-top .company-name {
-  font-family: 'Futura Medium', 'Futura', sans-serif;
-  font-size: 1.5rem;
-  color: #fff;
-}
-
-.header-text-top .bold-n {
-  font-family: 'Futura Bold', 'Futura', sans-serif;
-  font-weight: bold;
-}
-
 .header-flex-container {
   display: flex;
   align-items: center;
