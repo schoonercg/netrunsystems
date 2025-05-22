@@ -404,7 +404,7 @@ nav {
   background-position: center;
   padding: 6rem 2rem;
   color: var(--white);
-  text-align: center;
+  text-align: left;
 }
 
 .hero-content {
@@ -437,7 +437,7 @@ nav {
 .features {
   padding: 4rem 2rem;
   background-color: #f4f4f4;
-  text-align: center;
+  text-align: left;
 }
 
 .features h2 {
@@ -462,6 +462,7 @@ nav {
   transition: transform 0.3s ease;
   border: 1px solid rgba(144, 185, 171, 0.2);
   color: #ffffff;
+  text-align: left;
 }
 
 .feature-card:hover {
@@ -596,7 +597,7 @@ nav {
 }
 
 .product-features h2 {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   color: var(--primary-color);
 }
@@ -1517,7 +1518,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pricing-card {
-  text-align: center;
+  text-align: left;
   padding: 2rem;
 }
 
