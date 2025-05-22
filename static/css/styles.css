@@ -367,32 +367,29 @@ nav {
 }
 
 .feature-card {
-  background-color: #111;
-  padding: 2rem;
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(144, 185, 171, 0.08);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(144, 185, 171, 0.2);
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000;
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(144, 185, 171, 0.12);
-  border-color: rgba(144, 185, 171, 0.2);
-}
-
-.feature-icon {
-  margin-bottom: 1.5rem;
-}
-
-.feature-icon img {
-  width: 60px;
-  height: 60px;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
 .feature-card h3 {
-  margin-bottom: 1rem;
+  font-family: 'Futura Bold', 'Futura', sans-serif;
+  padding: 1.5rem 1.5rem 0.5rem;
   color: var(--primary-color);
+}
+
+.feature-card p {
+  padding: 0 1.5rem 1.5rem;
+  color: #000000;
 }
 
 /* Products Section */
@@ -1167,8 +1164,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--secondary-color);
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
+/* Responsive Design */@media (max-width: 992px) {
   .hero h1 {
     font-size: 2.2rem;
   }
