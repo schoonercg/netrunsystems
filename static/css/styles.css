@@ -152,7 +152,7 @@ ul {
 
 .header-banner {
   height: auto;
-  max-height: 100%;
+  max-height: 80px;
   width: auto;
   object-fit: contain;
 }
@@ -176,6 +176,7 @@ ul {
   text-align: left;
   font-family: 'Futura Medium', 'Futura', sans-serif;
   line-height: 1.4;
+  font-size: 1.2rem;
 }
 
 .header-announcement .bold-n {
