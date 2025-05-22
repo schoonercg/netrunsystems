@@ -207,6 +207,8 @@ nav {
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 10px;
+  z-index: 201;
 }
 
 .hamburger-icon {
