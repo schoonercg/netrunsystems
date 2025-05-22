@@ -146,6 +146,13 @@ ul {
   height: 120px;
   width: auto;
   object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.header-text {
+  text-align: center;
+  font-family: 'Futura Medium', 'Futura', sans-serif;
+  line-height: 1.4;
 }
 
 .header-announcement .bold-n {
