@@ -830,23 +830,27 @@ footer {
 
 /* Blog Styles */
 .blog-posts {
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 4rem 0;
+  background-color: var(--white);
 }
 
 .post-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .post-card {
-  background-color: var(--white);
+  background-color: #000000;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
+  border: 1px solid rgba(144, 185, 171, 0.2);
+  color: #ffffff;
 }
 
 .post-card:hover {
@@ -962,9 +966,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Contact Form */
 .contact-form {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 4rem 0;
   background-color: var(--white);
 }
 
@@ -975,6 +977,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #000000;
   padding: 2rem;
   border-radius: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid rgba(144, 185, 171, 0.2);
 }
 
 .contact-info {
