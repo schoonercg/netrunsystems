@@ -136,13 +136,14 @@ ul {
 
 .header-logo-container {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  justify-content: center;
+  width: 100%;
 }
 
-.header-logo-icon {
-  width: 36px;
-  height: 36px;
+.header-banner {
+  max-width: 600px;
+  height: auto;
+  width: 100%;
 }
 
 .header-announcement .bold-n {
