@@ -98,8 +98,8 @@ ul {
 /* Header & Navigation */
 .header-announcement {
   background-color: #000;
-  text-align: center;
-  padding: 10px 0;
+  text-align: left;
+  padding: 10px 20px;
   font-family: 'Futura Bold', 'Futura', sans-serif;
   font-weight: bold;
   line-height: 1.4;
