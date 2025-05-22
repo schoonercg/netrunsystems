@@ -544,7 +544,10 @@ nav {
   width: 60px;
   height: 60px;
   margin-right: 1rem;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(73%) sepia(11%) saturate(749%) hue-rotate(118deg) brightness(89%) contrast(88%);
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
 }
 
 .feature-card h3 {
