@@ -22,6 +22,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+@font-face {
+  font-family: 'Futura';
+  src: local('Futura');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Futura Bold';
+  src: local('Futura-Bold'), local('Futura Bold');
+  font-weight: bold;
+}
+
 body {
   font-family: 'Futura', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
@@ -473,7 +485,8 @@ nav {
 
 .page-header-content {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
+  padding-left: 2rem;
 }
 
 .page-header h1 {
@@ -955,9 +968,11 @@ footer {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Futura Bold', 'Futura', sans-serif;
   margin: 1.5rem 0 1rem;
   color: #84baaa;
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .post-content p {
