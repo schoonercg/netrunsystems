@@ -463,6 +463,7 @@ nav {
   border: 1px solid rgba(144, 185, 171, 0.2);
   color: #ffffff;
   text-align: left;
+  padding: 1.5rem;
 }
 
 .feature-card:hover {
@@ -474,7 +475,6 @@ nav {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  padding: 1.5rem 1.5rem 0;
 }
 
 .feature-icon img {
@@ -490,7 +490,7 @@ nav {
 }
 
 .feature-card p {
-  padding: 0 1.5rem 1.5rem;
+  margin-bottom: 1.5rem;
   color: #ffffff;
 }
 
