@@ -134,6 +134,17 @@ ul {
   line-height: 1.4;
 }
 
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo-icon {
+  width: 36px;
+  height: 36px;
+}
+
 .header-announcement .bold-n {
   font-family: 'Futura Bold', 'Futura', sans-serif;
   font-weight: bold;
