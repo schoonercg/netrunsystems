@@ -97,13 +97,20 @@ ul {
 
 /* Header & Navigation */
 .header-announcement {
-  background-color: var(--primary-color);
-  color: #000;
+  background-color: #000;
   text-align: center;
   padding: 10px 0;
   font-family: 'Futura Bold', 'Futura', sans-serif;
   font-weight: bold;
   line-height: 1.4;
+}
+
+.header-announcement .container span {
+  color: #fff;
+}
+
+.header-announcement .container span.accent {
+  color: #84baaa;
 }
 
 header {
