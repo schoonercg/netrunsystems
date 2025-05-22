@@ -171,12 +171,11 @@ nav {
 
 .header-bottom {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 0.75rem;
-  padding-left: 2rem;
 }
 
 .logo img {
