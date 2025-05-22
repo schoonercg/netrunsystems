@@ -150,8 +150,9 @@ nav {
 
 .nav-links {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   text-align: left;
+  margin-left: 1rem;
 }
 
 .left-menu {
