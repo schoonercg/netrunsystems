@@ -99,8 +99,7 @@ header {
 nav {
   flex-direction: column;
   padding: 1rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .header-top {
@@ -115,10 +114,11 @@ nav {
 .header-bottom {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 0.75rem;
+  padding-left: 2rem;
 }
 
 .logo img {
