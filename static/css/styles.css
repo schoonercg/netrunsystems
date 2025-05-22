@@ -577,9 +577,9 @@ nav {
 
 /* CTA Section */
 .cta {
-  background-color: #f4f4f4;
+  background-color: #000000;
   padding: 4rem 2rem;
-  color: var(--secondary-color);
+  color: var(--white);
   text-align: left;
 }
 
@@ -1016,7 +1016,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form {
   flex: 0 1 400px;
-  background-color: var(--white);
+  background-color: #f4f4f4;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
