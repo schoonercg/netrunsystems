@@ -634,6 +634,7 @@ nav {
   transition: transform 0.3s ease;
   border: 1px solid rgba(144, 185, 171, 0.2);
   color: #ffffff;
+  padding: 1.5rem;
 }
 
 .product-card:hover {
@@ -648,13 +649,13 @@ nav {
 }
 
 .product-card p {
-  padding: 0 1.5rem 1.5rem;
+  margin-bottom: 1.5rem;
   color: #ffffff;
 }
 
 .btn-learn-more {
   display: inline-block;
-  margin: 0 1.5rem 1.5rem;
+  margin-bottom: 1rem;
   color: var(--primary-color);
   font-weight: 600;
 }
