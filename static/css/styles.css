@@ -7,7 +7,7 @@
   --light-gray: #f4f4f4;
   --medium-gray: #ddd;
   --dark-gray: #555;
-  --white: #fff;
+  --white: #f4f4f4;
   --success: #4caf50;
   --error: #f44336;
   --warning: #ff9800;
@@ -348,7 +348,7 @@ nav {
 /* Features Section */
 .features {
   padding: 4rem 2rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
   text-align: center;
 }
 
@@ -409,7 +409,7 @@ nav {
 .products {
   padding: 4rem 2rem;
   text-align: left;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 
 .products h2 {
@@ -577,7 +577,7 @@ nav {
 
 /* CTA Section */
 .cta {
-  background-color: #ffffff;
+  background-color: #f4f4f4;
   padding: 4rem 2rem;
   color: var(--secondary-color);
   text-align: left;
