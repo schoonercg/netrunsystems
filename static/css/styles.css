@@ -136,7 +136,7 @@ ul {
 
 .header-flex-container {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 1rem;
   padding: 10px 0;
   min-height: 120px;
@@ -151,7 +151,7 @@ ul {
 .header-text-container {
   flex: 1;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   text-align: left;
 }
 
