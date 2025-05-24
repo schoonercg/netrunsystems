@@ -1,0 +1,9 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#002D62" />
+  <text x="50%" y="50%" fill="white" font-family="Arial" font-size="28" text-anchor="middle" dominant-baseline="middle" font-weight="bold">Cost Optimizer</text>
+  <text x="50%" y="85" fill="#4CD0B0" font-family="Arial" font-size="14" text-anchor="middle">Azure Cloud Savings</text>
+  <circle cx="200" cy="125" r="35" fill="none" stroke="#4CD0B0" stroke-width="3" />
+  <text x="200" y="125" fill="#4CD0B0" font-family="Arial" font-size="22" text-anchor="middle" dominant-baseline="middle" font-weight="bold">$</text>
+  <path d="M170,135 L230,135 L230,143 M200,135 L200,155" stroke="#4CD0B0" stroke-width="3" fill="none" />
+</svg>

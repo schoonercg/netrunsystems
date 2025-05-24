@@ -1,0 +1,77 @@
+
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Intirkast{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Intirkast</h1>
+        <p>AI-Powered Content Automation & Distribution</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-description">
+                <h2>Intelligent Content Management</h2>
+                <p>Create, schedule, and auto-optimize content campaigns across your brand's platforms — all from a single dashboard.</p>
+                <ul class="feature-list">
+                    <li>Cross-platform content calendar</li>
+                    <li>AI-optimized posting times</li>
+                    <li>Campaign performance tracking</li>
+                    <li>Brand consistency enforcement</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing">
+    <div class="container">
+        <h2>Flexible Pricing Plans</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <p class="price">$79/month</p>
+                <p>Perfect for solopreneurs and small teams</p>
+                <ul>
+                    <li>2 social platforms</li>
+                    <li>Basic AI optimization</li>
+                    <li>Standard analytics</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Pro</h3>
+                <p class="price">$199/month</p>
+                <p>Ideal for growing agencies and businesses</p>
+                <ul>
+                    <li>Unlimited platforms</li>
+                    <li>Advanced AI features</li>
+                    <li>Premium analytics</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <p class="price">Custom pricing</p>
+                <p>For large organizations with custom needs</p>
+                <ul>
+                    <li>Custom integrations</li>
+                    <li>Advanced automation</li>
+                    <li>Dedicated support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to transform your content strategy?</h2>
+        <p>Perfect for agencies, solopreneurs, and in-house marketing teams.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}

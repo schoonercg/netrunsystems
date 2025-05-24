@@ -1,0 +1,28 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#111827"/>
+  
+  <!-- Background Grid -->
+  <path d="M0 50 L800 50 M0 150 L800 150 M0 250 L800 250 M0 350 L800 350" 
+        stroke="#1f2937" stroke-width="1" opacity="0.5"/>
+  <path d="M100 0 L100 450 M300 0 L300 450 M500 0 L500 450 M700 0 L700 450" 
+        stroke="#1f2937" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Central Tenants Visualization -->
+  <circle cx="400" cy="225" r="120" fill="none" stroke="#90b9ab" stroke-width="2"/>
+  <circle cx="400" cy="225" r="80" fill="none" stroke="#90b9ab" stroke-width="2"/>
+  
+  <!-- Connected Nodes -->
+  <circle cx="250" cy="150" r="40" fill="#111827" stroke="#90b9ab" stroke-width="2"/>
+  <circle cx="550" cy="150" r="40" fill="#111827" stroke="#90b9ab" stroke-width="2"/>
+  <circle cx="250" cy="300" r="40" fill="#111827" stroke="#90b9ab" stroke-width="2"/>
+  <circle cx="550" cy="300" r="40" fill="#111827" stroke="#90b9ab" stroke-width="2"/>
+  
+  <!-- Connection Lines -->
+  <path d="M280 170 L370 215 M520 170 L430 215 M280 280 L370 235 M520 280 L430 235" 
+        stroke="#90b9ab" stroke-width="2"/>
+  
+  <!-- Central Icon -->
+  <circle cx="400" cy="225" r="30" fill="#90b9ab"/>
+  <path d="M385 225 L415 225 M400 210 L400 240" stroke="#111827" stroke-width="4"/>
+</svg>

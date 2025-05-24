@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block title %}Server Error - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>500 - Server Error</h1>
+        <p>Something went wrong on our end.</p>
+    </div>
+</section>
+
+<section class="error-section">
+    <div class="container">
+        <p>We're sorry, but something went wrong on our servers. Our team has been notified and is working to fix the issue.</p>
+        <p>Here are some options while we fix things:</p>
+        <ul>
+            <li>Go back to the <a href="{{ url_for('index') }}">homepage</a></li>
+            <li>Try again in a few minutes</li>
+            <li><a href="{{ url_for('contact') }}">Contact us</a> if you need immediate assistance</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

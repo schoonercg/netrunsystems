@@ -1,0 +1,54 @@
+4. **Editable Service Package**  
+   - Each line-item shows:  
+     1. Service Name  
+     2. Description  
+     3. Deliverables  
+     4. Estimated Effort/Timeline  
+     5. Up-Front Cost  
+     6. Ongoing Monthly Fee  
+   - **Optional Add-Ons** section for cross-sell opportunities  
+
+---
+
+## 2. Detailed Service Line-Items
+
+| Service                             | Description                                           | Deliverables              | Timeline  | Up-Front Cost | Monthly Fee  | Notes |
+|-------------------------------------|-------------------------------------------------------|---------------------------|-----------|---------------|--------------|-------|
+| AI Readiness Assessment             | Evaluate data, workflows, and culture for AI adoption | Assessment report, roadmap| 4 weeks   | $8,000        | $800/mo      |       |
+| Use-Case Identification Workshops   | Facilitate sessions to uncover AI opportunities       | Workshop materials, summary| 2 weeks  | $5,000        | $500/mo      |       |
+| Governance & Ethics Frameworks      | Define responsible AI policies                        | Policy documents          | 3 weeks   | $6,000        | $600/mo      |       |
+| RAG/Knowledge-Base Systems          | Implement retrieval-augmented pipelines               | Deployed KB system        | 6 weeks   | $12,000       | $1,200/mo    |       |
+| GPT-Powered Agents                  | Build custom LLM agents for tasks                     | Agent integration, training| 8 weeks  | $15,000       | $1,500/mo    |       |
+| AI-Driven File Organizer            | Deploy versioning & naming assistant                  | Installed tool, training  | 4 weeks   | $10,000       | $1,000/mo    |       |
+| Azure Solution Accelerators         | Turn-key Azure templates                              | Deployed resources        | 5 weeks   | $9,000        | $900/mo      |       |
+| CI/CD & MLOps Pipelines             | Automate model lifecycle                              | Pipeline scripts          | 6 weeks   | $11,000       | $1,100/mo    |       |
+| IaC Audits                          | Review Terraform/ARM scripts                          | Audit report              | 3 weeks   | $7,000        | $700/mo      |       |
+| AI-Enhanced Threat Hunting          | Anomaly detection in SIEM logs                        | Detection rules           | 5 weeks   | $13,000       | $1,300/mo    |       |
+| Secure AI Maturity Reviews          | Audit ML lifecycles                                   | Review findings           | 4 weeks   | $8,000        | $800/mo      |       |
+| Incident Response Automation        | Automate containment playbooks                        | Automation scripts        | 6 weeks   | $14,000       | $1,400/mo    |       |
+| IoT Sensor Network                  | Design & install sensor networks                      | Sensor setup, dashboard   | 7 weeks   | $16,000       | $1,600/mo    |       |
+| Predictive Maintenance Frameworks   | Forecast device failures                              | Predictive models         | 6 weeks   | $15,000       | $1,500/mo    |       |
+| Edge-AI Deployment                  | Deploy inference models on-prem                       | Containerized models      | 5 weeks   | $12,000       | $1,200/mo    |       |
+| Procedural Content Design           | Advise on PCG pipelines                               | PCG templates             | 6 weeks   | $10,000       | $1,000/mo    |       |
+| EIS Integration                     | Embed emergent AI NPCs                                | Behavior modules          | 8 weeks   | $18,000       | $1,800/mo    |       |
+| R&D Prototyping                     | Prototype gamified training                           | Prototype demo            | 6 weeks   | $12,000       | $1,200/mo    |       |
+| Jira Automation Templates           | Calendar-based planning scripts                       | YAML automations          | 4 weeks   | $7,000        | $700/mo      |       |
+| Reporting Dashboards                | Automated activity & research reports                 | Dashboard setup           | 3 weeks   | $6,000        | $600/mo      |       |
+| RPA Assessments                     | Identify and prototype bots                           | Assessment report         | 3 weeks   | $5,000        | $500/mo      |       |
+| AI Content Calendars                | Generate content prompts & schedules                  | Content calendar          | 2 weeks   | $4,000        | $400/mo      |       |
+| Sentiment & Engagement Analytics    | Analyze campaign performance                          | Analytics dashboard       | 4 weeks   | $9,000        | $900/mo      |       |
+| Sponsored Content Automation        | Optimize booster posts                                | Automation workflows      | 3 weeks   | $5,000        | $500/mo      |       |
+| AI Bootcamps                        | Hands-on LLM fine-tuning training                     | Training materials        | 1 week    | $3,000        | $300/mo      |       |
+| Leadership Briefings                | Executive AI trend sessions                           | Presentation deck         | 1 week    | $2,500        | $250/mo      |       |
+| User Onboarding & Documentation     | Step-by-step guides                                   | Doc set                   | 2 weeks   | $4,000        | $400/mo      |       |
+| Pitch Deck Refinement               | Polish investor presentations                         | Revised deck              | 2 weeks   | $5,000        | $500/mo      |       |
+| Whitepapers & Case Studies          | Publish thought-leadership                             | Whitepaper                | 4 weeks   | $8,000        | $800/mo      |       |
+| Grant & Proposal Support            | Write compelling applications                         | Proposal docs             | 3 weeks   | $6,000        | $600/mo      |       |
+
+---
+
+## 3. Optional Add-Ons
+
+- Jira Automation YAML for Sprint Planning  
+- Edge-AI Sensor Network for Inventory Monitoring  
+- Cybersecurity Threat Hunting & Playbook Automation  

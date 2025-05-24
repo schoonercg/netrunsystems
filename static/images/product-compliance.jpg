@@ -1,0 +1,10 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#00AEEF" />
+  <text x="50%" y="50%" fill="white" font-family="Arial" font-size="28" text-anchor="middle" dominant-baseline="middle" font-weight="bold">Compliance Reporter</text>
+  <text x="50%" y="85" fill="#4CD0B0" font-family="Arial" font-size="14" text-anchor="middle">Automated Assessments</text>
+  <rect x="150" y="95" width="100" height="60" fill="none" stroke="#4CD0B0" stroke-width="3" rx="5" ry="5" />
+  <line x1="160" y1="115" x2="240" y2="115" stroke="#4CD0B0" stroke-width="2" />
+  <line x1="160" y1="130" x2="240" y2="130" stroke="#4CD0B0" stroke-width="2" />
+  <line x1="160" y1="145" x2="210" y2="145" stroke="#4CD0B0" stroke-width="2" />
+</svg>

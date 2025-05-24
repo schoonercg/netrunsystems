@@ -1,0 +1,10 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#4caf50" />
+  <text x="50%" y="50%" fill="white" font-family="Arial" font-size="28" text-anchor="middle" dominant-baseline="middle" font-weight="bold">Governance Dashboard</text>
+  <text x="50%" y="85" fill="#002D62" font-family="Arial" font-size="14" text-anchor="middle">Policy Management & Controls</text>
+  <rect x="130" y="95" width="140" height="60" fill="none" stroke="#002D62" stroke-width="3" rx="5" ry="5" />
+  <rect x="150" y="105" width="40" height="20" fill="#002D62" rx="3" ry="3" />
+  <rect x="150" y="130" width="60" height="15" fill="#002D62" rx="3" ry="3" />
+  <rect x="210" y="105" width="40" height="40" fill="#002D62" rx="3" ry="3" />
+</svg>

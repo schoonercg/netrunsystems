@@ -1,0 +1,83 @@
+` tags.
+
+```
+<replit_final_file>
+{% extends "base.html" %}
+
+{% block title %}Netrun Systems - Intirfix{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Intirfix</h1>
+        <p>Small Business Dashboard + AI Insights</p>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="product-overview">
+            <div class="product-description">
+                <h2>Smart Business Intelligence for SMBs</h2>
+                <p>A plug-and-play dashboard that connects key business tools (Square, QuickBooks, BoA, etc.) and provides smart insights through AI analysis.</p>
+                <ul class="feature-list">
+                    <li>Unified view across banking, sales, and inventory</li>
+                    <li>AI-generated reports and improvement suggestions</li>
+                    <li>Smart alerts and business forecasting</li>
+                    <li>Minimum 2 API integrations included</li>
+                </ul>
+                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing">
+    <div class="container">
+        <h2>Simple, Transparent Pricing</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <p class="price">$200/month</p>
+                <p>Perfect for small businesses just getting started</p>
+                <ul>
+                    <li>2 API integrations</li>
+                    <li>Basic AI insights</li>
+                    <li>Standard support</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Growth</h3>
+                <p class="price">$350/month</p>
+                <p>For growing businesses needing more insights</p>
+                <ul>
+                    <li>4 API integrations</li>
+                    <li>Advanced AI insights</li>
+                    <li>Priority support</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Pro</h3>
+                <p class="price">$500/month</p>
+                <p>Full-featured solution for established businesses</p>
+                <ul>
+                    <li>6 API integrations</li>
+                    <li>Premium AI insights</li>
+                    <li>24/7 support</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pricing-note">
+            <p>One-time setup fee: $500</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to optimize your business?</h2>
+        <p>Perfect for boutique shops, service businesses, and modern retailers.</p>
+        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+    </div>
+</section>
+{% endblock %}
