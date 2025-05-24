@@ -843,7 +843,7 @@ nav {
     background: #000000;
     padding: 2rem;
     border-radius: 8px;
-    text-align: center;
+    text-align: left;
     transition: transform 0.3s ease;
     border: 1px solid rgba(144, 185, 171, 0.2);
 }
