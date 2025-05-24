@@ -1411,8 +1411,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2rem 0;
   }
 
-  .feature-grid {
-    grid-template-columns: 1fr;
+  .feature-grid,
+  .product-grid,
+  .project-grid {
+    grid-template-columns: 1fr !important;
     gap: 1.5rem;
   }
 
@@ -1429,6 +1431,23 @@ h1, h2, h3, h4, h5, h6 {
   .footer-links {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+  }
+
+  .header-flex-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-text-container {
+    justify-content: center;
+  }
+
+  .service-category {
+    padding: 1rem;
+  }
+
+  .product-card {
+    width: 100%;
   }
 
   .nav-links.active {
