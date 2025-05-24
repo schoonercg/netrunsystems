@@ -391,7 +391,7 @@ def internal_error(e):
 application = app
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=False)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=True)
 
 @app.route('/product/governance-dashboard')
 def product_governance_dashboard():
