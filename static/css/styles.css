@@ -1504,7 +1504,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Consulting Services Styles */
 .services-overview {
-    padding: 4rem 0;
+    padding: 0 0 4rem 0;
     background-color: var(--white);
 }
 
