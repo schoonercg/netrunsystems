@@ -544,6 +544,7 @@ nav {
   width: 60px;
   height: 60px;
   margin-right: 1rem;
+  object-fit: contain;
 }
 
 .feature-card h3 {
