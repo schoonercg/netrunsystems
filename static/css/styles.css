@@ -1399,7 +1399,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    gap: 1rem;
+    gap: 0.3rem;
   }
 
   .header-bottom nav {
@@ -1410,7 +1410,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     text-align: center;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
   }
 
   .btn-early-access {
