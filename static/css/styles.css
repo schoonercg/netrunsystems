@@ -596,13 +596,13 @@ nav {
   background: var(--white);
   padding: 4rem 2rem;
   color: var(--secondary-color);
-  text-align: left;
+  text-align: center;
 }
 
 .page-header-content {
   max-width: 800px;
-  margin: 0;
-  padding-left: 2rem;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .page-header h1 {
