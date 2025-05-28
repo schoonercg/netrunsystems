@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}Netrun Systems - Intirkon{% endblock %}
@@ -10,7 +11,7 @@
     </div>
 </section>
 
-<section class="product-detail">
+<section class="services-overview">
     <div class="container">
         <div class="product-overview">
             <div class="product-image">
@@ -37,86 +38,131 @@
     </div>
 </section>
 
-<section class="pricing">
+<section class="services-overview">
     <div class="container">
-        <h2>MSP-Focused Plans</h2>
-        <div class="pricing-grid">
-            <div class="feature-card pricing-card">
-                <h3>Audit Plan</h3>
-                <div class="price">$1,000<span>/month</span></div>
-                <ul>
-                    <li>5 tenants included</li>
-                    <li>Read-only access</li>
-                    <li>Basic reporting</li>
-                    <li>Email support</li>
-                </ul>
-                <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+        <div class="service-category">
+            <h2>MSP-Focused Plans</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <h3>Audit Plan</h3>
+                    <div class="price">$1,000<span>/month</span></div>
+                    <ul>
+                        <li>5 tenants included</li>
+                        <li>Read-only access</li>
+                        <li>Basic reporting</li>
+                        <li>Email support</li>
+                    </ul>
+                    <div class="service-details">
+                        <span class="timeline">Basic Plan</span>
+                        <span class="price">$1,000/mo</span>
+                    </div>
+                    <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+                </div>
+                <div class="product-card">
+                    <h3>Management Plan</h3>
+                    <div class="price">$2,500<span>/month</span></div>
+                    <ul>
+                        <li>20 tenants included</li>
+                        <li>Full automation</li>
+                        <li>Advanced reporting</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <div class="service-details">
+                        <span class="timeline">Standard Plan</span>
+                        <span class="price">$2,500/mo</span>
+                    </div>
+                    <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+                </div>
+                <div class="product-card">
+                    <h3>Advanced Management</h3>
+                    <div class="price">$5,000<span>/month</span></div>
+                    <ul>
+                        <li>50 tenants included</li>
+                        <li>Full automation</li>
+                        <li>Custom reporting</li>
+                        <li>24/7 support</li>
+                    </ul>
+                    <div class="service-details">
+                        <span class="timeline">Advanced Plan</span>
+                        <span class="price">$5,000/mo</span>
+                    </div>
+                    <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+                </div>
+                <div class="product-card">
+                    <h3>Security Management</h3>
+                    <div class="price">$10,000<span>/month</span></div>
+                    <ul>
+                        <li>Unlimited tenants</li>
+                        <li>Full automation</li>
+                        <li>Custom solutions</li>
+                        <li>Dedicated support</li>
+                    </ul>
+                    <div class="service-details">
+                        <span class="timeline">Enterprise Plan</span>
+                        <span class="price">$10,000/mo</span>
+                    </div>
+                    <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+                </div>
             </div>
-            <div class="feature-card pricing-card">
-                <h3>Management Plan</h3>
-                <div class="price">$2,500<span>/month</span></div>
-                <ul>
-                    <li>20 tenants included</li>
-                    <li>Full automation</li>
-                    <li>Advanced reporting</li>
-                    <li>Priority support</li>
-                </ul>
-                <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+            <div class="pricing-note">
+                <p>Client Tenant Fee: $89/month per tenant (billed to client)</p>
             </div>
-            <div class="feature-card pricing-card">
-                <h3>Advanced Management</h3>
-                <div class="price">$5,000<span>/month</span></div>
-                <ul>
-                    <li>50 tenants included</li>
-                    <li>Full automation</li>
-                    <li>Custom reporting</li>
-                    <li>24/7 support</li>
-                </ul>
-                <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
-            </div>
-            <div class="feature-card pricing-card">
-                <h3>Security Management</h3>
-                <div class="price">$10,000<span>/month</span></div>
-                <ul>
-                    <li>Unlimited tenants</li>
-                    <li>Full automation</li>
-                    <li>Custom solutions</li>
-                    <li>Dedicated support</li>
-                </ul>
-                <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
-            </div>
-        </div>
-        <div class="pricing-note">
-            <p>Client Tenant Fee: $89/month per tenant (billed to client)</p>
         </div>
     </div>
 </section>
 
-<section class="ideal-for">
+<section class="services-overview">
     <div class="container">
-        <h2>Ideal For</h2>
-        <div class="ideal-grid">
-            <div class="ideal-card">
-                <div class="ideal-icon">
-                    <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="MSP Icon">
+        <div class="service-category">
+            <h2>Ideal For</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">
+                        <img src="{{ url_for('static', filename='images/icon-security.svg') }}" alt="MSP Icon" class="solution-icon">
+                    </div>
+                    <h3>MSPs</h3>
+                    <p>Manage multiple client environments efficiently and securely</p>
+                    <div class="service-details">
+                        <span class="timeline">Multi-tenant</span>
+                        <span class="price">Scalable</span>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn-learn-more">Learn More</a>
                 </div>
-                <h3>MSPs</h3>
-                <p>Manage multiple client environments efficiently and securely</p>
-            </div>
-            <div class="ideal-card">
-                <div class="ideal-icon">
-                    <img src="{{ url_for('static', filename='images/icon-compliance.svg') }}" alt="Security Icon">
+                <div class="product-card">
+                    <div class="product-icon">
+                        <img src="{{ url_for('static', filename='images/icon-compliance.svg') }}" alt="Security Icon" class="solution-icon">
+                    </div>
+                    <h3>Cybersecurity Teams</h3>
+                    <p>Implement robust security measures across all tenants</p>
+                    <div class="service-details">
+                        <span class="timeline">Security-first</span>
+                        <span class="price">Compliance</span>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn-learn-more">Learn More</a>
                 </div>
-                <h3>Cybersecurity Teams</h3>
-                <p>Implement robust security measures across all tenants</p>
-            </div>
-            <div class="ideal-card">
-                <div class="ideal-icon">
-                    <img src="{{ url_for('static', filename='images/icon-governance.svg') }}" alt="Enterprise Icon">
+                <div class="product-card">
+                    <div class="product-icon">
+                        <img src="{{ url_for('static', filename='images/icon-governance.svg') }}" alt="Enterprise Icon" class="solution-icon">
+                    </div>
+                    <h3>Compliance-Focused Enterprises</h3>
+                    <p>Maintain regulatory compliance across cloud environments</p>
+                    <div class="service-details">
+                        <span class="timeline">Enterprise</span>
+                        <span class="price">Governance</span>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn-learn-more">Learn More</a>
                 </div>
-                <h3>Compliance-Focused Enterprises</h3>
-                <p>Maintain regulatory compliance across cloud environments</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Azure Management?</h2>
+            <p>Get in touch to discuss your specific needs and how Intirkon can help.</p>
+            <a href="{{ url_for('contact') }}" class="btn primary">Contact Us</a>
         </div>
     </div>
 </section>
