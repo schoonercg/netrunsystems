@@ -631,7 +631,14 @@ nav {
 }
 
 .product-detail {
-  padding: 5rem 0;
+  padding: 4rem 2rem;
+  background-color: #f4f4f4;
+}
+
+.product-detail .container {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 8px;
 }
 
 .product-overview {
@@ -669,8 +676,14 @@ nav {
 }
 
 .product-features {
-  background-color: #f8f9fa;
-  padding: 5rem 0;
+  background-color: #f4f4f4;
+  padding: 4rem 2rem;
+}
+
+.product-features .container {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 8px;
 }
 
 .product-features h2 {
