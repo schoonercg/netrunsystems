@@ -335,6 +335,11 @@ def research_connection_manager():
     now = datetime.datetime.now()
     return render_template('research_connection_manager.html', now=now)
 
+@app.route('/solutions')
+def solutions():
+    now = datetime.datetime.now()
+    return render_template('solutions.html', now=now)
+
 @app.route('/login')
 def login():
     # In development mode, automatically log in

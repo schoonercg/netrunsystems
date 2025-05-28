@@ -1,0 +1,95 @@
+
+{% extends "base.html" %}
+
+{% block title %}Solutions - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Our Solutions</h1>
+        <p>Comprehensive technology solutions designed for modern businesses</p>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <h2>Core Platform Solutions</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirkon.PNG') }}" alt="Intirkon Icon" class="solution-icon">
+                </div>
+                <h3>Intirkon</h3>
+                <p>Advanced automation platform for Azure environments with cross-tenant governance capabilities.</p>
+                <div class="service-details">
+                    <span class="timeline">Enterprise Ready</span>
+                    <span class="price">Contact Sales</span>
+                </div>
+                <a href="{{ url_for('product_intirkon') }}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirfix.PNG') }}" alt="Intirfix Icon" class="solution-icon">
+                </div>
+                <h3>Intirfix</h3>
+                <p>Small Business Dashboard with AI-powered insights for streamlined operations and decision making.</p>
+                <div class="service-details">
+                    <span class="timeline">SMB Focus</span>
+                    <span class="price">From $199/mo</span>
+                </div>
+                <a href="{{ url_for('product_intirfix') }}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Intirkast Icon" class="solution-icon">
+                </div>
+                <h3>Intirkast</h3>
+                <p>Social media content creation and management service powered by AI automation.</p>
+                <div class="service-details">
+                    <span class="timeline">Content Creation</span>
+                    <span class="price">From $99/mo</span>
+                </div>
+                <a href="{{ url_for('product_intirkast') }}" class="btn-learn-more">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Additional Solutions</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/governance.PNG') }}" alt="Governance Icon">
+                </div>
+                <h3>Governance Dashboard</h3>
+                <p>Comprehensive governance and compliance management across all your Azure environments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/compliance.PNG') }}" alt="Compliance Icon">
+                </div>
+                <h3>Compliance Reporter</h3>
+                <p>Automated compliance reporting and monitoring for regulatory requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Cost Optimizer Icon">
+                </div>
+                <h3>Cost Optimizer</h3>
+                <p>AI-driven cost optimization recommendations to reduce cloud spending.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Discover how our solutions can streamline your operations and drive growth. Contact us today for a personalized consultation.</p>
+        <a href="{{ url_for('contact') }}" class="btn primary">Get Started</a>
+        <a href="{{ url_for('early_access') }}" class="btn secondary">Join Early Access</a>
+    </div>
+</section>
+{% endblock %}
