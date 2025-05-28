@@ -507,7 +507,7 @@ nav {
   margin-bottom: 3rem;
   font-size: 2rem;
   color: var(--primary-color);
-  text-align: center;
+  text-align: left;
 }
 
 .feature-grid {
@@ -570,7 +570,7 @@ nav {
   margin-bottom: 3rem;
   font-size: 2rem;
   color: var(--primary-color);
-  text-align: center;
+  text-align: left;
 }
 
 .product-icon {
@@ -662,7 +662,7 @@ nav {
 }
 
 .product-features h2 {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   color: var(--primary-color);
 }
@@ -746,7 +746,7 @@ nav {
   margin-bottom: 1rem;
   font-size: 2rem;
   color: var(--primary-color);
-  text-align: center;
+  text-align: left;
 }
 
 .cta p {
@@ -1562,7 +1562,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #84baaa;
     margin-bottom: 2rem;
     font-size: 1.8rem;
-    text-align: center;
+    text-align: left;
 }
 
 .service-list {
