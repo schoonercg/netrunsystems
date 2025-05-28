@@ -507,6 +507,7 @@ nav {
   margin-bottom: 3rem;
   font-size: 2rem;
   color: var(--primary-color);
+  text-align: center;
 }
 
 .feature-grid {
