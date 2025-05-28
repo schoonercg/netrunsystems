@@ -1028,8 +1028,14 @@ nav {
 
 /* Blog Styles */
 .blog-posts {
-  padding: 4rem 0;
-  background-color: var(--white);
+  padding: 4rem 2rem;
+  background-color: #f4f4f4;
+}
+
+.blog-posts .container {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 8px;
 }
 
 .post-grid {

@@ -10,8 +10,9 @@
 </section>
 
 <section class="blog-posts">
-    {% if posts %}
-        <div class="post-grid">
+    <div class="container">
+        {% if posts %}
+            <div class="post-grid">
             {% for post in posts %}
                 <div class="post-card">
                     {% if post.image %}
@@ -31,10 +32,11 @@
                 </div>
             {% endfor %}
         </div>
-    {% else %}
-        <div class="no-posts">
-            <p>No blog posts found. Check back soon for updates!</p>
-        </div>
-    {% endif %}
+        {% else %}
+            <div class="no-posts">
+                <p>No blog posts found. Check back soon for updates!</p>
+            </div>
+        {% endif %}
+    </div>
 </section>
 {% endblock %}
