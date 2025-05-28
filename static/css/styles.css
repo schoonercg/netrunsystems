@@ -570,7 +570,7 @@ nav {
   margin-bottom: 3rem;
   font-size: 2rem;
   color: var(--primary-color);
-  text-align: left;
+  text-align: center;
 }
 
 .product-icon {
@@ -662,7 +662,7 @@ nav {
 }
 
 .product-features h2 {
-  text-align: left;
+  text-align: center;
   margin-bottom: 3rem;
   color: var(--primary-color);
 }
@@ -746,6 +746,7 @@ nav {
   margin-bottom: 1rem;
   font-size: 2rem;
   color: var(--primary-color);
+  text-align: center;
 }
 
 .cta p {
@@ -1561,6 +1562,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #84baaa;
     margin-bottom: 2rem;
     font-size: 1.8rem;
+    text-align: center;
 }
 
 .service-list {
