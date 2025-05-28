@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block title %}Netrun Systems - Intirkon{% endblock %}
@@ -14,16 +13,25 @@
 <section class="product-detail">
     <div class="container">
         <div class="product-overview">
+            <div class="product-image">
+                <img src="{{ url_for('static', filename='images/product-intirkon.jpg') }}" alt="Intirkon Product" class="product-image">
+            </div>
             <div class="product-description">
-                <h2>Azure-Native Platform for MSPs</h2>
-                <p>A robust Azure-native platform designed for MSPs and enterprise clients to manage secure, compliant, and efficient multi-tenant environments.</p>
+                <h2>Advanced Azure Governance</h2>
+                <p>Intirkon provides comprehensive cross-tenant governance for Azure environments. Built on Azure Lighthouse technology, it enables secure management of multiple client environments without compromising security or requiring shared credentials.</p>
+
                 <ul class="feature-list">
-                    <li>Cross-tenant access control</li>
-                    <li>Read-only auditing or full automation tiers</li>
-                    <li>Just-In-Time (JIT) security access</li>
-                    <li>Compliance and cost optimization add-ons</li>
+                    <li>Cross-tenant resource management</li>
+                    <li>Automated compliance monitoring</li>
+                    <li>Centralized governance dashboard</li>
+                    <li>Real-time security insights</li>
+                    <li>Cost optimization recommendations</li>
                 </ul>
-                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+
+                <div class="hero-buttons">
+                    <a href="{{ url_for('early_access') }}" class="btn primary">Join Early Access</a>
+                    <a href="{{ url_for('contact') }}" class="btn secondary">Contact Sales</a>
+                </div>
             </div>
         </div>
     </div>
