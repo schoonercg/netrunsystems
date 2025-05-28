@@ -22,15 +22,13 @@
                             <img src="{{ post.image }}" alt="{{ post.title }}">
                         </div>
                     {% endif %}
-                    <div class="post-content">
-                        <h2><a href="{{ url_for('blog_post', slug=post.slug) }}">{{ post.title }}</a></h2>
-                        <div class="post-meta">
-                            <span class="post-author">{{ post.author }}</span>
-                            <span class="post-date">{{ post.formatted_date }}</span>
-                        </div>
-                        <p class="post-excerpt">{{ post.excerpt }}</p>
-                        <a href="{{ url_for('blog_post', slug=post.slug) }}" class="btn-read-more">Read More</a>
+                    <h3><a href="{{ url_for('blog_post', slug=post.slug) }}">{{ post.title }}</a></h3>
+                    <div class="post-meta">
+                        <span class="post-author">{{ post.author }}</span>
+                        <span class="post-date">{{ post.formatted_date }}</span>
                     </div>
+                    <p class="post-excerpt">{{ post.excerpt }}</p>
+                    <a href="{{ url_for('blog_post', slug=post.slug) }}" class="btn-learn-more">Read More</a>
                 </div>
             {% endfor %}
         </div>
