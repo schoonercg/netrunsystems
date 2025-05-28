@@ -503,6 +503,12 @@ nav {
   text-align: left;
 }
 
+.features .container {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 8px;
+}
+
 .features h2 {
   margin-bottom: 3rem;
   font-size: 2rem;
@@ -564,6 +570,12 @@ nav {
   padding: 4rem 2rem;
   text-align: left;
   background-color: #f4f4f4;
+}
+
+.products .container {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 8px;
 }
 
 .products h2 {
