@@ -1,4 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Header scroll behavior for mobile
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    
+    function handleScroll() {
+        if (window.innerWidth <= 768) { // Only on mobile
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down & past 100px
+                header.classList.add('hide-on-scroll');
+            } else {
+                // Scrolling up
+                header.classList.remove('hide-on-scroll');
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        } else {
+            // Remove class on desktop
+            header.classList.remove('hide-on-scroll');
+        }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+
     // Mobile navigation menu toggle
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
