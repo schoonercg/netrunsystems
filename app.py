@@ -300,10 +300,10 @@ def privacy_policy():
 def terms_of_service():
     return render_template('terms_of_service.html')
 
-@app.route('/consulting')
-def consulting_services():
+@app.route('/services')
+def services():
     now = datetime.datetime.now()
-    return render_template('consulting_services.html', now=now)
+    return render_template('services.html', now=now)
 
 @app.route('/product/small-business-optimization-suite')
 def product_small_business_optimization_suite():
@@ -335,10 +335,7 @@ def research_connection_manager():
     now = datetime.datetime.now()
     return render_template('research_connection_manager.html', now=now)
 
-@app.route('/solutions')
-def solutions():
-    now = datetime.datetime.now()
-    return render_template('solutions.html', now=now)
+
 
 @app.route('/login')
 def login():
