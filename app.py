@@ -230,8 +230,8 @@ excerpt: {excerpt}
     
     return render_template('admin_blog.html', now=now)
 
-@app.route('/contact', methods=['GET', 'POST'])
-def contact():
+@app.route('/about', methods=['GET', 'POST'])
+def about():
     now = datetime.datetime.now()
     if request.method == 'POST':
         name = request.form.get('name')
@@ -242,9 +242,9 @@ def contact():
         # In a production environment, this would send an email
         # For now, just show a success message
         flash('Thank you for your message! We will get back to you shortly.', 'success')
-        return redirect(url_for('contact'))
+        return redirect(url_for('about'))
         
-    return render_template('contact.html', now=now)
+    return render_template('about.html', now=now)
 
 @app.route('/favicon.ico')
 def favicon():
