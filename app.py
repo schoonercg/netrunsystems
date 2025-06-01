@@ -34,6 +34,14 @@ def requires_auth(f):
         return f(*args, **kwargs)
     return decorated
 
+def requires_admin(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get('admin'):
+            return redirect(url_for('admin_login'))
+        return f(*args, **kwargs)
+    return decorated
+
 @app.route('/')
 def index():
     now = datetime.datetime.now()
@@ -179,7 +187,30 @@ def parse_blog_post(filename):
         app.logger.error(f"Error parsing blog post {filename}: {str(e)}")
         return None
 
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        # Simple authentication - in production, use proper password hashing
+        if username == 'admin' and password == 'netrun2025':
+            session['admin'] = True
+            flash('Successfully logged in!', 'success')
+            return redirect(url_for('admin_blog'))
+        else:
+            flash('Invalid credentials. Please try again.', 'error')
+    
+    return render_template('admin_login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin', None)
+    flash('Successfully logged out.', 'success')
+    return redirect(url_for('index'))
+
 @app.route('/admin/blog', methods=['GET', 'POST'])
+@requires_admin
 def admin_blog():
     now = datetime.datetime.now()
     if request.method == 'POST':

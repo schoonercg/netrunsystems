@@ -1,0 +1,133 @@
+
+{% extends "base.html" %}
+
+{% block title %}Blog Management - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Blog Management</h1>
+        <p>Create and manage blog posts</p>
+        <div style="margin-top: 1rem;">
+            <a href="{{ url_for('admin_logout') }}" class="btn-secondary">Logout</a>
+            <a href="{{ url_for('blog') }}" class="btn-secondary">View Blog</a>
+        </div>
+    </div>
+</section>
+
+<section class="admin-blog">
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="alert alert-success">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="blog-form">
+            <h2>Create New Blog Post</h2>
+            <form method="POST">
+                {{ csrf_token() }}
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" value="Netrun Systems" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" value="{{ now.strftime('%Y-%m-%d') }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="excerpt">Excerpt:</label>
+                    <textarea id="excerpt" name="excerpt" rows="3" placeholder="Brief description of the post..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">Content (Markdown):</label>
+                    <textarea id="content" name="content" rows="15" placeholder="Write your blog post in Markdown format..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">Create Post</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+.admin-blog {
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+
+.blog-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.flash-messages {
+    margin-bottom: 2rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+</style>
+{% endblock %}
