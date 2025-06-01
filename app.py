@@ -3,6 +3,8 @@ import os
 import re
 import datetime
 import markdown
+import msal
+import requests
 from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
 from flask_wtf import CSRFProtect
 from flask_session import Session
@@ -13,6 +15,14 @@ DEV_MODE = True  # Force development mode for local testing
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
+
+# Azure AD Configuration
+AZURE_CLIENT_ID = os.environ.get('AZURE_CLIENT_ID', '')
+AZURE_CLIENT_SECRET = os.environ.get('AZURE_CLIENT_SECRET', '')
+AZURE_TENANT_ID = os.environ.get('AZURE_TENANT_ID', '')
+AZURE_AUTHORITY = f'https://login.microsoftonline.com/{AZURE_TENANT_ID}'
+AZURE_SCOPE = ['User.Read']
+AZURE_REDIRECT_PATH = '/getAToken'
 
 # Session config
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -41,6 +51,35 @@ def requires_admin(f):
             return redirect(url_for('admin_login'))
         return f(*args, **kwargs)
     return decorated
+
+def _load_cache():
+    cache = msal.SerializableTokenCache()
+    if session.get('token_cache'):
+        cache.deserialize(session['token_cache'])
+    return cache
+
+def _save_cache(cache):
+    if cache.has_state_changed:
+        session['token_cache'] = cache.serialize()
+
+def _build_msal_app(cache=None, authority=None):
+    return msal.ConfidentialClientApplication(
+        AZURE_CLIENT_ID, authority=authority or AZURE_AUTHORITY,
+        client_credential=AZURE_CLIENT_SECRET, token_cache=cache)
+
+def _build_auth_code_flow(authority=None, scopes=None):
+    return _build_msal_app(authority=authority).initiate_auth_code_flow(
+        scopes or [],
+        redirect_uri=url_for('authorized', _external=True))
+
+def _get_token_from_cache(scope=None):
+    cache = _load_cache()
+    cca = _build_msal_app(cache=cache)
+    accounts = cca.get_accounts()
+    if accounts:
+        result = cca.acquire_token_silent(scope or [], account=accounts[0])
+        _save_cache(cache)
+        return result
 
 @app.route('/')
 def index():
@@ -187,25 +226,43 @@ def parse_blog_post(filename):
         app.logger.error(f"Error parsing blog post {filename}: {str(e)}")
         return None
 
-@app.route('/admin/login', methods=['GET', 'POST'])
+@app.route('/admin/login')
 def admin_login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        
-        # Simple authentication - in production, use proper password hashing
-        if username == 'admin' and password == 'netrun2025':
-            session['admin'] = True
-            flash('Successfully logged in!', 'success')
-            return redirect(url_for('admin_blog'))
-        else:
-            flash('Invalid credentials. Please try again.', 'error')
+    # Check if user is already authenticated
+    token = _get_token_from_cache(AZURE_SCOPE)
+    if not token:
+        # Start the OAuth flow
+        session['flow'] = _build_auth_code_flow(scopes=AZURE_SCOPE)
+        return redirect(session['flow']['auth_uri'])
     
-    return render_template('admin_login.html')
+    # User is already authenticated
+    session['admin'] = True
+    return redirect(url_for('admin_blog'))
+
+@app.route('/getAToken')
+def authorized():
+    try:
+        cache = _load_cache()
+        result = _build_msal_app(cache=cache).acquire_token_by_auth_code_flow(
+            session.get('flow', {}), request.args)
+        if 'error' in result:
+            flash(f'Authentication failed: {result.get("error_description")}', 'error')
+            return redirect(url_for('index'))
+        
+        session['user'] = result.get('id_token_claims')
+        session['admin'] = True
+        _save_cache(cache)
+        flash('Successfully logged in with Azure AD!', 'success')
+        
+    except ValueError:
+        flash('Authentication failed. Please try again.', 'error')
+        return redirect(url_for('index'))
+    
+    return redirect(url_for('admin_blog'))
 
 @app.route('/admin/logout')
 def admin_logout():
-    session.pop('admin', None)
+    session.clear()  # Clear all session data including Azure tokens
     flash('Successfully logged out.', 'success')
     return redirect(url_for('index'))
 
