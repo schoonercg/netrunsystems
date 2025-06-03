@@ -1,7 +1,4 @@
-` tags.
 
-```
-<replit_final_file>
 {% extends "base.html" %}
 
 {% block title %}Netrun Systems - Intirfix{% endblock %}
@@ -10,7 +7,7 @@
 <section class="page-header">
     <div class="page-header-content">
         <h1>Intirfix</h1>
-        <p>Small Business Dashboard + AI Insights</p>
+        <p>Your store's "business whisperer" in one easy connection</p>
     </div>
 </section>
 
@@ -19,13 +16,46 @@
         <div class="product-overview">
             <div class="product-description">
                 <h2>Smart Business Intelligence for SMBs</h2>
-                <p>A plug-and-play dashboard that connects key business tools (Square, QuickBooks, BoA, etc.) and provides smart insights through AI analysis.</p>
-                <ul class="feature-list">
-                    <li>Unified view across banking, sales, and inventory</li>
-                    <li>AI-generated reports and improvement suggestions</li>
-                    <li>Smart alerts and business forecasting</li>
-                    <li>Minimum 2 API integrations included</li>
-                </ul>
+                <p>Imagine if every checkout beep, bank deposit, inventory scan, and even that lonely Google Sheet in the back office could talk to each other—then tell you, in plain English, exactly what they mean for tomorrow's sales. That's Intirfix.</p>
+                
+                <div class="feature-list-detailed">
+                    <div class="feature-item">
+                        <h3>1. Plug-and-play data pipes</h3>
+                        <p>Link your POS, payment processor, accounting package, website, foot-traffic counter—anything with an API—and Intirfix streams it all into a secure "data lake" (really a high-speed vector database).</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>2. AI that speaks retail</h3>
+                        <p>Our large-language model learns the rhythms of your shop. Ask, <em>"Which items will run out before the weekend?"</em> or <em>"Show me repeat-customer trends since the spring sale,"</em> and get answers (plus charts) in seconds, not spreadsheets.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>3. Strategy on autopilot</h3>
+                        <p>The system spots patterns you might miss: slow-moving SKUs that tie up cash, staff schedules that don't match footfall, or vendors whose delivery times hurt margins. It flags them, explains why they matter, and suggests clear next steps—think of it as a tireless analyst who costs less than a daily latte.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>4. Evidence you can bank on</h3>
+                        <p>Every insight is backed by the raw transactions stored in the vector database, so you can drill down from "Your hoodie margins dropped 7%" to the exact receipts that prove it. Great for investors, lenders, and your own peace of mind.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>5. Grows with your tech stack</h3>
+                        <p>Start with Square and Bank of America today; add e-commerce, payroll, or IoT shelf sensors later. Intirfix re-indexes automatically—no migrations, no downtime.</p>
+                    </div>
+                </div>
+                
+                <div class="value-proposition">
+                    <p><strong>Translation:</strong> you get crystal-clear forecasts, cash-flow guardrails, and data-backed "what-if" scenarios without learning SQL—or sacrificing sleep.</p>
+                </div>
+                
+                <div class="humor-section">
+                    <blockquote>
+                        <p><strong>Quick chuckle:</strong> Why did the spreadsheet apply for early retirement?<br>
+                        It heard Intirfix had the night shift covered.</p>
+                    </blockquote>
+                </div>
+                
                 <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
             </div>
         </div>
@@ -75,9 +105,10 @@
 
 <section class="cta">
     <div class="cta-content">
-        <h2>Ready to optimize your business?</h2>
-        <p>Perfect for boutique shops, service businesses, and modern retailers.</p>
-        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+        <h2>Curious what hidden story your receipts are telling?</h2>
+        <p>Tell us which systems you're using (e.g., Clover, QuickBooks, door-counter cameras), and we'll show you the first three questions Intirfix would answer for your store—plus how to turn those answers into higher profit per square foot.</p>
+        <a href="{{ url_for('contact') }}" class="btn primary">Contact Us</a>
+        <a href="{{ url_for('early_access') }}" class="btn secondary">Get Early Access</a>
     </div>
 </section>
 {% endblock %}
