@@ -1,0 +1,17 @@
+**Intirfix: your store’s “business whisperer” in one easy connection**
+
+Imagine if every checkout beep, bank deposit, inventory scan, and even that lonely Google Sheet in the back office could talk to each other—then tell you, in plain English, exactly what they mean for tomorrow’s sales. That’s Intirfix.
+
+1. **Plug-and-play data pipes** – Link your POS, payment processor, accounting package, website, foot-traffic counter—anything with an API—and Intirfix streams it all into a secure “data lake” (really a high-speed vector database).
+2. **AI that speaks retail** – Our large-language model learns the rhythms of your shop. Ask, *“Which items will run out before the weekend?”* or *“Show me repeat-customer trends since the spring sale,”* and get answers (plus charts) in seconds, not spreadsheets.
+3. **Strategy on autopilot** – The system spots patterns you might miss: slow-moving SKUs that tie up cash, staff schedules that don’t match footfall, or vendors whose delivery times hurt margins. It flags them, explains why they matter, and suggests clear next steps—think of it as a tireless analyst who costs less than a daily latte.
+4. **Evidence you can bank on** – Every insight is backed by the raw transactions stored in the vector database, so you can drill down from “Your hoodie margins dropped 7 %” to the exact receipts that prove it. Great for investors, lenders, and your own peace of mind.
+5. **Grows with your tech stack** – Start with Square and Bank of America today; add e-commerce, payroll, or IoT shelf sensors later. Intirfix re-indexes automatically—no migrations, no downtime.
+
+*Translation:* you get crystal-clear forecasts, cash-flow guardrails, and data-backed “what-if” scenarios without learning SQL—or sacrificing sleep.
+
+> **Quick chuckle:** Why did the spreadsheet apply for early retirement?
+> It heard Intirfix had the night shift covered.
+
+**Curious what hidden story your receipts are telling?**
+Tell me which systems you’re using (e.g., Clover, QuickBooks, door-counter cameras), and I’ll show you the first three questions Intirfix would answer for your store—plus how to turn those answers into higher profit per square foot.
