@@ -1,4 +1,64 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Make cards clickable
+    function makeCardsClickable() {
+        // Product cards
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            const link = card.querySelector('.btn-learn-more');
+            if (link && !card.querySelector('.card-link')) {
+                const cardLink = document.createElement('a');
+                cardLink.href = link.href;
+                cardLink.className = 'card-link';
+                cardLink.setAttribute('aria-label', 'View ' + (card.querySelector('h3')?.textContent || 'product'));
+                card.appendChild(cardLink);
+            }
+        });
+
+        // Feature cards with links
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            const link = card.querySelector('a');
+            if (link && !card.querySelector('.card-link')) {
+                card.classList.add('clickable');
+                const cardLink = document.createElement('a');
+                cardLink.href = link.href;
+                cardLink.className = 'card-link';
+                cardLink.setAttribute('aria-label', 'View ' + (card.querySelector('h3')?.textContent || 'feature'));
+                card.appendChild(cardLink);
+            }
+        });
+
+        // Post cards
+        const postCards = document.querySelectorAll('.post-card');
+        postCards.forEach(card => {
+            const link = card.querySelector('.btn-read-more, .post-content h2 a');
+            if (link && !card.querySelector('.card-link')) {
+                const cardLink = document.createElement('a');
+                cardLink.href = link.href;
+                cardLink.className = 'card-link';
+                cardLink.setAttribute('aria-label', 'Read ' + (card.querySelector('h2')?.textContent || 'post'));
+                card.appendChild(cardLink);
+            }
+        });
+
+        // About cards with links
+        const aboutCards = document.querySelectorAll('.about-card');
+        aboutCards.forEach(card => {
+            const link = card.querySelector('a');
+            if (link && !card.querySelector('.card-link')) {
+                card.classList.add('clickable');
+                const cardLink = document.createElement('a');
+                cardLink.href = link.href;
+                cardLink.className = 'card-link';
+                cardLink.setAttribute('aria-label', 'View ' + (card.querySelector('h3')?.textContent || 'information'));
+                card.appendChild(cardLink);
+            }
+        });
+    }
+
+    // Initialize card functionality
+    makeCardsClickable();
+
     // Header scroll behavior for mobile
     let lastScrollTop = 0;
     const header = document.querySelector('header');
