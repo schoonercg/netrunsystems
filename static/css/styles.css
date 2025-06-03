@@ -756,21 +756,20 @@ nav {
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
-.product-card a.btn-learn-more {
+.product-card a.card-link {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 5;
   text-indent: -9999px;
   background: transparent;
 }
 
-.product-card .btn-learn-more:not([style*="position: absolute"]) {
+.product-card .btn-learn-more {
   position: relative;
-  z-index: 11;
-  pointer-events: none;
+  z-index: 10;
 }
 
 .product-card h3 {
@@ -1113,10 +1112,10 @@ nav {
   background: transparent;
 }
 
-.post-card .btn-read-more {
+.post-card .btn-read-more,
+.post-card h3 a {
   position: relative;
-  z-index: 11;
-  pointer-events: none;
+  z-index: 10;
 }
 
 .post-image {
