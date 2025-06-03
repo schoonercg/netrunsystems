@@ -5,12 +5,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const productCards = document.querySelectorAll('.product-card');
         productCards.forEach(card => {
             const link = card.querySelector('.btn-learn-more');
-            if (link && !card.querySelector('.card-link')) {
-                const cardLink = document.createElement('a');
-                cardLink.href = link.href;
-                cardLink.className = 'card-link';
-                cardLink.setAttribute('aria-label', 'View ' + (card.querySelector('h3')?.textContent || 'product'));
-                card.appendChild(cardLink);
+            if (link && !card.hasAttribute('data-clickable')) {
+                card.setAttribute('data-clickable', 'true');
+                
+                // Create invisible overlay for card clicking
+                const cardOverlay = document.createElement('div');
+                cardOverlay.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 5;
+                    cursor: pointer;
+                `;
+                
+                cardOverlay.addEventListener('click', (e) => {
+                    // Don't interfere with direct link clicks
+                    if (e.target !== cardOverlay) return;
+                    link.click();
+                });
+                
+                card.appendChild(cardOverlay);
             }
         });
 
@@ -18,26 +34,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const featureCards = document.querySelectorAll('.feature-card');
         featureCards.forEach(card => {
             const link = card.querySelector('a');
-            if (link && !card.querySelector('.card-link')) {
+            if (link && !card.hasAttribute('data-clickable')) {
                 card.classList.add('clickable');
-                const cardLink = document.createElement('a');
-                cardLink.href = link.href;
-                cardLink.className = 'card-link';
-                cardLink.setAttribute('aria-label', 'View ' + (card.querySelector('h3')?.textContent || 'feature'));
-                card.appendChild(cardLink);
+                card.setAttribute('data-clickable', 'true');
+                
+                card.addEventListener('click', (e) => {
+                    // Don't interfere with direct link clicks
+                    if (e.target.tagName === 'A') return;
+                    link.click();
+                });
             }
         });
 
         // Post cards
         const postCards = document.querySelectorAll('.post-card');
         postCards.forEach(card => {
-            const link = card.querySelector('.btn-read-more, .post-content h2 a');
-            if (link && !card.querySelector('.card-link')) {
-                const cardLink = document.createElement('a');
-                cardLink.href = link.href;
-                cardLink.className = 'card-link';
-                cardLink.setAttribute('aria-label', 'Read ' + (card.querySelector('h2')?.textContent || 'post'));
-                card.appendChild(cardLink);
+            const link = card.querySelector('.btn-read-more, h3 a');
+            if (link && !card.hasAttribute('data-clickable')) {
+                card.setAttribute('data-clickable', 'true');
+                
+                card.addEventListener('click', (e) => {
+                    // Don't interfere with direct link clicks
+                    if (e.target.tagName === 'A') return;
+                    link.click();
+                });
             }
         });
 
@@ -45,13 +65,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const aboutCards = document.querySelectorAll('.about-card');
         aboutCards.forEach(card => {
             const link = card.querySelector('a');
-            if (link && !card.querySelector('.card-link')) {
+            if (link && !card.hasAttribute('data-clickable')) {
                 card.classList.add('clickable');
-                const cardLink = document.createElement('a');
-                cardLink.href = link.href;
-                cardLink.className = 'card-link';
-                cardLink.setAttribute('aria-label', 'View ' + (card.querySelector('h3')?.textContent || 'information'));
-                card.appendChild(cardLink);
+                card.setAttribute('data-clickable', 'true');
+                
+                card.addEventListener('click', (e) => {
+                    // Don't interfere with direct link clicks
+                    if (e.target.tagName === 'A') return;
+                    link.click();
+                });
             }
         });
     }
