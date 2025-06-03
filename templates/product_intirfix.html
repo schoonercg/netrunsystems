@@ -18,87 +18,158 @@
                 <h2>Smart Business Intelligence for SMBs</h2>
                 <p>Imagine if every checkout beep, bank deposit, inventory scan, and even that lonely Google Sheet in the back office could talk to each other—then tell you, in plain English, exactly what they mean for tomorrow's sales. That's Intirfix.</p>
                 
-                <div class="feature-list-detailed">
-                    <div class="feature-item">
-                        <h3>1. Plug-and-play data pipes</h3>
-                        <p>Link your POS, payment processor, accounting package, website, foot-traffic counter—anything with an API—and Intirfix streams it all into a secure "data lake" (really a high-speed vector database).</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h3>2. AI that speaks retail</h3>
-                        <p>Our large-language model learns the rhythms of your shop. Ask, <em>"Which items will run out before the weekend?"</em> or <em>"Show me repeat-customer trends since the spring sale,"</em> and get answers (plus charts) in seconds, not spreadsheets.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h3>3. Strategy on autopilot</h3>
-                        <p>The system spots patterns you might miss: slow-moving SKUs that tie up cash, staff schedules that don't match footfall, or vendors whose delivery times hurt margins. It flags them, explains why they matter, and suggests clear next steps—think of it as a tireless analyst who costs less than a daily latte.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h3>4. Evidence you can bank on</h3>
-                        <p>Every insight is backed by the raw transactions stored in the vector database, so you can drill down from "Your hoodie margins dropped 7%" to the exact receipts that prove it. Great for investors, lenders, and your own peace of mind.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h3>5. Grows with your tech stack</h3>
-                        <p>Start with Square and Bank of America today; add e-commerce, payroll, or IoT shelf sensors later. Intirfix re-indexes automatically—no migrations, no downtime.</p>
-                    </div>
-                </div>
-                
-                <div class="value-proposition">
-                    <p><strong>Translation:</strong> you get crystal-clear forecasts, cash-flow guardrails, and data-backed "what-if" scenarios without learning SQL—or sacrificing sleep.</p>
-                </div>
-                
-                <div class="humor-section">
-                    <blockquote>
-                        <p><strong>Quick chuckle:</strong> Why did the spreadsheet apply for early retirement?<br>
-                        It heard Intirfix had the night shift covered.</p>
-                    </blockquote>
-                </div>
-                
                 <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="pricing">
+<section class="products">
     <div class="container">
-        <h2>Simple, Transparent Pricing</h2>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Starter</h3>
-                <p class="price">$200/month</p>
-                <p>Perfect for small businesses just getting started</p>
-                <ul>
-                    <li>2 API integrations</li>
-                    <li>Basic AI insights</li>
-                    <li>Standard support</li>
-                </ul>
+        <h2>Core Features</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/connection.PNG') }}" alt="Data Pipes Icon" class="solution-icon">
+                </div>
+                <h3>Plug-and-play data pipes</h3>
+                <p>Link your POS, payment processor, accounting package, website, foot-traffic counter—anything with an API—and Intirfix streams it all into a secure "data lake" (really a high-speed vector database).</p>
+                <div class="service-details">
+                    <span class="timeline">Instant Setup</span>
+                    <span class="price">Any API</span>
+                </div>
             </div>
-            <div class="pricing-card">
-                <h3>Growth</h3>
-                <p class="price">$350/month</p>
-                <p>For growing businesses needing more insights</p>
-                <ul>
-                    <li>4 API integrations</li>
-                    <li>Advanced AI insights</li>
-                    <li>Priority support</li>
-                </ul>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/agents.PNG') }}" alt="AI Icon" class="solution-icon">
+                </div>
+                <h3>AI that speaks retail</h3>
+                <p>Our large-language model learns the rhythms of your shop. Ask, <em>"Which items will run out before the weekend?"</em> or <em>"Show me repeat-customer trends since the spring sale,"</em> and get answers (plus charts) in seconds, not spreadsheets.</p>
+                <div class="service-details">
+                    <span class="timeline">Real-time</span>
+                    <span class="price">Plain English</span>
+                </div>
             </div>
-            <div class="pricing-card featured">
-                <h3>Pro</h3>
-                <p class="price">$500/month</p>
-                <p>Full-featured solution for established businesses</p>
-                <ul>
-                    <li>6 API integrations</li>
-                    <li>Premium AI insights</li>
-                    <li>24/7 support</li>
-                </ul>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Strategy Icon" class="solution-icon">
+                </div>
+                <h3>Strategy on autopilot</h3>
+                <p>The system spots patterns you might miss: slow-moving SKUs that tie up cash, staff schedules that don't match footfall, or vendors whose delivery times hurt margins. It flags them, explains why they matter, and suggests clear next steps—think of it as a tireless analyst who costs less than a daily latte.</p>
+                <div class="service-details">
+                    <span class="timeline">24/7 Analysis</span>
+                    <span class="price">Auto Insights</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/compliance.PNG') }}" alt="Evidence Icon" class="solution-icon">
+                </div>
+                <h3>Evidence you can bank on</h3>
+                <p>Every insight is backed by the raw transactions stored in the vector database, so you can drill down from "Your hoodie margins dropped 7%" to the exact receipts that prove it. Great for investors, lenders, and your own peace of mind.</p>
+                <div class="service-details">
+                    <span class="timeline">Full Audit Trail</span>
+                    <span class="price">Bank Ready</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Growth Icon" class="solution-icon">
+                </div>
+                <h3>Grows with your tech stack</h3>
+                <p>Start with Square and Bank of America today; add e-commerce, payroll, or IoT shelf sensors later. Intirfix re-indexes automatically—no migrations, no downtime.</p>
+                <div class="service-details">
+                    <span class="timeline">Scalable</span>
+                    <span class="price">Zero Downtime</span>
+                </div>
             </div>
         </div>
-        <div class="pricing-note">
-            <p>One-time setup fee: $500</p>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Value Proposition</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/visibility.PNG') }}" alt="Forecasts Icon">
+                </div>
+                <h3>Crystal-Clear Forecasts</h3>
+                <p>Get accurate sales and inventory predictions without learning complex software or sacrificing sleep.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/governance.PNG') }}" alt="Cash Flow Icon">
+                </div>
+                <h3>Cash-Flow Guardrails</h3>
+                <p>Automated alerts and recommendations to keep your business financially healthy and profitable.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/search.PNG') }}" alt="Scenarios Icon">
+                </div>
+                <h3>Data-Backed "What-If" Scenarios</h3>
+                <p>Test business decisions with real data before committing resources or changing strategies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <h2>Simple, Transparent Pricing</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Starter Package">
+                </div>
+                <h3>Starter</h3>
+                <p>Perfect for small businesses just getting started with data-driven decisions.</p>
+                <div class="service-details">
+                    <span class="timeline">2 API integrations</span>
+                    <span class="price">$200/month</span>
+                </div>
+                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Growth Package">
+                </div>
+                <h3>Growth</h3>
+                <p>For growing businesses needing more insights and advanced AI capabilities.</p>
+                <div class="service-details">
+                    <span class="timeline">4 API integrations</span>
+                    <span class="price">$350/month</span>
+                </div>
+                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Pro Package">
+                </div>
+                <h3>Pro</h3>
+                <p>Full-featured solution for established businesses with complex operations.</p>
+                <div class="service-details">
+                    <span class="timeline">6 API integrations</span>
+                    <span class="price">$500/month</span>
+                </div>
+                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+            </div>
+        </div>
+        <div class="pricing-note" style="text-align: center; margin-top: 2rem; color: #666;">
+            <p>One-time setup fee: $500 for all plans</p>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="humor-section" style="text-align: center; margin: 2rem 0;">
+            <blockquote style="background: #f4f4f4; padding: 2rem; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                <p style="color: #333; font-style: italic; margin: 0;"><strong>Quick chuckle:</strong> Why did the spreadsheet apply for early retirement?<br>
+                It heard Intirfix had the night shift covered.</p>
+            </blockquote>
         </div>
     </div>
 </section>
