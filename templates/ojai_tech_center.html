@@ -1,0 +1,104 @@
+
+{% extends "base.html" %}
+
+{% block title %}Ojai Tech Center - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Ojai Tech Center</h1>
+        <p>A downtown tech center where innovation meets community</p>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="product-card">
+            <h2>Vision for Ojai's Tech Future</h2>
+            <p>We're building more than just products—we're creating a space where technology serves the community. Our planned Ojai Tech Center will be a hub for innovation, education, and collaboration, complete with VR labs, electronics spaces, youth programs, and a strong coffee bar (guaranteed non-robotic).</p>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <div class="product-card">
+            <h2>What We're Building</h2>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/visibility.PNG') }}" alt="VR Labs" class="solution-icon">
+                </div>
+                <h3>VR Labs</h3>
+                <p>Cutting-edge virtual reality spaces for education, training, and creative exploration.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Electronics Spaces" class="solution-icon">
+                </div>
+                <h3>Electronics Spaces</h3>
+                <p>Maker spaces equipped with tools and resources for hardware development and prototyping.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/human.PNG') }}" alt="Youth Programs" class="solution-icon">
+                </div>
+                <h3>Youth Programs</h3>
+                <p>Educational programs designed to inspire the next generation of technologists and creators.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/community.PNG') }}" alt="Community Workshops" class="solution-icon">
+                </div>
+                <h3>Public Workshops</h3>
+                <p>Open maker spaces and local events that make technology accessible and less intimidating.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="product-card">
+            <h2>Community-Driven Technology</h2>
+            <p>The Ojai Tech Center represents our commitment to growing in harmony with the local community. Rather than imposing Silicon Valley culture, we're creating a space that reflects Ojai's unique character while bringing cutting-edge technology resources to the valley.</p>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <div class="product-card">
+            <h2>Development Timeline</h2>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Q3 2025</h3>
+                <p>Planning & Design phase begins for the Ojai Technology Center</p>
+            </div>
+            <div class="feature-card">
+                <h3>Q4 2025</h3>
+                <p>City-wide pilot of small-scale connectivity initiatives</p>
+            </div>
+            <div class="feature-card">
+                <h3>2026</h3>
+                <p>Potential expansion to other regional tech hubs</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="product-card">
+            <h2>Get Involved</h2>
+            <p>We're actively seeking collaborators who share our vision for community-driven technology. Whether you're an educator, hardware enthusiast, local business owner, or simply passionate about making technology more accessible, we'd love to hear from you.</p>
+            
+            <div style="margin-top: 2rem;">
+                <a href="{{ url_for('about') }}#contact" class="btn primary">Contact Us About the Tech Center</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
