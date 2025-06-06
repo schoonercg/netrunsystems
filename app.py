@@ -5,6 +5,9 @@ import datetime
 import markdown
 import msal
 import requests
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
 from flask_wtf import CSRFProtect
 from flask_session import Session
@@ -118,12 +121,17 @@ def early_access():
         name = request.form.get('name')
         company = request.form.get('company')
         email = request.form.get('email')
-        phone = request.form.get('phone')
+        phone = request.form.get('phone', 'Not provided')
         message = request.form.get('message')
         
-        # In a production environment, this would send an email to NSXearlyaccess@netrunsystems.com
-        # For now, just show a success message
-        flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
+        # Send email notification
+        try:
+            send_early_access_notification(name, company, email, phone, message)
+            flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
+        except Exception as e:
+            app.logger.error(f"Error sending early access email: {str(e)}")
+            flash('Thank you for your submission! We have received your request and will contact you shortly.', 'success')
+        
         return redirect(url_for('early_access'))
         
     return render_template('early_access.html', now=now)
@@ -354,6 +362,56 @@ def about():
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+def send_early_access_notification(name, company, email, phone, message):
+    """Send email notification for early access requests"""
+    
+    # Email configuration - using environment variables for security
+    smtp_server = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
+    smtp_port = int(os.environ.get('SMTP_PORT', '587'))
+    smtp_username = os.environ.get('SMTP_USERNAME', '')
+    smtp_password = os.environ.get('SMTP_PASSWORD', '')
+    
+    # If no SMTP credentials are configured, log the request instead
+    if not smtp_username or not smtp_password:
+        app.logger.info(f"Early Access Request - Name: {name}, Company: {company}, Email: {email}, Phone: {phone}, Message: {message}")
+        return
+    
+    # Create message
+    msg = MIMEMultipart()
+    msg['From'] = smtp_username
+    msg['To'] = 'daniel@netrunsystems.com'
+    msg['Subject'] = f'Early Access Request from {name} at {company}'
+    
+    # Email body
+    body = f"""
+New Early Access Program Request
+
+Name: {name}
+Company: {company}
+Email: {email}
+Phone: {phone}
+
+Message:
+{message}
+
+Submitted at: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+"""
+    
+    msg.attach(MIMEText(body, 'plain'))
+    
+    # Send email
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+        text = msg.as_string()
+        server.sendmail(smtp_username, 'daniel@netrunsystems.com', text)
+        server.quit()
+        app.logger.info(f"Early access email sent successfully for {name}")
+    except Exception as e:
+        app.logger.error(f"Failed to send early access email: {str(e)}")
+        raise
 
 def create_sample_content():
     try:
