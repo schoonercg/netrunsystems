@@ -105,38 +105,18 @@ def register_routes(app, limiter):
     @limiter.limit("5 per minute")
     def contact():
         if request.method == 'POST':
-            # Validate input
-            rules = {
-                'name': lambda x: len(x) > 0 and len(x) <= 100,
-                'email': lambda x: re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', x),
-                'message': lambda x: len(x) > 0 and len(x) <= 1000
-            }
-            
-            if not validate_input(request.form, rules):
-                flash('Invalid input. Please check your form data.', 'error')
-                return redirect(url_for('contact'))
-            
-            # Process contact form
             try:
-                # Store in Azure Blob Storage
-                contact_data = {
-                    'name': request.form['name'],
-                    'email': request.form['email'],
-                    'message': request.form['message'],
-                    'timestamp': datetime.datetime.utcnow().isoformat()
-                }
-                azure_manager.upload_blob(
-                    'contacts',
-                    f"contact_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json",
-                    str(contact_data)
-                )
-                flash('Thank you for your message. We will get back to you soon.', 'success')
+                name = request.form.get('name')
+                email = request.form.get('email')
+                message = request.form.get('message')
+                logger.info(f"Contact form submission received from {name} ({email})")
+                # Process the form data (e.g., send email, store in database)
+                # For now, just log the message
+                logger.info(f"Message: {message}")
+                return redirect(url_for('index'))
             except Exception as e:
-                logger.error(f"Failed to process contact form: {str(e)}")
-                flash('An error occurred. Please try again later.', 'error')
-            
-            return redirect(url_for('contact'))
-        
+                logger.error(f"Error processing contact form: {e}", exc_info=True)
+                return render_template('error.html', error="An error occurred while processing your request. Please try again later."), 500
         return render_template('contact.html')
 
 def get_blog_posts():
