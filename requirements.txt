@@ -1,4 +1,4 @@
-markdown==3.4.1
+# Core dependencies
 Flask==2.3.3
 Werkzeug==2.3.7
 Jinja2==3.1.2
@@ -7,9 +7,36 @@ itsdangerous==2.1.2
 click==8.1.7
 gunicorn==21.2.0
 python-dotenv==1.0.0
+
+# Security and authentication
 Flask-WTF==1.1.1
-msal==1.20.0
-requests==2.31.0
 Flask-Session==0.5.0
 Flask-Login==0.6.2
-pytest==8.2.0
+Flask-Limiter==3.5.0
+Flask-Talisman==1.1.0
+msal
+requests==2.31.0
+
+# Azure specific
+azure-identity==1.15.0
+azure-keyvault-secrets==4.7.0
+azure-storage-blob==12.19.0
+azure-monitor-opentelemetry==1.0.0
+
+# Email and notifications
+Flask-Mail==0.9.1
+
+# Content and formatting
+markdown==3.4.1
+bleach==6.1.0
+
+# Monitoring and logging
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-instrumentation-flask==0.42b0
+
+# Development dependencies
+pytest==7.4.3
+pytest-cov==4.1.0
+black==23.11.0
+flake8==6.1.0
