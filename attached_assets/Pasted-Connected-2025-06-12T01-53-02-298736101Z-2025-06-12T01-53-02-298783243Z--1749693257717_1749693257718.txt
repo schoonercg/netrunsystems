@@ -1,0 +1,151 @@
+Connected!
+2025-06-12T01:53:02.298736101Z     _____
+2025-06-12T01:53:02.298783243Z    /  _  \ __________ _________   ____
+2025-06-12T01:53:02.298787127Z   /  /_\  \\___   /  |  \_  __ \_/ __ \
+2025-06-12T01:53:02.298789921Z  /    |    \/    /|  |  /|  | \/\  ___/
+2025-06-12T01:53:02.298792955Z  \____|__  /_____ \____/ |__|    \___  >
+2025-06-12T01:53:02.298795990Z          \/      \/                  \/
+2025-06-12T01:53:02.298798697Z  A P P   S E R V I C E   O N   L I N U X
+2025-06-12T01:53:02.298801003Z
+2025-06-12T01:53:02.298803416Z  Documentation: http://aka.ms/webapp-linux
+2025-06-12T01:53:02.298806229Z  Python 3.12.10
+2025-06-12T01:53:02.298808749Z  Note: Any data outside '/home' is not persisted
+2025-06-12T01:53:03.087810007Z  Starting OpenBSD Secure Shell server: sshd.
+2025-06-12T01:53:03.101698342Z  WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
+2025-06-12T01:53:03.121980879Z  Updating certificates in /etc/ssl/certs...
+2025-06-12T01:53:04.823952069Z  2 added, 0 removed; done.
+2025-06-12T01:53:04.823971599Z  Running hooks in /etc/ca-certificates/update.d...
+2025-06-12T01:53:04.823995314Z  done.
+2025-06-12T01:53:04.826946053Z  CA certificates copied and updated successfully.
+2025-06-12T01:53:04.857437153Z  App Command Line not configured, will attempt auto-detect
+2025-06-12T01:53:04.857459900Z  Launching oryx with: create-script -appPath /home/site/wwwroot -output /opt/startup/startup.sh -virtualEnvName antenv -defaultApp /opt/defaultsite
+2025-06-12T01:53:04.860798512Z  Found build manifest file at '/home/site/wwwroot/oryx-manifest.toml'. Deserializing it...
+2025-06-12T01:53:04.862106481Z  Build Operation ID: a0943ae560d684c3
+2025-06-12T01:53:04.862956083Z  Oryx Version: 0.2.20250505.1, Commit: bec89959884a7663432d6e3c4d36acc30657cb85, ReleaseTagName: 20250505.1
+2025-06-12T01:53:04.863255072Z  Output is compressed. Extracting it...
+2025-06-12T01:53:04.863924344Z  Extracting '/home/site/wwwroot/output.tar.gz' to directory '/tmp/8dda953bc083c69'...
+2025-06-12T01:53:06.798172995Z  App path is set to '/tmp/8dda953bc083c69'
+2025-06-12T01:53:06.824100300Z  Detected an app based on Flask
+2025-06-12T01:53:06.824263856Z  Generating `gunicorn` command for 'app:app'
+2025-06-12T01:53:06.825836547Z  Writing output script to '/opt/startup/startup.sh'
+2025-06-12T01:53:07.986422984Z  Using packages from virtual environment antenv located at /tmp/8dda953bc083c69/antenv.
+2025-06-12T01:53:07.986445960Z  Updated PYTHONPATH to '/agents/python:/opt/startup/app_logs:/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages'
+2025-06-12T01:53:09.121322795Z  [2025-06-12 01:53:09 +0000] [1017] [INFO] Starting gunicorn 21.2.0
+2025-06-12T01:53:09.127666336Z  [2025-06-12 01:53:09 +0000] [1017] [INFO] Listening at: http://0.0.0.0:8000 (1017)
+2025-06-12T01:53:09.128099006Z  [2025-06-12 01:53:09 +0000] [1017] [INFO] Using worker: sync
+2025-06-12T01:53:09.131243822Z  [2025-06-12 01:53:09 +0000] [1020] [INFO] Booting worker with pid: 1020
+2025-06-12T01:53:09.514314492Z  DEBUG:appServiceAppLogs:Waiting for the logs flag to be set
+2025-06-12T01:53:09.514731421Z  INFO:appsvc_profiler.installer:Code Profiler Installer is starting up
+2025-06-12T01:53:09.515190789Z  INFO:appsvc_profiler.installer:Cleaning up any existing status file which indicated signal handlers initialized status
+2025-06-12T01:53:09.517521233Z  INFO:appsvc_profiler.installer:Attempting to delete the signal_handler status file for instance id 12ad29c2d83712da2c90b5274d009bf95b7bd6acdbd60d3c5b256e877c2970a4
+2025-06-12T01:53:09.518472099Z  INFO:appsvc_profiler.installer:successfully deleted the status file
+2025-06-12T01:53:09.518872673Z  DEBUG:appsvc_profiler.installer:APPSETTING_WEBSITE_ENABLE_DEFAULT_CODE_PROFILER : None
+2025-06-12T01:53:09.550805728Z  INFO:appsvc_profiler.installer:Attempting to install the default code profiler.
+2025-06-12T01:53:09.550831633Z  DEBUG:appsvc_profiler.installer:viztracer would save traces to /tmp/12ad29_profiler_trace.json
+2025-06-12T01:53:09.550835166Z  INFO:appsvc_profiler.installer:Successfully installed code profiler.
+2025-06-12T01:53:09.556526586Z  INFO:appsvc_profiler.installer:Signal Handlers SIGUSR for needed code-profiler have been initialized for gunicorn process on instance 12ad29c2d83712da2c90b5274d009bf95b7bd6acdbd60d3c5b256e877c2970a4
+2025-06-12T01:53:09.556586773Z  DEBUG:appsvc_profiler.installer:Code Profiler Installer is exiting as installation is completed
+2025-06-12T01:53:10.286229695Z  ERROR:app:Exception on /robots933456.txt [GET]
+2025-06-12T01:53:10.286286439Z  Traceback (most recent call last):
+2025-06-12T01:53:10.286291489Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+2025-06-12T01:53:10.286294899Z      rv = self.dispatch_request()
+2025-06-12T01:53:10.286298236Z           ^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286301290Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1458, in dispatch_request
+2025-06-12T01:53:10.286304525Z      self.raise_routing_exception(req)
+2025-06-12T01:53:10.286307621Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1440, in raise_routing_exception
+2025-06-12T01:53:10.286311157Z      raise request.routing_exception  # type: ignore
+2025-06-12T01:53:10.286314447Z      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286317067Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/ctx.py", line 353, in match_request
+2025-06-12T01:53:10.286320195Z      result = self.url_adapter.match(return_rule=True)  # type: ignore
+2025-06-12T01:53:10.286323237Z               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286326237Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/werkzeug/routing/map.py", line 655, in match
+2025-06-12T01:53:10.286329432Z      raise NotFound() from None
+2025-06-12T01:53:10.286349590Z  werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-06-12T01:53:10.286353044Z
+2025-06-12T01:53:10.286355882Z  During handling of the above exception, another exception occurred:
+2025-06-12T01:53:10.286358680Z
+2025-06-12T01:53:10.286361272Z  Traceback (most recent call last):
+2025-06-12T01:53:10.286363731Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+2025-06-12T01:53:10.286366857Z      response = self.full_dispatch_request()
+2025-06-12T01:53:10.286369531Z                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286372315Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+2025-06-12T01:53:10.286375442Z      rv = self.handle_user_exception(e)
+2025-06-12T01:53:10.286378186Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286380719Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1341, in handle_user_exception
+2025-06-12T01:53:10.286383974Z      return self.handle_http_exception(e)
+2025-06-12T01:53:10.286386924Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286389902Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1281, in handle_http_exception
+2025-06-12T01:53:10.286393158Z      return self.ensure_sync(handler)(e)
+2025-06-12T01:53:10.286396058Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286399992Z    File "/tmp/8dda953bc083c69/app.py", line 491, in page_not_found
+2025-06-12T01:53:10.286403186Z      return render_template('404.html'), 404
+2025-06-12T01:53:10.286405819Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286408703Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/templating.py", line 151, in render_template
+2025-06-12T01:53:10.286411885Z      return _render(app, template, context)
+2025-06-12T01:53:10.286414785Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286417612Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/templating.py", line 132, in _render
+2025-06-12T01:53:10.286420840Z      rv = template.render(context)
+2025-06-12T01:53:10.286423741Z           ^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286426577Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
+2025-06-12T01:53:10.286429591Z      self.environment.handle_exception()
+2025-06-12T01:53:10.286432639Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
+2025-06-12T01:53:10.286435908Z      raise rewrite_traceback_stack(source=source)
+2025-06-12T01:53:10.286438945Z    File "/tmp/8dda953bc083c69/templates/404.html", line 2, in top-level template code
+2025-06-12T01:53:10.286445289Z      {% extends "base.html" %}
+2025-06-12T01:53:10.286448213Z    File "/tmp/8dda953bc083c69/templates/base.html", line 112, in top-level template code
+2025-06-12T01:53:10.286451250Z      <p>&copy; {{ now.year }} Netrun Systems. Based in Ojai, California. All rights reserved.</p>
+2025-06-12T01:53:10.286454891Z      ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286457934Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/jinja2/environment.py", line 485, in getattr
+2025-06-12T01:53:10.286461619Z      return getattr(obj, attribute)
+2025-06-12T01:53:10.286464423Z             ^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.286467411Z  jinja2.exceptions.UndefinedError: 'now' is undefined
+2025-06-12T01:53:10.293092995Z  [2025-06-12 01:53:10 +0000] [1020] [ERROR] Error handling request /robots933456.txt
+2025-06-12T01:53:10.293141171Z  Traceback (most recent call last):
+2025-06-12T01:53:10.293145360Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+2025-06-12T01:53:10.293148731Z      rv = self.dispatch_request()
+2025-06-12T01:53:10.293151868Z           ^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293154689Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1458, in dispatch_request
+2025-06-12T01:53:10.293157918Z      self.raise_routing_exception(req)
+2025-06-12T01:53:10.293160657Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1440, in raise_routing_exception
+2025-06-12T01:53:10.293163832Z      raise request.routing_exception  # type: ignore
+2025-06-12T01:53:10.293167040Z      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293170248Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/ctx.py", line 353, in match_request
+2025-06-12T01:53:10.293173684Z      result = self.url_adapter.match(return_rule=True)  # type: ignore
+2025-06-12T01:53:10.293176985Z               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293180099Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/werkzeug/routing/map.py", line 655, in match
+2025-06-12T01:53:10.293183584Z      raise NotFound() from None
+2025-06-12T01:53:10.293186735Z  werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-06-12T01:53:10.293190284Z
+2025-06-12T01:53:10.293193166Z  During handling of the above exception, another exception occurred:
+2025-06-12T01:53:10.293196258Z
+2025-06-12T01:53:10.293199042Z  Traceback (most recent call last):
+2025-06-12T01:53:10.293201879Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+2025-06-12T01:53:10.293204903Z      response = self.full_dispatch_request()
+2025-06-12T01:53:10.293216059Z                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293219262Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+2025-06-12T01:53:10.293235613Z      rv = self.handle_user_exception(e)
+2025-06-12T01:53:10.293238610Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293241708Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1341, in handle_user_exception
+2025-06-12T01:53:10.293245038Z      return self.handle_http_exception(e)
+2025-06-12T01:53:10.293247871Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293250826Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/app.py", line 1281, in handle_http_exception
+2025-06-12T01:53:10.293253835Z      return self.ensure_sync(handler)(e)
+2025-06-12T01:53:10.293257914Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293260845Z    File "/tmp/8dda953bc083c69/app.py", line 491, in page_not_found
+2025-06-12T01:53:10.293264111Z      return render_template('404.html'), 404
+2025-06-12T01:53:10.293266893Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293269828Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/templating.py", line 151, in render_template
+2025-06-12T01:53:10.293272547Z      return _render(app, template, context)
+2025-06-12T01:53:10.293275181Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293278046Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/flask/templating.py", line 132, in _render
+2025-06-12T01:53:10.293280859Z      rv = template.render(context)
+2025-06-12T01:53:10.293283573Z           ^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T01:53:10.293286271Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
+2025-06-12T01:53:10.293289286Z      self.environment.handle_exception()
+2025-06-12T01:53:10.293292141Z    File "/tmp/8dda953bc083c69/antenv/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
+2025-06-12T01:53:10.293295202Z      raise rewrite_traceback_stack(source=source)
+2025-06-12T01:53:10.293297798Z    File "/tmp/8dda953bc083c69/templates/404.html", line 2, in top-level template code
+2025-06-12T01:53:10.293300846Z      {% extends "base.html" %}
+2025-06-12T01:53:10.293303905Z    File "/tmp/8dda953bc083c69/templates/base.html", line 112, in top-level template code
+2025-06-12T01:53:10.293306993Z      <p>&copy; {{ now.year }} Netrun Systems. Based in Ojai, California. All rights reserved.</p>
+2025-06-12T01:53:10.293310604Z      ^^^^^^^^^^^^^^^^^^^^^^^^^
