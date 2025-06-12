@@ -4,65 +4,193 @@
 {% block title %}Netrun Systems - Intirkast{% endblock %}
 
 {% block content %}
-<section class="page-header">
-    <div class="page-header-content">
-        <h1>Intirkast</h1>
-        <p>AI-Powered Content Automation & Distribution</p>
-    </div>
-</section>
-
 <section class="product-detail">
     <div class="container">
         <div class="product-overview">
             <div class="product-description">
-                <h2>Intelligent Content Management</h2>
-                <p>Create, schedule, and auto-optimize content campaigns across your brand's platforms — all from a single dashboard.</p>
-                <ul class="feature-list">
-                    <li>Cross-platform content calendar</li>
-                    <li>AI-optimized posting times</li>
-                    <li>Campaign performance tracking</li>
-                    <li>Brand consistency enforcement</li>
-                </ul>
+                <h1>Intirkast</h1>
+                <p>Your always-on creative teammate</p>
+                <h2>AI-Powered Content Automation & Distribution</h2>
+                <p>Imagine having a super-organized friend who never sleeps, speaks every social-media dialect, and cheer-leads your brand 24/7. That's Intirkast. Behind the scenes it quietly syndicates your posts—think "copy once, appear everywhere"—then lines them up on an intelligent calendar so your TikToks, Reels, Pins, and Tweets hit exactly when your audience is scrolling.</p>
+                
                 <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="pricing">
+<section class="products">
+    <div class="container">
+        <h2>Core Features</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/connection.PNG') }}" alt="Content Capture Icon" class="solution-icon">
+                </div>
+                <h3>Content Capture</h3>
+                <p>Post once, repurpose forever. Connect private sandbox accounts, bulk upload from cloud folders, or import from spreadsheets. Intirkast auto-imports and prepares everything for multi-platform publishing.</p>
+                <div class="service-details">
+                    <span class="timeline">Auto Import</span>
+                    <span class="price">Multi-Source</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/agents.PNG') }}" alt="Smart Production Icon" class="solution-icon">
+                </div>
+                <h3>Smart Production</h3>
+                <p>From raw to ready. AI generates captions in your brand voice, auto-trims content for every platform format, applies brand guardrails, and creates template-driven storyboards that convert.</p>
+                <div class="service-details">
+                    <span class="timeline">AI Powered</span>
+                    <span class="price">Brand Safe</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/compliance.PNG') }}" alt="Approval Workflow Icon" class="solution-icon">
+                </div>
+                <h3>Approval & Collaboration</h3>
+                <p>Keep control, ditch the chaos. One-click approvals, version compare & rollback, and role-based access ensure your team stays productive while maintaining quality standards.</p>
+                <div class="service-details">
+                    <span class="timeline">Team Ready</span>
+                    <span class="price">Full Control</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Scheduling Icon" class="solution-icon">
+                </div>
+                <h3>Scheduling & Delivery</h3>
+                <p>Algorithm-friendly timing on autopilot. Predictive time slots, content recycling for evergreen hits, and launch sequences that tie multiple posts into cohesive campaigns.</p>
+                <div class="service-details">
+                    <span class="timeline">Auto Schedule</span>
+                    <span class="price">Smart Timing</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/search.PNG') }}" alt="Insights Icon" class="solution-icon">
+                </div>
+                <h3>Insights & Iteration</h3>
+                <p>Learn, tweak, repeat. At-a-glance dashboard, post-mortem wizard for campaign analysis, and trend radar to catch viral waves before they crash.</p>
+                <div class="service-details">
+                    <span class="timeline">Real-time</span>
+                    <span class="price">Data Driven</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Quick Storyboard Starter Set</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/visibility.PNG') }}" alt="Hook Icon">
+                </div>
+                <h3>Hook (3-sec punch)</h3>
+                <p>Brand color splash with "Did you know...?" Auto-trim & resize for each platform to grab attention instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/human.PNG') }}" alt="Behind Scenes Icon">
+                </div>
+                <h3>Behind-the-scenes</h3>
+                <p>Raw workspace footage with "Here's how we make magic daily." Filters + trending sound recommendations included.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Demo Icon">
+                </div>
+                <h3>Product in Action</h3>
+                <p>User POV demo with "Swipe to see the glow-up." Auto-adds swipe-carousel layout for Instagram and Facebook.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products">
     <div class="container">
         <h2>Flexible Pricing Plans</h2>
-        <div class="pricing-grid">
-            <div class="pricing-card">
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Basic Package">
+                </div>
                 <h3>Basic</h3>
-                <p class="price">$79/month</p>
-                <p>Perfect for solopreneurs and small teams</p>
-                <ul>
-                    <li>2 social platforms</li>
-                    <li>Basic AI optimization</li>
-                    <li>Standard analytics</li>
-                </ul>
+                <p>Perfect for solopreneurs and small teams getting started with content automation.</p>
+                <div class="service-details">
+                    <span class="timeline">2 social platforms</span>
+                    <span class="price">$79/month</span>
+                </div>
+                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
             </div>
-            <div class="pricing-card featured">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Pro Package">
+                </div>
                 <h3>Pro</h3>
-                <p class="price">$199/month</p>
-                <p>Ideal for growing agencies and businesses</p>
-                <ul>
-                    <li>Unlimited platforms</li>
-                    <li>Advanced AI features</li>
-                    <li>Premium analytics</li>
-                </ul>
+                <p>Ideal for growing agencies and businesses with advanced automation needs.</p>
+                <div class="service-details">
+                    <span class="timeline">Unlimited platforms</span>
+                    <span class="price">$199/month</span>
+                </div>
+                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
             </div>
-            <div class="pricing-card">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Enterprise Package">
+                </div>
                 <h3>Enterprise</h3>
-                <p class="price">Custom pricing</p>
-                <p>For large organizations with custom needs</p>
-                <ul>
-                    <li>Custom integrations</li>
-                    <li>Advanced automation</li>
-                    <li>Dedicated support</li>
-                </ul>
+                <p>For large organizations with custom integrations and dedicated support requirements.</p>
+                <div class="service-details">
+                    <span class="timeline">Custom integrations</span>
+                    <span class="price">Custom pricing</span>
+                </div>
+                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Integrations & Extensibility</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/connection.PNG') }}" alt="Zapier Icon">
+                </div>
+                <h3>Zapier & Webhooks</h3>
+                <p>Connect to your CRM, newsletter, or custom tools. Automate workflows beyond social media.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/cicd.PNG') }}" alt="API Icon">
+                </div>
+                <h3>OpenAPI Playground</h3>
+                <p>Script custom automations like auto-posting "New in store" carousels when inventory changes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/knowledge.PNG') }}" alt="Knowledge Icon">
+                </div>
+                <h3>RAG-Powered Knowledge</h3>
+                <p>Feed FAQs or white papers; caption generator cites them for accuracy and SEO benefits.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="humor-section" style="text-align: center; margin: 2rem 0;">
+            <blockquote style="background: #f4f4f4; padding: 2rem; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                <p style="color: #333; font-style: italic; margin: 0;"><strong>Your typical day:</strong> Film a quick "morning grind" clip → Intirkast creates five platform variants → You approve over lunch → Dashboard shows 37% performance boost.<br>
+                <em>You actually got to eat lunch. Wild concept. ☕️🚀</em></p>
+            </blockquote>
         </div>
     </div>
 </section>
@@ -70,8 +198,9 @@
 <section class="cta">
     <div class="cta-content">
         <h2>Ready to transform your content strategy?</h2>
-        <p>Perfect for agencies, solopreneurs, and in-house marketing teams.</p>
-        <a href="{{ url_for('early_access') }}" class="btn primary">Get Started</a>
+        <p>You sketch the big idea; Intirkast figures out where, when, and how often it should live. Perfect for agencies, solopreneurs, and in-house marketing teams who want to plan, publish, and measure campaigns without juggling ten apps.</p>
+        <a href="{{ url_for('contact') }}" class="btn primary">Contact Us</a>
+        <a href="{{ url_for('early_access') }}" class="btn secondary">Get Early Access</a>
     </div>
 </section>
 {% endblock %}

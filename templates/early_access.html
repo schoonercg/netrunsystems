@@ -23,12 +23,11 @@
                     <li><span class="check-icon">✓</span> Priority support during implementation</li>
                     <li><span class="check-icon">✓</span> Exclusive pricing for early adopters</li>
                 </ul>
-                <p>The Early Access Program is ideal for MSPs, Azure consultants, and organizations managing multiple Azure tenants who want to simplify their governance approach.</p>
+                <p>The Early Access Program is ideal for MSPs, IT consultants, and organizations managing multiple client environments who want to simplify their operations and governance approach.</p>
             </div>
             <div class="form early-access-form">
                 <h3>Request Early Access</h3>
                 <form method="POST" action="{{ url_for('early_access') }}">
-                    {{ csrf_token }}
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -46,7 +45,7 @@
                         <input type="tel" id="phone" name="phone">
                     </div>
                     <div class="form-group">
-                        <label for="message">Tell us about your current Azure management challenges *</label>
+                        <label for="message">Tell us about your current management challenges and which products interest you *</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn primary">Submit Application</button>

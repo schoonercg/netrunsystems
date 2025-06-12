@@ -1,0 +1,172 @@
+
+{% extends "base.html" %}
+
+{% block title %}About Us - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>About Netrun Systems</h1>
+        <p>From a valley famed for its laid-back mystique, proving that automation, ethics, and art can belong on the same team.</p>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="product-card">
+            <h2>Our Mission</h2>
+            <p>At Netrun Systems, we're showing that high-impact tech doesn't have to be born in Silicon Valley. It can come from a place as eclectic as Ojai — for real humans who need real-world solutions. We specialize in automation, cloud governance, and innovative solutions that solve real-world problems while keeping people at the center.</p>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <div class="product-card">
+            <h2>What We Do</h2>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirkon.PNG') }}" alt="Interkon" class="solution-icon">
+                </div>
+                <h3>Interkon</h3>
+                <p>A cross-tenant cloud governance platform for MSPs, delivering enterprise-grade security and cost optimization—no matter how many client tenants they juggle.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirfix.PNG') }}" alt="Interfyx" class="solution-icon">
+                </div>
+                <h3>Interfyx</h3>
+                <p>A small-business optimization dashboard that integrates with Square, QuickBooks, and other common tools, translating data into insights people actually understand.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Interkast" class="solution-icon">
+                </div>
+                <h3>Interkast</h3>
+                <p>A social-automation and generative-media studio that keeps marketing campaigns genuinely social rather than "spammy."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="product-card">
+            <h2>Why Ojai?</h2>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/human.PNG') }}" alt="Creative Spark" class="solution-icon">
+                </div>
+                <h3>Creative Spark</h3>
+                <p>Ojai's mix of artists, farmers, and free spirits helps keep Netrun's work honest and imaginative.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/community.PNG') }}" alt="Community Focus" class="solution-icon">
+                </div>
+                <h3>Community Focus</h3>
+                <p>The planned Tech Center will offer public workshops, open maker spaces, and local events that make tech less intimidating.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/visibility.PNG') }}" alt="Small-Town Ethos" class="solution-icon">
+                </div>
+                <h3>Small-Town Ethos</h3>
+                <p>By rooting ourselves in Ojai, Netrun Systems aims to grow in harmony with the local community, rather than overshadow it.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <div class="product-card">
+            <h2>Our Founders</h2>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/daniel-garza.jpg') }}" alt="Daniel Garza" class="solution-icon" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;">
+                </div>
+                <h3>Daniel Garza</h3>
+                <h4>Co-Founder & CEO</h4>
+                <p>"We're showing that high-impact tech doesn't have to be born in Silicon Valley. It can come from a place as eclectic as Ojai — for real humans who need real-world solutions."</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/matt-cofounder.jpg') }}" alt="Matt Jordan" class="solution-icon" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;">
+                </div>
+                <h3>Matt Jordan (Cogex)</h3>
+                <h4>Co-Founder & Chief Creative</h4>
+                <p>"I'm on board with AI — I just don't think it can replace human creativity. Sure, AI can churn out a decent bass line, but let's face it: the best ones will still come from actual musicians."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="product-card">
+            <h2>Our Story</h2>
+            <p>Founded with the vision of bridging the gap between complex technology and practical business needs, Netrun Systems emerged from the recognition that many organizations struggle with cloud governance and security compliance. Our team combines deep technical expertise with a genuine understanding of business challenges to deliver solutions that actually work.</p>
+            
+            <p>Located in the beautiful Ojai Valley of California, we draw inspiration from our surroundings to create technology solutions that are both powerful and harmonious with human needs. We believe that the best technology solutions are those that seamlessly integrate into people's workflows and enhance their capabilities rather than creating additional complexity.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-form">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>Have questions about our products or services? We'd love to hear from you. Fill out the form and our team will get back to you as soon as possible.</p>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="icon">
+                        <img src="{{ url_for('static', filename='images/icon-email.svg') }}" alt="Email">
+                    </div>
+                    <div class="details">
+                        <h3>Email</h3>
+                        <p>daniel@netrunsystems.com</p>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <div class="icon">
+                        <img src="{{ url_for('static', filename='images/icon-phone.svg') }}" alt="Phone">
+                    </div>
+                    <div class="details">
+                        <h3>Phone</h3>
+                        <p>(805) 707-4828</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <form method="POST" action="{{ url_for('about') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,227 @@
+
+{% extends "base.html" %}
+
+{% block title %}Services - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Our Services</h1>
+        <p>Comprehensive technology solutions and consulting services for modern businesses</p>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <h2>Core Platform Solutions</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirkon.PNG') }}" alt="Intirkon Icon" class="solution-icon">
+                </div>
+                <h3>Intirkon</h3>
+                <p>Advanced automation platform for Azure environments with cross-tenant governance capabilities.</p>
+                <div class="service-details">
+                    <span class="timeline">Enterprise Ready</span>
+                    <span class="price">Contact Sales</span>
+                </div>
+                <a href="{{ url_for('product_intirkon') }}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirfix.PNG') }}" alt="Intirfix Icon" class="solution-icon">
+                </div>
+                <h3>Intirfix</h3>
+                <p>Small Business Dashboard with AI-powered insights for streamlined operations and decision making.</p>
+                <div class="service-details">
+                    <span class="timeline">SMB Focus</span>
+                    <span class="price">From $199/mo</span>
+                </div>
+                <a href="{{ url_for('product_intirfix') }}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Intirkast Icon" class="solution-icon">
+                </div>
+                <h3>Intirkast</h3>
+                <p>Social media content creation and management service powered by AI automation.</p>
+                <div class="service-details">
+                    <span class="timeline">Content Creation</span>
+                    <span class="price">From $99/mo</span>
+                </div>
+                <a href="{{ url_for('product_intirkast') }}" class="btn-learn-more">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services-overview">
+    <div class="container">
+        <div class="services-grid">
+            <div class="service-category">
+                <h2>Web & Digital Presence</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Website Package">
+                        </div>
+                        <h3>Small Business Website Package</h3>
+                        <p>Professional, mobile-friendly website with up to 5 pages, contact form, and Google Maps integration.</p>
+                        <div class="service-details">
+                            <span class="timeline">2 weeks</span>
+                            <span class="price">From $999</span>
+                        </div>
+                        <a href="#website-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/search.PNG') }}" alt="SEO">
+                        </div>
+                        <h3>Local SEO Optimization</h3>
+                        <p>Boost your local search rankings with Google Business Profile optimization and local directory listings.</p>
+                        <div class="service-details">
+                            <span class="timeline">4 weeks</span>
+                            <span class="price">From $499/mo</span>
+                        </div>
+                        <a href="#seo-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Analytics">
+                        </div>
+                        <h3>Marketing Analytics Setup</h3>
+                        <p>Get insights into your customer behavior with Google Analytics and reporting dashboard setup.</p>
+                        <div class="service-details">
+                            <span class="timeline">1 week</span>
+                            <span class="price">From $299</span>
+                        </div>
+                        <a href="#analytics-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h2>AI & Automation</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/agents.PNG') }}" alt="GPT Agents">
+                        </div>
+                        <h3>GPT-Powered Agents</h3>
+                        <p>Custom LLM agents designed for your specific business tasks and workflows.</p>
+                        <div class="service-details">
+                            <span class="timeline">8 weeks</span>
+                            <span class="price">From $15,000</span>
+                        </div>
+                        <a href="#gpt-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/knowledge.PNG') }}" alt="RAG Systems">
+                        </div>
+                        <h3>RAG/Knowledge-Base Systems</h3>
+                        <p>Implementation of retrieval-augmented pipelines for enhanced information access.</p>
+                        <div class="service-details">
+                            <span class="timeline">6 weeks</span>
+                            <span class="price">From $12,000</span>
+                        </div>
+                        <a href="#rag-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/cicd.PNG') }}" alt="CI/CD Infrastructure">
+                        </div>
+                        <h3>CI/CD Infrastructure as Code</h3>
+                        <p>Automated deployment pipelines and infrastructure management using modern DevOps practices.</p>
+                        <div class="service-details">
+                            <span class="timeline">4 weeks</span>
+                            <span class="price">From $8,000</span>
+                        </div>
+                        <a href="#cicd-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h2>Cloud & Compliance</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Azure">
+                        </div>
+                        <h3>Azure Solution Accelerators</h3>
+                        <p>Turn-key Azure templates and solutions for rapid deployment.</p>
+                        <div class="service-details">
+                            <span class="timeline">5 weeks</span>
+                            <span class="price">From $9,000</span>
+                        </div>
+                        <a href="#azure-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/threat.PNG') }}" alt="Threat Icon">
+                        </div>
+                        <h3>AI-Enhanced Threat Hunting</h3>
+                        <p>Advanced anomaly detection in SIEM logs with AI-powered analysis.</p>
+                        <div class="service-details">
+                            <span class="timeline">5 weeks</span>
+                            <span class="price">From $13,000</span>
+                        </div>
+                        <a href="#threat-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <img src="{{ url_for('static', filename='images/review.PNG') }}" alt="Azure Governance">
+                        </div>
+                        <h3>Azure Governance Reviews</h3>
+                        <p>Comprehensive assessment of Azure security, compliance, and cost optimization practices.</p>
+                        <div class="service-details">
+                            <span class="timeline">3 weeks</span>
+                            <span class="price">From $6,500</span>
+                        </div>
+                        <a href="#audit-details" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Additional Solutions</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/review.PNG') }}" alt="Governance Icon">
+                </div>
+                <h3>Governance Dashboard</h3>
+                <p>Comprehensive governance and compliance management across all your Azure environments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/compliance.PNG') }}" alt="Compliance Icon">
+                </div>
+                <h3>Compliance Reporter</h3>
+                <p>Automated compliance reporting and monitoring for regulatory requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Cost Optimizer Icon">
+                </div>
+                <h3>Cost Optimizer</h3>
+                <p>AI-driven cost optimization recommendations to reduce cloud spending.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Discover how our solutions can streamline your operations and drive growth. Contact us today for a personalized consultation.</p>
+        <a href="{{ url_for('about') }}" class="btn primary">Get Started</a>
+        <a href="{{ url_for('early_access') }}" class="btn secondary">Join Early Access</a>
+    </div>
+</section>
+{% endblock %}
