@@ -179,6 +179,11 @@ def send_contact_notification(name, email, subject, message):
     smtp_username = os.environ.get('SMTP_USERNAME', '')
     smtp_password = os.environ.get('SMTP_PASSWORD', '')
     
+    # Debug logging
+    app.logger.info(f"SMTP Config - Server: {smtp_server}, Port: {smtp_port}")
+    app.logger.info(f"SMTP Username configured: {'Yes' if smtp_username else 'No'}")
+    app.logger.info(f"SMTP Password configured: {'Yes' if smtp_password else 'No'}")
+    
     # If no SMTP credentials are configured, log the request instead
     if not smtp_username or not smtp_password:
         app.logger.info(f"Contact Form - Name: {name}, Email: {email}, Subject: {subject}, Message: {message}")
