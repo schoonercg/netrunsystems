@@ -1,0 +1,17 @@
+Edg/137.0.0.0"
+2025-06-12T02:23:12.279075979Z  169.254.129.1 - - [12/Jun/2025:02:23:12 +0000] "GET /static/images/icon-phone.svg HTTP/1.1" 200 0 "https://netrun-dev-d0dwfjf3czbrevg0.westus2-01.azurewebsites.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0"
+2025-06-12T02:23:12.281485096Z  169.254.129.1 - - [12/Jun/2025:02:23:12 +0000] "GET /static/images/icon-email.svg HTTP/1.1" 200 0 "https://netrun-dev-d0dwfjf3czbrevg0.westus2-01.azurewebsites.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0"
+2025-06-12T02:23:12.452367409Z  169.254.129.1 - - [12/Jun/2025:02:23:12 +0000] "GET /static/favicon.ico HTTP/1.1" 200 0 "https://netrun-dev-d0dwfjf3czbrevg0.westus2-01.azurewebsites.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0"
+2025-06-12T02:23:20.335024665Z  ERROR:app:Exception on /contact [GET]
+2025-06-12T02:23:20.335062427Z  Traceback (most recent call last):
+2025-06-12T02:23:20.335066732Z    File "/tmp/8dda9548257541b/antenv/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+2025-06-12T02:23:20.335070408Z      response = self.full_dispatch_request()
+2025-06-12T02:23:20.335073289Z                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T02:23:20.335076292Z    File "/tmp/8dda9548257541b/antenv/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+2025-06-12T02:23:20.335079633Z      rv = self.handle_user_exception(e)
+2025-06-12T02:23:20.335082737Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T02:23:20.335085828Z    File "/tmp/8dda9548257541b/antenv/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+2025-06-12T02:23:20.335088901Z      rv = self.dispatch_request()
+2025-06-12T02:23:20.335091554Z           ^^^^^^^^^^^^^^^^^^^^^^^
+2025-06-12T02:23:20.335094449Z    File "/tmp/8dda9548257541b/antenv/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+2025-06-12T02:23:20.335097759Z      return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
