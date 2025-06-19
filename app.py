@@ -8,6 +8,9 @@ from flask import Flask, render_template, request, redirect, url_for, flash, abo
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from functools import wraps
 import logging
+import msal
+import requests
+import uuid
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -309,18 +312,115 @@ def research_connection_manager():
 
 @app.route('/login')
 def login():
-    # In development mode, automatically log in
-    session['user'] = {
-        'name': 'Development User',
-        'email': 'dev@netrunsystems.com',
-        'id': 'dev-user-id'
-    }
-    return redirect(url_for('customer_portal'))
+    # Check if already authenticated
+    if 'user' in session:
+        return redirect(url_for('customer_portal'))
+    
+    # Get Azure AD configuration from environment
+    client_id = os.environ.get('AZURE_CLIENT_ID', '')
+    tenant_id = os.environ.get('AZURE_TENANT_ID', '')
+    
+    # If Azure AD not configured, use development mode
+    if not client_id or not tenant_id:
+        app.logger.info("Azure AD not configured, using development mode")
+        session['user'] = {
+            'name': 'Development User',
+            'email': 'dev@netrunsystems.com',
+            'id': 'dev-user-id'
+        }
+        return redirect(url_for('customer_portal'))
+    
+    # Create MSAL app instance
+    msal_app = create_msal_app()
+    
+    # Generate authorization URL
+    auth_url = msal_app.get_authorization_request_url(
+        scopes=['User.Read'],
+        state=str(uuid.uuid4()),
+        redirect_uri=url_for('auth_callback', _external=True)
+    )
+    
+    return redirect(auth_url)
+
+@app.route('/auth/callback')
+def auth_callback():
+    # Get authorization code from callback
+    code = request.args.get('code')
+    if not code:
+        flash('Authentication failed. Please try again.', 'error')
+        return redirect(url_for('index'))
+    
+    # Create MSAL app instance
+    msal_app = create_msal_app()
+    
+    # Exchange authorization code for tokens
+    result = msal_app.acquire_token_by_authorization_code(
+        code,
+        scopes=['User.Read'],
+        redirect_uri=url_for('auth_callback', _external=True)
+    )
+    
+    if 'error' in result:
+        app.logger.error(f"Authentication error: {result.get('error_description')}")
+        flash('Authentication failed. Please try again.', 'error')
+        return redirect(url_for('index'))
+    
+    # Get user info from Microsoft Graph
+    access_token = result['access_token']
+    user_info = get_user_info(access_token)
+    
+    if user_info:
+        # Store user info in session
+        session['user'] = {
+            'name': user_info.get('displayName', 'Unknown User'),
+            'email': user_info.get('mail') or user_info.get('userPrincipalName', ''),
+            'id': user_info.get('id', ''),
+            'access_token': access_token
+        }
+        flash('Successfully signed in!', 'success')
+        return redirect(url_for('customer_portal'))
+    else:
+        flash('Failed to retrieve user information. Please try again.', 'error')
+        return redirect(url_for('index'))
+
+def create_msal_app():
+    """Create MSAL confidential client application"""
+    client_id = os.environ.get('AZURE_CLIENT_ID', '')
+    client_secret = os.environ.get('AZURE_CLIENT_SECRET', '')
+    tenant_id = os.environ.get('AZURE_TENANT_ID', '')
+    authority = f'https://login.microsoftonline.com/{tenant_id}'
+    
+    return msal.ConfidentialClientApplication(
+        client_id=client_id,
+        client_credential=client_secret,
+        authority=authority
+    )
+
+def get_user_info(access_token):
+    """Get user information from Microsoft Graph API"""
+    try:
+        headers = {'Authorization': f'Bearer {access_token}'}
+        response = requests.get('https://graph.microsoft.com/v1.0/me', headers=headers)
+        
+        if response.status_code == 200:
+            return response.json()
+        else:
+            app.logger.error(f"Failed to get user info: {response.status_code}")
+            return None
+    except Exception as e:
+        app.logger.error(f"Error getting user info: {str(e)}")
+        return None
 
 @app.route('/logout')
 def logout():
     session.clear()
+    flash('You have been signed out successfully.', 'success')
     return redirect(url_for('index'))
+
+@app.route('/azure-login')
+def azure_login_page():
+    """Display Azure AD login page"""
+    return render_template('azure_login.html')
 
 @app.route('/portal')
 @requires_auth

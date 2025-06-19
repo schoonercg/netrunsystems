@@ -43,3 +43,7 @@ flake8==6.1.0
 azure-communication-email
 xds-protos
 azure-communication-email
+msal
+requests
+msal
+requests

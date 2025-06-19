@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+
+{% block title %}Sign In - Netrun Systems{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="page-header-content">
+        <h1>Sign In to Your Account</h1>
+        <p>Access your Netrun Systems portal and services</p>
+    </div>
+</div>
+
+<section class="features">
+    <div class="container">
+        <div class="product-card" style="max-width: 500px; margin: 0 auto;">
+            <h3>Microsoft Account Sign-In</h3>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}" style="margin: 1rem 0; padding: 1rem; border-radius: 5px; background-color: {{ '#f8d7da' if category == 'error' else '#d4edda' }}; border: 1px solid {{ '#f5c6cb' if category == 'error' else '#c3e6cb' }}; color: {{ '#721c24' if category == 'error' else '#155724' }};">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <p>Sign in with your Microsoft/Azure AD account to access your customer portal and services.</p>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="{{ url_for('login') }}" class="btn btn-primary" style="padding: 12px 24px; font-size: 16px;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" style="margin-right: 8px; vertical-align: middle;">
+                        <path fill="currentColor" d="M8.5 1H15v6.5H8.5V1zM1 1h6.5v6.5H1V1zm0 7.5h6.5V15H1V8.5zm7.5 0H15V15H8.5V8.5z"/>
+                    </svg>
+                    Sign in with Microsoft
+                </a>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #ddd; font-size: 14px; color: #666;">
+                <p><strong>Note:</strong> You need a valid Microsoft account to access the customer portal. If you don't have an account or need assistance, please <a href="{{ url_for('contact') }}">contact us</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

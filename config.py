@@ -28,6 +28,14 @@ class Config:
     AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING = os.environ.get('AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING', '')
     AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL = os.environ.get('AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL', 'noreply@netrunsystems.com')
     MAIL_DEFAULT_SENDER = 'daniel@netrunsystems.com'
+    
+    # Azure Entra ID (Azure AD) configuration
+    AZURE_CLIENT_ID = os.environ.get('AZURE_CLIENT_ID', '')
+    AZURE_CLIENT_SECRET = os.environ.get('AZURE_CLIENT_SECRET', '')
+    AZURE_TENANT_ID = os.environ.get('AZURE_TENANT_ID', '')
+    AZURE_AUTHORITY = f'https://login.microsoftonline.com/{os.environ.get("AZURE_TENANT_ID", "")}'
+    AZURE_REDIRECT_URI = os.environ.get('AZURE_REDIRECT_URI', '/auth/callback')
+    AZURE_SCOPE = ['User.Read']
 
 class DevelopmentConfig(Config):
     """Development configuration."""
