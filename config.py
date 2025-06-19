@@ -24,12 +24,9 @@ class Config:
     # Blog configuration
     BLOG_POST_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'blog_posts')
 
-    # Email configuration
-    MAIL_SERVER = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
-    MAIL_PORT = int(os.environ.get('SMTP_PORT', '587'))
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('SMTP_USERNAME', '')
-    MAIL_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
+    # Azure Communication Services configuration
+    AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING = os.environ.get('AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING', '')
+    AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL = os.environ.get('AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL', 'noreply@netrunsystems.com')
     MAIL_DEFAULT_SENDER = 'daniel@netrunsystems.com'
 
 class DevelopmentConfig(Config):

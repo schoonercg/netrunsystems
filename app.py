@@ -3,9 +3,7 @@ import os
 import re
 import datetime
 import markdown
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+from azure.communication.email import EmailClient
 from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from functools import wraps
@@ -121,27 +119,19 @@ def parse_blog_post(content, filename):
         return None
 
 def send_early_access_email(name, company, email, phone, message):
-    """Send email notification for early access requests"""
+    """Send email notification for early access requests using Azure Communication Services"""
     
-    # Email configuration - using environment variables for security
-    smtp_server = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
-    smtp_port = int(os.environ.get('SMTP_PORT', '587'))
-    smtp_username = os.environ.get('SMTP_USERNAME', '')
-    smtp_password = os.environ.get('SMTP_PASSWORD', '')
+    # Azure Communication Services configuration
+    connection_string = os.environ.get('AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING', '')
+    sender_email = os.environ.get('AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL', 'noreply@netrunsystems.com')
     
-    # If no SMTP credentials are configured, log the request instead
-    if not smtp_username or not smtp_password:
+    # If no connection string is configured, log the request instead
+    if not connection_string:
         app.logger.info(f"Early Access Request - Name: {name}, Company: {company}, Email: {email}, Phone: {phone}, Message: {message}")
         return
     
-    # Create message
-    msg = MIMEMultipart()
-    msg['From'] = smtp_username
-    msg['To'] = 'daniel@netrunsystems.com'
-    msg['Subject'] = f'Early Access Request from {name} at {company}'
-    
     # Email body
-    body = f"""
+    email_body = f"""
 New Early Access Request
 
 Name: {name}
@@ -155,48 +145,46 @@ Message:
 Submitted at: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
     
-    msg.attach(MIMEText(body, 'plain'))
-    
-    # Send email
+    # Send email using Azure Communication Services
     try:
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()
-        server.login(smtp_username, smtp_password)
-        text = msg.as_string()
-        server.sendmail(smtp_username, 'daniel@netrunsystems.com', text)
-        server.quit()
-        app.logger.info(f"Early access email sent successfully for {name}")
+        client = EmailClient.from_connection_string(connection_string)
+        
+        message = {
+            "senderAddress": sender_email,
+            "recipients": {
+                "to": [{"address": "daniel@netrunsystems.com"}]
+            },
+            "content": {
+                "subject": f"Early Access Request from {name} at {company}",
+                "plainText": email_body
+            }
+        }
+        
+        poller = client.begin_send(message)
+        result = poller.result()
+        app.logger.info(f"Early access email sent successfully for {name}. Message ID: {result.id}")
     except Exception as e:
         app.logger.error(f"Failed to send early access email: {str(e)}")
         raise
 
 def send_contact_notification(name, email, subject, message):
-    """Send email notification for contact form submissions"""
+    """Send email notification for contact form submissions using Azure Communication Services"""
     
-    # Email configuration - using environment variables for security
-    smtp_server = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
-    smtp_port = int(os.environ.get('SMTP_PORT', '587'))
-    smtp_username = os.environ.get('SMTP_USERNAME', '')
-    smtp_password = os.environ.get('SMTP_PASSWORD', '')
+    # Azure Communication Services configuration
+    connection_string = os.environ.get('AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING', '')
+    sender_email = os.environ.get('AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL', 'noreply@netrunsystems.com')
     
     # Debug logging
-    app.logger.info(f"SMTP Config - Server: {smtp_server}, Port: {smtp_port}")
-    app.logger.info(f"SMTP Username configured: {'Yes' if smtp_username else 'No'}")
-    app.logger.info(f"SMTP Password configured: {'Yes' if smtp_password else 'No'}")
+    app.logger.info(f"Azure Communication Services configured: {'Yes' if connection_string else 'No'}")
+    app.logger.info(f"Sender email: {sender_email}")
     
-    # If no SMTP credentials are configured, log the request instead
-    if not smtp_username or not smtp_password:
+    # If no connection string is configured, log the request instead
+    if not connection_string:
         app.logger.info(f"Contact Form - Name: {name}, Email: {email}, Subject: {subject}, Message: {message}")
         return
     
-    # Create message
-    msg = MIMEMultipart()
-    msg['From'] = smtp_username
-    msg['To'] = 'daniel@netrunsystems.com'
-    msg['Subject'] = f'Contact Form: {subject or "General Inquiry"} from {name}'
-    
     # Email body
-    body = f"""
+    email_body = f"""
 New Contact Form Submission
 
 Name: {name}
@@ -209,17 +197,24 @@ Message:
 Submitted at: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
     
-    msg.attach(MIMEText(body, 'plain'))
-    
-    # Send email
+    # Send email using Azure Communication Services
     try:
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()
-        server.login(smtp_username, smtp_password)
-        text = msg.as_string()
-        server.sendmail(smtp_username, 'daniel@netrunsystems.com', text)
-        server.quit()
-        app.logger.info(f"Contact email sent successfully for {name}")
+        client = EmailClient.from_connection_string(connection_string)
+        
+        email_message = {
+            "senderAddress": sender_email,
+            "recipients": {
+                "to": [{"address": "daniel@netrunsystems.com"}]
+            },
+            "content": {
+                "subject": f"Contact Form: {subject or 'General Inquiry'} from {name}",
+                "plainText": email_body
+            }
+        }
+        
+        poller = client.begin_send(email_message)
+        result = poller.result()
+        app.logger.info(f"Contact email sent successfully for {name}. Message ID: {result.id}")
     except Exception as e:
         app.logger.error(f"Failed to send contact email: {str(e)}")
         raise
