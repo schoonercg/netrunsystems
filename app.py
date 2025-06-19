@@ -422,6 +422,11 @@ def azure_login_page():
     """Display Azure AD login page"""
     return render_template('azure_login.html')
 
+@app.route('/azure_login.html')
+def azure_login_html():
+    """Alternative route for azure_login.html"""
+    return render_template('azure_login.html')
+
 @app.route('/portal')
 @requires_auth
 def customer_portal():
