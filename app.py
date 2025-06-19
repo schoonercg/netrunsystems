@@ -420,12 +420,14 @@ def logout():
 @app.route('/azure-login')
 def azure_login_page():
     """Display Azure AD login page"""
-    return render_template('azure_login.html')
+    now = datetime.datetime.now()
+    return render_template('azure_login.html', now=now)
 
 @app.route('/azure_login.html')
 def azure_login_html():
     """Alternative route for azure_login.html"""
-    return render_template('azure_login.html')
+    now = datetime.datetime.now()
+    return render_template('azure_login.html', now=now)
 
 @app.route('/portal')
 @requires_auth
