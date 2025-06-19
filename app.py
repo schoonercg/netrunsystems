@@ -433,27 +433,32 @@ def azure_login_html():
 @requires_auth
 def customer_portal():
     user = session.get('user')
+    now = datetime.datetime.now()
     return render_template('customer_portal.html',
                          user=user,
-                         version="2.0.0")  # Hardcoded version for development
+                         version="2.0.0",  # Hardcoded version for development
+                         now=now)
 
 @app.route('/portal/profile')
 @requires_auth
 def customer_profile():
     user = session.get('user')
-    return render_template('customer_profile.html', user=user)
+    now = datetime.datetime.now()
+    return render_template('customer_profile.html', user=user, now=now)
 
 @app.route('/portal/resources')
 @requires_auth
 def customer_resources():
     user = session.get('user')
-    return render_template('customer_resources.html', user=user)
+    now = datetime.datetime.now()
+    return render_template('customer_resources.html', user=user, now=now)
 
 @app.route('/portal/support')
 @requires_auth
 def customer_support():
     user = session.get('user')
-    return render_template('customer_support.html', user=user)
+    now = datetime.datetime.now()
+    return render_template('customer_support.html', user=user, now=now)
 
 @app.route('/')
 def index():
