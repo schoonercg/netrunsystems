@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+
+{% block title %}Resources - Customer Portal - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="portal-header">
+    <div class="container">
+        <h1>Resources & Downloads</h1>
+        <p>Access documentation, tools, and support materials</p>
+    </div>
+</section>
+
+<div class="portal-nav">
+    <div class="container">
+        <ul>
+            <li><a href="{{ url_for('customer_portal') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('customer_profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('customer_resources') }}" class="active">Resources</a></li>
+            <li><a href="{{ url_for('customer_support') }}">Support</a></li>
+            <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+        </ul>
+    </div>
+</div>
+
+<section class="portal-content">
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>Documentation</h3>
+                <ul>
+                    <li><a href="{{ url_for('product_intirkon') }}">Intirkon User Guide</a></li>
+                    <li><a href="{{ url_for('product_intirfix') }}">Intirfix Documentation</a></li>
+                    <li><a href="{{ url_for('product_intirkast') }}">Intirkast Manual</a></li>
+                </ul>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>Support Materials</h3>
+                <ul>
+                    <li><a href="{{ url_for('blog') }}">Knowledge Base</a></li>
+                    <li><a href="{{ url_for('solutions') }}">Solution Guides</a></li>
+                    <li><a href="{{ url_for('consulting_services') }}">Consulting Services</a></li>
+                </ul>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>Downloads</h3>
+                <p>Software downloads and updates will be available here once your account is fully activated.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

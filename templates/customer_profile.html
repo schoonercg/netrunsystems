@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+{% block title %}Profile - Customer Portal - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="portal-header">
+    <div class="container">
+        <h1>Your Profile</h1>
+        <p>Manage your account information</p>
+    </div>
+</section>
+
+<div class="portal-nav">
+    <div class="container">
+        <ul>
+            <li><a href="{{ url_for('customer_portal') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('customer_profile') }}" class="active">Profile</a></li>
+            <li><a href="{{ url_for('customer_resources') }}">Resources</a></li>
+            <li><a href="{{ url_for('customer_support') }}">Support</a></li>
+            <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+        </ul>
+    </div>
+</div>
+
+<section class="portal-content">
+    <div class="container">
+        <div class="dashboard-card">
+            <h2>Account Details</h2>
+            <p><strong>Display Name:</strong> {{ user.name }}</p>
+            <p><strong>Email Address:</strong> {{ user.email }}</p>
+            <p><strong>User ID:</strong> {{ user.id }}</p>
+            
+            <div style="margin-top: 2rem;">
+                <p><em>Note: Profile information is managed through your Microsoft account. To update your details, please visit your Microsoft account settings.</em></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

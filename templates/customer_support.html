@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}Support - Customer Portal - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="portal-header">
+    <div class="container">
+        <h1>Customer Support</h1>
+        <p>Get help when you need it</p>
+    </div>
+</section>
+
+<div class="portal-nav">
+    <div class="container">
+        <ul>
+            <li><a href="{{ url_for('customer_portal') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('customer_profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('customer_resources') }}">Resources</a></li>
+            <li><a href="{{ url_for('customer_support') }}" class="active">Support</a></li>
+            <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+        </ul>
+    </div>
+</div>
+
+<section class="portal-content">
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>Contact Support</h3>
+                <p><strong>Email:</strong> daniel@netrunsystems.com</p>
+                <p><strong>Phone:</strong> (805) 707-4828</p>
+                <p><strong>Hours:</strong> Monday-Friday, 9 AM - 5 PM PST</p>
+                <a href="{{ url_for('contact') }}" class="btn primary">Submit Support Request</a>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>Quick Help</h3>
+                <ul>
+                    <li><a href="{{ url_for('blog') }}">Knowledge Base</a></li>
+                    <li><a href="{{ url_for('services') }}">Service Documentation</a></li>
+                    <li><a href="{{ url_for('about') }}">About Netrun Systems</a></li>
+                </ul>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>Account Status</h3>
+                <p><strong>User:</strong> {{ user.name }}</p>
+                <p><strong>Account Type:</strong> Early Access</p>
+                <p><strong>Status:</strong> Active</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
