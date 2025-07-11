@@ -3,85 +3,186 @@ import os
 import re
 import datetime
 import markdown
-from azure.communication.email import EmailClient
-from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
-from flask_wtf.csrf import CSRFProtect, generate_csrf
-from functools import wraps
-import logging
 import msal
 import requests
-import uuid
+from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
+from flask_wtf import CSRFProtect
+from flask_session import Session
+from functools import wraps
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# Development mode flag
+DEV_MODE = True  # Force development mode for local testing
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
 
-# Initialize CSRF protection
+# Azure AD Configuration
+AZURE_CLIENT_ID = os.environ.get('AZURE_CLIENT_ID', '')
+AZURE_CLIENT_SECRET = os.environ.get('AZURE_CLIENT_SECRET', '')
+AZURE_TENANT_ID = os.environ.get('AZURE_TENANT_ID', '')
+AZURE_AUTHORITY = f'https://login.microsoftonline.com/{AZURE_TENANT_ID}'
+AZURE_SCOPE = ['User.Read']
+AZURE_REDIRECT_PATH = '/getAToken'
+
+# Session config
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
+
+# Enable CSRF protection
 csrf = CSRFProtect(app)
 
-# Add CSRF token to template context
-@app.context_processor
-def inject_csrf_token():
-    return dict(csrf_token=generate_csrf)
+# Create blog post directory if it doesn't exist
+BLOG_POST_DIR = os.path.join(app.root_path, 'blog_posts')
+os.makedirs(BLOG_POST_DIR, exist_ok=True)
 
 def requires_auth(f):
     @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if 'user' not in session:
+    def decorated(*args, **kwargs):
+        if not session.get('user'):
+            session['state'] = request.url
             return redirect(url_for('login'))
         return f(*args, **kwargs)
-    return decorated_function
+    return decorated
+
+def requires_admin(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get('admin'):
+            return redirect(url_for('admin_login'))
+        return f(*args, **kwargs)
+    return decorated
+
+def _load_cache():
+    cache = msal.SerializableTokenCache()
+    if session.get('token_cache'):
+        cache.deserialize(session['token_cache'])
+    return cache
+
+def _save_cache(cache):
+    if cache.has_state_changed:
+        session['token_cache'] = cache.serialize()
+
+def _build_msal_app(cache=None, authority=None):
+    return msal.ConfidentialClientApplication(
+        AZURE_CLIENT_ID, authority=authority or AZURE_AUTHORITY,
+        client_credential=AZURE_CLIENT_SECRET, token_cache=cache)
+
+def _build_auth_code_flow(authority=None, scopes=None):
+    return _build_msal_app(authority=authority).initiate_auth_code_flow(
+        scopes or [],
+        redirect_uri=url_for('authorized', _external=True))
+
+def _get_token_from_cache(scope=None):
+    cache = _load_cache()
+    cca = _build_msal_app(cache=cache)
+    accounts = cca.get_accounts()
+    if accounts:
+        result = cca.acquire_token_silent(scope or [], account=accounts[0])
+        _save_cache(cache)
+        return result
+
+@app.route('/')
+def index():
+    now = datetime.datetime.now()
+    return render_template('index.html', now=now)
+
+@app.route('/product/intirkon')
+def product_intirkon():
+    now = datetime.datetime.now()
+    return render_template('product_intirkon.html', now=now)
+
+@app.route('/product/cost-optimizer')
+def product_cost_optimizer():
+    now = datetime.datetime.now()
+    return render_template('product_cost_optimizer.html', now=now)
+
+@app.route('/product/compliance-reporter')
+def product_compliance_reporter():
+    now = datetime.datetime.now()
+    return render_template('product_compliance_reporter.html', now=now)
+
+@app.route('/product/intirfix')
+def product_intirfix():
+    now = datetime.datetime.now()
+    return render_template('product_intirfix.html', now=now)
+
+@app.route('/product/intirkast')
+def product_intirkast():
+    now = datetime.datetime.now()
+    return render_template('product_intirkast.html', now=now)
+
+@app.route('/early-access', methods=['GET', 'POST'])
+def early_access():
+    now = datetime.datetime.now()
+    if request.method == 'POST':
+        email = request.form.get('email')
+        
+        if email:
+            # In a production environment, this would send an email to NSXearlyaccess@netrunsystems.com
+            # For now, just show a success message
+            flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
+            return redirect(url_for('early_access'))
+        else:
+            flash('Please provide a valid email address.', 'error')
+        
+    return render_template('early_access.html', now=now)
+
+@app.route('/blog')
+def blog():
+    now = datetime.datetime.now()
+    posts = get_blog_posts()
+    return render_template('blog.html', posts=posts, now=now)
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    now = datetime.datetime.now()
+    post = get_blog_post(slug)
+    if post:
+        return render_template('blog_post.html', post=post, now=now)
+    abort(404)
 
 def get_blog_posts():
-    """Get blog posts from the local blog_posts directory."""
     posts = []
-    blog_dir = os.path.join(os.path.dirname(__file__), 'blog_posts')
-    
-    if not os.path.exists(blog_dir):
-        return posts
-    
-    for filename in os.listdir(blog_dir):
-        if filename.endswith('.md'):
-            filepath = os.path.join(blog_dir, filename)
-            try:
-                with open(filepath, 'r', encoding='utf-8') as file:
-                    content = file.read()
-                    post = parse_blog_post(content, filename)
+    try:
+        if os.path.exists(BLOG_POST_DIR):
+            for filename in os.listdir(BLOG_POST_DIR):
+                if filename.endswith('.md'):
+                    post = parse_blog_post(filename)
                     if post:
                         posts.append(post)
-            except Exception as e:
-                app.logger.error(f"Error reading blog post {filename}: {str(e)}")
+    except Exception as e:
+        app.logger.error(f"Error getting blog posts: {str(e)}")
+        return []
     
     # Sort posts by date (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
     return posts
 
 def get_blog_post(slug):
-    """Get a specific blog post by slug."""
-    posts = get_blog_posts()
-    for post in posts:
-        if post['slug'] == slug:
-            return post
+    try:
+        if os.path.exists(BLOG_POST_DIR):
+            for filename in os.listdir(BLOG_POST_DIR):
+                if filename.endswith('.md'):
+                    post = parse_blog_post(filename)
+                    if post and post['slug'] == slug:
+                        return post
+    except Exception as e:
+        app.logger.error(f"Error getting blog post {slug}: {str(e)}")
     return None
 
-def parse_blog_post(content, filename):
-    """Parse blog post content and metadata."""
+def parse_blog_post(filename):
     try:
+        filepath = os.path.join(BLOG_POST_DIR, filename)
+        with open(filepath, 'r') as file:
+            content = file.read()
+        
         # Parse front matter
-        if content.startswith('---'):
-            parts = content.split('---', 2)
-            if len(parts) >= 3:
-                front_matter = parts[1].strip()
-                markdown_content = parts[2].strip()
-            else:
-                front_matter = ''
-                markdown_content = content
-        else:
-            front_matter = ''
-            markdown_content = content
+        front_matter_match = re.match(r'^---\s+(.*?)\s+---\s+(.*)', content, re.DOTALL)
+        if not front_matter_match:
+            return None
+        
+        front_matter = front_matter_match.group(1)
+        markdown_content = front_matter_match.group(2)
         
         # Parse metadata
         metadata = {}
@@ -93,9 +194,9 @@ def parse_blog_post(content, filename):
         # Convert markdown to HTML
         html_content = markdown.markdown(markdown_content)
         
-        # Create slug from filename if not provided
-        if 'slug' not in metadata:
-            metadata['slug'] = filename.replace('.md', '').replace('_', '-')
+        # Create slug from title if not provided
+        if 'slug' not in metadata and 'title' in metadata:
+            metadata['slug'] = metadata['title'].lower().replace(' ', '-')
         
         # Parse date
         if 'date' in metadata:
@@ -107,160 +208,171 @@ def parse_blog_post(content, filename):
         else:
             metadata['date'] = datetime.datetime.now()
         
+        # Format date for display
+        metadata['formatted_date'] = metadata['date'].strftime('%B %d, %Y')
+        
         return {
             'title': metadata.get('title', 'Untitled'),
             'author': metadata.get('author', 'Netrun Systems'),
             'date': metadata['date'],
-            'formatted_date': metadata['date'].strftime('%B %d, %Y'),
+            'formatted_date': metadata['formatted_date'],
             'slug': metadata.get('slug', ''),
             'excerpt': metadata.get('excerpt', ''),
             'image': metadata.get('image', ''),
             'content': html_content
         }
     except Exception as e:
-        app.logger.error(f"Error parsing blog post: {str(e)}")
+        app.logger.error(f"Error parsing blog post {filename}: {str(e)}")
         return None
 
-def send_early_access_email(name, company, email, phone, message):
-    """Send email notification for early access requests using Azure Communication Services"""
+@app.route('/admin/login')
+def admin_login():
+    # Check if user is already authenticated
+    token = _get_token_from_cache(AZURE_SCOPE)
+    if not token:
+        # Start the OAuth flow
+        session['flow'] = _build_auth_code_flow(scopes=AZURE_SCOPE)
+        return redirect(session['flow']['auth_uri'])
     
-    # Azure Communication Services configuration
-    connection_string = os.environ.get('AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING', '')
-    sender_email = os.environ.get('AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL', 'noreply@netrunsystems.com')
-    
-    # If no connection string is configured, log the request instead
-    if not connection_string:
-        app.logger.info(f"Early Access Request - Name: {name}, Company: {company}, Email: {email}, Phone: {phone}, Message: {message}")
-        return
-    
-    # Email body
-    email_body = f"""
-New Early Access Request
+    # User is already authenticated
+    session['admin'] = True
+    return redirect(url_for('admin_blog'))
 
-Name: {name}
-Company: {company}
-Email: {email}
-Phone: {phone or "Not provided"}
-
-Message:
-{message}
-
-Submitted at: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-"""
-    
-    # Send email using Azure Communication Services
+@app.route('/getAToken')
+def authorized():
     try:
-        client = EmailClient.from_connection_string(connection_string)
+        cache = _load_cache()
+        result = _build_msal_app(cache=cache).acquire_token_by_auth_code_flow(
+            session.get('flow', {}), request.args)
+        if 'error' in result:
+            flash(f'Authentication failed: {result.get("error_description")}', 'error')
+            return redirect(url_for('index'))
         
-        message = {
-            "senderAddress": sender_email,
-            "recipients": {
-                "to": [{"address": "daniel@netrunsystems.com"}]
-            },
-            "content": {
-                "subject": f"Early Access Request from {name} at {company}",
-                "plainText": email_body
-            }
-        }
+        session['user'] = result.get('id_token_claims')
+        session['admin'] = True
+        _save_cache(cache)
+        flash('Successfully logged in with Azure AD!', 'success')
         
-        poller = client.begin_send(message)
-        result = poller.result()
-        app.logger.info(f"Early access email sent successfully for {name}. Message ID: {result.id}")
-    except Exception as e:
-        app.logger.error(f"Failed to send early access email: {str(e)}")
-        raise
-
-def send_contact_notification(name, email, subject, message):
-    """Send email notification for contact form submissions using Azure Communication Services"""
+    except ValueError:
+        flash('Authentication failed. Please try again.', 'error')
+        return redirect(url_for('index'))
     
-    # Azure Communication Services configuration
-    connection_string = os.environ.get('AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING', '')
-    sender_email = os.environ.get('AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL', 'noreply@netrunsystems.com')
-    
-    # Debug logging
-    app.logger.info(f"Azure Communication Services configured: {'Yes' if connection_string else 'No'}")
-    app.logger.info(f"Sender email: {sender_email}")
-    
-    # If no connection string is configured, log the request instead
-    if not connection_string:
-        app.logger.info(f"Contact Form - Name: {name}, Email: {email}, Subject: {subject}, Message: {message}")
-        return
-    
-    # Email body
-    email_body = f"""
-New Contact Form Submission
+    return redirect(url_for('admin_blog'))
 
-Name: {name}
-Email: {email}
-Subject: {subject or "No subject provided"}
+@app.route('/admin/logout')
+def admin_logout():
+    session.clear()  # Clear all session data including Azure tokens
+    flash('Successfully logged out.', 'success')
+    return redirect(url_for('index'))
 
-Message:
-{message}
-
-Submitted at: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+@app.route('/admin/blog', methods=['GET', 'POST'])
+@requires_admin
+def admin_blog():
+    now = datetime.datetime.now()
+    if request.method == 'POST':
+        try:
+            title = request.form.get('title')
+            author = request.form.get('author')
+            date_str = request.form.get('date')
+            excerpt = request.form.get('excerpt')
+            content = request.form.get('content')
+            
+            # Create slug from title
+            slug = title.lower().replace(' ', '-')
+            # Remove special characters
+            slug = re.sub(r'[^a-z0-9-]', '', slug)
+            
+            # Parse date
+            try:
+                date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+                date = date_obj.strftime('%Y-%m-%d')
+            except ValueError:
+                date = datetime.datetime.now().strftime('%Y-%m-%d')
+            
+            # Create markdown file
+            markdown_content = f"""---
+title: {title}
+author: {author}
+date: {date}
+slug: {slug}
+excerpt: {excerpt}
+---
+{content}
 """
+            
+            # Ensure blog post directory exists
+            os.makedirs(BLOG_POST_DIR, exist_ok=True)
+            
+            filename = f"{slug}.md"
+            filepath = os.path.join(BLOG_POST_DIR, filename)
+            
+            with open(filepath, 'w') as file:
+                file.write(markdown_content)
+            
+            flash('Blog post created successfully!', 'success')
+            return redirect(url_for('blog'))
+        except Exception as e:
+            app.logger.error(f"Error creating blog post: {str(e)}")
+            flash(f'Error creating blog post: {str(e)}', 'error')
     
-    # Send email using Azure Communication Services
-    try:
-        client = EmailClient.from_connection_string(connection_string)
+    return render_template('admin_blog.html', now=now)
+
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+    now = datetime.datetime.now()
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        message = request.form.get('message')
         
-        email_message = {
-            "senderAddress": sender_email,
-            "recipients": {
-                "to": [{"address": "daniel@netrunsystems.com"}]
-            },
-            "content": {
-                "subject": f"Contact Form: {subject or 'General Inquiry'} from {name}",
-                "plainText": email_body
-            }
-        }
+        # In a production environment, this would send an email
+        # For now, just show a success message
+        flash('Thank you for your message! We will get back to you shortly.', 'success')
+        return redirect(url_for('about'))
         
-        poller = client.begin_send(email_message)
-        result = poller.result()
-        app.logger.info(f"Contact email sent successfully for {name}. Message ID: {result.id}")
-    except Exception as e:
-        app.logger.error(f"Failed to send contact email: {str(e)}")
-        raise
+    return render_template('about.html', now=now)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 def create_sample_content():
     try:
         # Ensure blog post directory exists
-        blog_dir = os.path.join(os.path.dirname(__file__), 'blog_posts')
-        os.makedirs(blog_dir, exist_ok=True)
+        os.makedirs(BLOG_POST_DIR, exist_ok=True)
         
-        # Create welcome blog post if it doesn't exist
-        welcome_post_path = os.path.join(blog_dir, 'welcome-to-netrun-systems.md')
-        if not os.path.exists(welcome_post_path):
-            welcome_content = """---
+        # Check if any blog posts exist
+        if not os.listdir(BLOG_POST_DIR):
+            # Create a sample blog post
+            sample_post = """---
 title: Welcome to Netrun Systems
-author: Daniel Garza
-date: 2024-01-15
-excerpt: Introducing Netrun Systems and our mission to revolutionize Azure management for businesses.
-image: /static/images/ns-banner.png
+author: Netrun Systems
+date: 2025-04-24
 slug: welcome-to-netrun-systems
+excerpt: Welcome to the Netrun Systems blog where we'll share insights on Azure cross-tenant governance and cloud management.
 ---
-
 # Welcome to Netrun Systems
 
-We're excited to introduce Netrun Systems, your partner in Azure cloud management and optimization. Our team is dedicated to helping businesses maximize their cloud investments through innovative solutions and expert guidance.
+Thank you for visiting the Netrun Systems blog. Here we'll share insights, best practices, and updates about our cross-tenant governance solutions for Azure.
 
 ## Our Mission
 
-At Netrun Systems, we believe that cloud technology should empower businesses, not complicate them. Our suite of Azure management tools is designed to simplify operations, enhance security, and optimize costs.
+At Netrun Systems, we're dedicated to helping Azure consultants and MSPs manage multiple client environments securely and efficiently. Our flagship product, Netrun Systems Nexus, leverages Azure Lighthouse technology to provide secure cross-tenant access management without sharing credentials or adding guest accounts.
 
-## What We Offer
+## Stay Tuned
 
-- **Intirkon Cloud Management Suite**: Comprehensive Azure management platform
-- **Intirfix Business Intelligence**: Smart analytics for better decision making
-- **Intirkast Content Management**: Streamlined content operations
-- **Expert Consulting Services**: Personalized guidance for your Azure journey
+Check back regularly for:
+- Technical deep dives
+- Best practices for Azure governance
+- Product updates and new features
+- Case studies and success stories
 
-Stay tuned for more updates as we continue to innovate and expand our offerings.
+We're excited to have you join us on this journey!
 """
-            with open(welcome_post_path, 'w') as f:
-                f.write(welcome_content)
-            app.logger.info("Created welcome blog post")
-        
+            with open(os.path.join(BLOG_POST_DIR, 'welcome-to-netrun-systems.md'), 'w') as f:
+                f.write(sample_post)
     except Exception as e:
         app.logger.error(f"Error creating sample content: {str(e)}")
 
@@ -275,10 +387,10 @@ def privacy_policy():
 def terms_of_service():
     return render_template('terms_of_service.html')
 
-@app.route('/consulting')
-def consulting_services():
+@app.route('/services')
+def services():
     now = datetime.datetime.now()
-    return render_template('consulting_services.html', now=now)
+    return render_template('services.html', now=now)
 
 @app.route('/product/small-business-optimization-suite')
 def product_small_business_optimization_suite():
@@ -310,301 +422,57 @@ def research_connection_manager():
     now = datetime.datetime.now()
     return render_template('research_connection_manager.html', now=now)
 
+
+
 @app.route('/login')
 def login():
-    # Check if already authenticated
-    if 'user' in session:
-        return redirect(url_for('customer_portal'))
-    
-    # Get Azure AD configuration from environment
-    client_id = os.environ.get('AZURE_CLIENT_ID', '')
-    tenant_id = os.environ.get('AZURE_TENANT_ID', '')
-    
-    # If Azure AD not configured, use development mode
-    if not client_id or not tenant_id:
-        app.logger.info("Azure AD not configured, using development mode")
-        session['user'] = {
-            'name': 'Development User',
-            'email': 'dev@netrunsystems.com',
-            'id': 'dev-user-id'
-        }
-        return redirect(url_for('customer_portal'))
-    
-    # Create MSAL app instance
-    msal_app = create_msal_app()
-    
-    # Generate authorization URL
-    auth_url = msal_app.get_authorization_request_url(
-        scopes=['User.Read'],
-        state=str(uuid.uuid4()),
-        redirect_uri=url_for('auth_callback', _external=True)
-    )
-    
-    return redirect(auth_url)
-
-@app.route('/auth/callback')
-def auth_callback():
-    # Get authorization code from callback
-    code = request.args.get('code')
-    if not code:
-        flash('Authentication failed. Please try again.', 'error')
-        return redirect(url_for('index'))
-    
-    # Create MSAL app instance
-    msal_app = create_msal_app()
-    
-    # Exchange authorization code for tokens
-    result = msal_app.acquire_token_by_authorization_code(
-        code,
-        scopes=['User.Read'],
-        redirect_uri=url_for('auth_callback', _external=True)
-    )
-    
-    if 'error' in result:
-        app.logger.error(f"Authentication error: {result.get('error_description')}")
-        flash('Authentication failed. Please try again.', 'error')
-        return redirect(url_for('index'))
-    
-    # Get user info from Microsoft Graph
-    access_token = result['access_token']
-    user_info = get_user_info(access_token)
-    
-    if user_info:
-        # Store user info in session
-        session['user'] = {
-            'name': user_info.get('displayName', 'Unknown User'),
-            'email': user_info.get('mail') or user_info.get('userPrincipalName', ''),
-            'id': user_info.get('id', ''),
-            'access_token': access_token
-        }
-        flash('Successfully signed in!', 'success')
-        return redirect(url_for('customer_portal'))
-    else:
-        flash('Failed to retrieve user information. Please try again.', 'error')
-        return redirect(url_for('index'))
-
-def create_msal_app():
-    """Create MSAL confidential client application"""
-    client_id = os.environ.get('AZURE_CLIENT_ID', '')
-    client_secret = os.environ.get('AZURE_CLIENT_SECRET', '')
-    tenant_id = os.environ.get('AZURE_TENANT_ID', '')
-    authority = f'https://login.microsoftonline.com/{tenant_id}'
-    
-    return msal.ConfidentialClientApplication(
-        client_id=client_id,
-        client_credential=client_secret,
-        authority=authority
-    )
-
-def get_user_info(access_token):
-    """Get user information from Microsoft Graph API"""
-    try:
-        headers = {'Authorization': f'Bearer {access_token}'}
-        response = requests.get('https://graph.microsoft.com/v1.0/me', headers=headers)
-        
-        if response.status_code == 200:
-            return response.json()
-        else:
-            app.logger.error(f"Failed to get user info: {response.status_code}")
-            return None
-    except Exception as e:
-        app.logger.error(f"Error getting user info: {str(e)}")
-        return None
+    # In development mode, automatically log in
+    session['user'] = {
+        'name': 'Development User',
+        'email': 'dev@netrunsystems.com',
+        'id': 'dev-user-id'
+    }
+    return redirect(url_for('customer_portal'))
 
 @app.route('/logout')
 def logout():
     session.clear()
-    flash('You have been signed out successfully.', 'success')
     return redirect(url_for('index'))
-
-@app.route('/azure-login')
-def azure_login_page():
-    """Display Azure AD login page"""
-    now = datetime.datetime.now()
-    return render_template('azure_login.html', now=now)
-
-@app.route('/azure_login.html')
-def azure_login_html():
-    """Alternative route for azure_login.html"""
-    now = datetime.datetime.now()
-    return render_template('azure_login.html', now=now)
 
 @app.route('/portal')
 @requires_auth
 def customer_portal():
     user = session.get('user')
-    now = datetime.datetime.now()
     return render_template('customer_portal.html',
                          user=user,
-                         version="2.0.0",  # Hardcoded version for development
-                         now=now)
+                         version="2.0.0")  # Hardcoded version for development
 
 @app.route('/portal/profile')
 @requires_auth
 def customer_profile():
     user = session.get('user')
-    now = datetime.datetime.now()
-    return render_template('customer_profile.html', user=user, now=now)
+    return render_template('customer_profile.html', user=user)
 
 @app.route('/portal/resources')
 @requires_auth
 def customer_resources():
     user = session.get('user')
-    now = datetime.datetime.now()
-    return render_template('customer_resources.html', user=user, now=now)
+    return render_template('customer_resources.html', user=user)
 
 @app.route('/portal/support')
 @requires_auth
 def customer_support():
     user = session.get('user')
-    now = datetime.datetime.now()
-    return render_template('customer_support.html', user=user, now=now)
+    return render_template('customer_support.html', user=user)
 
-@app.route('/')
-def index():
-    now = datetime.datetime.now()
-    return render_template('index.html', now=now)
-
-@app.route('/about', methods=['GET', 'POST'])
-def about():
-    now = datetime.datetime.now()
-    if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        subject = request.form.get('subject')
-        message = request.form.get('message')
-        
-        # Send email notification
-        try:
-            send_contact_notification(name, email, subject, message)
-            flash('Thank you for your message! We will get back to you shortly.', 'success')
-        except Exception as e:
-            app.logger.error(f"Error sending contact email: {str(e)}")
-            flash('Thank you for your message! We have received your inquiry and will get back to you shortly.', 'success')
-        
-        return redirect(url_for('about'))
-        
-    return render_template('about.html', now=now)
-
-@app.route('/ojai-tech-center')
-def ojai_tech_center():
-    now = datetime.datetime.now()
-    return render_template('ojai_tech_center.html', now=now)
-
-@app.route('/services')
-def services():
-    now = datetime.datetime.now()
-    return render_template('services.html', now=now)
-
-@app.route('/solutions')
-def solutions():
-    now = datetime.datetime.now()
-    return render_template('solutions.html', now=now)
-
-@app.route('/product/intirkon')
-def product_intirkon():
-    now = datetime.datetime.now()
-    return render_template('product_intirkon.html', now=now)
-
-@app.route('/product/intirfix')
-def product_intirfix():
-    now = datetime.datetime.now()
-    return render_template('product_intirfix.html', now=now)
-
-@app.route('/product/intirkast')
-def product_intirkast():
-    now = datetime.datetime.now()
-    return render_template('product_intirkast.html', now=now)
-
-@app.route('/product/nexus-core')
-def product_nexus_core():
-    now = datetime.datetime.now()
-    return render_template('product_nexus_core.html', now=now)
-
-@app.route('/product/cost-optimizer')
-def product_cost_optimizer():
-    now = datetime.datetime.now()
-    return render_template('product_cost_optimizer.html', now=now)
-
-@app.route('/product/compliance-reporter')
-def product_compliance_reporter():
-    now = datetime.datetime.now()
-    return render_template('product_compliance_reporter.html', now=now)
-
-@app.route('/product/governance-dashboard')
-def product_governance_dashboard():
-    now = datetime.datetime.now()
-    return render_template('product_governance_dashboard.html', now=now)
-
-@app.route('/early-access', methods=['GET', 'POST'])
-def early_access():
-    now = datetime.datetime.now()
-    if request.method == 'POST':
-        name = request.form.get('name')
-        company = request.form.get('company')
-        email = request.form.get('email')
-        phone = request.form.get('phone')
-        message = request.form.get('message')
-        
-        # Send email notification
-        try:
-            send_early_access_email(name, company, email, phone, message)
-            flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
-        except Exception as e:
-            app.logger.error(f"Error sending early access email: {str(e)}")
-            flash('Thank you for your interest in our Early Access Program! We have received your request and will contact you shortly.', 'success')
-        
-        return redirect(url_for('early_access'))
-        
-    return render_template('early_access.html', now=now)
-
-@app.route('/blog')
-def blog():
-    now = datetime.datetime.now()
-    posts = get_blog_posts()
-    return render_template('blog.html', posts=posts, now=now)
-
-@app.route('/blog/<slug>')
-def blog_post(slug):
-    now = datetime.datetime.now()
-    post = get_blog_post(slug)
-    if post:
-        return render_template('blog_post.html', post=post, now=now)
-    abort(404)
-
-@app.route('/contact', methods=['GET', 'POST'])
-def contact():
-    now = datetime.datetime.now()
-    if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        subject = request.form.get('subject')
-        message = request.form.get('message')
-        
-        # Send email notification
-        try:
-            send_contact_notification(name, email, subject, message)
-            flash('Thank you for your message! We will get back to you shortly.', 'success')
-        except Exception as e:
-            app.logger.error(f"Error sending contact email: {str(e)}")
-            flash('Thank you for your message! We have received your inquiry and will get back to you shortly.', 'success')
-        
-        return redirect(url_for('contact'))
-        
-    return render_template('contact.html', now=now)
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
+# Error handlers
 @app.errorhandler(404)
 def page_not_found(e):
     now = datetime.datetime.now()
     return render_template('404.html', now=now), 404
 
 @app.errorhandler(500)
-def internal_server_error(e):
+def internal_error(e):
     now = datetime.datetime.now()
     return render_template('500.html', now=now), 500
 
@@ -612,4 +480,9 @@ def internal_server_error(e):
 application = app
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=True)
+
+@app.route('/product/governance-dashboard')
+def product_governance_dashboard():
+    now = datetime.datetime.now()
+    return render_template('product_governance_dashboard.html', now=now)
