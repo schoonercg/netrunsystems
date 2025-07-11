@@ -28,7 +28,7 @@
             <div class="form early-access-form">
                 <h3>Request Early Access</h3>
                 <form method="POST" action="{{ url_for('early_access') }}">
-                    {{ csrf_token() }}
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     <div class="form-group">
                         <label for="email">Email Address *</label>
                         <input type="email" id="email" name="email" required placeholder="Enter your email address">
