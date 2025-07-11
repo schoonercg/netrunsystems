@@ -1,0 +1,7 @@
+# Flask
+instance/
+.webassets-cache
+flask_session/
+
+# Scrapy stuff:
+.scrapy
