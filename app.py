@@ -20,7 +20,6 @@ logger = logging.getLogger(__name__)
 try:
     from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
     from flask_wtf import CSRFProtect
-    from flask_session import Session
     logger.info("Flask core imports successful")
 except ImportError as e:
     logger.error(f"Failed to import Flask core: {e}")
@@ -79,20 +78,13 @@ AZURE_EMAIL_SENDER = os.environ.get('AZURE_EMAIL_SENDER', 'DoNotReply@netrunsyst
 COMPANY_EMAIL = 'daniel@netrunsystems.com'
 EARLY_ACCESS_EMAIL = 'NSXearlyaccess@netrunsystems.com'
 
-# Session config
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_FILE_DIR'] = os.environ.get('TEMP', '/tmp/flask_session')
-app.config['SESSION_FILE_THRESHOLD'] = 500
+# Session config - use simple cookie-based sessions for Azure
+# Flask-Session filesystem mode can cause issues in containerized environments
+app.config['SESSION_TYPE'] = None  # Use default Flask sessions (cookie-based)
+app.config['SESSION_PERMANENT'] = False
+app.config['PERMANENT_SESSION_LIFETIME'] = 3600  # 1 hour
 
-# Ensure session directory exists
-try:
-    os.makedirs(app.config['SESSION_FILE_DIR'], exist_ok=True)
-    Session(app)
-    logger.info(f"Session configuration successful, using directory: {app.config['SESSION_FILE_DIR']}")
-except Exception as e:
-    logger.error(f"Failed to configure session: {e}")
-    # Fall back to simple session without filesystem
-    app.config['SESSION_TYPE'] = None
+logger.info("Using cookie-based sessions for Azure compatibility")
 
 # Enable CSRF protection
 try:

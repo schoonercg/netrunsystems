@@ -3,7 +3,8 @@
     "allow": [
       "Bash(gh run list:*)",
       "Bash(python:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }
