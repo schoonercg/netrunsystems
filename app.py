@@ -9,6 +9,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, abo
 from flask_wtf import CSRFProtect
 from flask_session import Session
 from functools import wraps
+from azure.communication.email import EmailClient
 
 # Development mode flag
 DEV_MODE = True  # Force development mode for local testing
@@ -23,6 +24,12 @@ AZURE_TENANT_ID = os.environ.get('AZURE_TENANT_ID', '')
 AZURE_AUTHORITY = f'https://login.microsoftonline.com/{AZURE_TENANT_ID}'
 AZURE_SCOPE = ['User.Read']
 AZURE_REDIRECT_PATH = '/getAToken'
+
+# Azure Email Configuration
+AZURE_EMAIL_CONNECTION_STRING = os.environ.get('AZURE_EMAIL_CONNECTION_STRING', '')
+AZURE_EMAIL_SENDER = os.environ.get('AZURE_EMAIL_SENDER', 'DoNotReply@netrunsystems.com')
+COMPANY_EMAIL = 'daniel@netrunsystems.com'
+EARLY_ACCESS_EMAIL = 'NSXearlyaccess@netrunsystems.com'
 
 # Session config
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -81,6 +88,37 @@ def _get_token_from_cache(scope=None):
         _save_cache(cache)
         return result
 
+def send_email(to_address, subject, html_content, plain_text_content=None):
+    """Send email using Azure Communication Services"""
+    try:
+        if not AZURE_EMAIL_CONNECTION_STRING:
+            app.logger.error("Azure Email connection string not configured")
+            return False
+            
+        email_client = EmailClient.from_connection_string(AZURE_EMAIL_CONNECTION_STRING)
+        
+        message = {
+            "senderAddress": AZURE_EMAIL_SENDER,
+            "recipients": {
+                "to": [{"address": to_address}],
+            },
+            "content": {
+                "subject": subject,
+                "html": html_content,
+                "plainText": plain_text_content or html_content
+            }
+        }
+        
+        poller = email_client.begin_send(message)
+        result = poller.result()
+        
+        app.logger.info(f"Email sent successfully. Message ID: {result.message_id}")
+        return True
+        
+    except Exception as e:
+        app.logger.error(f"Error sending email: {str(e)}")
+        return False
+
 @app.route('/')
 def index():
     now = datetime.datetime.now()
@@ -118,9 +156,25 @@ def early_access():
         email = request.form.get('email')
         
         if email:
-            # In a production environment, this would send an email to NSXearlyaccess@netrunsystems.com
-            # For now, just show a success message
-            flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
+            # Send email notification to early access team
+            subject = f"New Early Access Request from {email}"
+            html_content = f"""
+            <html>
+            <body>
+                <h2>New Early Access Program Request</h2>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+                <p>Please follow up with this prospect regarding our Early Access Program.</p>
+            </body>
+            </html>
+            """
+            
+            if send_email(EARLY_ACCESS_EMAIL, subject, html_content):
+                flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
+            else:
+                flash('Thank you for your interest! We will contact you shortly.', 'success')
+                app.logger.warning(f"Email failed to send for early access request: {email}")
+            
             return redirect(url_for('early_access'))
         else:
             flash('Please provide a valid email address.', 'error')
@@ -326,9 +380,31 @@ def about():
         subject = request.form.get('subject')
         message = request.form.get('message')
         
-        # In a production environment, this would send an email
-        # For now, just show a success message
-        flash('Thank you for your message! We will get back to you shortly.', 'success')
+        if name and email and subject and message:
+            # Send email notification to company
+            email_subject = f"Contact Form: {subject}"
+            html_content = f"""
+            <html>
+            <body>
+                <h2>New Contact Form Submission</h2>
+                <p><strong>Name:</strong> {name}</p>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Subject:</strong> {subject}</p>
+                <p><strong>Message:</strong></p>
+                <p>{message.replace(chr(10), '<br>')}</p>
+                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+            </body>
+            </html>
+            """
+            
+            if send_email(COMPANY_EMAIL, email_subject, html_content):
+                flash('Thank you for your message! We will get back to you shortly.', 'success')
+            else:
+                flash('Thank you for your message! We will get back to you shortly.', 'success')
+                app.logger.warning(f"Email failed to send for contact form: {email}")
+        else:
+            flash('Please fill in all required fields.', 'error')
+        
         return redirect(url_for('about'))
         
     return render_template('about.html', now=now)
