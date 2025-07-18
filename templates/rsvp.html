@@ -1,0 +1,283 @@
+
+{% extends "base.html" %}
+
+{% block title %}Event RSVP - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Event RSVP</h1>
+        <p>Please let us know if you'll be joining us for our upcoming event.</p>
+    </div>
+</section>
+
+<section class="rsvp-form">
+    <div class="rsvp-container">
+        <div class="rsvp-info">
+            <h2>Event Details</h2>
+            <p>We're excited to invite you to our upcoming event. Please complete the form below to confirm your attendance.</p>
+            <div class="event-highlights">
+                <div class="highlight">
+                    <div class="icon">
+                        <img src="{{ url_for('static', filename='images/icon-governance.svg') }}" alt="Networking">
+                    </div>
+                    <div class="details">
+                        <h3>Networking</h3>
+                        <p>Connect with industry professionals</p>
+                    </div>
+                </div>
+                <div class="highlight">
+                    <div class="icon">
+                        <img src="{{ url_for('static', filename='images/icon-visibility.svg') }}" alt="Insights">
+                    </div>
+                    <div class="details">
+                        <h3>Insights</h3>
+                        <p>Learn about the latest in cloud governance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <form method="POST" action="{{ url_for('rsvp') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                
+                <div class="form-group">
+                    <label for="business_name">Business Name *</label>
+                    <input type="text" id="business_name" name="business_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="attendee_name">Attendee Name *</label>
+                    <input type="text" id="attendee_name" name="attendee_name" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="plus_one" name="plus_one" value="yes">
+                        <span class="checkmark"></span>
+                        I will be bringing a +1
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="text_communication" name="text_communication" value="yes">
+                        <span class="checkmark"></span>
+                        I consent to receive text communications about this event
+                    </label>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" name="response" value="accept" class="btn primary">Reserve</button>
+                    <button type="submit" name="response" value="decline" class="btn secondary">Decline</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+.rsvp-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.rsvp-info h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.rsvp-info p {
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.event-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.highlight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.highlight .icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.highlight .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.highlight .details h3 {
+    margin: 0 0 0.25rem 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.highlight .details p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.form {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus {
+    outline: none;
+    border-color: #84baaa;
+}
+
+.checkbox-group {
+    margin: 1.5rem 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 4px;
+    margin-right: 0.75rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background-color: #84baaa;
+    border-color: #84baaa;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn.primary {
+    background-color: #84baaa;
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: #6fa296;
+}
+
+.btn.secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn.secondary:hover {
+    background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+    .rsvp-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        flex: none;
+    }
+}
+</style>
+{% endblock %}

@@ -498,6 +498,59 @@ def research_connection_manager():
     now = datetime.datetime.now()
     return render_template('research_connection_manager.html', now=now)
 
+@app.route('/rsvp', methods=['GET', 'POST'])
+def rsvp():
+    now = datetime.datetime.now()
+    if request.method == 'POST':
+        business_name = request.form.get('business_name')
+        attendee_name = request.form.get('attendee_name')
+        plus_one = request.form.get('plus_one') == 'yes'
+        email = request.form.get('email')
+        phone = request.form.get('phone', '')
+        text_communication = request.form.get('text_communication') == 'yes'
+        response = request.form.get('response')  # 'accept' or 'decline'
+        
+        if business_name and attendee_name and email and response:
+            # Send email notification to events team
+            status = "ACCEPTED" if response == 'accept' else "DECLINED"
+            plus_one_text = "Yes" if plus_one else "No"
+            text_consent = "Yes" if text_communication else "No"
+            
+            subject = f"Event RSVP {status}: {attendee_name} from {business_name}"
+            html_content = f"""
+            <html>
+            <body>
+                <h2>Event RSVP Submission - {status}</h2>
+                <p><strong>Business Name:</strong> {business_name}</p>
+                <p><strong>Attendee Name:</strong> {attendee_name}</p>
+                <p><strong>Plus One:</strong> {plus_one_text}</p>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Phone:</strong> {phone if phone else 'Not provided'}</p>
+                <p><strong>Text Communication Consent:</strong> {text_consent}</p>
+                <p><strong>Response:</strong> {status}</p>
+                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+            </body>
+            </html>
+            """
+            
+            if send_email(COMPANY_EMAIL, subject, html_content):
+                if response == 'accept':
+                    flash('Thank you for your RSVP! We look forward to seeing you at the event.', 'success')
+                else:
+                    flash('Thank you for letting us know. We hope to see you at a future event.', 'success')
+            else:
+                if response == 'accept':
+                    flash('Thank you for your RSVP! We look forward to seeing you at the event.', 'success')
+                else:
+                    flash('Thank you for letting us know. We hope to see you at a future event.', 'success')
+                app.logger.warning(f"Email failed to send for RSVP: {email}")
+            
+            return redirect(url_for('rsvp'))
+        else:
+            flash('Please fill in all required fields.', 'error')
+        
+    return render_template('rsvp.html', now=now)
+
 
 
 @app.route('/login')
