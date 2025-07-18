@@ -514,6 +514,7 @@ def about():
 @app.route('/health')
 def health_check():
     """Health check endpoint for Azure App Service"""
+    logger.info("Health check endpoint accessed")
     return {'status': 'healthy', 'timestamp': datetime.datetime.now().isoformat()}, 200
 
 @app.route('/debug')
@@ -755,7 +756,16 @@ application = app
 
 logger.info("Flask application initialization completed successfully")
 
+# Log application startup for Azure diagnostics
+@app.before_first_request
+def log_startup():
+    port = os.environ.get('PORT', 'not set')
+    logger.info(f"Application starting up - PORT environment variable: {port}")
+    logger.info(f"Application available at /health endpoint")
+    logger.info(f"Application available at /debug endpoint")
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))
-    logger.info(f"Starting Flask development server on port {port}")
-    app.run(host='0.0.0.0', port=port, debug=True)
+    debug_mode = os.environ.get('FLASK_ENV') != 'production'
+    logger.info(f"Starting Flask application on host=0.0.0.0, port={port}, debug={debug_mode}")
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
