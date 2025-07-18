@@ -409,6 +409,11 @@ def about():
         
     return render_template('about.html', now=now)
 
+@app.route('/health')
+def health_check():
+    """Health check endpoint for Azure App Service"""
+    return {'status': 'healthy', 'timestamp': datetime.datetime.now().isoformat()}, 200
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
@@ -605,13 +610,13 @@ def internal_error(e):
     now = datetime.datetime.now()
     return render_template('500.html', now=now), 500
 
+@app.route('/product/governance-dashboard')
+def product_governance_dashboard():
+    now = datetime.datetime.now()
+    return render_template('product_governance_dashboard.html', now=now)
+
 # This is required for Azure App Service to find the application
 application = app
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=True)
-
-@app.route('/product/governance-dashboard')
-def product_governance_dashboard():
-    now = datetime.datetime.now()
-    return render_template('product_governance_dashboard.html', now=now)

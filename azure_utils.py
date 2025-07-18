@@ -30,43 +30,54 @@ class AzureServiceManager:
             self.credential = DefaultAzureCredential()
             logger.info("Successfully initialized Azure credentials")
         except Exception as e:
-            logger.error(f"Failed to initialize Azure credentials: {str(e)}")
-            raise
+            logger.warning(f"Failed to initialize Azure credentials: {str(e)}")
+            self.credential = None
         
         # Initialize Key Vault client
         try:
-            keyvault_url = f"https://{app.config['AZURE_KEYVAULT_NAME']}.vault.azure.net"
-            self.keyvault_client = SecretClient(vault_url=keyvault_url, credential=self.credential)
-            logger.info("Successfully initialized Key Vault client")
+            keyvault_name = app.config.get('AZURE_KEYVAULT_NAME')
+            if keyvault_name and self.credential:
+                keyvault_url = f"https://{keyvault_name}.vault.azure.net"
+                self.keyvault_client = SecretClient(vault_url=keyvault_url, credential=self.credential)
+                logger.info("Successfully initialized Key Vault client")
+            else:
+                logger.info("Key Vault configuration not found, skipping initialization")
         except Exception as e:
-            logger.error(f"Failed to initialize Key Vault client: {str(e)}")
-            raise
+            logger.warning(f"Failed to initialize Key Vault client: {str(e)}")
         
         # Initialize Blob Storage client
         try:
-            connection_string = self.get_secret('AZURE_STORAGE_CONNECTION_STRING')
-            self.blob_service_client = BlobServiceClient.from_connection_string(connection_string)
-            logger.info("Successfully initialized Blob Storage client")
+            if self.keyvault_client:
+                connection_string = self.get_secret('AZURE_STORAGE_CONNECTION_STRING')
+                if connection_string:
+                    self.blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+                    logger.info("Successfully initialized Blob Storage client")
+            else:
+                logger.info("Key Vault not available, skipping Blob Storage initialization")
         except Exception as e:
-            logger.error(f"Failed to initialize Blob Storage client: {str(e)}")
-            raise
+            logger.warning(f"Failed to initialize Blob Storage client: {str(e)}")
         
         # Configure Azure Monitor
         try:
-            configure_azure_monitor()
-            FlaskInstrumentor().instrument_app(app)
-            logger.info("Successfully configured Azure Monitor")
+            if os.environ.get('APPLICATIONINSIGHTS_CONNECTION_STRING'):
+                configure_azure_monitor()
+                FlaskInstrumentor().instrument_app(app)
+                logger.info("Successfully configured Azure Monitor")
+            else:
+                logger.info("Application Insights not configured, skipping monitoring setup")
         except Exception as e:
-            logger.error(f"Failed to configure Azure Monitor: {str(e)}")
-            raise
+            logger.warning(f"Failed to configure Azure Monitor: {str(e)}")
     
     def get_secret(self, secret_name):
         """
         Retrieve a secret from Azure Key Vault using managed identity.
         """
         try:
-            secret_client = SecretClient(vault_url="https://netrun-keyvault.vault.azure.net/", credential=self.credential)
-            secret = secret_client.get_secret(secret_name)
+            if not self.keyvault_client or not self.credential:
+                logger.warning(f"Key Vault client not available, cannot retrieve secret {secret_name}")
+                return None
+            
+            secret = self.keyvault_client.get_secret(secret_name)
             return secret.value
         except Exception as e:
             logger.error(f"Error retrieving secret {secret_name}: {e}")
