@@ -81,11 +81,18 @@ EARLY_ACCESS_EMAIL = 'NSXearlyaccess@netrunsystems.com'
 
 # Session config
 app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = os.environ.get('TEMP', '/tmp/flask_session')
+app.config['SESSION_FILE_THRESHOLD'] = 500
+
+# Ensure session directory exists
 try:
+    os.makedirs(app.config['SESSION_FILE_DIR'], exist_ok=True)
     Session(app)
-    logger.info("Session configuration successful")
+    logger.info(f"Session configuration successful, using directory: {app.config['SESSION_FILE_DIR']}")
 except Exception as e:
     logger.error(f"Failed to configure session: {e}")
+    # Fall back to simple session without filesystem
+    app.config['SESSION_TYPE'] = None
 
 # Enable CSRF protection
 try:
@@ -757,12 +764,15 @@ application = app
 logger.info("Flask application initialization completed successfully")
 
 # Log application startup for Azure diagnostics
-@app.before_first_request
+# Note: before_first_request is deprecated in Flask 2.3+
 def log_startup():
     port = os.environ.get('PORT', 'not set')
     logger.info(f"Application starting up - PORT environment variable: {port}")
     logger.info(f"Application available at /health endpoint")
     logger.info(f"Application available at /debug endpoint")
+
+# Call it immediately on startup
+log_startup()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))
