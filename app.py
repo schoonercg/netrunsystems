@@ -533,6 +533,11 @@ def debug_info():
             'dev_mode': DEV_MODE,
             'azure_config': bool(AZURE_CLIENT_ID and AZURE_CLIENT_SECRET),
             'email_config': bool(AZURE_EMAIL_CONNECTION_STRING),
+        },
+        'packages': {
+            'flask': '2.3.3',
+            'minimal_deployment': True,
+            'advanced_azure_services': False
         }
     }, 200
 

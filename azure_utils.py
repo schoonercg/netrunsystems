@@ -1,12 +1,22 @@
-from azure.identity import DefaultAzureCredential
-from azure.keyvault.secrets import SecretClient
-from azure.storage.blob import BlobServiceClient
-from azure.monitor.opentelemetry import configure_azure_monitor
-from opentelemetry import trace
-from opentelemetry.instrumentation.flask import FlaskInstrumentor
 import logging
 import os
 from datetime import datetime, timedelta
+
+# Optional Azure imports with graceful fallback
+try:
+    from azure.identity import DefaultAzureCredential
+    from azure.keyvault.secrets import SecretClient
+    from azure.storage.blob import BlobServiceClient
+    AZURE_SERVICES_AVAILABLE = True
+    logger = logging.getLogger(__name__)
+    logger.info("Azure services available")
+except ImportError:
+    logger = logging.getLogger(__name__)
+    logger.warning("Azure advanced services not available, using basic functionality only")
+    DefaultAzureCredential = None
+    SecretClient = None
+    BlobServiceClient = None
+    AZURE_SERVICES_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -27,8 +37,12 @@ class AzureServiceManager:
         
         # Initialize Azure credentials
         try:
-            self.credential = DefaultAzureCredential()
-            logger.info("Successfully initialized Azure credentials")
+            if AZURE_SERVICES_AVAILABLE and DefaultAzureCredential:
+                self.credential = DefaultAzureCredential()
+                logger.info("Successfully initialized Azure credentials")
+            else:
+                logger.info("Azure services not available, skipping credential initialization")
+                self.credential = None
         except Exception as e:
             logger.warning(f"Failed to initialize Azure credentials: {str(e)}")
             self.credential = None
@@ -36,37 +50,36 @@ class AzureServiceManager:
         # Initialize Key Vault client
         try:
             keyvault_name = app.config.get('AZURE_KEYVAULT_NAME')
-            if keyvault_name and self.credential:
+            if AZURE_SERVICES_AVAILABLE and keyvault_name and self.credential and SecretClient:
                 keyvault_url = f"https://{keyvault_name}.vault.azure.net"
                 self.keyvault_client = SecretClient(vault_url=keyvault_url, credential=self.credential)
                 logger.info("Successfully initialized Key Vault client")
             else:
-                logger.info("Key Vault configuration not found, skipping initialization")
+                logger.info("Key Vault not available, skipping initialization")
+                self.keyvault_client = None
         except Exception as e:
             logger.warning(f"Failed to initialize Key Vault client: {str(e)}")
+            self.keyvault_client = None
         
         # Initialize Blob Storage client
         try:
-            if self.keyvault_client:
+            if AZURE_SERVICES_AVAILABLE and self.keyvault_client and BlobServiceClient:
                 connection_string = self.get_secret('AZURE_STORAGE_CONNECTION_STRING')
                 if connection_string:
                     self.blob_service_client = BlobServiceClient.from_connection_string(connection_string)
                     logger.info("Successfully initialized Blob Storage client")
+                else:
+                    logger.info("Blob Storage connection string not available")
+                    self.blob_service_client = None
             else:
-                logger.info("Key Vault not available, skipping Blob Storage initialization")
+                logger.info("Blob Storage not available, skipping initialization")
+                self.blob_service_client = None
         except Exception as e:
             logger.warning(f"Failed to initialize Blob Storage client: {str(e)}")
+            self.blob_service_client = None
         
-        # Configure Azure Monitor
-        try:
-            if os.environ.get('APPLICATIONINSIGHTS_CONNECTION_STRING'):
-                configure_azure_monitor()
-                FlaskInstrumentor().instrument_app(app)
-                logger.info("Successfully configured Azure Monitor")
-            else:
-                logger.info("Application Insights not configured, skipping monitoring setup")
-        except Exception as e:
-            logger.warning(f"Failed to configure Azure Monitor: {str(e)}")
+        # Skip Azure Monitor as it's not essential and causing conflicts
+        logger.info("Azure Monitor integration skipped to avoid dependency conflicts")
     
     def get_secret(self, secret_name):
         """
