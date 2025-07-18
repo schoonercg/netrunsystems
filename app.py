@@ -2,20 +2,68 @@
 import os
 import re
 import datetime
-import markdown
-import msal
-import requests
-from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
-from flask_wtf import CSRFProtect
-from flask_session import Session
+import logging
+import sys
 from functools import wraps
-from azure.communication.email import EmailClient
+
+# Configure logging for Azure App Service
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Import Flask and core dependencies
+try:
+    from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
+    from flask_wtf import CSRFProtect
+    from flask_session import Session
+    logger.info("Flask core imports successful")
+except ImportError as e:
+    logger.error(f"Failed to import Flask core: {e}")
+    sys.exit(1)
+
+# Import optional dependencies with graceful fallback
+try:
+    import markdown
+    logger.info("Markdown import successful")
+except ImportError:
+    logger.warning("Markdown not available, blog functionality will be limited")
+    markdown = None
+
+try:
+    import msal
+    logger.info("MSAL import successful")
+except ImportError:
+    logger.warning("MSAL not available, Azure AD authentication will be disabled")
+    msal = None
+
+try:
+    import requests
+    logger.info("Requests import successful")
+except ImportError:
+    logger.warning("Requests not available, some features may be limited")
+    requests = None
+
+try:
+    from azure.communication.email import EmailClient
+    logger.info("Azure Communication Email import successful")
+except ImportError:
+    logger.warning("Azure Communication Email not available, email functionality will be disabled")
+    EmailClient = None
 
 # Development mode flag
 DEV_MODE = True  # Force development mode for local testing
 
+logger.info("Starting Flask application initialization")
+
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'netrun-development-key')
+
+logger.info("Flask app created successfully")
 
 # Azure AD Configuration
 AZURE_CLIENT_ID = os.environ.get('AZURE_CLIENT_ID', '')
@@ -33,14 +81,28 @@ EARLY_ACCESS_EMAIL = 'NSXearlyaccess@netrunsystems.com'
 
 # Session config
 app.config['SESSION_TYPE'] = 'filesystem'
-Session(app)
+try:
+    Session(app)
+    logger.info("Session configuration successful")
+except Exception as e:
+    logger.error(f"Failed to configure session: {e}")
 
 # Enable CSRF protection
-csrf = CSRFProtect(app)
+try:
+    csrf = CSRFProtect(app)
+    logger.info("CSRF protection enabled")
+except Exception as e:
+    logger.error(f"Failed to enable CSRF protection: {e}")
+    csrf = None
 
 # Create blog post directory if it doesn't exist
 BLOG_POST_DIR = os.path.join(app.root_path, 'blog_posts')
-os.makedirs(BLOG_POST_DIR, exist_ok=True)
+try:
+    os.makedirs(BLOG_POST_DIR, exist_ok=True)
+    logger.info(f"Blog post directory created/verified: {BLOG_POST_DIR}")
+except Exception as e:
+    logger.error(f"Failed to create blog post directory: {e}")
+    BLOG_POST_DIR = None
 
 def requires_auth(f):
     @wraps(f)
@@ -60,28 +122,38 @@ def requires_admin(f):
     return decorated
 
 def _load_cache():
+    if not msal:
+        return None
     cache = msal.SerializableTokenCache()
     if session.get('token_cache'):
         cache.deserialize(session['token_cache'])
     return cache
 
 def _save_cache(cache):
-    if cache.has_state_changed:
+    if cache and hasattr(cache, 'has_state_changed') and cache.has_state_changed:
         session['token_cache'] = cache.serialize()
 
 def _build_msal_app(cache=None, authority=None):
+    if not msal:
+        logger.warning("MSAL not available, authentication will not work")
+        return None
     return msal.ConfidentialClientApplication(
         AZURE_CLIENT_ID, authority=authority or AZURE_AUTHORITY,
         client_credential=AZURE_CLIENT_SECRET, token_cache=cache)
 
 def _build_auth_code_flow(authority=None, scopes=None):
-    return _build_msal_app(authority=authority).initiate_auth_code_flow(
+    msal_app = _build_msal_app(authority=authority)
+    if not msal_app:
+        return None
+    return msal_app.initiate_auth_code_flow(
         scopes or [],
         redirect_uri=url_for('authorized', _external=True))
 
 def _get_token_from_cache(scope=None):
     cache = _load_cache()
     cca = _build_msal_app(cache=cache)
+    if not cca:
+        return None
     accounts = cca.get_accounts()
     if accounts:
         result = cca.acquire_token_silent(scope or [], account=accounts[0])
@@ -91,8 +163,12 @@ def _get_token_from_cache(scope=None):
 def send_email(to_address, subject, html_content, plain_text_content=None):
     """Send email using Azure Communication Services"""
     try:
+        if not EmailClient:
+            logger.warning("Azure Communication Email not available, skipping email send")
+            return False
+            
         if not AZURE_EMAIL_CONNECTION_STRING:
-            app.logger.error("Azure Email connection string not configured")
+            logger.warning("Azure Email connection string not configured, skipping email send")
             return False
             
         email_client = EmailClient.from_connection_string(AZURE_EMAIL_CONNECTION_STRING)
@@ -198,14 +274,14 @@ def blog_post(slug):
 def get_blog_posts():
     posts = []
     try:
-        if os.path.exists(BLOG_POST_DIR):
+        if BLOG_POST_DIR and os.path.exists(BLOG_POST_DIR):
             for filename in os.listdir(BLOG_POST_DIR):
                 if filename.endswith('.md'):
                     post = parse_blog_post(filename)
                     if post:
                         posts.append(post)
     except Exception as e:
-        app.logger.error(f"Error getting blog posts: {str(e)}")
+        logger.error(f"Error getting blog posts: {str(e)}")
         return []
     
     # Sort posts by date (newest first)
@@ -214,14 +290,14 @@ def get_blog_posts():
 
 def get_blog_post(slug):
     try:
-        if os.path.exists(BLOG_POST_DIR):
+        if BLOG_POST_DIR and os.path.exists(BLOG_POST_DIR):
             for filename in os.listdir(BLOG_POST_DIR):
                 if filename.endswith('.md'):
                     post = parse_blog_post(filename)
                     if post and post['slug'] == slug:
                         return post
     except Exception as e:
-        app.logger.error(f"Error getting blog post {slug}: {str(e)}")
+        logger.error(f"Error getting blog post {slug}: {str(e)}")
     return None
 
 def parse_blog_post(filename):
@@ -246,7 +322,10 @@ def parse_blog_post(filename):
                 metadata[key.strip()] = value.strip()
         
         # Convert markdown to HTML
-        html_content = markdown.markdown(markdown_content)
+        if markdown:
+            html_content = markdown.markdown(markdown_content)
+        else:
+            html_content = markdown_content.replace('\n', '<br>')
         
         # Create slug from title if not provided
         if 'slug' not in metadata and 'title' in metadata:
@@ -276,17 +355,31 @@ def parse_blog_post(filename):
             'content': html_content
         }
     except Exception as e:
-        app.logger.error(f"Error parsing blog post {filename}: {str(e)}")
+        logger.error(f"Error parsing blog post {filename}: {str(e)}")
         return None
 
 @app.route('/admin/login')
 def admin_login():
+    # Check if MSAL is available
+    if not msal:
+        logger.warning("MSAL not available, using development admin login")
+        session['admin'] = True
+        flash('Development admin login (MSAL not available)', 'warning')
+        return redirect(url_for('admin_blog'))
+    
     # Check if user is already authenticated
     token = _get_token_from_cache(AZURE_SCOPE)
     if not token:
         # Start the OAuth flow
-        session['flow'] = _build_auth_code_flow(scopes=AZURE_SCOPE)
-        return redirect(session['flow']['auth_uri'])
+        flow = _build_auth_code_flow(scopes=AZURE_SCOPE)
+        if not flow:
+            logger.warning("Failed to build auth flow, using development admin login")
+            session['admin'] = True
+            flash('Development admin login (Auth flow failed)', 'warning')
+            return redirect(url_for('admin_blog'))
+        
+        session['flow'] = flow
+        return redirect(flow['auth_uri'])
     
     # User is already authenticated
     session['admin'] = True
@@ -295,8 +388,17 @@ def admin_login():
 @app.route('/getAToken')
 def authorized():
     try:
+        if not msal:
+            flash('Authentication not available (MSAL not loaded)', 'error')
+            return redirect(url_for('index'))
+            
         cache = _load_cache()
-        result = _build_msal_app(cache=cache).acquire_token_by_auth_code_flow(
+        msal_app = _build_msal_app(cache=cache)
+        if not msal_app:
+            flash('Authentication failed (MSAL app not available)', 'error')
+            return redirect(url_for('index'))
+            
+        result = msal_app.acquire_token_by_auth_code_flow(
             session.get('flow', {}), request.args)
         if 'error' in result:
             flash(f'Authentication failed: {result.get("error_description")}', 'error')
@@ -414,6 +516,26 @@ def health_check():
     """Health check endpoint for Azure App Service"""
     return {'status': 'healthy', 'timestamp': datetime.datetime.now().isoformat()}, 200
 
+@app.route('/debug')
+def debug_info():
+    """Debug endpoint to check application status"""
+    return {
+        'status': 'running',
+        'timestamp': datetime.datetime.now().isoformat(),
+        'dependencies': {
+            'markdown': markdown is not None,
+            'msal': msal is not None,
+            'requests': requests is not None,
+            'email_client': EmailClient is not None,
+        },
+        'config': {
+            'blog_dir_exists': BLOG_POST_DIR is not None and os.path.exists(BLOG_POST_DIR) if BLOG_POST_DIR else False,
+            'dev_mode': DEV_MODE,
+            'azure_config': bool(AZURE_CLIENT_ID and AZURE_CLIENT_SECRET),
+            'email_config': bool(AZURE_EMAIL_CONNECTION_STRING),
+        }
+    }, 200
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
@@ -422,6 +544,10 @@ def favicon():
 def create_sample_content():
     try:
         # Ensure blog post directory exists
+        if not BLOG_POST_DIR:
+            logger.warning("Blog post directory not available, skipping sample content creation")
+            return
+            
         os.makedirs(BLOG_POST_DIR, exist_ok=True)
         
         # Check if any blog posts exist
@@ -455,10 +581,14 @@ We're excited to have you join us on this journey!
             with open(os.path.join(BLOG_POST_DIR, 'welcome-to-netrun-systems.md'), 'w') as f:
                 f.write(sample_post)
     except Exception as e:
-        app.logger.error(f"Error creating sample content: {str(e)}")
+        logger.error(f"Error creating sample content: {str(e)}")
 
 # Call create_sample_content when the app starts
-create_sample_content()
+try:
+    create_sample_content()
+    logger.info("Sample content creation completed")
+except Exception as e:
+    logger.error(f"Failed to create sample content: {e}")
 
 @app.route('/privacy-policy')
 def privacy_policy():
@@ -618,5 +748,9 @@ def product_governance_dashboard():
 # This is required for Azure App Service to find the application
 application = app
 
+logger.info("Flask application initialization completed successfully")
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=True)
+    port = int(os.environ.get('PORT', 8000))
+    logger.info(f"Starting Flask development server on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=True)
