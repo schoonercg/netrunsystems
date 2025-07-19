@@ -103,6 +103,43 @@ except Exception as e:
     logger.error(f"Failed to create blog post directory: {e}")
     BLOG_POST_DIR = None
 
+# Domain-based routing handler
+@app.before_request
+def handle_subdomain():
+    """Handle subdomain routing for rsvp.netrunsystems.com and www redirects"""
+    host = request.headers.get('Host', '').lower()
+    
+    # Handle RSVP subdomain
+    if host == 'rsvp.netrunsystems.com':
+        logger.info(f"RSVP subdomain accessed: {request.path}")
+        # If accessing root of RSVP subdomain, redirect to RSVP page
+        if request.path == '/':
+            logger.info("Redirecting RSVP subdomain root to /rsvp")
+            return redirect(url_for('rsvp'))
+        # If accessing any other path on RSVP subdomain, redirect to RSVP page
+        elif request.path != '/rsvp':
+            logger.info(f"Redirecting RSVP subdomain path {request.path} to /rsvp")
+            return redirect(url_for('rsvp'))
+    
+    # Handle www subdomain - redirect to main domain
+    elif host == 'www.netrunsystems.com':
+        logger.info(f"WWW subdomain accessed: {request.path}, redirecting to main domain")
+        # Redirect www to main domain, preserving path and query string
+        main_url = f"https://netrunsystems.com{request.path}"
+        if request.query_string:
+            main_url += f"?{request.query_string.decode()}"
+        return redirect(main_url, 301)  # Permanent redirect
+    
+    # Handle other subdomains or domains - redirect to main site
+    elif host.endswith('.netrunsystems.com') and host != 'netrunsystems.com':
+        # Any other subdomain redirects to main site
+        if host != 'rsvp.netrunsystems.com':  # Already handled above
+            logger.info(f"Unknown subdomain {host} accessed, redirecting to main domain")
+            main_url = f"https://netrunsystems.com{request.path}"
+            if request.query_string:
+                main_url += f"?{request.query_string.decode()}"
+            return redirect(main_url, 301)
+
 def requires_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
