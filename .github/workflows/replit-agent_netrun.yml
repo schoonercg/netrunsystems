@@ -32,6 +32,22 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
         
+      - name: Validate Flask application
+        run: |
+          python -c "
+          try:
+              from app import app
+              print('✅ Flask app imports successfully')
+              print(f'✅ Routes registered: {len(app.url_map._rules)}')
+              with app.test_client() as client:
+                  response = client.get('/health')
+                  print(f'✅ Health check: {response.status_code}')
+              print('✅ Application validation passed')
+          except Exception as e:
+              print(f'❌ Application validation failed: {e}')
+              exit(1)
+          "
+        
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment

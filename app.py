@@ -510,6 +510,44 @@ def about():
         
     return render_template('about.html', now=now)
 
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    now = datetime.datetime.now()
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        message = request.form.get('message')
+        
+        if name and email and subject and message:
+            # Send email notification to company
+            email_subject = f"Contact Form: {subject}"
+            html_content = f"""
+            <html>
+            <body>
+                <h2>New Contact Form Submission</h2>
+                <p><strong>Name:</strong> {name}</p>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Subject:</strong> {subject}</p>
+                <p><strong>Message:</strong></p>
+                <p>{message.replace(chr(10), '<br>')}</p>
+                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+            </body>
+            </html>
+            """
+            
+            if send_email(COMPANY_EMAIL, email_subject, html_content):
+                flash('Thank you for your message! We will get back to you shortly.', 'success')
+            else:
+                flash('Thank you for your message! We will get back to you shortly.', 'success')
+                app.logger.warning(f"Email failed to send for contact form: {email}")
+        else:
+            flash('Please fill in all required fields.', 'error')
+        
+        return redirect(url_for('contact'))
+        
+    return render_template('contact.html', now=now)
+
 @app.route('/health')
 def health_check():
     """Health check endpoint for Azure App Service"""
