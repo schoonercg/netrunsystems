@@ -4,7 +4,13 @@
       "Bash(gh run list:*)",
       "Bash(python:*)",
       "Bash(rm:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh auth:*)",
+      "Bash(git config:*)",
+      "Bash(env)"
     ],
     "deny": []
   }

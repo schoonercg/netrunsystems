@@ -55,7 +55,7 @@ except ImportError:
     EmailClient = None
 
 # Development mode flag
-DEV_MODE = True  # Force development mode for local testing
+DEV_MODE = os.environ.get('FLASK_ENV') == 'development'
 
 logger.info("Starting Flask application initialization")
 
