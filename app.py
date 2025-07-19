@@ -49,10 +49,14 @@ except ImportError:
 
 try:
     from azure.communication.email import EmailClient
-    logger.info("Azure Communication Email import successful")
+    from azure.identity import DefaultAzureCredential
+    logger.info("Azure Communication Email and Identity imports successful")
+    AZURE_IDENTITY_AVAILABLE = True
 except ImportError:
-    logger.warning("Azure Communication Email not available, email functionality will be disabled")
+    logger.warning("Azure Communication Email or Identity not available, email functionality will be disabled")
     EmailClient = None
+    DefaultAzureCredential = None
+    AZURE_IDENTITY_AVAILABLE = False
 
 # Development mode flag
 DEV_MODE = os.environ.get('FLASK_ENV') == 'development'
@@ -72,15 +76,16 @@ AZURE_AUTHORITY = f'https://login.microsoftonline.com/{AZURE_TENANT_ID}'
 AZURE_SCOPE = ['User.Read']
 AZURE_REDIRECT_PATH = '/getAToken'
 
-# Netrunmail Azure Email Communication Service Configuration
-AZURE_EMAIL_CONNECTION_STRING = os.environ.get('AZURE_EMAIL_CONNECTION_STRING', '')
+# Netrunmail Azure Communication Service Configuration (Service Principal)
+AZURE_COMMUNICATION_SERVICE_ENDPOINT = os.environ.get('AZURE_COMMUNICATION_SERVICE_ENDPOINT', '')
 AZURE_EMAIL_SENDER = os.environ.get('AZURE_EMAIL_SENDER', 'noreply@netrunmail.com')
 COMPANY_EMAIL = 'daniel@netrunsystems.com'
 EARLY_ACCESS_EMAIL = 'earlyaccess@netrunsystems.com'
 
 # Netrunmail service configuration
 NETRUNMAIL_DOMAIN = 'netrunmail.com'
-logger.info(f"Email service configured with sender: {AZURE_EMAIL_SENDER}")
+logger.info(f"Netrunmail service configured with sender: {AZURE_EMAIL_SENDER}")
+logger.info(f"Communication service endpoint: {AZURE_COMMUNICATION_SERVICE_ENDPOINT[:50]}..." if AZURE_COMMUNICATION_SERVICE_ENDPOINT else "No communication service endpoint configured")
 
 # Session config - use simple cookie-based sessions for Azure
 # Flask-Session filesystem mode can cause issues in containerized environments
@@ -201,14 +206,18 @@ def _get_token_from_cache(scope=None):
         return result
 
 def send_email(to_address, subject, html_content, plain_text_content=None, reply_to=None):
-    """Send email using Netrunmail Azure Communication Services"""
+    """Send email using Netrunmail Azure Communication Services with Service Principal"""
     try:
-        if not EmailClient:
-            logger.warning("Netrunmail Azure Communication Email not available, skipping email send")
+        if not EmailClient or not AZURE_IDENTITY_AVAILABLE:
+            logger.warning("Netrunmail Azure Communication Email or Identity not available, skipping email send")
             return False
             
-        if not AZURE_EMAIL_CONNECTION_STRING:
-            logger.warning("Netrunmail connection string not configured, skipping email send")
+        if not AZURE_COMMUNICATION_SERVICE_ENDPOINT:
+            logger.warning("Netrunmail service endpoint not configured, skipping email send")
+            return False
+            
+        if not AZURE_CLIENT_ID or not AZURE_CLIENT_SECRET or not AZURE_TENANT_ID:
+            logger.warning("Service principal credentials not configured for Netrunmail")
             return False
         
         # Validate email addresses
@@ -216,9 +225,11 @@ def send_email(to_address, subject, html_content, plain_text_content=None, reply
             logger.error(f"Invalid recipient email address: {to_address}")
             return False
             
-        logger.info(f"Sending email via Netrunmail from {AZURE_EMAIL_SENDER} to {to_address}")
+        logger.info(f"Sending email via Netrunmail service principal from {AZURE_EMAIL_SENDER} to {to_address}")
         
-        email_client = EmailClient.from_connection_string(AZURE_EMAIL_CONNECTION_STRING)
+        # Use DefaultAzureCredential (which will use service principal in production)
+        credential = DefaultAzureCredential()
+        email_client = EmailClient(endpoint=AZURE_COMMUNICATION_SERVICE_ENDPOINT, credential=credential)
         
         # Build message with optional reply-to
         message = {
@@ -651,10 +662,11 @@ def debug_info():
         'config': {
             'blog_dir_exists': BLOG_POST_DIR is not None and os.path.exists(BLOG_POST_DIR) if BLOG_POST_DIR else False,
             'dev_mode': DEV_MODE,
-            'azure_config': bool(AZURE_CLIENT_ID and AZURE_CLIENT_SECRET),
-            'netrunmail_config': bool(AZURE_EMAIL_CONNECTION_STRING),
+            'azure_service_principal': bool(AZURE_CLIENT_ID and AZURE_CLIENT_SECRET and AZURE_TENANT_ID),
+            'netrunmail_service_endpoint': bool(AZURE_COMMUNICATION_SERVICE_ENDPOINT),
             'netrunmail_sender': AZURE_EMAIL_SENDER,
             'netrunmail_domain': NETRUNMAIL_DOMAIN,
+            'azure_identity_available': AZURE_IDENTITY_AVAILABLE,
         },
         'packages': {
             'flask': '2.3.3',
