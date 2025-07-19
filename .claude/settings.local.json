@@ -10,7 +10,8 @@
       "Bash(git push:*)",
       "Bash(gh auth:*)",
       "Bash(git config:*)",
-      "Bash(env)"
+      "Bash(env)",
+      "Bash(mv:*)"
     ],
     "deny": []
   }
