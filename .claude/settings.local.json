@@ -16,7 +16,23 @@
       "Bash(curl:*)",
       "Bash(chmod:*)",
       "Bash(./docker-dev.sh:*)",
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "Bash(az webapp list:*)",
+      "Bash(az webapp config appsettings list:*)",
+      "Bash(az webapp config appsettings set:*)",
+      "Bash(az webapp config appsettings delete:*)",
+      "Bash(az webapp restart:*)",
+      "Bash(az communication:*)",
+      "Bash(az extension add:*)",
+      "Bash(az ad sp list:*)",
+      "Bash(az resource list:*)",
+      "Bash(az role assignment create:*)",
+      "Bash(az role definition list:*)",
+      "Bash(az keyvault secret list:*)",
+      "Bash(az ad app show:*)",
+      "Bash(az ad sp credential reset:*)",
+      "Bash(az account show:*)",
+      "Bash(az webapp identity assign:*)"
     ],
     "deny": []
   }
