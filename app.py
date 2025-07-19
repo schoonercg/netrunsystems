@@ -72,11 +72,15 @@ AZURE_AUTHORITY = f'https://login.microsoftonline.com/{AZURE_TENANT_ID}'
 AZURE_SCOPE = ['User.Read']
 AZURE_REDIRECT_PATH = '/getAToken'
 
-# Azure Email Configuration
+# Netrunmail Azure Email Communication Service Configuration
 AZURE_EMAIL_CONNECTION_STRING = os.environ.get('AZURE_EMAIL_CONNECTION_STRING', '')
-AZURE_EMAIL_SENDER = os.environ.get('AZURE_EMAIL_SENDER', 'DoNotReply@netrunsystems.com')
+AZURE_EMAIL_SENDER = os.environ.get('AZURE_EMAIL_SENDER', 'noreply@netrunmail.com')
 COMPANY_EMAIL = 'daniel@netrunsystems.com'
-EARLY_ACCESS_EMAIL = 'NSXearlyaccess@netrunsystems.com'
+EARLY_ACCESS_EMAIL = 'earlyaccess@netrunsystems.com'
+
+# Netrunmail service configuration
+NETRUNMAIL_DOMAIN = 'netrunmail.com'
+logger.info(f"Email service configured with sender: {AZURE_EMAIL_SENDER}")
 
 # Session config - use simple cookie-based sessions for Azure
 # Flask-Session filesystem mode can cause issues in containerized environments
@@ -196,39 +200,67 @@ def _get_token_from_cache(scope=None):
         _save_cache(cache)
         return result
 
-def send_email(to_address, subject, html_content, plain_text_content=None):
-    """Send email using Azure Communication Services"""
+def send_email(to_address, subject, html_content, plain_text_content=None, reply_to=None):
+    """Send email using Netrunmail Azure Communication Services"""
     try:
         if not EmailClient:
-            logger.warning("Azure Communication Email not available, skipping email send")
+            logger.warning("Netrunmail Azure Communication Email not available, skipping email send")
             return False
             
         if not AZURE_EMAIL_CONNECTION_STRING:
-            logger.warning("Azure Email connection string not configured, skipping email send")
+            logger.warning("Netrunmail connection string not configured, skipping email send")
+            return False
+        
+        # Validate email addresses
+        if not to_address or '@' not in to_address:
+            logger.error(f"Invalid recipient email address: {to_address}")
             return False
             
+        logger.info(f"Sending email via Netrunmail from {AZURE_EMAIL_SENDER} to {to_address}")
+        
         email_client = EmailClient.from_connection_string(AZURE_EMAIL_CONNECTION_STRING)
         
+        # Build message with optional reply-to
         message = {
             "senderAddress": AZURE_EMAIL_SENDER,
             "recipients": {
                 "to": [{"address": to_address}],
             },
             "content": {
-                "subject": subject,
-                "html": html_content,
-                "plainText": plain_text_content or html_content
+                "subject": f"[Netrun Systems] {subject}",
+                "html": f"""
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <div style="background: #2c3e50; color: white; padding: 20px; text-align: center;">
+                        <h2 style="margin: 0; color: #84baaa;">NETRUN SYSTEMS</h2>
+                        <p style="margin: 5px 0 0 0; font-size: 14px;">Technology Solutions for People by People</p>
+                    </div>
+                    <div style="padding: 20px; background: #f8f9fa;">
+                        {html_content}
+                    </div>
+                    <div style="background: #e9ecef; padding: 15px; text-align: center; font-size: 12px; color: #666;">
+                        <p>This email was sent via Netrunmail from Netrun Systems</p>
+                        <p>Ojai, California | <a href="https://netrunsystems.com" style="color: #84baaa;">netrunsystems.com</a></p>
+                    </div>
+                </div>
+                """,
+                "plainText": f"NETRUN SYSTEMS\n\n{plain_text_content or html_content}\n\n---\nThis email was sent via Netrunmail from Netrun Systems\nOjai, California | netrunsystems.com"
             }
         }
         
+        # Add reply-to if specified
+        if reply_to and '@' in reply_to:
+            message["replyTo"] = [{"address": reply_to}]
+            logger.info(f"Email includes reply-to: {reply_to}")
+        
+        # Send email
         poller = email_client.begin_send(message)
         result = poller.result()
         
-        app.logger.info(f"Email sent successfully. Message ID: {result.message_id}")
+        logger.info(f"✅ Netrunmail email sent successfully to {to_address}. Message ID: {result.message_id}")
         return True
         
     except Exception as e:
-        app.logger.error(f"Error sending email: {str(e)}")
+        logger.error(f"❌ Netrunmail email send failed to {to_address}: {str(e)}")
         return False
 
 @app.route('/')
@@ -268,24 +300,27 @@ def early_access():
         email = request.form.get('email')
         
         if email:
-            # Send email notification to early access team
-            subject = f"New Early Access Request from {email}"
+            # Send email notification to early access team via Netrunmail
+            subject = f"New Early Access Request"
             html_content = f"""
-            <html>
-            <body>
-                <h2>New Early Access Program Request</h2>
-                <p><strong>Email:</strong> {email}</p>
-                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+                <h2>🚀 New Early Access Program Request</h2>
+                <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <p><strong>Email:</strong> {email}</p>
+                    <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+                    <p><strong>Source:</strong> Early Access Form - netrunsystems.com</p>
+                </div>
                 <p>Please follow up with this prospect regarding our Early Access Program.</p>
-            </body>
-            </html>
+                <p style="margin-top: 20px; padding: 10px; background: #f0f8ff; border-radius: 5px;">
+                    <strong>Next Steps:</strong> Send welcome email and onboarding information.
+                </p>
             """
             
-            if send_email(EARLY_ACCESS_EMAIL, subject, html_content):
+            if send_email(EARLY_ACCESS_EMAIL, subject, html_content, reply_to=email):
                 flash('Thank you for your interest in our Early Access Program! We will contact you shortly.', 'success')
+                logger.info(f"✅ Early access request processed via Netrunmail: {email}")
             else:
                 flash('Thank you for your interest! We will contact you shortly.', 'success')
-                app.logger.warning(f"Email failed to send for early access request: {email}")
+                logger.warning(f"❌ Netrunmail failed for early access request: {email}")
             
             return redirect(url_for('early_access'))
         else:
@@ -519,27 +554,32 @@ def about():
         message = request.form.get('message')
         
         if name and email and subject and message:
-            # Send email notification to company
+            # Send email notification to company via Netrunmail
             email_subject = f"Contact Form: {subject}"
             html_content = f"""
-            <html>
-            <body>
-                <h2>New Contact Form Submission</h2>
-                <p><strong>Name:</strong> {name}</p>
-                <p><strong>Email:</strong> {email}</p>
-                <p><strong>Subject:</strong> {subject}</p>
-                <p><strong>Message:</strong></p>
-                <p>{message.replace(chr(10), '<br>')}</p>
-                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
-            </body>
-            </html>
+                <h2>📧 New Contact Form Submission - About Page</h2>
+                <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <p><strong>Name:</strong> {name}</p>
+                    <p><strong>Email:</strong> <a href="mailto:{email}">{email}</a></p>
+                    <p><strong>Subject:</strong> {subject}</p>
+                    <p><strong>Source:</strong> About Page Contact Form</p>
+                    <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h3>Message:</h3>
+                    <p style="white-space: pre-wrap;">{message}</p>
+                </div>
+                <p style="margin-top: 20px; padding: 10px; background: #e8f5e8; border-radius: 5px;">
+                    <strong>Action Required:</strong> Please respond to this inquiry within 24 hours.
+                </p>
             """
             
-            if send_email(COMPANY_EMAIL, email_subject, html_content):
+            if send_email(COMPANY_EMAIL, email_subject, html_content, reply_to=email):
                 flash('Thank you for your message! We will get back to you shortly.', 'success')
+                logger.info(f"✅ About page contact form processed via Netrunmail: {email}")
             else:
                 flash('Thank you for your message! We will get back to you shortly.', 'success')
-                app.logger.warning(f"Email failed to send for contact form: {email}")
+                logger.warning(f"❌ Netrunmail failed for about page contact: {email}")
         else:
             flash('Please fill in all required fields.', 'error')
         
@@ -557,27 +597,32 @@ def contact():
         message = request.form.get('message')
         
         if name and email and subject and message:
-            # Send email notification to company
+            # Send email notification to company via Netrunmail
             email_subject = f"Contact Form: {subject}"
             html_content = f"""
-            <html>
-            <body>
-                <h2>New Contact Form Submission</h2>
-                <p><strong>Name:</strong> {name}</p>
-                <p><strong>Email:</strong> {email}</p>
-                <p><strong>Subject:</strong> {subject}</p>
-                <p><strong>Message:</strong></p>
-                <p>{message.replace(chr(10), '<br>')}</p>
-                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
-            </body>
-            </html>
+                <h2>📧 New Contact Form Submission - Main Contact Page</h2>
+                <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <p><strong>Name:</strong> {name}</p>
+                    <p><strong>Email:</strong> <a href="mailto:{email}">{email}</a></p>
+                    <p><strong>Subject:</strong> {subject}</p>
+                    <p><strong>Source:</strong> Main Contact Page Form</p>
+                    <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h3>Message:</h3>
+                    <p style="white-space: pre-wrap;">{message}</p>
+                </div>
+                <p style="margin-top: 20px; padding: 10px; background: #e8f5e8; border-radius: 5px;">
+                    <strong>Action Required:</strong> Please respond to this inquiry within 24 hours.
+                </p>
             """
             
-            if send_email(COMPANY_EMAIL, email_subject, html_content):
+            if send_email(COMPANY_EMAIL, email_subject, html_content, reply_to=email):
                 flash('Thank you for your message! We will get back to you shortly.', 'success')
+                logger.info(f"✅ Main contact form processed via Netrunmail: {email}")
             else:
                 flash('Thank you for your message! We will get back to you shortly.', 'success')
-                app.logger.warning(f"Email failed to send for contact form: {email}")
+                logger.warning(f"❌ Netrunmail failed for main contact form: {email}")
         else:
             flash('Please fill in all required fields.', 'error')
         
@@ -601,13 +646,15 @@ def debug_info():
             'markdown': markdown is not None,
             'msal': msal is not None,
             'requests': requests is not None,
-            'email_client': EmailClient is not None,
+            'netrunmail_client': EmailClient is not None,
         },
         'config': {
             'blog_dir_exists': BLOG_POST_DIR is not None and os.path.exists(BLOG_POST_DIR) if BLOG_POST_DIR else False,
             'dev_mode': DEV_MODE,
             'azure_config': bool(AZURE_CLIENT_ID and AZURE_CLIENT_SECRET),
-            'email_config': bool(AZURE_EMAIL_CONNECTION_STRING),
+            'netrunmail_config': bool(AZURE_EMAIL_CONNECTION_STRING),
+            'netrunmail_sender': AZURE_EMAIL_SENDER,
+            'netrunmail_domain': NETRUNMAIL_DOMAIN,
         },
         'packages': {
             'flask': '2.3.3',
@@ -726,39 +773,49 @@ def rsvp():
         response = request.form.get('response')  # 'accept' or 'decline'
         
         if business_name and attendee_name and email and response:
-            # Send email notification to events team
+            # Send email notification to events team via Netrunmail
             status = "ACCEPTED" if response == 'accept' else "DECLINED"
+            status_emoji = "✅" if response == 'accept' else "❌"
             plus_one_text = "Yes" if plus_one else "No"
             text_consent = "Yes" if text_communication else "No"
             
-            subject = f"Event RSVP {status}: {attendee_name} from {business_name}"
+            subject = f"Neural Networking Event RSVP {status}: {attendee_name}"
             html_content = f"""
-            <html>
-            <body>
-                <h2>Event RSVP Submission - {status}</h2>
-                <p><strong>Business Name:</strong> {business_name}</p>
-                <p><strong>Attendee Name:</strong> {attendee_name}</p>
-                <p><strong>Plus One:</strong> {plus_one_text}</p>
-                <p><strong>Email:</strong> {email}</p>
-                <p><strong>Phone:</strong> {phone if phone else 'Not provided'}</p>
-                <p><strong>Text Communication Consent:</strong> {text_consent}</p>
-                <p><strong>Response:</strong> {status}</p>
-                <p><strong>Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
-            </body>
-            </html>
+                <h2>{status_emoji} Neural Networking Event RSVP - {status}</h2>
+                <div style="background: {'#e8f5e8' if response == 'accept' else '#ffebee'}; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h3>Attendee Information</h3>
+                    <p><strong>Business Name:</strong> {business_name}</p>
+                    <p><strong>Attendee Name:</strong> {attendee_name}</p>
+                    <p><strong>Email:</strong> <a href="mailto:{email}">{email}</a></p>
+                    <p><strong>Phone:</strong> {phone if phone else 'Not provided'}</p>
+                    <p><strong>Plus One:</strong> {plus_one_text}</p>
+                    <p><strong>Text Communication Consent:</strong> {text_consent}</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <p><strong>Response:</strong> <span style="color: {'green' if response == 'accept' else 'red'}; font-weight: bold;">{status}</span></p>
+                    <p><strong>Event:</strong> Neural Networking: The Future of AI-Driven Business Solutions</p>
+                    <p><strong>Date:</strong> March 15, 2025 | 6:00 PM - 9:00 PM PST</p>
+                    <p><strong>Location:</strong> Ojai Valley, California</p>
+                    <p><strong>Submission Date:</strong> {now.strftime('%Y-%m-%d %H:%M:%S')}</p>
+                </div>
+                <p style="margin-top: 20px; padding: 10px; background: {'#d4edda' if response == 'accept' else '#f8d7da'}; border-radius: 5px;">
+                    <strong>Next Steps:</strong> {'Send event details and confirmation email to attendee.' if response == 'accept' else 'Update guest list and send follow-up for future events.'}
+                </p>
             """
             
-            if send_email(COMPANY_EMAIL, subject, html_content):
+            if send_email(COMPANY_EMAIL, subject, html_content, reply_to=email):
                 if response == 'accept':
                     flash('Thank you for your RSVP! We look forward to seeing you at the event.', 'success')
+                    logger.info(f"✅ RSVP ACCEPTED processed via Netrunmail: {attendee_name} ({email})")
                 else:
                     flash('Thank you for letting us know. We hope to see you at a future event.', 'success')
+                    logger.info(f"✅ RSVP DECLINED processed via Netrunmail: {attendee_name} ({email})")
             else:
                 if response == 'accept':
                     flash('Thank you for your RSVP! We look forward to seeing you at the event.', 'success')
                 else:
                     flash('Thank you for letting us know. We hope to see you at a future event.', 'success')
-                app.logger.warning(f"Email failed to send for RSVP: {email}")
+                logger.warning(f"❌ Netrunmail failed for RSVP {status}: {attendee_name} ({email})")
             
             return redirect(url_for('rsvp'))
         else:
