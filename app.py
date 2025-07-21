@@ -19,11 +19,21 @@ logger = logging.getLogger(__name__)
 # Import Flask and core dependencies
 try:
     from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
-    from flask_wtf import CSRFProtect
     logger.info("Flask core imports successful")
 except ImportError as e:
     logger.error(f"Failed to import Flask core: {e}")
     sys.exit(1)
+
+try:
+    from flask_wtf import CSRFProtect
+    from flask_wtf.csrf import generate_csrf
+    csrf_available = True
+    logger.info("Flask-WTF imports successful")
+except ImportError as e:
+    logger.warning(f"Flask-WTF not available: {e}")
+    csrf_available = False
+    CSRFProtect = None
+    generate_csrf = None
 
 # Import optional dependencies with graceful fallback
 try:
@@ -96,24 +106,26 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 3600  # 1 hour
 logger.info("Using cookie-based sessions for Azure compatibility")
 
 # Enable CSRF protection
-try:
-    csrf = CSRFProtect(app)
-    logger.info("CSRF protection enabled")
-except Exception as e:
-    logger.error(f"Failed to enable CSRF protection: {e}")
-    csrf = None
+csrf = None
+if csrf_available and CSRFProtect:
+    try:
+        csrf = CSRFProtect(app)
+        logger.info("CSRF protection enabled")
+    except Exception as e:
+        logger.error(f"Failed to enable CSRF protection: {e}")
+        csrf = None
+else:
+    logger.warning("CSRF protection not available (Flask-WTF not installed)")
 
 # Add csrf_token to template context if CSRF is not working
 @app.context_processor
 def inject_csrf_token():
     def csrf_token():
         try:
-            if csrf:
-                from flask_wtf.csrf import generate_csrf
+            if csrf and generate_csrf:
                 return f'<input type="hidden" name="csrf_token" value="{generate_csrf()}"/>'
             else:
                 # Return empty string if CSRF is not enabled
-                logger.warning("CSRF protection not enabled, returning empty csrf_token")
                 return ''
         except Exception as e:
             logger.error(f"Error generating CSRF token: {e}")
@@ -1066,6 +1078,7 @@ def product_governance_dashboard():
 application = app
 
 logger.info("Flask application initialization completed successfully")
+logger.info(f"Total routes registered: {len(list(app.url_map.iter_rules()))}")
 
 # Log application startup for Azure diagnostics
 # Note: before_first_request is deprecated in Flask 2.3+
@@ -1074,9 +1087,14 @@ def log_startup():
     logger.info(f"Application starting up - PORT environment variable: {port}")
     logger.info(f"Application available at /health endpoint")
     logger.info(f"Application available at /debug endpoint")
+    logger.info(f"Admin routes: /admin, /admin/login, /admin/blog")
 
 # Call it immediately on startup
-log_startup()
+try:
+    log_startup()
+    logger.info("Startup logging completed successfully")
+except Exception as e:
+    logger.error(f"Error during startup logging: {e}")
 
 if __name__ == '__main__':
     # Log all registered routes for debugging
