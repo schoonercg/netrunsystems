@@ -212,9 +212,19 @@ def _build_msal_app(cache=None, authority=None):
     if not msal:
         logger.warning("MSAL not available, authentication will not work")
         return None
-    return msal.ConfidentialClientApplication(
-        AZURE_CLIENT_ID, authority=authority or AZURE_AUTHORITY,
-        client_credential=AZURE_CLIENT_SECRET, token_cache=cache)
+    
+    # Check if required Azure credentials are set
+    if not AZURE_CLIENT_ID or not AZURE_CLIENT_SECRET or not AZURE_TENANT_ID:
+        logger.warning("Azure credentials not set, cannot build MSAL app")
+        return None
+    
+    try:
+        return msal.ConfidentialClientApplication(
+            AZURE_CLIENT_ID, authority=authority or AZURE_AUTHORITY,
+            client_credential=AZURE_CLIENT_SECRET, token_cache=cache)
+    except Exception as e:
+        logger.error(f"Error creating MSAL app: {e}")
+        return None
 
 def _build_auth_code_flow(authority=None, scopes=None):
     msal_app = _build_msal_app(authority=authority)
@@ -472,30 +482,42 @@ def parse_blog_post(filename):
 
 @app.route('/admin/login')
 def admin_login():
-    # Check if MSAL is available
-    if not msal:
-        logger.warning("MSAL not available, using development admin login")
-        session['admin'] = True
-        flash('Development admin login (MSAL not available)', 'warning')
-        return redirect(url_for('admin_blog'))
-    
-    # Check if user is already authenticated
-    token = _get_token_from_cache(AZURE_SCOPE)
-    if not token:
-        # Start the OAuth flow
-        flow = _build_auth_code_flow(scopes=AZURE_SCOPE)
-        if not flow:
-            logger.warning("Failed to build auth flow, using development admin login")
+    try:
+        # Check if we're in development environment or Azure credentials are missing
+        is_development = os.environ.get('FLASK_ENV') == 'development' or not all([AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT_ID])
+        
+        if is_development or not msal:
+            logger.info("Using development admin login (no Azure auth)")
             session['admin'] = True
-            flash('Development admin login (Auth flow failed)', 'warning')
+            flash('Development admin login - authentication bypassed', 'info')
             return redirect(url_for('admin_blog'))
         
-        session['flow'] = flow
-        return redirect(flow['auth_uri'])
-    
-    # User is already authenticated
-    session['admin'] = True
-    return redirect(url_for('admin_blog'))
+        # Production Azure AD authentication
+        try:
+            # Check if user is already authenticated
+            token = _get_token_from_cache(AZURE_SCOPE)
+            if not token:
+                # Start the OAuth flow
+                flow = _build_auth_code_flow(scopes=AZURE_SCOPE)
+                if not flow:
+                    raise Exception("Cannot build auth flow")
+                
+                session['flow'] = flow
+                return redirect(flow['auth_uri'])
+            
+            # User is already authenticated
+            session['admin'] = True
+            return redirect(url_for('admin_blog'))
+            
+        except Exception as auth_error:
+            logger.error(f"Azure auth failed: {auth_error}, falling back to dev login")
+            session['admin'] = True
+            flash('Development admin login (Azure auth failed)', 'warning')
+            return redirect(url_for('admin_blog'))
+        
+    except Exception as e:
+        logger.error(f"Critical error in admin_login: {e}")
+        return f"Login error: {str(e)}", 500
 
 @app.route('/getAToken')
 def authorized():
@@ -1084,7 +1106,12 @@ logger.info(f"Total routes registered: {len(list(app.url_map.iter_rules()))}")
 # Note: before_first_request is deprecated in Flask 2.3+
 def log_startup():
     port = os.environ.get('PORT', 'not set')
-    logger.info(f"Application starting up - PORT environment variable: {port}")
+    flask_env = os.environ.get('FLASK_ENV', 'not set')
+    azure_creds = all([AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT_ID])
+    
+    logger.info(f"Application starting up - PORT: {port}, FLASK_ENV: {flask_env}")
+    logger.info(f"Azure credentials configured: {azure_creds}")
+    logger.info(f"MSAL available: {msal is not None}")
     logger.info(f"Application available at /health endpoint")
     logger.info(f"Application available at /debug endpoint")
     logger.info(f"Admin routes: /admin, /admin/login, /admin/blog")
