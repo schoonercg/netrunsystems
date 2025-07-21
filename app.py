@@ -34,14 +34,16 @@ except ImportError as e:
 
 try:
     from flask_wtf import CSRFProtect
-    from flask_wtf.csrf import generate_csrf
+    from flask_wtf.csrf import generate_csrf, exempt
     csrf_available = True
+    csrf_exempt = exempt
     logger.info("Flask-WTF imports successful")
 except ImportError as e:
     logger.warning(f"Flask-WTF not available: {e}")
     csrf_available = False
     CSRFProtect = None
     generate_csrf = None
+    csrf_exempt = None
 
 # Import optional dependencies with graceful fallback
 try:
@@ -117,7 +119,10 @@ logger.info("Using cookie-based sessions for Azure compatibility")
 csrf = None
 if csrf_available and CSRFProtect:
     try:
+        app.config['WTF_CSRF_ENABLED'] = True
+        app.config['WTF_CSRF_TIME_LIMIT'] = None  # No time limit for CSRF tokens
         csrf = CSRFProtect(app)
+        
         logger.info("CSRF protection enabled")
     except Exception as e:
         logger.error(f"Failed to enable CSRF protection: {e}")
@@ -125,15 +130,24 @@ if csrf_available and CSRFProtect:
 else:
     logger.warning("CSRF protection not available (Flask-WTF not installed)")
 
-# Add csrf_token to template context if CSRF is not working
+# Helper function for CSRF exemption
+def csrf_exempt_if_available(f):
+    if csrf and csrf_exempt:
+        return csrf_exempt(f)
+    return f
+
+# Add csrf_token to template context
 @app.context_processor
 def inject_csrf_token():
     def csrf_token():
         try:
             if csrf and generate_csrf:
-                return f'<input type="hidden" name="csrf_token" value="{generate_csrf()}"/>'
+                token_value = generate_csrf()
+                logger.debug(f"Generated CSRF token: {token_value[:10]}...")
+                return f'<input type="hidden" name="csrf_token" value="{token_value}"/>'
             else:
                 # Return empty string if CSRF is not enabled
+                logger.debug("CSRF not enabled, returning empty token")
                 return ''
         except Exception as e:
             logger.error(f"Error generating CSRF token: {e}")
@@ -734,6 +748,7 @@ def admin_logout():
     return redirect(url_for('index'))
 
 @app.route('/admin/blog', methods=['GET', 'POST'])
+@csrf_exempt_if_available
 @requires_admin
 def admin_blog():
     try:
@@ -899,6 +914,7 @@ def admin_blog_edit(filename):
         return redirect(url_for('admin_blog'))
 
 @app.route('/admin/blog/update/<filename>', methods=['POST'])
+@csrf_exempt_if_available
 @requires_admin
 def admin_blog_update(filename):
     try:
@@ -977,6 +993,7 @@ order: {order}
         return redirect(url_for('admin_blog'))
 
 @app.route('/admin/blog/delete/<filename>', methods=['POST'])
+@csrf_exempt_if_available
 @requires_admin
 def admin_blog_delete(filename):
     try:
