@@ -103,6 +103,24 @@ except Exception as e:
     logger.error(f"Failed to enable CSRF protection: {e}")
     csrf = None
 
+# Add csrf_token to template context if CSRF is not working
+@app.context_processor
+def inject_csrf_token():
+    def csrf_token():
+        try:
+            if csrf:
+                from flask_wtf.csrf import generate_csrf
+                return f'<input type="hidden" name="csrf_token" value="{generate_csrf()}"/>'
+            else:
+                # Return empty string if CSRF is not enabled
+                logger.warning("CSRF protection not enabled, returning empty csrf_token")
+                return ''
+        except Exception as e:
+            logger.error(f"Error generating CSRF token: {e}")
+            # Return a hidden field with a dummy value to prevent template errors
+            return '<input type="hidden" name="csrf_token" value=""/>'
+    return dict(csrf_token=csrf_token)
+
 # Create blog post directory if it doesn't exist
 BLOG_POST_DIR = os.path.join(app.root_path, 'blog_posts')
 try:
@@ -506,29 +524,30 @@ def admin_logout():
 @app.route('/admin/blog', methods=['GET', 'POST'])
 @requires_admin
 def admin_blog():
-    now = datetime.datetime.now()
-    if request.method == 'POST':
-        try:
-            title = request.form.get('title')
-            author = request.form.get('author')
-            date_str = request.form.get('date')
-            excerpt = request.form.get('excerpt')
-            content = request.form.get('content')
-            
-            # Create slug from title
-            slug = title.lower().replace(' ', '-')
-            # Remove special characters
-            slug = re.sub(r'[^a-z0-9-]', '', slug)
-            
-            # Parse date
+    try:
+        now = datetime.datetime.now()
+        if request.method == 'POST':
             try:
-                date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
-                date = date_obj.strftime('%Y-%m-%d')
-            except ValueError:
-                date = datetime.datetime.now().strftime('%Y-%m-%d')
-            
-            # Create markdown file
-            markdown_content = f"""---
+                title = request.form.get('title')
+                author = request.form.get('author')
+                date_str = request.form.get('date')
+                excerpt = request.form.get('excerpt')
+                content = request.form.get('content')
+                
+                # Create slug from title
+                slug = title.lower().replace(' ', '-')
+                # Remove special characters
+                slug = re.sub(r'[^a-z0-9-]', '', slug)
+                
+                # Parse date
+                try:
+                    date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+                    date = date_obj.strftime('%Y-%m-%d')
+                except ValueError:
+                    date = datetime.datetime.now().strftime('%Y-%m-%d')
+                
+                # Create markdown file
+                markdown_content = f"""---
 title: {title}
 author: {author}
 date: {date}
@@ -537,23 +556,29 @@ excerpt: {excerpt}
 ---
 {content}
 """
-            
-            # Ensure blog post directory exists
-            os.makedirs(BLOG_POST_DIR, exist_ok=True)
-            
-            filename = f"{slug}.md"
-            filepath = os.path.join(BLOG_POST_DIR, filename)
-            
-            with open(filepath, 'w') as file:
-                file.write(markdown_content)
-            
-            flash('Blog post created successfully!', 'success')
-            return redirect(url_for('blog'))
-        except Exception as e:
-            app.logger.error(f"Error creating blog post: {str(e)}")
-            flash(f'Error creating blog post: {str(e)}', 'error')
+                
+                # Ensure blog post directory exists
+                os.makedirs(BLOG_POST_DIR, exist_ok=True)
+                
+                filename = f"{slug}.md"
+                filepath = os.path.join(BLOG_POST_DIR, filename)
+                
+                with open(filepath, 'w') as file:
+                    file.write(markdown_content)
+                
+                flash('Blog post created successfully!', 'success')
+                return redirect(url_for('blog'))
+            except Exception as e:
+                app.logger.error(f"Error creating blog post: {str(e)}")
+                flash(f'Error creating blog post: {str(e)}', 'error')
+        
+        # For GET requests or after POST errors
+        return render_template('admin_blog.html', now=now)
     
-    return render_template('admin_blog.html', now=now)
+    except Exception as e:
+        app.logger.error(f"Error in admin_blog route: {str(e)}")
+        flash(f'Error loading admin blog page: {str(e)}', 'error')
+        return redirect(url_for('index'))
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
@@ -1005,7 +1030,23 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def internal_error(e):
+    import traceback
     now = datetime.datetime.now()
+    
+    # Log the full error details
+    logger.error(f"500 Error occurred: {str(e)}")
+    logger.error(f"Full traceback:\n{traceback.format_exc()}")
+    
+    # In development mode, show more details
+    if app.debug or os.environ.get('FLASK_ENV') == 'development':
+        error_details = traceback.format_exc()
+        return f"""
+        <h1>500 Internal Server Error</h1>
+        <h2>Error: {str(e)}</h2>
+        <pre>{error_details}</pre>
+        <p><a href="/">Go back to homepage</a></p>
+        """, 500
+    
     return render_template('500.html', now=now), 500
 
 @app.route('/product/governance-dashboard')

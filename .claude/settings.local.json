@@ -32,7 +32,9 @@
       "Bash(az ad app show:*)",
       "Bash(az ad sp credential reset:*)",
       "Bash(az account show:*)",
-      "Bash(az webapp identity assign:*)"
+      "Bash(az webapp identity assign:*)",
+      "Bash(pip3 list:*)",
+      "Bash(pip3 install:*)"
     ],
     "deny": []
   }
