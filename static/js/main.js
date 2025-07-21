@@ -110,26 +110,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile navigation menu toggle
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
-    const overlay = document.createElement('div');
-    overlay.className = 'overlay';
-    document.body.appendChild(overlay);
+    const overlay = document.querySelector('.overlay') || document.createElement('div');
+    if (!document.querySelector('.overlay')) {
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+    }
     const mobileClose = document.querySelector('.mobile-close');
 
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', function(e) {
             e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            hamburger.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
         function closeMenu() {
             mobileMenu.classList.remove('active');
+            hamburger.classList.remove('active');
             overlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        mobileClose.addEventListener('click', closeMenu);
+        if (mobileClose) {
+            mobileClose.addEventListener('click', closeMenu);
+        }
         overlay.addEventListener('click', closeMenu);
         
         // Close menu when clicking outside
@@ -137,6 +153,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 closeMenu();
             }
+        });
+
+        // Close menu when clicking on mobile nav links
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
     }
 

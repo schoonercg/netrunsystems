@@ -30,7 +30,10 @@
             </div>
         </div>
         <div class="header-bottom">
-            <nav>
+            <div class="hamburger">
+                <span class="hamburger-icon"></span>
+            </div>
+            <nav class="nav-desktop">
                 <ul class="nav-links">
                     <li><a href="{{ url_for('blog') }}">Blog</a></li>
                     <li><a href="{{ url_for('services') }}">Services</a></li>
@@ -38,6 +41,21 @@
                     <li><a href="{{ url_for('about') }}">About</a></li>
                     <li><a href="{{ url_for('early_access') }}" class="btn-early-access">Early Access</a></li>
                 </ul>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <img src="{{ url_for('static', filename='images/ns-banner.png') }}" alt="Netrun Systems" class="mobile-logo">
+                <span class="mobile-close">&times;</span>
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="{{ url_for('blog') }}">Blog</a>
+                <a href="{{ url_for('services') }}">Services</a>
+                <a href="{{ url_for('research_projects') }}">Research</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('early_access') }}" class="btn-early-access">Early Access</a>
             </nav>
         </div>
 
