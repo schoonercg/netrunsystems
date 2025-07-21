@@ -19,6 +19,14 @@ logger = logging.getLogger(__name__)
 # Import Flask and core dependencies
 try:
     from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory, session
+    try:
+        from werkzeug.utils import secure_filename
+    except ImportError:
+        # Fallback secure_filename implementation
+        import re
+        def secure_filename(filename):
+            filename = re.sub(r'[^\w\s-]', '', filename).strip().lower()
+            return re.sub(r'[-\s]+', '-', filename)
     logger.info("Flask core imports successful")
 except ImportError as e:
     logger.error(f"Failed to import Flask core: {e}")
@@ -390,8 +398,114 @@ def blog_post(slug):
     now = datetime.datetime.now()
     post = get_blog_post(slug)
     if post:
-        return render_template('blog_post.html', post=post, now=now)
+        # Generate absolute URL for sharing
+        post_url = url_for('blog_post', slug=slug, _external=True)
+        return render_template('blog_post.html', post=post, post_url=post_url, now=now)
     abort(404)
+
+@app.route('/blog/feed.xml')
+@app.route('/rss')
+@app.route('/feed')
+def rss_feed():
+    """Generate RSS feed for blog posts"""
+    try:
+        posts = get_blog_posts()
+        
+        # RSS XML template
+        rss_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Netrun Systems Blog</title>
+        <link>{url_for('blog', _external=True)}</link>
+        <description>Insights, updates, and best practices for Azure cross-tenant governance and cloud management solutions.</description>
+        <language>en-us</language>
+        <managingEditor>blog@netrunsystems.com (Netrun Systems)</managingEditor>
+        <webMaster>blog@netrunsystems.com (Netrun Systems)</webMaster>
+        <lastBuildDate>{datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')}</lastBuildDate>
+        <atom:link href="{url_for('rss_feed', _external=True)}" rel="self" type="application/rss+xml" />
+"""
+
+        # Add items for each blog post
+        for post in posts[:20]:  # Limit to 20 most recent posts
+            # Generate absolute URLs
+            post_url = url_for('blog_post', slug=post['slug'], _external=True)
+            pub_date = post['date'].strftime('%a, %d %b %Y %H:%M:%S +0000') if post['date'] else ''
+            
+            # Escape XML content
+            title = post['title'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+            description = post['excerpt'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;') if post['excerpt'] else ''
+            
+            rss_xml += f"""
+        <item>
+            <title>{title}</title>
+            <link>{post_url}</link>
+            <description>{description}</description>
+            <author>{post['author']}</author>
+            <pubDate>{pub_date}</pubDate>
+            <guid isPermaLink="true">{post_url}</guid>
+        </item>"""
+
+        rss_xml += """
+    </channel>
+</rss>"""
+
+        response = app.make_response(rss_xml)
+        response.headers['Content-Type'] = 'application/rss+xml; charset=utf-8'
+        return response
+        
+    except Exception as e:
+        logger.error(f"Error generating RSS feed: {e}")
+        return abort(500)
+
+@app.route('/sitemap.xml')
+def sitemap():
+    """Generate sitemap for blog posts"""
+    try:
+        posts = get_blog_posts()
+        
+        sitemap_xml = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{}</loc>
+        <lastmod>{}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>{}</loc>
+        <lastmod>{}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>'''.format(
+            url_for('index', _external=True),
+            datetime.datetime.now().strftime('%Y-%m-%d'),
+            url_for('blog', _external=True),
+            datetime.datetime.now().strftime('%Y-%m-%d')
+        )
+
+        # Add blog posts
+        for post in posts:
+            post_url = url_for('blog_post', slug=post['slug'], _external=True)
+            last_mod = post['date'].strftime('%Y-%m-%d') if post['date'] else datetime.datetime.now().strftime('%Y-%m-%d')
+            
+            sitemap_xml += '''
+    <url>
+        <loc>{}</loc>
+        <lastmod>{}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>'''.format(post_url, last_mod)
+
+        sitemap_xml += '''
+</urlset>'''
+
+        response = app.make_response(sitemap_xml)
+        response.headers['Content-Type'] = 'application/xml; charset=utf-8'
+        return response
+        
+    except Exception as e:
+        logger.error(f"Error generating sitemap: {e}")
+        return abort(500)
 
 def get_blog_posts():
     posts = []
@@ -421,6 +535,62 @@ def get_blog_post(slug):
     except Exception as e:
         logger.error(f"Error getting blog post {slug}: {str(e)}")
     return None
+
+def get_all_blog_posts():
+    """Get all blog posts with metadata for admin management"""
+    try:
+        if not os.path.exists(BLOG_POST_DIR):
+            return []
+        
+        posts = []
+        for filename in os.listdir(BLOG_POST_DIR):
+            if filename.endswith('.md'):
+                filepath = os.path.join(BLOG_POST_DIR, filename)
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as file:
+                        content = file.read()
+                    
+                    # Parse front matter
+                    front_matter_match = re.match(r'^---\s+(.*?)\s+---\s+(.*)', content, re.DOTALL)
+                    if not front_matter_match:
+                        continue
+                    
+                    front_matter = front_matter_match.group(1)
+                    post_content = front_matter_match.group(2)
+                    
+                    # Parse metadata
+                    metadata = {'filename': filename}
+                    for line in front_matter.split('\n'):
+                        if ':' in line:
+                            key, value = line.split(':', 1)
+                            metadata[key.strip()] = value.strip()
+                    
+                    # Parse date
+                    date_str = metadata.get('date', '')
+                    if date_str:
+                        try:
+                            metadata['date_obj'] = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+                        except ValueError:
+                            metadata['date_obj'] = datetime.datetime.now()
+                    else:
+                        metadata['date_obj'] = datetime.datetime.now()
+                    
+                    metadata['content'] = post_content
+                    metadata['order'] = int(metadata.get('order', 999))  # Default high order for sorting
+                    
+                    posts.append(metadata)
+                    
+                except Exception as e:
+                    logger.error(f"Error reading blog post {filename}: {e}")
+                    continue
+        
+        # Sort by order, then by date (newest first)
+        posts.sort(key=lambda x: (int(x.get('order', 999)), -x['date_obj'].timestamp()))
+        return posts
+    
+    except Exception as e:
+        logger.error(f"Error getting blog posts: {e}")
+        return []
 
 def parse_blog_post(filename):
     try:
@@ -568,59 +738,262 @@ def admin_logout():
 def admin_blog():
     try:
         now = datetime.datetime.now()
+        
         if request.method == 'POST':
-            try:
-                title = request.form.get('title')
-                author = request.form.get('author')
-                date_str = request.form.get('date')
-                excerpt = request.form.get('excerpt')
-                content = request.form.get('content')
-                
-                # Create slug from title
-                slug = title.lower().replace(' ', '-')
-                # Remove special characters
-                slug = re.sub(r'[^a-z0-9-]', '', slug)
-                
-                # Parse date
+            action = request.form.get('action', 'create')
+            
+            if action == 'create':
                 try:
-                    date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
-                    date = date_obj.strftime('%Y-%m-%d')
-                except ValueError:
-                    date = datetime.datetime.now().strftime('%Y-%m-%d')
-                
-                # Create markdown file
-                markdown_content = f"""---
+                    title = request.form.get('title')
+                    author = request.form.get('author')
+                    date_str = request.form.get('date')
+                    excerpt = request.form.get('excerpt')
+                    content = request.form.get('content')
+                    image = request.form.get('image', '')
+                    order = request.form.get('order', '999')
+                    
+                    # Handle file upload for header image
+                    if 'image_file' in request.files:
+                        file = request.files['image_file']
+                        if file and file.filename:
+                            # Ensure images directory exists
+                            images_dir = os.path.join(app.static_folder, 'images', 'blog')
+                            os.makedirs(images_dir, exist_ok=True)
+                            
+                            # Create safe filename with timestamp to avoid conflicts
+                            safe_name = secure_filename(file.filename)
+                            name, ext = os.path.splitext(safe_name)
+                            timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+                            unique_filename = f"{name}_{timestamp}{ext}"
+                            
+                            filepath = os.path.join(images_dir, unique_filename)
+                            
+                            # Check file size (5MB limit)
+                            file.seek(0, os.SEEK_END)
+                            file_size = file.tell()
+                            file.seek(0)
+                            
+                            if file_size > 5 * 1024 * 1024:  # 5MB
+                                flash('Image file too large. Maximum size is 5MB.', 'error')
+                            else:
+                                file.save(filepath)
+                                image = f'/static/images/blog/{unique_filename}'
+                    
+                    # Create slug from title
+                    slug = title.lower().replace(' ', '-')
+                    slug = re.sub(r'[^a-z0-9-]', '', slug)
+                    
+                    # Parse date
+                    try:
+                        date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+                        date = date_obj.strftime('%Y-%m-%d')
+                    except ValueError:
+                        date = datetime.datetime.now().strftime('%Y-%m-%d')
+                    
+                    # Create markdown file
+                    markdown_content = f"""---
 title: {title}
 author: {author}
 date: {date}
 slug: {slug}
 excerpt: {excerpt}
+image: {image}
+order: {order}
 ---
 {content}
 """
-                
-                # Ensure blog post directory exists
-                os.makedirs(BLOG_POST_DIR, exist_ok=True)
-                
-                filename = f"{slug}.md"
-                filepath = os.path.join(BLOG_POST_DIR, filename)
-                
-                with open(filepath, 'w') as file:
-                    file.write(markdown_content)
-                
-                flash('Blog post created successfully!', 'success')
-                return redirect(url_for('blog'))
-            except Exception as e:
-                app.logger.error(f"Error creating blog post: {str(e)}")
-                flash(f'Error creating blog post: {str(e)}', 'error')
+                    
+                    # Ensure blog post directory exists
+                    os.makedirs(BLOG_POST_DIR, exist_ok=True)
+                    
+                    filename = f"{slug}.md"
+                    filepath = os.path.join(BLOG_POST_DIR, filename)
+                    
+                    with open(filepath, 'w', encoding='utf-8') as file:
+                        file.write(markdown_content)
+                    
+                    flash('Blog post created successfully!', 'success')
+                    return redirect(url_for('admin_blog'))
+                    
+                except Exception as e:
+                    app.logger.error(f"Error creating blog post: {str(e)}")
+                    flash(f'Error creating blog post: {str(e)}', 'error')
+            
+            elif action == 'update_order':
+                try:
+                    # Handle bulk order updates
+                    posts = get_all_blog_posts()
+                    for post in posts:
+                        new_order = request.form.get(f'order_{post["filename"]}')
+                        if new_order:
+                            # Update the order in the file
+                            filepath = os.path.join(BLOG_POST_DIR, post['filename'])
+                            with open(filepath, 'r', encoding='utf-8') as file:
+                                content = file.read()
+                            
+                            # Update order in front matter
+                            content = re.sub(r'order: \d+', f'order: {new_order}', content)
+                            if 'order:' not in content:
+                                # Add order if it doesn't exist
+                                content = content.replace('---\n', f'---\norder: {new_order}\n', 1)
+                            
+                            with open(filepath, 'w', encoding='utf-8') as file:
+                                file.write(content)
+                    
+                    flash('Post order updated successfully!', 'success')
+                    return redirect(url_for('admin_blog'))
+                    
+                except Exception as e:
+                    app.logger.error(f"Error updating post order: {str(e)}")
+                    flash(f'Error updating post order: {str(e)}', 'error')
+        
+        # Get existing posts for display
+        posts = get_all_blog_posts()
         
         # For GET requests or after POST errors
-        return render_template('admin_blog.html', now=now)
+        return render_template('admin_blog.html', now=now, posts=posts)
     
     except Exception as e:
         app.logger.error(f"Error in admin_blog route: {str(e)}")
         flash(f'Error loading admin blog page: {str(e)}', 'error')
         return redirect(url_for('index'))
+
+@app.route('/admin/blog/edit/<filename>')
+@requires_admin
+def admin_blog_edit(filename):
+    try:
+        now = datetime.datetime.now()
+        filepath = os.path.join(BLOG_POST_DIR, filename)
+        
+        if not os.path.exists(filepath):
+            flash('Blog post not found', 'error')
+            return redirect(url_for('admin_blog'))
+        
+        # Read the blog post
+        with open(filepath, 'r', encoding='utf-8') as file:
+            content = file.read()
+        
+        # Parse front matter
+        front_matter_match = re.match(r'^---\s+(.*?)\s+---\s+(.*)', content, re.DOTALL)
+        if not front_matter_match:
+            flash('Invalid blog post format', 'error')
+            return redirect(url_for('admin_blog'))
+        
+        front_matter = front_matter_match.group(1)
+        post_content = front_matter_match.group(2)
+        
+        # Parse metadata
+        metadata = {'filename': filename}
+        for line in front_matter.split('\n'):
+            if ':' in line:
+                key, value = line.split(':', 1)
+                metadata[key.strip()] = value.strip()
+        
+        metadata['content'] = post_content
+        
+        return render_template('admin_blog_edit.html', now=now, post=metadata)
+        
+    except Exception as e:
+        app.logger.error(f"Error loading blog edit: {str(e)}")
+        flash(f'Error loading blog post: {str(e)}', 'error')
+        return redirect(url_for('admin_blog'))
+
+@app.route('/admin/blog/update/<filename>', methods=['POST'])
+@requires_admin
+def admin_blog_update(filename):
+    try:
+        filepath = os.path.join(BLOG_POST_DIR, filename)
+        
+        if not os.path.exists(filepath):
+            flash('Blog post not found', 'error')
+            return redirect(url_for('admin_blog'))
+        
+        title = request.form.get('title')
+        author = request.form.get('author')
+        date_str = request.form.get('date')
+        excerpt = request.form.get('excerpt')
+        content = request.form.get('content')
+        image = request.form.get('image', '')
+        order = request.form.get('order', '999')
+        slug = request.form.get('slug', filename.replace('.md', ''))
+        
+        # Handle file upload for header image
+        if 'image_file' in request.files:
+            file = request.files['image_file']
+            if file and file.filename:
+                # Ensure images directory exists
+                images_dir = os.path.join(app.static_folder, 'images', 'blog')
+                os.makedirs(images_dir, exist_ok=True)
+                
+                # Create safe filename with timestamp to avoid conflicts
+                safe_name = secure_filename(file.filename)
+                name, ext = os.path.splitext(safe_name)
+                timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+                unique_filename = f"{name}_{timestamp}{ext}"
+                
+                new_filepath = os.path.join(images_dir, unique_filename)
+                
+                # Check file size (5MB limit)
+                file.seek(0, os.SEEK_END)
+                file_size = file.tell()
+                file.seek(0)
+                
+                if file_size > 5 * 1024 * 1024:  # 5MB
+                    flash('Image file too large. Maximum size is 5MB.', 'error')
+                else:
+                    file.save(new_filepath)
+                    image = f'/static/images/blog/{unique_filename}'
+        
+        # Parse date
+        try:
+            date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+            date = date_obj.strftime('%Y-%m-%d')
+        except ValueError:
+            date = datetime.datetime.now().strftime('%Y-%m-%d')
+        
+        # Create updated markdown content
+        markdown_content = f"""---
+title: {title}
+author: {author}
+date: {date}
+slug: {slug}
+excerpt: {excerpt}
+image: {image}
+order: {order}
+---
+{content}
+"""
+        
+        # Write updated content
+        with open(filepath, 'w', encoding='utf-8') as file:
+            file.write(markdown_content)
+        
+        flash('Blog post updated successfully!', 'success')
+        return redirect(url_for('admin_blog'))
+        
+    except Exception as e:
+        app.logger.error(f"Error updating blog post: {str(e)}")
+        flash(f'Error updating blog post: {str(e)}', 'error')
+        return redirect(url_for('admin_blog'))
+
+@app.route('/admin/blog/delete/<filename>', methods=['POST'])
+@requires_admin
+def admin_blog_delete(filename):
+    try:
+        filepath = os.path.join(BLOG_POST_DIR, filename)
+        
+        if not os.path.exists(filepath):
+            flash('Blog post not found', 'error')
+            return redirect(url_for('admin_blog'))
+        
+        os.remove(filepath)
+        flash('Blog post deleted successfully!', 'success')
+        
+    except Exception as e:
+        app.logger.error(f"Error deleting blog post: {str(e)}")
+        flash(f'Error deleting blog post: {str(e)}', 'error')
+    
+    return redirect(url_for('admin_blog'))
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():

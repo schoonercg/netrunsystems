@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Blog Post - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Edit Blog Post</h1>
+        <p>Update your blog post</p>
+        <div style="margin-top: 1rem;">
+            <a href="{{ url_for('admin_blog') }}" class="btn-secondary">← Back to Blog Management</a>
+            <a href="{{ url_for('admin_logout') }}" class="btn-secondary">Logout</a>
+        </div>
+    </div>
+</section>
+
+<section class="admin-blog">
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="alert alert-success">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="blog-form">
+            <h2>Edit: {{ post.title }}</h2>
+            <form method="POST" action="{{ url_for('admin_blog_update', filename=post.filename) }}" enctype="multipart/form-data">
+                {{ csrf_token() }}
+                
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" value="{{ post.title }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" value="{{ post.author }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" value="{{ post.date }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="slug">URL Slug:</label>
+                    <input type="text" id="slug" name="slug" value="{{ post.slug }}" required>
+                    <small>Used in the URL: /blog/your-slug</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="excerpt">Excerpt:</label>
+                    <textarea id="excerpt" name="excerpt" rows="3" placeholder="Brief description of the post...">{{ post.excerpt }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="order">Display Order:</label>
+                    <input type="number" id="order" name="order" value="{{ post.order }}" min="0" max="999" 
+                           title="Lower numbers appear first. Use 0-10 for featured posts.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">Header Image URL:</label>
+                    <input type="url" id="image" name="image" value="{{ post.image }}" placeholder="https://example.com/image.jpg">
+                    {% if post.image %}
+                        <small>Current image: <a href="{{ post.image }}" target="_blank">{{ post.image }}</a></small>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="image_file">Or Upload New Header Image:</label>
+                    <input type="file" id="image_file" name="image_file" accept="image/*">
+                    <small>Supported formats: JPG, PNG, GIF. Max size: 5MB. Leave empty to keep current image.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">Content (Markdown):</label>
+                    <textarea id="content" name="content" rows="20" required>{{ post.content }}</textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Post</button>
+                    <a href="{{ url_for('admin_blog') }}" class="btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+.admin-blog {
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+
+.blog-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.flash-messages {
+    margin-bottom: 2rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+</style>
+{% endblock %}

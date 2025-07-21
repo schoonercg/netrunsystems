@@ -27,10 +27,50 @@
             {% endif %}
         {% endwith %}
         
+        <!-- Existing Blog Posts -->
+        {% if posts %}
+        <div class="existing-posts">
+            <h2>Existing Blog Posts</h2>
+            
+            <!-- Order Management -->
+            <form method="POST" class="order-form">
+                {{ csrf_token() }}
+                <input type="hidden" name="action" value="update_order">
+                <div class="posts-list">
+                    {% for post in posts %}
+                    <div class="post-item">
+                        <div class="post-info">
+                            <h3>{{ post.title }}</h3>
+                            <p class="post-meta">{{ post.author }} • {{ post.date }} • Order: 
+                                <input type="number" name="order_{{ post.filename }}" value="{{ post.order }}" min="0" max="999" style="width: 60px;">
+                            </p>
+                            <p class="post-excerpt">{{ post.excerpt }}</p>
+                            {% if post.image %}
+                                <p class="post-image">Image: {{ post.image }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="post-actions">
+                            <a href="{{ url_for('admin_blog_edit', filename=post.filename) }}" class="btn-secondary">Edit</a>
+                            <form method="POST" action="{{ url_for('admin_blog_delete', filename=post.filename) }}" 
+                                  style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                {{ csrf_token() }}
+                                <button type="submit" class="btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn-primary">Update Order</button>
+            </form>
+        </div>
+        {% endif %}
+        
         <div class="blog-form">
             <h2>Create New Blog Post</h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {{ csrf_token() }}
+                <input type="hidden" name="action" value="create">
+                
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" required>
@@ -49,6 +89,23 @@
                 <div class="form-group">
                     <label for="excerpt">Excerpt:</label>
                     <textarea id="excerpt" name="excerpt" rows="3" placeholder="Brief description of the post..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="order">Display Order:</label>
+                    <input type="number" id="order" name="order" value="999" min="0" max="999" 
+                           title="Lower numbers appear first. Use 0-10 for featured posts.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">Header Image URL:</label>
+                    <input type="url" id="image" name="image" placeholder="https://example.com/image.jpg">
+                </div>
+                
+                <div class="form-group">
+                    <label for="image_file">Or Upload Header Image:</label>
+                    <input type="file" id="image_file" name="image_file" accept="image/*">
+                    <small>Supported formats: JPG, PNG, GIF. Max size: 5MB</small>
                 </div>
                 
                 <div class="form-group">
@@ -128,6 +185,101 @@
     padding: 0.75rem;
     margin-bottom: 1rem;
     border-radius: 4px;
+}
+
+.existing-posts {
+    margin-bottom: 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.posts-list {
+    margin-bottom: 2rem;
+}
+
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    background: #f9f9f9;
+}
+
+.post-info {
+    flex-grow: 1;
+}
+
+.post-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.post-meta {
+    margin: 0.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.post-excerpt {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.post-image {
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.post-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.order-form {
+    margin-bottom: 2rem;
 }
 </style>
 {% endblock %}

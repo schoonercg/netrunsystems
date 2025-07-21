@@ -34,7 +34,8 @@
       "Bash(az account show:*)",
       "Bash(az webapp identity assign:*)",
       "Bash(pip3 list:*)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": []
   }
