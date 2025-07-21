@@ -515,6 +515,14 @@ def authorized():
     
     return redirect(url_for('admin_blog'))
 
+@app.route('/admin')
+def admin_index():
+    return "Admin area - <a href='/admin/login'>Login</a> | <a href='/admin/blog'>Blog</a>"
+
+@app.route('/admin/test')
+def admin_test():
+    return "Admin test route is working!"
+
 @app.route('/admin/logout')
 def admin_logout():
     session.clear()  # Clear all session data including Azure tokens
@@ -1071,6 +1079,12 @@ def log_startup():
 log_startup()
 
 if __name__ == '__main__':
+    # Log all registered routes for debugging
+    logger.info("Registered routes:")
+    for rule in app.url_map.iter_rules():
+        methods = ','.join(rule.methods - {'HEAD', 'OPTIONS'})
+        logger.info(f"  {rule.rule} -> {rule.endpoint} [{methods}]")
+    
     port = int(os.environ.get('PORT', 8000))
     debug_mode = os.environ.get('FLASK_ENV') != 'production'
     logger.info(f"Starting Flask application on host=0.0.0.0, port={port}, debug={debug_mode}")
