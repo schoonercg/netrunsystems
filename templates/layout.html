@@ -88,6 +88,7 @@
         }
         .navbar {
             border-bottom: none !important;
+            background: #000 !important;
         }
         .dropdown-menu {
             margin-top: 0;
@@ -95,6 +96,19 @@
         .tight-header {
             letter-spacing: 0.01em;
             word-spacing: 0.1em;
+        }
+        /* Override theme colors for navbar - always dark */
+        .navbar-dark {
+            background: #000 !important;
+        }
+        .navbar .theme-toggle {
+            border-color: #F5F6F7;
+            color: #F5F6F7;
+        }
+        .navbar .theme-toggle:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
         }
     </style>
 </head>
@@ -128,6 +142,12 @@
                         <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('research_projects') }}">Research</a></li>
+                    <li class="nav-item">
+                        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                            <i class="fas fa-moon" id="themeIcon"></i>
+                            <span id="themeText">Dark</span>
+                        </button>
+                    </li>
                   </ul>
                 </div>
             </div>
@@ -225,6 +245,40 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- Theme Toggle Script -->
+    <script>
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Update button state on load
+        if (currentTheme === 'dark') {
+            document.getElementById('themeIcon').classList.replace('fa-moon', 'fa-sun');
+            document.getElementById('themeText').textContent = 'Light';
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update button
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+            
+            if (newTheme === 'dark') {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                text.textContent = 'Light';
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                text.textContent = 'Dark';
+            }
+        }
+    </script>
+    
     {% block scripts %}{% endblock %}
 </body>
 </html>

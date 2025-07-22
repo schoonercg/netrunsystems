@@ -3,6 +3,13 @@
 {% block title %}{{ post.title }} - Netrun Systems Blog{% endblock %}
 
 {% block content %}
+<!-- Blog Post Featured Image -->
+{% if post.image %}
+<section class="blog-hero-image">
+    <img src="{{ url_for('static', filename='images/' + post.image) }}" alt="{{ post.title }}">
+</section>
+{% endif %}
+
 <!-- Blog Post Header -->
 <section class="blog-post-header">
     <div class="container">
@@ -20,11 +27,6 @@
         <div class="row">
             <div class="col-lg-8">
                 <article class="post-body">
-                    {% if post.image %}
-                        <div class="post-featured-image">
-                            <img src="{{ url_for('static', filename='images/' + post.image) }}" alt="{{ post.title }}">
-                        </div>
-                    {% endif %}
                     
                     <div class="post-content">
                         {{ post.content|safe }}
