@@ -107,8 +107,38 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
 
-    // Mobile navigation menu toggle
+    // --- FIT-TO-CONTENT MENU DETECTION ---
+    const headerBottom = document.querySelector('.header-bottom');
+    const navDesktop = document.querySelector('.nav-desktop');
     const hamburger = document.querySelector('.hamburger');
+
+    function updateMenuVisibility() {
+        if (!headerBottom || !navDesktop || !hamburger) return;
+        // Reset to measure
+        navDesktop.style.display = '';
+        hamburger.style.display = 'none';
+        // Give browser a tick to layout
+        setTimeout(() => {
+            const navRect = navDesktop.getBoundingClientRect();
+            const headerRect = headerBottom.getBoundingClientRect();
+            if (navRect.right > headerRect.right - 10 || navRect.left < headerRect.left + 10) {
+                // Menu overflows: show hamburger, hide nav
+                navDesktop.style.display = 'none';
+                hamburger.style.display = 'flex';
+            } else {
+                // Menu fits: show nav, hide hamburger
+                navDesktop.style.display = '';
+                hamburger.style.display = 'none';
+            }
+        }, 10);
+    }
+    window.addEventListener('resize', updateMenuVisibility);
+    window.addEventListener('DOMContentLoaded', updateMenuVisibility);
+    updateMenuVisibility();
+
+    // --- END FIT-TO-CONTENT ---
+
+    // Mobile navigation menu toggle
     const mobileMenu = document.querySelector('.mobile-menu');
     const overlay = document.querySelector('.overlay') || document.createElement('div');
     if (!document.querySelector('.overlay')) {
@@ -163,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileLinks.forEach(link => {
         link.addEventListener('click', function() {
             closeMenu();
+            // Let default navigation happen (do not preventDefault)
         });
     });
 
