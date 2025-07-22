@@ -1615,7 +1615,6 @@ h1, h2, h3, h4, h5, h6 {
   .hamburger {
     display: flex;
   }
-  
   .nav-desktop {
     display: none;
   }
@@ -1899,3 +1898,22 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1rem;
 }
 /*The style has been updated to match the feature cards*/
+
+/* Hamburger menu: only show on mobile or when menu doesn't fit */
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-desktop {
+    display: none;
+  }
+}
+
+/* Optionally, show hamburger when header has .hide-on-scroll */
+header.hide-on-scroll .hamburger {
+  display: flex !important;
+}
