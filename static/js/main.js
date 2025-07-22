@@ -117,50 +117,54 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     const mobileClose = document.querySelector('.mobile-close');
 
+    function openMenu() {
+        mobileMenu.classList.add('active');
+        hamburger.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', function(e) {
             e.stopPropagation();
-            const isActive = mobileMenu.classList.contains('active');
-            
-            if (isActive) {
+            if (mobileMenu.classList.contains('active')) {
                 closeMenu();
             } else {
                 openMenu();
             }
         });
+    }
+    if (mobileClose) {
+        mobileClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeMenu();
+        });
+    }
+    overlay.addEventListener('click', closeMenu);
 
-        function openMenu() {
-            mobileMenu.classList.add('active');
-            hamburger.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMenu() {
-            mobileMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        if (mobileClose) {
-            mobileClose.addEventListener('click', closeMenu);
-        }
-        overlay.addEventListener('click', closeMenu);
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
+    // Close menu when clicking outside (only if menu is open)
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.classList.contains('active')) {
             if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 closeMenu();
             }
-        });
+        }
+    });
 
-        // Close menu when clicking on mobile nav links
-        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
+    // Close menu when clicking on mobile nav links
+    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            closeMenu();
         });
-    }
+    });
 
     // Auto-hide flash messages after 5 seconds
     const flashMessages = document.querySelectorAll('.flash');
@@ -177,8 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Dropdown functionality for mobile
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links .dropdown > a');
-    mobileLinks.forEach(link => {
+    const mobileLinksDropdown = document.querySelectorAll('.mobile-nav-links .dropdown > a');
+    mobileLinksDropdown.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const dropdownContent = this.nextElementSibling;
