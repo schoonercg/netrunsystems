@@ -525,17 +525,26 @@ def get_blog_posts():
     posts = []
     try:
         if BLOG_POST_DIR and os.path.exists(BLOG_POST_DIR):
-            for filename in os.listdir(BLOG_POST_DIR):
+            logger.info(f"Scanning blog post directory: {BLOG_POST_DIR}")
+            filenames = os.listdir(BLOG_POST_DIR)
+            logger.info(f"Found files: {filenames}")
+            
+            for filename in filenames:
                 if filename.endswith('.md'):
+                    logger.info(f"Parsing blog post: {filename}")
                     post = parse_blog_post(filename)
                     if post:
                         posts.append(post)
+                        logger.info(f"Successfully parsed: {post.get('title', 'Untitled')}")
+                    else:
+                        logger.warning(f"Failed to parse blog post: {filename}")
     except Exception as e:
         logger.error(f"Error getting blog posts: {str(e)}")
         return []
     
     # Sort posts by date (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
+    logger.info(f"Returning {len(posts)} blog posts")
     return posts
 
 def get_blog_post(slug):
@@ -609,12 +618,17 @@ def get_all_blog_posts():
 def parse_blog_post(filename):
     try:
         filepath = os.path.join(BLOG_POST_DIR, filename)
-        with open(filepath, 'r') as file:
+        logger.debug(f"Parsing blog post file: {filepath}")
+        
+        with open(filepath, 'r', encoding='utf-8') as file:
             content = file.read()
+        
+        logger.debug(f"File content length: {len(content)}, first 200 chars: {content[:200]}...")
         
         # Parse front matter
         front_matter_match = re.match(r'^---\s+(.*?)\s+---\s+(.*)', content, re.DOTALL)
         if not front_matter_match:
+            logger.warning(f"No front matter found in {filename}")
             return None
         
         front_matter = front_matter_match.group(1)
@@ -767,6 +781,21 @@ def admin_blog():
                     image = request.form.get('image', '')
                     order = request.form.get('order', '999')
                     
+                    # Debug logging
+                    logger.info(f"Creating blog post - Title: {title}, Author: {author}, Content length: {len(content) if content else 0}")
+                    
+                    # Validation
+                    if not title or not title.strip():
+                        flash('Title is required', 'error')
+                        return redirect(url_for('admin_blog'))
+                    
+                    if not content or not content.strip():
+                        flash('Content is required', 'error')
+                        return redirect(url_for('admin_blog'))
+                        
+                    if not author or not author.strip():
+                        author = 'Netrun Systems'
+                    
                     # Handle file upload for header image
                     if 'image_file' in request.files:
                         file = request.files['image_file']
@@ -824,10 +853,20 @@ order: {order}
                     filename = f"{slug}.md"
                     filepath = os.path.join(BLOG_POST_DIR, filename)
                     
+                    # Debug logging
+                    logger.info(f"Writing blog post to: {filepath}")
+                    
                     with open(filepath, 'w', encoding='utf-8') as file:
                         file.write(markdown_content)
                     
-                    flash('Blog post created successfully!', 'success')
+                    # Verify file was created
+                    if os.path.exists(filepath):
+                        logger.info(f"Blog post file created successfully: {filepath}")
+                        flash(f'Blog post "{title}" created successfully!', 'success')
+                    else:
+                        logger.error(f"Failed to create blog post file: {filepath}")
+                        flash('Error: Blog post file was not created', 'error')
+                    
                     return redirect(url_for('admin_blog'))
                     
                 except Exception as e:
