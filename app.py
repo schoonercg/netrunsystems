@@ -1357,6 +1357,11 @@ def services():
     now = datetime.datetime.now()
     return render_template('services.html', now=now)
 
+@app.route('/services/website-design-pricing')
+def website_design_pricing():
+    now = datetime.datetime.now()
+    return render_template('website_design_pricing.html', now=now)
+
 @app.route('/product/small-business-optimization-suite')
 def product_small_business_optimization_suite():
     now = datetime.datetime.now()

@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+
+{% block title %}Website Design Pricing - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Website Design Pricing</h1>
+        <p>Professional web design packages for businesses of all sizes</p>
+    </div>
+</section>
+
+<section class="pricing-overview">
+    <div class="container">
+        <div class="pricing-intro">
+            <h2>Choose the Perfect Package for Your Business</h2>
+            <p>From simple redesigns to complex e-commerce solutions, we have the right package to bring your vision to life.</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <!-- Re-Design Package -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Re-Design</h3>
+                    <div class="price">$1,000</div>
+                    <div class="timeline">1-2 weeks</div>
+                </div>
+                <div class="pricing-content">
+                    <p class="package-description">Fresh look for existing sites with good content</p>
+                    <ul class="feature-list">
+                        <li>Mobile responsive design update</li>
+                        <li>Modern visual refresh</li>
+                        <li>Content optimization</li>
+                        <li>One revision round included</li>
+                        <li>Cross-browser compatibility</li>
+                        <li>Basic SEO optimization</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}?package=redesign" class="btn primary">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Essential Package -->
+            <div class="pricing-card featured">
+                <div class="featured-badge">Most Popular</div>
+                <div class="pricing-header">
+                    <h3>Essential</h3>
+                    <div class="price">$2,500</div>
+                    <div class="timeline">2-3 weeks</div>
+                </div>
+                <div class="pricing-content">
+                    <p class="package-description">Complete website solution for small businesses</p>
+                    <ul class="feature-list">
+                        <li>Everything in Re-Design, plus:</li>
+                        <li>10 custom professional photos</li>
+                        <li>2 hours of graphic design work</li>
+                        <li>Contact forms with email integration</li>
+                        <li>Basic SEO setup and optimization</li>
+                        <li>Google My Business setup</li>
+                        <li>Social media integration</li>
+                        <li>Analytics setup and tracking</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}?package=essential" class="btn primary">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Professional Package -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Professional</h3>
+                    <div class="price">$3,500</div>
+                    <div class="timeline">3-4 weeks</div>
+                </div>
+                <div class="pricing-content">
+                    <p class="package-description">Advanced features for growing businesses</p>
+                    <ul class="feature-list">
+                        <li>Everything in Essential, plus:</li>
+                        <li>Advanced booking/appointment system</li>
+                        <li>Blog management system</li>
+                        <li>Complete branding & style guide</li>
+                        <li>10 professional photos</li>
+                        <li>5 hours of custom design work</li>
+                        <li>60 days priority support</li>
+                        <li>Advanced analytics dashboard</li>
+                        <li>Content management training</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}?package=professional" class="btn primary">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Enterprise Package -->
+            <div class="pricing-card enterprise">
+                <div class="pricing-header">
+                    <h3>Enterprise</h3>
+                    <div class="price">$5,500<span>+</span></div>
+                    <div class="timeline">4-8 weeks</div>
+                </div>
+                <div class="pricing-content">
+                    <p class="package-description">Custom solutions for complex business needs</p>
+                    <ul class="feature-list">
+                        <li>Everything in Professional, plus:</li>
+                        <li>E-commerce integrations</li>
+                        <li>API & CRM connections</li>
+                        <li>Custom web applications</li>
+                        <li>Dedicated account manager</li>
+                        <li>Multi-language support</li>
+                        <li>Advanced security features</li>
+                        <li>Load balancing & scaling</li>
+                        <li>Ongoing maintenance included</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}?package=enterprise" class="btn primary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="addons-section">
+    <div class="container">
+        <h2>Add-On Services</h2>
+        <p class="addons-intro">Enhance your website with these additional services</p>
+        
+        <div class="addons-grid">
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Hosting">
+                </div>
+                <h3>Website Hosting</h3>
+                <div class="addon-price">$20/month</div>
+                <p>Fast, secure hosting with SSL certificate, daily backups, and 99.9% uptime guarantee.</p>
+            </div>
+            
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/search.PNG') }}" alt="Blog Generation">
+                </div>
+                <h3>Blog Content Generation</h3>
+                <div class="addon-price">$200</div>
+                <p>AI-powered blog content creation with 5 SEO-optimized articles to get you started.</p>
+            </div>
+            
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/agents.PNG') }}" alt="Logo Design">
+                </div>
+                <h3>Logo Design</h3>
+                <div class="addon-price">$500</div>
+                <p>Custom logo design with 3 concepts, unlimited revisions, and full brand assets package.</p>
+            </div>
+            
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="E-commerce">
+                </div>
+                <h3>E-commerce Module</h3>
+                <div class="addon-price">$2,000</div>
+                <p>Complete e-commerce solution with payment processing, inventory management, and order tracking.</p>
+            </div>
+            
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/visibility.PNG') }}" alt="Photography">
+                </div>
+                <h3>Professional Photography</h3>
+                <div class="addon-price">$1,000</div>
+                <p>On-location photo shoot with professional editing, up to 50 high-resolution images delivered.</p>
+            </div>
+            
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/human.PNG') }}" alt="Training">
+                </div>
+                <h3>Training Sessions</h3>
+                <div class="addon-price">$300</div>
+                <p>One-on-one training session to manage your website, including content updates and maintenance.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-faq">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>What's included in the timeline?</h3>
+                <p>All timelines include design, development, testing, and one round of revisions. Additional revisions may extend the timeline.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you provide ongoing support?</h3>
+                <p>Yes! Professional packages include 60 days priority support. We also offer ongoing maintenance plans for all packages.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I upgrade my package later?</h3>
+                <p>Absolutely! You can upgrade to a higher tier at any time. We'll credit your previous investment toward the new package.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What if I need something custom?</h3>
+                <p>Our Enterprise package is fully customizable. Contact us to discuss your specific requirements and get a tailored quote.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to Get Started?</h2>
+        <p>Let's discuss your project and find the perfect package for your business needs.</p>
+        <a href="{{ url_for('contact') }}" class="btn primary">Contact Us Today</a>
+        <a href="{{ url_for('early_access') }}" class="btn secondary">Join Early Access</a>
+    </div>
+</section>
+
+<style>
+.pricing-overview {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.pricing-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.pricing-intro h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.pricing-card.featured {
+    border: 3px solid #3498db;
+    transform: scale(1.05);
+}
+
+.featured-badge {
+    background: #3498db;
+    color: white;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: 1rem;
+    right: -0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transform: rotate(5deg);
+    z-index: 10;
+}
+
+.pricing-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.enterprise .pricing-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+}
+
+.pricing-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.price span {
+    font-size: 1.5rem;
+}
+
+.timeline {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.pricing-content {
+    padding: 2rem 1.5rem;
+}
+
+.package-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.feature-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.feature-list li:before {
+    content: "✓";
+    color: #27ae60;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.addons-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.addons-intro {
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.addon-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.addon-card:hover {
+    background: #e9ecef;
+}
+
+.addon-icon img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+}
+
+.addon-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3498db;
+    margin: 1rem 0;
+}
+
+.pricing-faq {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.faq-item h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .pricing-card.featured {
+        transform: none;
+    }
+    
+    .addons-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %} 
