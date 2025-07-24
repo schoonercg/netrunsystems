@@ -1,0 +1,330 @@
+{% extends "layout.html" %}
+{% block title %}Web Design Pricing Guide | Netrun Systems{% endblock %}
+{% block content %}
+<style>
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.flip-card-front {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.flip-card-back {
+  background-color: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.card-body-flip {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>
+<div class="container mt-5">
+  <h1 class="mb-4">Web Design Pricing Guide</h1>
+  <p class="lead">Our web design offerings are built to scale with your business needs. Whether you're just starting out or managing a complex online platform. We provide clarity, customization, and ongoing support - no fluff, no mystery pricing.</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="card-body-flip">
+              <div>
+                <h3 class="card-title text-primary">Re-Design</h3>
+                <p class="text-muted">Your Content, Reimagined</p>
+                <h4 class="text-success">$1,000</h4>
+              </div>
+              <ul class="list-unstyled text-start">
+                <li>• Detailed review of existing site</li>
+                <li>• Updated site design using existing assets</li>
+                <li>• Mobile responsive design</li>
+                <li>• One round of revision</li>
+              </ul>
+              <small class="text-muted">Hover for more details</small>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h4 class="text-primary mb-3">Re-Design Package Details</h4>
+            <div class="text-start">
+              <h6>Timeline: 1-2 weeks</h6>
+              <h6>Perfect for:</h6>
+              <ul>
+                <li>Existing sites that need a fresh look</li>
+                <li>Businesses with good content but outdated design</li>
+                <li>Quick turnaround projects</li>
+              </ul>
+              <h6>What's Included:</h6>
+              <ul>
+                <li>Design audit and recommendations</li>
+                <li>Modern, responsive layout</li>
+                <li>Cross-browser compatibility</li>
+                <li>Basic performance optimization</li>
+              </ul>
+              <h6>Deliverables:</h6>
+              <p>Redesigned website, documentation, and basic training</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="card-body-flip">
+              <div>
+                <h3 class="card-title text-primary">Essential</h3>
+                <p class="text-muted">Just The Basics, Built Beautifully</p>
+                <h4 class="text-success">$2,500</h4>
+              </div>
+              <ul class="list-unstyled text-start">
+                <li>• Detailed review of existing site</li>
+                <li>• Updated site design with 10 Custom Photos, 2hrs Graphic Design</li>
+                <li>• Mobile responsive design</li>
+                <li>• Contact forms and user submissions</li>
+                <li>• Basic SEO setup</li>
+              </ul>
+              <small class="text-muted">Hover for more details</small>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h4 class="text-primary mb-3">Essential Package Details</h4>
+            <div class="text-start">
+              <h6>Timeline: 2-3 weeks</h6>
+              <h6>Perfect for:</h6>
+              <ul>
+                <li>Small businesses getting online</li>
+                <li>Service providers and consultants</li>
+                <li>Local businesses needing web presence</li>
+              </ul>
+              <h6>What's Included:</h6>
+              <ul>
+                <li>Custom photography session or sourcing</li>
+                <li>Logo refinements and graphics</li>
+                <li>Google My Business setup</li>
+                <li>Basic analytics integration</li>
+                <li>Contact form with email notifications</li>
+              </ul>
+              <h6>Support:</h6>
+              <p>30 days of email support and minor updates</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="card-body-flip">
+              <div>
+                <h3 class="card-title text-primary">Professional</h3>
+                <p class="text-muted">Strategic Design for Growing Brands</p>
+                <h4 class="text-success">$3,500</h4>
+              </div>
+              <ul class="list-unstyled text-start">
+                <li>• Advanced contact/booking system</li>
+                <li>• Advanced SEO setup</li>
+                <li>• Branding and style guide</li>
+                <li>• Easy Access Blog Management</li>
+                <li>• 10 Custom Photos, 5hrs Graphic Design</li>
+              </ul>
+              <small class="text-muted">Hover for more details</small>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h4 class="text-primary mb-3">Professional Package Details</h4>
+            <div class="text-start">
+              <h6>Timeline: 3-4 weeks</h6>
+              <h6>Perfect for:</h6>
+              <ul>
+                <li>Growing businesses</li>
+                <li>Professional services</li>
+                <li>Companies needing online booking</li>
+              </ul>
+              <h6>Advanced Features:</h6>
+              <ul>
+                <li>Custom booking/appointment system</li>
+                <li>Blog with content management</li>
+                <li>Advanced SEO optimization</li>
+                <li>Social media integration</li>
+                <li>Email marketing setup</li>
+              </ul>
+              <h6>Branding Package:</h6>
+              <p>Complete style guide, color palette, typography, and brand guidelines</p>
+              <h6>Support:</h6>
+              <p>60 days of priority support and training</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="card-body-flip">
+              <div>
+                <h3 class="card-title text-primary">Enterprise</h3>
+                <p class="text-muted">Highly Capable, Highly Scalable</p>
+                <h4 class="text-success">$5,500+</h4>
+              </div>
+              <ul class="list-unstyled text-start">
+                <li>• E-commerce integrations</li>
+                <li>• API & CRM integrations</li>
+                <li>• Advanced branding & content strategy</li>
+                <li>• Fully Customizable Site</li>
+                <li>• Priority support & launch assistance</li>
+              </ul>
+              <small class="text-muted">Hover for more details</small>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h4 class="text-primary mb-3">Enterprise Package Details</h4>
+            <div class="text-start">
+              <h6>Timeline: 4-8 weeks</h6>
+              <h6>Perfect for:</h6>
+              <ul>
+                <li>Large organizations</li>
+                <li>E-commerce businesses</li>
+                <li>Complex web applications</li>
+              </ul>
+              <h6>Enterprise Features:</h6>
+              <ul>
+                <li>Custom web application development</li>
+                <li>Third-party API integrations</li>
+                <li>User authentication systems</li>
+                <li>Database design and optimization</li>
+                <li>Load balancing and scaling</li>
+              </ul>
+              <h6>Ongoing Support:</h6>
+              <p>Dedicated account manager, 24/7 monitoring, monthly performance reports</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+  
+  <h2 class="mb-4">Optional Add-Ons</h2>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Site Hosting</h5>
+          <p class="card-text">Host your site on our private server and benefit from local support</p>
+          <span class="badge bg-primary">$20/month</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Blog Generation</h5>
+          <p class="card-text">Custom SEO optimized blogs, crafted by our content team to boost your new site</p>
+          <span class="badge bg-primary">$200/blog</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Logo Design</h5>
+          <p class="card-text">Our design specialists will deliver 3 Custom Logo Concepts, in a high quality, multi-res package</p>
+          <span class="badge bg-primary">$500</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">E-Commerce Module</h5>
+          <p class="card-text">Receive payments, track inventory, and manage orders with a custom built E-Commerce Module</p>
+          <span class="badge bg-primary">$2,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Stock Photography Sourcing</h5>
+          <p class="card-text">Our design specialists will hand-select up to 10 high quality stock photos for your website</p>
+          <span class="badge bg-primary">$300</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Photography Session</h5>
+          <p class="card-text">Our in-house Photographer will travel to your business, location, or event to capture a high quality series of photographs</p>
+          <span class="badge bg-primary">$1,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Blog Setup + Training</h5>
+          <p class="card-text">Add a custom built blog to ANY website, complete with management portal, archive and how-to guides</p>
+          <span class="badge bg-primary">$500</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Training Session</h5>
+          <p class="card-text">Consult with our team and learn best practices for managing your new site</p>
+          <span class="badge bg-primary">$300/session</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h4>A La Carte Options</h4>
+    <ul class="list-unstyled">
+      <li><strong>Payment Gateway:</strong> $1,200</li>
+      <li><strong>Inventory/Order Management:</strong> $1,200</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
