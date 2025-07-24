@@ -15,99 +15,168 @@
         <div class="pricing-intro">
             <h2>Choose the Perfect Package for Your Business</h2>
             <p>From simple redesigns to complex e-commerce solutions, we have the right package to bring your vision to life.</p>
+            <p class="flip-instruction">💡 <strong>Hover or tap cards to see detailed features</strong></p>
         </div>
         
         <div class="pricing-grid">
             <!-- Re-Design Package -->
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>Re-Design</h3>
-                    <div class="price">$1,000</div>
-                    <div class="timeline">1-2 weeks</div>
-                </div>
-                <div class="pricing-content">
-                    <p class="package-description">Fresh look for existing sites with good content</p>
-                    <ul class="feature-list">
-                        <li>Mobile responsive design update</li>
-                        <li>Modern visual refresh</li>
-                        <li>Content optimization</li>
-                        <li>One revision round included</li>
-                        <li>Cross-browser compatibility</li>
-                        <li>Basic SEO optimization</li>
-                    </ul>
-                    <a href="{{ url_for('contact') }}?package=redesign" class="btn primary">Get Started</a>
+            <div class="pricing-card-container">
+                <div class="pricing-card">
+                    <!-- Front Side -->
+                    <div class="card-face card-front">
+                        <div class="pricing-header">
+                            <h3>Re-Design</h3>
+                            <div class="price">$1,000</div>
+                            <div class="timeline">1-2 weeks</div>
+                        </div>
+                        <div class="pricing-summary">
+                            <p class="package-description">Fresh look for existing sites with good content</p>
+                            <div class="key-features">
+                                <span class="feature-badge">Mobile Responsive</span>
+                                <span class="feature-badge">One Revision</span>
+                                <span class="feature-badge">Modern Design</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Back Side -->
+                    <div class="card-face card-back">
+                        <div class="pricing-content">
+                            <h3>Re-Design Details</h3>
+                            <ul class="feature-list">
+                                <li>Mobile responsive design update</li>
+                                <li>Modern visual refresh</li>
+                                <li>Content optimization</li>
+                                <li>One revision round included</li>
+                                <li>Cross-browser compatibility</li>
+                                <li>Basic SEO optimization</li>
+                            </ul>
+                            <a href="{{ url_for('contact') }}?package=redesign" class="btn primary">Get Started</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Essential Package -->
-            <div class="pricing-card featured">
+            <div class="pricing-card-container featured-container">
                 <div class="featured-badge">Most Popular</div>
-                <div class="pricing-header">
-                    <h3>Essential</h3>
-                    <div class="price">$2,500</div>
-                    <div class="timeline">2-3 weeks</div>
-                </div>
-                <div class="pricing-content">
-                    <p class="package-description">Complete website solution for small businesses</p>
-                    <ul class="feature-list">
-                        <li>Everything in Re-Design, plus:</li>
-                        <li>10 custom professional photos</li>
-                        <li>2 hours of graphic design work</li>
-                        <li>Contact forms with email integration</li>
-                        <li>Basic SEO setup and optimization</li>
-                        <li>Google My Business setup</li>
-                        <li>Social media integration</li>
-                        <li>Analytics setup and tracking</li>
-                    </ul>
-                    <a href="{{ url_for('contact') }}?package=essential" class="btn primary">Get Started</a>
+                <div class="pricing-card">
+                    <!-- Front Side -->
+                    <div class="card-face card-front">
+                        <div class="pricing-header featured-header">
+                            <h3>Essential</h3>
+                            <div class="price">$2,500</div>
+                            <div class="timeline">2-3 weeks</div>
+                        </div>
+                        <div class="pricing-summary">
+                            <p class="package-description">Complete website solution for small businesses</p>
+                            <div class="key-features">
+                                <span class="feature-badge">10 Photos</span>
+                                <span class="feature-badge">Contact Forms</span>
+                                <span class="feature-badge">SEO Setup</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Back Side -->
+                    <div class="card-face card-back">
+                        <div class="pricing-content">
+                            <h3>Essential Details</h3>
+                            <ul class="feature-list">
+                                <li>Everything in Re-Design, plus:</li>
+                                <li>10 custom professional photos</li>
+                                <li>2 hours of graphic design work</li>
+                                <li>Contact forms with email integration</li>
+                                <li>Basic SEO setup and optimization</li>
+                                <li>Google My Business setup</li>
+                                <li>Social media integration</li>
+                                <li>Analytics setup and tracking</li>
+                            </ul>
+                            <a href="{{ url_for('contact') }}?package=essential" class="btn primary">Get Started</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Professional Package -->
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>Professional</h3>
-                    <div class="price">$3,500</div>
-                    <div class="timeline">3-4 weeks</div>
-                </div>
-                <div class="pricing-content">
-                    <p class="package-description">Advanced features for growing businesses</p>
-                    <ul class="feature-list">
-                        <li>Everything in Essential, plus:</li>
-                        <li>Advanced booking/appointment system</li>
-                        <li>Blog management system</li>
-                        <li>Complete branding & style guide</li>
-                        <li>10 professional photos</li>
-                        <li>5 hours of custom design work</li>
-                        <li>60 days priority support</li>
-                        <li>Advanced analytics dashboard</li>
-                        <li>Content management training</li>
-                    </ul>
-                    <a href="{{ url_for('contact') }}?package=professional" class="btn primary">Get Started</a>
+            <div class="pricing-card-container">
+                <div class="pricing-card">
+                    <!-- Front Side -->
+                    <div class="card-face card-front">
+                        <div class="pricing-header">
+                            <h3>Professional</h3>
+                            <div class="price">$3,500</div>
+                            <div class="timeline">3-4 weeks</div>
+                        </div>
+                        <div class="pricing-summary">
+                            <p class="package-description">Advanced features for growing businesses</p>
+                            <div class="key-features">
+                                <span class="feature-badge">Booking System</span>
+                                <span class="feature-badge">Blog Management</span>
+                                <span class="feature-badge">60d Support</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Back Side -->
+                    <div class="card-face card-back">
+                        <div class="pricing-content">
+                            <h3>Professional Details</h3>
+                            <ul class="feature-list">
+                                <li>Everything in Essential, plus:</li>
+                                <li>Advanced booking/appointment system</li>
+                                <li>Blog management system</li>
+                                <li>Complete branding & style guide</li>
+                                <li>10 professional photos</li>
+                                <li>5 hours of custom design work</li>
+                                <li>60 days priority support</li>
+                                <li>Advanced analytics dashboard</li>
+                                <li>Content management training</li>
+                            </ul>
+                            <a href="{{ url_for('contact') }}?package=professional" class="btn primary">Get Started</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Enterprise Package -->
-            <div class="pricing-card enterprise">
-                <div class="pricing-header">
-                    <h3>Enterprise</h3>
-                    <div class="price">$5,500<span>+</span></div>
-                    <div class="timeline">4-8 weeks</div>
-                </div>
-                <div class="pricing-content">
-                    <p class="package-description">Custom solutions for complex business needs</p>
-                    <ul class="feature-list">
-                        <li>Everything in Professional, plus:</li>
-                        <li>E-commerce integrations</li>
-                        <li>API & CRM connections</li>
-                        <li>Custom web applications</li>
-                        <li>Dedicated account manager</li>
-                        <li>Multi-language support</li>
-                        <li>Advanced security features</li>
-                        <li>Load balancing & scaling</li>
-                        <li>Ongoing maintenance included</li>
-                    </ul>
-                    <a href="{{ url_for('contact') }}?package=enterprise" class="btn primary">Contact Sales</a>
+            <div class="pricing-card-container">
+                <div class="pricing-card enterprise-card">
+                    <!-- Front Side -->
+                    <div class="card-face card-front">
+                        <div class="pricing-header enterprise-header">
+                            <h3>Enterprise</h3>
+                            <div class="price">$5,500<span>+</span></div>
+                            <div class="timeline">4-8 weeks</div>
+                        </div>
+                        <div class="pricing-summary">
+                            <p class="package-description">Custom solutions for complex business needs</p>
+                            <div class="key-features">
+                                <span class="feature-badge">E-commerce</span>
+                                <span class="feature-badge">API Integration</span>
+                                <span class="feature-badge">Dedicated Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Back Side -->
+                    <div class="card-face card-back">
+                        <div class="pricing-content">
+                            <h3>Enterprise Details</h3>
+                            <ul class="feature-list">
+                                <li>Everything in Professional, plus:</li>
+                                <li>E-commerce integrations</li>
+                                <li>API & CRM connections</li>
+                                <li>Custom web applications</li>
+                                <li>Dedicated account manager</li>
+                                <li>Multi-language support</li>
+                                <li>Advanced security features</li>
+                                <li>Load balancing & scaling</li>
+                                <li>Ongoing maintenance included</li>
+                            </ul>
+                            <a href="{{ url_for('contact') }}?package=enterprise" class="btn primary">Contact Sales</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -211,9 +280,30 @@
 </section>
 
 <style>
+/* CSS Variables - Netrun Systems Brand Colors */
+:root {
+  --primary-color: #90b9ab;      /* Netrun Green */
+  --secondary-color: #000000;     /* Black */
+  --accent-color: #00AEEF;        /* Blue accent */
+  --text-color: #fff;             /* White text */
+  --light-gray: #f4f4f4;          /* Light background */
+  --medium-gray: #ddd;            /* Medium gray */
+  --dark-gray: #555;              /* Dark gray */
+  --white: #f4f4f4;               /* Off-white */
+  --success: #4caf50;             /* Success green */
+  --error: #f44336;               /* Error red */
+  --warning: #ff9800;             /* Warning orange */
+  --info: #2196f3;                /* Info blue */
+}
+
+/* Typography - Netrun Standards */
+.pricing-overview, .addons-section, .pricing-faq {
+    font-family: 'Futura', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .pricing-overview {
     padding: 4rem 0;
-    background: #f8f9fa;
+    background: var(--light-gray);
 }
 
 .pricing-intro {
@@ -222,8 +312,15 @@
 }
 
 .pricing-intro h2 {
-    color: #2c3e50;
+    color: var(--secondary-color);
     margin-bottom: 1rem;
+}
+
+.flip-instruction {
+    color: var(--dark-gray);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    font-weight: 500;
 }
 
 .pricing-grid {
@@ -234,52 +331,70 @@
     margin: 0 auto;
 }
 
-.pricing-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    overflow: hidden;
+/* Card Container with Flip Animation */
+.pricing-card-container {
+    perspective: 1000px;
+    height: 400px;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.pricing-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-}
-
-.pricing-card.featured {
-    border: 3px solid #3498db;
+.featured-container {
     transform: scale(1.05);
 }
 
-.featured-badge {
-    background: #3498db;
-    color: white;
-    padding: 0.5rem 1rem;
-    position: absolute;
-    top: 1rem;
-    right: -0.5rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transform: rotate(5deg);
-    z-index: 10;
+.pricing-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
 }
 
+.pricing-card-container:hover .pricing-card {
+    transform: rotateY(180deg);
+}
+
+/* Card Faces */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(144, 185, 171, 0.2);
+    color: var(--text-color);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+/* Pricing Header */
 .pricing-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--text-color);
     padding: 2rem 1.5rem;
     text-align: center;
 }
 
-.enterprise .pricing-header {
-    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+.featured-header {
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+}
+
+.enterprise-header {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-gray) 100%);
 }
 
 .pricing-header h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
 .price {
@@ -297,46 +412,138 @@
     opacity: 0.9;
 }
 
-.pricing-content {
+/* Front Card Summary */
+.pricing-summary {
     padding: 2rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .package-description {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--light-gray);
     margin-bottom: 1.5rem;
     text-align: center;
+    line-height: 1.4;
+}
+
+.key-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.feature-badge {
+    background: rgba(144, 185, 171, 0.2);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid var(--primary-color);
+}
+
+/* Back Card Content */
+.pricing-content {
+    padding: 2rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.25rem;
 }
 
 .feature-list {
     list-style: none;
     padding: 0;
     margin-bottom: 2rem;
+    flex: 1;
 }
 
 .feature-list li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(144, 185, 171, 0.2);
     position: relative;
     padding-left: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .feature-list li:before {
     content: "✓";
-    color: #27ae60;
+    color: var(--success);
     font-weight: bold;
     position: absolute;
     left: 0;
 }
 
+/* Featured Badge */
+.featured-badge {
+    background: var(--accent-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: 1rem;
+    right: -0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transform: rotate(5deg);
+    z-index: 10;
+    border-radius: 4px;
+}
+
+/* Buttons - Following Netrun Standards */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    font-family: inherit;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.btn.primary:hover {
+    background-color: #7da599;
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn.secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Add-on Services */
 .addons-section {
     padding: 4rem 0;
-    background: white;
+    background: var(--white);
 }
 
 .addons-intro {
     text-align: center;
-    color: #666;
+    color: var(--dark-gray);
     margin-bottom: 3rem;
 }
 
@@ -349,15 +556,19 @@
 }
 
 .addon-card {
-    background: #f8f9fa;
+    background-color: var(--secondary-color);
     border-radius: 8px;
     padding: 2rem 1.5rem;
     text-align: center;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(144, 185, 171, 0.2);
+    color: var(--text-color);
 }
 
 .addon-card:hover {
-    background: #e9ecef;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-color);
 }
 
 .addon-icon img {
@@ -369,13 +580,20 @@
 .addon-price {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #3498db;
+    color: var(--primary-color);
     margin: 1rem 0;
 }
 
+/* FAQ Section */
 .pricing-faq {
     padding: 4rem 0;
-    background: #f8f9fa;
+    background: var(--light-gray);
+}
+
+.pricing-faq h2 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 3rem;
 }
 
 .faq-grid {
@@ -387,25 +605,41 @@
 }
 
 .faq-item {
-    background: white;
+    background: var(--white);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(144, 185, 171, 0.1);
 }
 
 .faq-item h3 {
-    color: #2c3e50;
+    color: var(--secondary-color);
     margin-bottom: 1rem;
 }
 
+.faq-item p {
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .pricing-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
     
-    .pricing-card.featured {
+    .featured-container {
         transform: none;
+    }
+    
+    .pricing-card-container {
+        height: 350px;
+    }
+    
+    /* Mobile: Show back on tap instead of hover */
+    .pricing-card-container.active .pricing-card {
+        transform: rotateY(180deg);
     }
     
     .addons-grid {
@@ -415,6 +649,38 @@
     .faq-grid {
         grid-template-columns: 1fr;
     }
+    
+    .flip-instruction {
+        font-size: 1rem;
+    }
+}
+
+/* Touch device support */
+@media (hover: none) and (pointer: coarse) {
+    .pricing-card-container:hover .pricing-card {
+        transform: none;
+    }
 }
 </style>
+
+<script>
+// Mobile touch support for card flipping
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.pricing-card-container');
+    
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Toggle active class for mobile
+            this.classList.toggle('active');
+            
+            // Remove active from other cards
+            cards.forEach(otherCard => {
+                if (otherCard !== this) {
+                    otherCard.classList.remove('active');
+                }
+            });
+        });
+    });
+});
+</script>
 {% endblock %} 
