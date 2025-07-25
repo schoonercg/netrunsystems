@@ -18,7 +18,7 @@
             <p class="flip-instruction">💡 <strong>Hover or tap cards to see detailed features</strong></p>
         </div>
         
-        <div class="pricing-grid">
+        <div class="product-grid">
             <!-- Re-Design Package -->
             <div class="pricing-card-container">
                 <div class="pricing-card">
@@ -302,8 +302,14 @@
 }
 
 .pricing-overview {
-    padding: 4rem 0;
-    background: var(--light-gray);
+    padding: 4rem 2rem;
+    background-color: #f4f4f4;
+}
+
+.pricing-overview .container {
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 8px;
 }
 
 .pricing-intro {
@@ -323,13 +329,7 @@
     font-weight: 500;
 }
 
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+/* Using existing product-grid styles from main CSS */
 
 /* Card Container with Flip Animation */
 .pricing-card-container {
@@ -537,8 +537,14 @@
 
 /* Add-on Services */
 .addons-section {
-    padding: 4rem 0;
+    padding: 4rem 2rem;
+    background-color: #f4f4f4;
+}
+
+.addons-section .container {
+    padding: 2rem;
     background: var(--white);
+    border-radius: 8px;
 }
 
 .addons-intro {
@@ -586,8 +592,14 @@
 
 /* FAQ Section */
 .pricing-faq {
-    padding: 4rem 0;
-    background: var(--light-gray);
+    padding: 4rem 2rem;
+    background-color: #f4f4f4;
+}
+
+.pricing-faq .container {
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 8px;
 }
 
 .pricing-faq h2 {
@@ -624,7 +636,7 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .pricing-grid {
+    .product-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
