@@ -15,169 +15,56 @@
         <div class="pricing-intro">
             <h2>Choose the Perfect Package for Your Business</h2>
             <p>From simple redesigns to complex e-commerce solutions, we have the right package to bring your vision to life.</p>
-            <p class="flip-instruction">💡 <strong>Hover or tap cards to see detailed features</strong></p>
         </div>
         
         <div class="product-grid">
             <!-- Re-Design Package -->
-            <div class="pricing-card-container">
-                <div class="pricing-card">
-                    <!-- Front Side -->
-                    <div class="card-face card-front">
-                        <div class="pricing-header">
-                            <h3>Re-Design</h3>
-                            <div class="price">$1,000</div>
-                            <div class="timeline">1-2 weeks</div>
-                        </div>
-                        <div class="pricing-summary">
-                            <p class="package-description">Fresh look for existing sites with good content</p>
-                            <div class="key-features">
-                                <span class="feature-badge">Mobile Responsive</span>
-                                <span class="feature-badge">One Revision</span>
-                                <span class="feature-badge">Modern Design</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Back Side -->
-                    <div class="card-face card-back">
-                        <div class="pricing-content">
-                            <h3>Re-Design Details</h3>
-                            <ul class="feature-list">
-                                <li>Mobile responsive design update</li>
-                                <li>Modern visual refresh</li>
-                                <li>Content optimization</li>
-                                <li>One revision round included</li>
-                                <li>Cross-browser compatibility</li>
-                                <li>Basic SEO optimization</li>
-                            </ul>
-                            <a href="{{ url_for('contact') }}?package=redesign" class="btn primary">Get Started</a>
-                        </div>
-                    </div>
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Re-Design Package">
                 </div>
+                <h3>Re-Design</h3>
+                <div class="addon-price">$1,000</div>
+                <div class="package-timeline">1-2 weeks</div>
+                <p>Fresh look for existing sites with good content. Includes mobile responsive design, modern visual refresh, content optimization, one revision round, cross-browser compatibility, and basic SEO optimization.</p>
+                <a href="{{ url_for('contact') }}?package=redesign" class="btn primary">Get Started</a>
             </div>
 
             <!-- Essential Package -->
-            <div class="pricing-card-container featured-container">
+            <div class="addon-card featured-package">
                 <div class="featured-badge">Most Popular</div>
-                <div class="pricing-card">
-                    <!-- Front Side -->
-                    <div class="card-face card-front">
-                        <div class="pricing-header featured-header">
-                            <h3>Essential</h3>
-                            <div class="price">$2,500</div>
-                            <div class="timeline">2-3 weeks</div>
-                        </div>
-                        <div class="pricing-summary">
-                            <p class="package-description">Complete website solution for small businesses</p>
-                            <div class="key-features">
-                                <span class="feature-badge">10 Photos</span>
-                                <span class="feature-badge">Contact Forms</span>
-                                <span class="feature-badge">SEO Setup</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Back Side -->
-                    <div class="card-face card-back">
-                        <div class="pricing-content">
-                            <h3>Essential Details</h3>
-                            <ul class="feature-list">
-                                <li>Everything in Re-Design, plus:</li>
-                                <li>10 custom professional photos</li>
-                                <li>2 hours of graphic design work</li>
-                                <li>Contact forms with email integration</li>
-                                <li>Basic SEO setup and optimization</li>
-                                <li>Google My Business setup</li>
-                                <li>Social media integration</li>
-                                <li>Analytics setup and tracking</li>
-                            </ul>
-                            <a href="{{ url_for('contact') }}?package=essential" class="btn primary">Get Started</a>
-                        </div>
-                    </div>
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Essential Package">
                 </div>
+                <h3>Essential</h3>
+                <div class="addon-price">$2,500</div>
+                <div class="package-timeline">2-3 weeks</div>
+                <p>Complete website solution for small businesses. Everything in Re-Design plus 10 custom professional photos, 2 hours graphic design, contact forms, basic SEO setup, Google My Business setup, and social media integration.</p>
+                <a href="{{ url_for('contact') }}?package=essential" class="btn primary">Get Started</a>
             </div>
 
             <!-- Professional Package -->
-            <div class="pricing-card-container">
-                <div class="pricing-card">
-                    <!-- Front Side -->
-                    <div class="card-face card-front">
-                        <div class="pricing-header">
-                            <h3>Professional</h3>
-                            <div class="price">$3,500</div>
-                            <div class="timeline">3-4 weeks</div>
-                        </div>
-                        <div class="pricing-summary">
-                            <p class="package-description">Advanced features for growing businesses</p>
-                            <div class="key-features">
-                                <span class="feature-badge">Booking System</span>
-                                <span class="feature-badge">Blog Management</span>
-                                <span class="feature-badge">60d Support</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Back Side -->
-                    <div class="card-face card-back">
-                        <div class="pricing-content">
-                            <h3>Professional Details</h3>
-                            <ul class="feature-list">
-                                <li>Everything in Essential, plus:</li>
-                                <li>Advanced booking/appointment system</li>
-                                <li>Blog management system</li>
-                                <li>Complete branding & style guide</li>
-                                <li>10 professional photos</li>
-                                <li>5 hours of custom design work</li>
-                                <li>60 days priority support</li>
-                                <li>Advanced analytics dashboard</li>
-                                <li>Content management training</li>
-                            </ul>
-                            <a href="{{ url_for('contact') }}?package=professional" class="btn primary">Get Started</a>
-                        </div>
-                    </div>
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Professional Package">
                 </div>
+                <h3>Professional</h3>
+                <div class="addon-price">$3,500</div>
+                <div class="package-timeline">3-4 weeks</div>
+                <p>Advanced features for growing businesses. Everything in Essential plus advanced booking system, blog management, complete branding & style guide, 5 hours custom design work, and 60 days priority support.</p>
+                <a href="{{ url_for('contact') }}?package=professional" class="btn primary">Get Started</a>
             </div>
 
             <!-- Enterprise Package -->
-            <div class="pricing-card-container">
-                <div class="pricing-card enterprise-card">
-                    <!-- Front Side -->
-                    <div class="card-face card-front">
-                        <div class="pricing-header enterprise-header">
-                            <h3>Enterprise</h3>
-                            <div class="price">$5,500<span>+</span></div>
-                            <div class="timeline">4-8 weeks</div>
-                        </div>
-                        <div class="pricing-summary">
-                            <p class="package-description">Custom solutions for complex business needs</p>
-                            <div class="key-features">
-                                <span class="feature-badge">E-commerce</span>
-                                <span class="feature-badge">API Integration</span>
-                                <span class="feature-badge">Dedicated Manager</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Back Side -->
-                    <div class="card-face card-back">
-                        <div class="pricing-content">
-                            <h3>Enterprise Details</h3>
-                            <ul class="feature-list">
-                                <li>Everything in Professional, plus:</li>
-                                <li>E-commerce integrations</li>
-                                <li>API & CRM connections</li>
-                                <li>Custom web applications</li>
-                                <li>Dedicated account manager</li>
-                                <li>Multi-language support</li>
-                                <li>Advanced security features</li>
-                                <li>Load balancing & scaling</li>
-                                <li>Ongoing maintenance included</li>
-                            </ul>
-                            <a href="{{ url_for('contact') }}?package=enterprise" class="btn primary">Contact Sales</a>
-                        </div>
-                    </div>
+            <div class="addon-card">
+                <div class="addon-icon">
+                    <img src="{{ url_for('static', filename='images/agents.PNG') }}" alt="Enterprise Package">
                 </div>
+                <h3>Enterprise</h3>
+                <div class="addon-price">$5,500+</div>
+                <div class="package-timeline">4-8 weeks</div>
+                <p>Custom solutions for complex business needs. Everything in Professional plus e-commerce integrations, API & CRM connections, custom web applications, dedicated account manager, and ongoing maintenance.</p>
+                <a href="{{ url_for('contact') }}?package=enterprise" class="btn primary">Contact Sales</a>
             </div>
         </div>
     </div>
@@ -329,172 +216,29 @@
     font-weight: 500;
 }
 
-/* Using existing product-grid styles from main CSS */
-
-/* Card Container with Flip Animation */
-.pricing-card-container {
-    perspective: 1000px;
-    position: relative;
-}
-
-.featured-container {
-    transform: scale(1.05);
-}
-
-.pricing-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s ease-in-out;
-    transform-style: preserve-3d;
-    cursor: pointer;
-}
-
-.pricing-card-container:hover .pricing-card {
-    transform: rotateY(180deg);
-}
-
-/* Card Faces */
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(144, 185, 171, 0.2);
-    color: var(--text-color);
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.card-back {
-    transform: rotateY(180deg);
-}
-
-/* Pricing Header */
-.pricing-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    color: var(--text-color);
-    padding: 1.5rem 1rem;
-    text-align: center;
-}
-
-.featured-header {
-    background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
-}
-
-.enterprise-header {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-gray) 100%);
-}
-
-.pricing-header h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.25rem;
-    font-weight: 700;
-}
-
-.price {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-}
-
-.price span {
-    font-size: 1.5rem;
-}
-
-.timeline {
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-/* Front Card Summary */
-.pricing-summary {
-    padding: 1rem 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.package-description {
-    font-size: 1rem;
-    color: var(--light-gray);
-    margin-bottom: 1rem;
-    text-align: center;
-    line-height: 1.3;
-}
-
-.key-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-}
-
-.feature-badge {
-    background: rgba(144, 185, 171, 0.2);
-    color: var(--primary-color);
-    padding: 0.2rem 0.6rem;
-    border-radius: 15px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border: 1px solid var(--primary-color);
-}
-
-/* Back Card Content */
-.pricing-content {
-    padding: 1rem 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.pricing-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    text-align: center;
-    font-size: 1.1rem;
-}
-
-.feature-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1rem;
-    flex: 1;
-}
-
-.feature-list li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(144, 185, 171, 0.2);
-    position: relative;
-    padding-left: 1.5rem;
+/* Pricing Package Styles */
+.package-timeline {
     font-size: 0.9rem;
-    line-height: 1.4;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
-.feature-list li:before {
-    content: "✓";
-    color: var(--success);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
+.featured-package {
+    position: relative;
+    border: 2px solid var(--accent-color);
 }
 
-/* Featured Badge */
 .featured-badge {
     background: var(--accent-color);
     color: var(--text-color);
     padding: 0.5rem 1rem;
     position: absolute;
-    top: 1rem;
-    right: -0.5rem;
+    top: -0.5rem;
+    right: 1rem;
     font-size: 0.85rem;
     font-weight: 600;
-    transform: rotate(5deg);
     z-index: 10;
     border-radius: 4px;
 }
@@ -640,15 +384,6 @@
         gap: 1.5rem;
     }
     
-    .featured-container {
-        transform: none;
-    }
-    
-    /* Mobile: Show back on tap instead of hover */
-    .pricing-card-container.active .pricing-card {
-        transform: rotateY(180deg);
-    }
-    
     .addons-grid {
         grid-template-columns: 1fr;
     }
@@ -656,38 +391,7 @@
     .faq-grid {
         grid-template-columns: 1fr;
     }
-    
-    .flip-instruction {
-        font-size: 1rem;
-    }
-}
-
-/* Touch device support */
-@media (hover: none) and (pointer: coarse) {
-    .pricing-card-container:hover .pricing-card {
-        transform: none;
-    }
 }
 </style>
 
-<script>
-// Mobile touch support for card flipping
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.pricing-card-container');
-    
-    cards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Toggle active class for mobile
-            this.classList.toggle('active');
-            
-            // Remove active from other cards
-            cards.forEach(otherCard => {
-                if (otherCard !== this) {
-                    otherCard.classList.remove('active');
-                }
-            });
-        });
-    });
-});
-</script>
 {% endblock %} 
