@@ -5,77 +5,80 @@
 {% block content %}
 <section class="hero">
     <div class="hero-content">
-        <h1>Human-Centered Tech Solutions</h1>
-        <p>Empowering small businesses with enterprise-level automation and analytics</p>
+        <h1>Your Local Tech Partner for Modern Business</h1>
+        <p>Website refreshes, social media management, and cloud solutions tailored for small businesses</p>
         <div class="hero-buttons">
-            <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
-            <a href="{{ url_for('product_intirkon') }}" class="btn secondary">Explore Our Products</a>
+            <a href="{{ url_for('contact') }}?assessment=website" class="btn primary">Get a Free Website Assessment</a>
+            <a href="{{ url_for('services') }}" class="btn secondary">View Our Services</a>
         </div>
     </div>
 </section>
 
 <section class="features">
     <div class="container">
-        <h2>Why Choose Netrun Systems</h2>
+        <h2>Everything Your Business Needs to Thrive Online</h2>
         <div class="feature-grid">
         <div class="feature-card">
             <div class="feature-icon">
-                <img src="{{ url_for('static', filename='images/human.PNG') }}" alt="Human Icon">
+                <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Website Icon">
             </div>
-            <h3>Human-Centered</h3>
-            <p>Technology that empowers people, not replaces them</p>
+            <h3>Website Modernization</h3>
+            <p>Fresh, mobile-ready designs that connect with customers</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Social Media Icon">
+            </div>
+            <h3>Social Media on Autopilot</h3>
+            <p>Automated content that keeps you visible and engaged</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Cloud Icon">
+            </div>
+            <h3>Worry-Free Cloud Management</h3>
+            <p>Let us handle your Azure infrastructure</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">
                 <img src="{{ url_for('static', filename='images/community.PNG') }}" alt="Community Icon">
             </div>
-            <h3>Community-Driven</h3>
-            <p>Built in Ojai, for real businesses and communities</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">
-                <img src="{{ url_for('static', filename='images/visibility.PNG') }}" alt="Visibility Icon">
-            </div>
-            <h3>Complete Visibility</h3>
-            <p>Unified dashboard for multiple Azure environments</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">
-                <img src="{{ url_for('static', filename='images/compliance.PNG') }}" alt="Compliance Icon">
-            </div>
-            <h3>Built-in Compliance</h3>
-            <p>Automated compliance across all tenants</p>
+            <h3>Local, Personal Service</h3>
+            <p>Based in Ojai, serving businesses nationwide</p>
         </div>
     </div>
 </section>
 
 <section class="products">
     <div class="container">
-        <h2>Our Solutions</h2>
+        <h2>Our Service Packages</h2>
         <div class="product-grid">
         <div class="product-card">
             <div class="product-icon">
-                <img src="{{ url_for('static', filename='images/intirkon.PNG') }}" alt="Intirkon Icon" class="solution-icon">
+                <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Website Design Icon" class="solution-icon">
             </div>
-            <h3>Intirkon</h3>
-            <p>Advanced automation platform for Azure environments</p>
-            <a href="{{ url_for('product_intirkon') }}" class="btn-learn-more">Learn More</a>
+            <h3>Website Design</h3>
+            <p>Professional website packages from simple refreshes to complete redesigns</p>
+            <div class="service-price">Starting at $1,000</div>
+            <a href="{{ url_for('website_design_pricing') }}" class="btn-learn-more">View Packages</a>
         </div>
         <div class="product-card">
             <div class="product-icon">
-                <img src="{{ url_for('static', filename='images/intirfix.PNG') }}" alt="Intirfix Icon" class="solution-icon">
+                <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Social Media Icon" class="solution-icon">
             </div>
-            <h3>Intirfix</h3>
-            <p>Small Business Dashboard + AI Insights</p>
-            <a href="{{ url_for('product_intirfix') }}" class="btn-learn-more">Learn More</a>
-        </div>
-        <div class="product-card">
-            <div class="product-icon">
-                <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Intirkast Icon" class="solution-icon">
-            </div>
-            <h3>Intirkast</h3>
-            <p>Social media content and management service</p>
+            <h3>Social Media Management</h3>
+            <p>Automated content creation and scheduling to keep your business engaged</p>
+            <div class="service-price">Starting at $99/month</div>
             <a href="{{ url_for('product_intirkast') }}" class="btn-learn-more">Learn More</a>
+        </div>
+        <div class="product-card">
+            <div class="product-icon">
+                <img src="{{ url_for('static', filename='images/intirkon.PNG') }}" alt="Managed Azure Icon" class="solution-icon">
+            </div>
+            <h3>Managed Azure Services</h3>
+            <p>Let us handle your cloud infrastructure with our enterprise-grade platform</p>
+            <div class="service-price">Custom Pricing</div>
+            <a href="{{ url_for('contact') }}?service=azure" class="btn-learn-more">Get Quote</a>
         </div>
     </div>
 </section>

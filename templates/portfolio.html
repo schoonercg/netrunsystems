@@ -1,0 +1,388 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio - Netrun Systems{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header-content">
+        <h1>Our Portfolio</h1>
+        <p>Real results for real businesses. See how we've helped companies like yours succeed online.</p>
+    </div>
+</section>
+
+<section class="portfolio-showcase">
+    <div class="container">
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="website">Website Design</button>
+            <button class="filter-btn" data-filter="social">Social Media</button>
+            <button class="filter-btn" data-filter="azure">Cloud Solutions</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Website Project 1 -->
+            <div class="portfolio-item" data-category="website">
+                <div class="portfolio-image">
+                    <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Local Restaurant Website">
+                    <div class="portfolio-overlay">
+                        <h3>Ojai Valley Restaurant</h3>
+                        <p>Complete website redesign</p>
+                    </div>
+                </div>
+                <div class="portfolio-details">
+                    <h3>Local Restaurant Transformation</h3>
+                    <p class="project-type">Website Redesign</p>
+                    <p>Helped a beloved Ojai restaurant modernize their online presence with a mobile-friendly design that increased online orders by 150%.</p>
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <span class="result-number">150%</span>
+                            <span class="result-label">Increase in online orders</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-number">2 weeks</span>
+                            <span class="result-label">Project timeline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Project -->
+            <div class="portfolio-item" data-category="social">
+                <div class="portfolio-image">
+                    <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Boutique Social Media">
+                    <div class="portfolio-overlay">
+                        <h3>Ventura Boutique</h3>
+                        <p>Social media management</p>
+                    </div>
+                </div>
+                <div class="portfolio-details">
+                    <h3>Boutique Social Media Success</h3>
+                    <p class="project-type">Social Media Management</p>
+                    <p>Automated content creation and scheduling for a local boutique, maintaining consistent brand presence across platforms.</p>
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <span class="result-number">200%</span>
+                            <span class="result-label">Follower growth</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-number">5 hrs/week</span>
+                            <span class="result-label">Time saved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Azure Project -->
+            <div class="portfolio-item" data-category="azure">
+                <div class="portfolio-image">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Manufacturing Cloud">
+                    <div class="portfolio-overlay">
+                        <h3>Local Manufacturer</h3>
+                        <p>Azure infrastructure</p>
+                    </div>
+                </div>
+                <div class="portfolio-details">
+                    <h3>Manufacturing Cloud Migration</h3>
+                    <p class="project-type">Managed Azure Services</p>
+                    <p>Migrated a local manufacturer to Azure, reducing IT costs while improving system reliability and security.</p>
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <span class="result-number">40%</span>
+                            <span class="result-label">Cost reduction</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-number">99.9%</span>
+                            <span class="result-label">Uptime achieved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Website Project 2 -->
+            <div class="portfolio-item" data-category="website">
+                <div class="portfolio-image">
+                    <img src="{{ url_for('static', filename='images/search.PNG') }}" alt="Professional Services">
+                    <div class="portfolio-overlay">
+                        <h3>Law Firm Website</h3>
+                        <p>Professional services site</p>
+                    </div>
+                </div>
+                <div class="portfolio-details">
+                    <h3>Law Firm Digital Presence</h3>
+                    <p class="project-type">Website & SEO</p>
+                    <p>Built a professional website with local SEO optimization, helping a law firm rank #1 for key local search terms.</p>
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <span class="result-number">#1</span>
+                            <span class="result-label">Local search ranking</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-number">3x</span>
+                            <span class="result-label">Lead generation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Netrun Systems transformed our online presence. Our new website is beautiful, fast, and brings in more customers than ever before."</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>Sarah Johnson</strong>
+                    <span>Owner, Ojai Valley Restaurant</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"The social media automation saves us hours every week. Our engagement has never been better, and we can focus on what we do best."</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>Michael Chen</strong>
+                    <span>Ventura Boutique</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Moving to Azure seemed daunting, but Netrun made it seamless. Our systems are more reliable and cost-effective than ever."</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>David Martinez</strong>
+                    <span>Operations Manager</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to Be Our Next Success Story?</h2>
+        <p>Let's discuss how we can help your business thrive online.</p>
+        <a href="{{ url_for('contact') }}" class="btn primary">Start Your Project</a>
+        <a href="{{ url_for('services') }}" class="btn secondary">View Services</a>
+    </div>
+</section>
+
+<style>
+/* Portfolio Page Styles */
+.portfolio-showcase {
+    padding: 4rem 2rem;
+    background-color: var(--light-gray);
+}
+
+.portfolio-filters {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.portfolio-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    background: var(--secondary-color);
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 2rem;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: var(--white);
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    transform: translateY(0);
+}
+
+.portfolio-details {
+    padding: 2rem;
+}
+
+.portfolio-details h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.project-type {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.result-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(144, 185, 171, 0.1);
+    border-radius: 8px;
+}
+
+.result-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.result-label {
+    font-size: 0.85rem;
+    color: var(--dark-gray);
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 4rem 2rem;
+    background-color: var(--white);
+}
+
+.testimonials h2 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 3rem;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.testimonial-content {
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-content p {
+    color: var(--secondary-color);
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.testimonial-author {
+    display: block;
+}
+
+.testimonial-author strong {
+    display: block;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.testimonial-author span {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter');
+
+            portfolioItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

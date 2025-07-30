@@ -1051,6 +1051,11 @@ def admin_blog_delete(filename):
     
     return redirect(url_for('admin_blog'))
 
+@app.route('/portfolio')
+def portfolio():
+    now = datetime.datetime.now()
+    return render_template('portfolio.html', now=now)
+
 @app.route('/about', methods=['GET', 'POST'])
 def about():
     now = datetime.datetime.now()

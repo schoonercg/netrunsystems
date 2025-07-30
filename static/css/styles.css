@@ -821,6 +821,12 @@ nav {
   margin-bottom: 1.5rem;
   color: #ffffff;
 }
+.product-card .service-price {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
 
 .btn-learn-more {
   display: inline-block;

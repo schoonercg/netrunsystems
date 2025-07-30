@@ -9,11 +9,11 @@
         <div class="product-overview">
             <div class="product-description">
                 <h1>Intirkast</h1>
-                <p>Your always-on creative teammate</p>
-                <h2>AI-Powered Content Automation & Distribution</h2>
-                <p>Imagine having a super-organized friend who never sleeps, speaks every social-media dialect, and cheer-leads your brand 24/7. That's Intirkast. Behind the scenes it quietly syndicates your posts—think "copy once, appear everywhere"—then lines them up on an intelligent calendar so your TikToks, Reels, Pins, and Tweets hit exactly when your audience is scrolling.</p>
+                <p>Social Media Management Made Simple</p>
+                <h2>Stay Active on Social Media Without the Daily Hassle</h2>
+                <p>Running a business is hard enough without worrying about posting on social media every day. Intirkast handles your social media presence automatically—creating engaging content, scheduling posts at the perfect times, and keeping your brand visible across all platforms. It's like having a dedicated social media manager for a fraction of the cost.</p>
                 
-                <a href="{{ url_for('early_access') }}" class="btn primary">Get Early Access</a>
+                <a href="{{ url_for('contact') }}?service=intirkast" class="btn primary">Start Free Trial</a>
             </div>
         </div>
     </div>
@@ -27,8 +27,8 @@
                 <div class="product-icon">
                     <img src="{{ url_for('static', filename='images/connection.PNG') }}" alt="Content Capture Icon" class="solution-icon">
                 </div>
-                <h3>Content Capture</h3>
-                <p>Post once, repurpose forever. Connect private sandbox accounts, bulk upload from cloud folders, or import from spreadsheets. Intirkast auto-imports and prepares everything for multi-platform publishing.</p>
+                <h3>Easy Content Creation</h3>
+                <p>No more staring at a blank screen. Upload your photos, share your ideas, or let our AI create content based on your business. We'll turn it into professional posts that work on every platform.</p>
                 <div class="service-details">
                     <span class="timeline">Auto Import</span>
                     <span class="price">Multi-Source</span>
@@ -38,8 +38,8 @@
                 <div class="product-icon">
                     <img src="{{ url_for('static', filename='images/agents.PNG') }}" alt="Smart Production Icon" class="solution-icon">
                 </div>
-                <h3>Smart Production</h3>
-                <p>From raw to ready. AI generates captions in your brand voice, auto-trims content for every platform format, applies brand guardrails, and creates template-driven storyboards that convert.</p>
+                <h3>Your Brand Voice, Automated</h3>
+                <p>Our AI learns how you talk to customers and creates posts that sound like you, not a robot. Every caption, every message stays true to your brand while saving you hours of writing.</p>
                 <div class="service-details">
                     <span class="timeline">AI Powered</span>
                     <span class="price">Brand Safe</span>
@@ -49,8 +49,8 @@
                 <div class="product-icon">
                     <img src="{{ url_for('static', filename='images/compliance.PNG') }}" alt="Approval Workflow Icon" class="solution-icon">
                 </div>
-                <h3>Approval & Collaboration</h3>
-                <p>Keep control, ditch the chaos. One-click approvals, version compare & rollback, and role-based access ensure your team stays productive while maintaining quality standards.</p>
+                <h3>Stay in Control</h3>
+                <p>Review and approve posts before they go live with simple one-click approval. You're always in charge of what gets posted and when. Perfect for businesses that want automation with oversight.</p>
                 <div class="service-details">
                     <span class="timeline">Team Ready</span>
                     <span class="price">Full Control</span>
@@ -60,8 +60,8 @@
                 <div class="product-icon">
                     <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Scheduling Icon" class="solution-icon">
                 </div>
-                <h3>Scheduling & Delivery</h3>
-                <p>Algorithm-friendly timing on autopilot. Predictive time slots, content recycling for evergreen hits, and launch sequences that tie multiple posts into cohesive campaigns.</p>
+                <h3>Post at the Perfect Time</h3>
+                <p>We analyze when your customers are most active and schedule posts automatically. Your content goes live when people are actually looking, not when you remember to post.</p>
                 <div class="service-details">
                     <span class="timeline">Auto Schedule</span>
                     <span class="price">Smart Timing</span>
@@ -71,8 +71,8 @@
                 <div class="product-icon">
                     <img src="{{ url_for('static', filename='images/search.PNG') }}" alt="Insights Icon" class="solution-icon">
                 </div>
-                <h3>Insights & Iteration</h3>
-                <p>Learn, tweak, repeat. At-a-glance dashboard, post-mortem wizard for campaign analysis, and trend radar to catch viral waves before they crash.</p>
+                <h3>See What's Working</h3>
+                <p>Simple reports show you which posts get the most engagement. Know what your customers love and get suggestions for what to post next. No complicated analytics degree required.</p>
                 <div class="service-details">
                     <span class="timeline">Real-time</span>
                     <span class="price">Data Driven</span>
@@ -120,36 +120,53 @@
                     <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Basic Package">
                 </div>
                 <h3>Basic</h3>
-                <p>Perfect for solopreneurs and small teams getting started with content automation.</p>
+                <p>Perfect for small businesses just getting started with social media automation.</p>
                 <div class="service-details">
-                    <span class="timeline">2 social platforms</span>
-                    <span class="price">$79/month</span>
+                    <span class="timeline">Up to 3 platforms</span>
+                    <span class="price">$99/month</span>
                 </div>
-                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+                <ul style="text-align: left; margin: 1rem 0;">
+                    <li>30 posts per month</li>
+                    <li>Basic scheduling</li>
+                    <li>Simple analytics</li>
+                </ul>
+                <a href="{{ url_for('contact') }}?plan=basic" class="btn-learn-more">Start Free Trial</a>
             </div>
             <div class="product-card">
                 <div class="product-icon">
                     <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Pro Package">
                 </div>
                 <h3>Pro</h3>
-                <p>Ideal for growing agencies and businesses with advanced automation needs.</p>
+                <p>Ideal for growing businesses that need consistent social media presence.</p>
                 <div class="service-details">
-                    <span class="timeline">Unlimited platforms</span>
+                    <span class="timeline">All major platforms</span>
                     <span class="price">$199/month</span>
                 </div>
-                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+                <ul style="text-align: left; margin: 1rem 0;">
+                    <li>Unlimited posts</li>
+                    <li>Advanced AI captions</li>
+                    <li>Team collaboration</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="{{ url_for('contact') }}?plan=pro" class="btn-learn-more">Start Free Trial</a>
             </div>
             <div class="product-card">
                 <div class="product-icon">
                     <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Enterprise Package">
                 </div>
-                <h3>Enterprise</h3>
-                <p>For large organizations with custom integrations and dedicated support requirements.</p>
+                <h3>Custom</h3>
+                <p>For businesses with specific needs or multiple locations to manage.</p>
                 <div class="service-details">
-                    <span class="timeline">Custom integrations</span>
-                    <span class="price">Custom pricing</span>
+                    <span class="timeline">Everything in Pro</span>
+                    <span class="price">Let's talk</span>
                 </div>
-                <a href="{{ url_for('early_access') }}" class="btn-learn-more">Get Started</a>
+                <ul style="text-align: left; margin: 1rem 0;">
+                    <li>Multiple business accounts</li>
+                    <li>Custom integrations</li>
+                    <li>Dedicated support</li>
+                    <li>Training included</li>
+                </ul>
+                <a href="{{ url_for('contact') }}?plan=custom" class="btn-learn-more">Contact Us</a>
             </div>
         </div>
     </div>
@@ -157,28 +174,28 @@
 
 <section class="features">
     <div class="container">
-        <h2>Integrations & Extensibility</h2>
+        <h2>Why Businesses Love Intirkast</h2>
         <div class="feature-grid">
             <div class="feature-card">
                 <div class="feature-icon">
-                    <img src="{{ url_for('static', filename='images/connection.PNG') }}" alt="Zapier Icon">
+                    <img src="{{ url_for('static', filename='images/human.PNG') }}" alt="Time Savings Icon">
                 </div>
-                <h3>Zapier & Webhooks</h3>
-                <p>Connect to your CRM, newsletter, or custom tools. Automate workflows beyond social media.</p>
+                <h3>Save 10+ Hours Per Week</h3>
+                <p>Stop spending hours creating and scheduling posts. Focus on running your business while we handle your social media.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
-                    <img src="{{ url_for('static', filename='images/cicd.PNG') }}" alt="API Icon">
+                    <img src="{{ url_for('static', filename='images/analytics.PNG') }}" alt="Growth Icon">
                 </div>
-                <h3>OpenAPI Playground</h3>
-                <p>Script custom automations like auto-posting "New in store" carousels when inventory changes.</p>
+                <h3>Grow Your Following</h3>
+                <p>Consistent posting at optimal times means more engagement, more followers, and more customers finding your business.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
-                    <img src="{{ url_for('static', filename='images/knowledge.PNG') }}" alt="Knowledge Icon">
+                    <img src="{{ url_for('static', filename='images/compliance.PNG') }}" alt="Brand Icon">
                 </div>
-                <h3>RAG-Powered Knowledge</h3>
-                <p>Feed FAQs or white papers; caption generator cites them for accuracy and SEO benefits.</p>
+                <h3>Stay On Brand</h3>
+                <p>Every post reflects your unique voice and style. Our AI learns from you to keep your messaging consistent and professional.</p>
             </div>
         </div>
     </div>
@@ -197,10 +214,10 @@
 
 <section class="cta">
     <div class="cta-content">
-        <h2>Ready to transform your content strategy?</h2>
-        <p>You sketch the big idea; Intirkast figures out where, when, and how often it should live. Perfect for agencies, solopreneurs, and in-house marketing teams who want to plan, publish, and measure campaigns without juggling ten apps.</p>
-        <a href="{{ url_for('contact') }}" class="btn primary">Contact Us</a>
-        <a href="{{ url_for('early_access') }}" class="btn secondary">Get Early Access</a>
+        <h2>Ready to Simplify Your Social Media?</h2>
+        <p>Join hundreds of small businesses who save hours every week with Intirkast. No more social media stress - just consistent, engaging content that brings in customers.</p>
+        <a href="{{ url_for('contact') }}?service=intirkast-trial" class="btn primary">Start 14-Day Free Trial</a>
+        <a href="{{ url_for('contact') }}" class="btn secondary">Schedule a Demo</a>
     </div>
 </section>
 {% endblock %}

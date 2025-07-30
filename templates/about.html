@@ -6,16 +6,16 @@
 {% block content %}
 <section class="page-header">
     <div class="page-header-content">
-        <h1>About Netrun Systems</h1>
-        <p>From a valley famed for its laid-back mystique, proving that automation, ethics, and art can belong on the same team.</p>
+        <h1>Your Local Tech Partner</h1>
+        <p>Based in Ojai, we help small businesses thrive with modern websites, smart social media, and worry-free cloud solutions.</p>
     </div>
 </section>
 
 <section class="features">
     <div class="container">
         <div class="product-card">
-            <h2>Our Mission</h2>
-            <p>At Netrun Systems, we're showing that high-impact tech doesn't have to be born in Silicon Valley. It can come from a place as eclectic as Ojai — for real humans who need real-world solutions. We specialize in automation, cloud governance, and innovative solutions that solve real-world problems while keeping people at the center.</p>
+            <h2>Technology Made Simple</h2>
+            <p>We believe every business deserves professional technology solutions without the complexity. From refreshing your website to managing your social media presence, we make technology work for you, not against you. Our local roots in Ojai mean you get personal service from people who understand your business.</p>
         </div>
     </div>
 </section>
@@ -23,29 +23,29 @@
 <section class="products">
     <div class="container">
         <div class="product-card">
-            <h2>What We Do</h2>
+            <h2>How We Help Your Business</h2>
         </div>
         <div class="product-grid">
             <div class="product-card">
                 <div class="product-icon">
-                    <img src="{{ url_for('static', filename='images/intirkon.PNG') }}" alt="Interkon" class="solution-icon">
+                    <img src="{{ url_for('static', filename='images/package.PNG') }}" alt="Website Design" class="solution-icon">
                 </div>
-                <h3>Interkon</h3>
-                <p>A cross-tenant cloud governance platform for MSPs, delivering enterprise-grade security and cost optimization—no matter how many client tenants they juggle.</p>
+                <h3>Website Design & Refresh</h3>
+                <p>From simple updates to complete redesigns, we create websites that look great and bring in customers. Mobile-friendly, SEO-optimized, and built to grow with your business.</p>
             </div>
             <div class="product-card">
                 <div class="product-icon">
-                    <img src="{{ url_for('static', filename='images/intirfix.PNG') }}" alt="Interfyx" class="solution-icon">
+                    <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Social Media" class="solution-icon">
                 </div>
-                <h3>Interfyx</h3>
-                <p>A small-business optimization dashboard that integrates with Square, QuickBooks, and other common tools, translating data into insights people actually understand.</p>
+                <h3>Social Media Management</h3>
+                <p>Keep your social media active without the daily hassle. Our AI-powered tools create engaging content that sounds like you, not a robot.</p>
             </div>
             <div class="product-card">
                 <div class="product-icon">
-                    <img src="{{ url_for('static', filename='images/intirkast.PNG') }}" alt="Interkast" class="solution-icon">
+                    <img src="{{ url_for('static', filename='images/solutions.PNG') }}" alt="Cloud Management" class="solution-icon">
                 </div>
-                <h3>Interkast</h3>
-                <p>A social-automation and generative-media studio that keeps marketing campaigns genuinely social rather than "spammy."</p>
+                <h3>Managed Cloud Services</h3>
+                <p>Let us handle your Azure infrastructure while you focus on running your business. Security, backups, and optimization all taken care of.</p>
             </div>
         </div>
     </div>
@@ -116,6 +116,15 @@
             
             <p>Located in the beautiful Ojai Valley of California, we draw inspiration from our surroundings to create technology solutions that are both powerful and harmonious with human needs. We believe that the best technology solutions are those that seamlessly integrate into people's workflows and enhance their capabilities rather than creating additional complexity.</p>
         </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to Work with a Tech Partner Who Gets It?</h2>
+        <p>Let's discuss how we can help your business grow with simple, effective technology solutions.</p>
+        <a href="{{ url_for('contact') }}" class="btn primary">Schedule Free Consultation</a>
+        <a href="{{ url_for('portfolio') }}" class="btn secondary">View Our Work</a>
     </div>
 </section>
 
