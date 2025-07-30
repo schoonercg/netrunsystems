@@ -11,36 +11,37 @@
 <body>
     <div class="overlay"></div>
     <header>
-        <div class="header-announcement">
+        <div class="header-main">
             <div class="container">
-                <div class="header-flex-container">
-                    <div class="header-logo-container">
-                        <a href="{{ url_for('index') }}">
-                            <img src="{{ url_for('static', filename='images/ns-banner.png') }}" alt="Netrun Systems" class="header-banner">
-                        </a>
-                    </div>
-                    <div class="header-text-container">
-                        <div class="header-text">
-                            <span class="company-name"><span class="bold-n">N</span>ETRUN SYSTEMS</span><br>
-                            <span style="color: #84baaa;">TECHNOLOGY SOLUTIONS</span><br>
-                            <span>FOR</span> <span style="color: #84baaa;">PEOPLE</span> <span>BY</span> <span style="color: #84baaa;">PEOPLE</span>
+                <div class="header-content">
+                    <div class="header-left">
+                        <div class="header-logo-container">
+                            <a href="{{ url_for('index') }}">
+                                <img src="{{ url_for('static', filename='images/ns-banner.png') }}" alt="Netrun Systems" class="header-banner">
+                            </a>
                         </div>
+                        <div class="header-text-container">
+                            <div class="header-text">
+                                <span class="company-name"><span class="bold-n">N</span>ETRUN SYSTEMS</span><br>
+                                <span style="color: #84baaa;">TECHNOLOGY SOLUTIONS</span><br>
+                                <span>FOR</span> <span style="color: #84baaa;">PEOPLE</span> <span>BY</span> <span style="color: #84baaa;">PEOPLE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="nav-desktop">
+                        <ul class="nav-links">
+                            <li><a href="{{ url_for('services') }}">Services</a></li>
+                            <li><a href="{{ url_for('website_design_pricing') }}">Pricing</a></li>
+                            <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+                            <li><a href="{{ url_for('about') }}">About</a></li>
+                            <li><a href="{{ url_for('contact') }}" class="btn-early-access">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                    <div class="hamburger">
+                        <span class="hamburger-icon"></span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="header-bottom">
-            <div class="hamburger">
-                <span class="hamburger-icon"></span>
-            </div>
-            <nav class="nav-desktop">
-                <ul class="nav-links">
-                    <li><a href="{{ url_for('services') }}">Services</a></li>
-                    <li><a href="{{ url_for('website_design_pricing') }}">Pricing</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
-                    <li><a href="{{ url_for('contact') }}" class="btn-early-access">Contact Us</a></li>
-                </ul>
-            </nav>
         </div>
 
         <!-- Mobile Menu -->
@@ -52,6 +53,7 @@
             <nav class="mobile-nav-links">
                 <a href="{{ url_for('services') }}">Services</a>
                 <a href="{{ url_for('website_design_pricing') }}">Pricing</a>
+                <a href="{{ url_for('portfolio') }}">Portfolio</a>
                 <a href="{{ url_for('about') }}">About</a>
                 <a href="{{ url_for('contact') }}" class="btn-early-access">Contact Us</a>
             </nav>
